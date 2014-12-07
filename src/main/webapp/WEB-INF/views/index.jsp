@@ -64,6 +64,7 @@
 
 							<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right; margin-right: 20px;"></a>
 
+							<div id="UserType" class="col-md-7 col-sm-offset-2 btn-group" style="padding-left: 0px; margin-bottom: 20px" data-toggle="buttons"></div>
 							<div class="input-group col-md-7 col-sm-offset-2">
 								<span class="input-group-addon" style="width: 100px; text-align: left;"><span class="glyphicon glyphicon-user"> User</span></span> <input id="UserName" type="text" class="form-control" placeholder="Username">
 							</div>

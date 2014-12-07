@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2014-12-07 21:46:16
+Date: 2014-12-07 23:42:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -246,13 +246,14 @@ DROP TABLE IF EXISTS `userType`;
 CREATE TABLE `userType` (
   `intIdentityId` int(11) NOT NULL AUTO_INCREMENT,
   `strName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `intAllowReg` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intIdentityId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of userType
 -- ----------------------------
-INSERT INTO `userType` VALUES ('1', '管理员');
-INSERT INTO `userType` VALUES ('2', '图书管理员');
-INSERT INTO `userType` VALUES ('3', '教师');
-INSERT INTO `userType` VALUES ('4', '学生');
+INSERT INTO `userType` VALUES ('1', '管理员', '0');
+INSERT INTO `userType` VALUES ('2', '图书管理员', '0');
+INSERT INTO `userType` VALUES ('3', 'Teacher', '1');
+INSERT INTO `userType` VALUES ('4', 'Student', '1');
