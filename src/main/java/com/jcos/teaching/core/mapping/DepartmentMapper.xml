@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Department" >
+    <id column="intDepartmentId" property="intdepartmentid" jdbcType="INTEGER" />
+    <result column="strDepartmentName" property="strdepartmentname" jdbcType="VARCHAR" />
+    <result column="strDepartmentPhone" property="strdepartmentphone" jdbcType="VARCHAR" />
+    <result column="intDepartmentCoding" property="intdepartmentcoding" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intDepartmentId, strDepartmentName, strDepartmentPhone, intDepartmentCoding
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where intDepartmentId = #{intdepartmentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from department
+    where intDepartmentId = #{intdepartmentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.Department" >
+    insert into department (intDepartmentId, strDepartmentName, 
+      strDepartmentPhone, intDepartmentCoding
+      )
+    values (#{intdepartmentid,jdbcType=INTEGER}, #{strdepartmentname,jdbcType=VARCHAR}, 
+      #{strdepartmentphone,jdbcType=VARCHAR}, #{intdepartmentcoding,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intdepartmentid != null" >
+        intDepartmentId,
+      </if>
+      <if test="strdepartmentname != null" >
+        strDepartmentName,
+      </if>
+      <if test="strdepartmentphone != null" >
+        strDepartmentPhone,
+      </if>
+      <if test="intdepartmentcoding != null" >
+        intDepartmentCoding,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intdepartmentid != null" >
+        #{intdepartmentid,jdbcType=INTEGER},
+      </if>
+      <if test="strdepartmentname != null" >
+        #{strdepartmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="strdepartmentphone != null" >
+        #{strdepartmentphone,jdbcType=VARCHAR},
+      </if>
+      <if test="intdepartmentcoding != null" >
+        #{intdepartmentcoding,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Department" >
+    update department
+    <set >
+      <if test="strdepartmentname != null" >
+        strDepartmentName = #{strdepartmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="strdepartmentphone != null" >
+        strDepartmentPhone = #{strdepartmentphone,jdbcType=VARCHAR},
+      </if>
+      <if test="intdepartmentcoding != null" >
+        intDepartmentCoding = #{intdepartmentcoding,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where intDepartmentId = #{intdepartmentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Department" >
+    update department
+    set strDepartmentName = #{strdepartmentname,jdbcType=VARCHAR},
+      strDepartmentPhone = #{strdepartmentphone,jdbcType=VARCHAR},
+      intDepartmentCoding = #{intdepartmentcoding,jdbcType=VARCHAR}
+    where intDepartmentId = #{intdepartmentid,jdbcType=INTEGER}
+  </update>
+</mapper>

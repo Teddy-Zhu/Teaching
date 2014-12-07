@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.ForTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.ForType" >
+    <id column="intForId" property="intforid" jdbcType="INTEGER" />
+    <result column="strUseName" property="strusename" jdbcType="VARCHAR" />
+    <result column="intUserId" property="intuserid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intForId, strUseName, intUserId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from forType
+    where intForId = #{intforid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from forType
+    where intForId = #{intforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.ForType" >
+    insert into forType (intForId, strUseName, intUserId
+      )
+    values (#{intforid,jdbcType=INTEGER}, #{strusename,jdbcType=VARCHAR}, #{intuserid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.ForType" >
+    insert into forType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intforid != null" >
+        intForId,
+      </if>
+      <if test="strusename != null" >
+        strUseName,
+      </if>
+      <if test="intuserid != null" >
+        intUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intforid != null" >
+        #{intforid,jdbcType=INTEGER},
+      </if>
+      <if test="strusename != null" >
+        #{strusename,jdbcType=VARCHAR},
+      </if>
+      <if test="intuserid != null" >
+        #{intuserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.ForType" >
+    update forType
+    <set >
+      <if test="strusename != null" >
+        strUseName = #{strusename,jdbcType=VARCHAR},
+      </if>
+      <if test="intuserid != null" >
+        intUserId = #{intuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where intForId = #{intforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.ForType" >
+    update forType
+    set strUseName = #{strusename,jdbcType=VARCHAR},
+      intUserId = #{intuserid,jdbcType=INTEGER}
+    where intForId = #{intforid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.UserTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.UserType" >
+    <id column="intIdentityId" property="intidentityid" jdbcType="INTEGER" />
+    <result column="strName" property="strname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intIdentityId, strName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userType
+    where intIdentityId = #{intidentityid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userType
+    where intIdentityId = #{intidentityid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.UserType" >
+    insert into userType (intIdentityId, strName)
+    values (#{intidentityid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.UserType" >
+    insert into userType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intidentityid != null" >
+        intIdentityId,
+      </if>
+      <if test="strname != null" >
+        strName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intidentityid != null" >
+        #{intidentityid,jdbcType=INTEGER},
+      </if>
+      <if test="strname != null" >
+        #{strname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.UserType" >
+    update userType
+    <set >
+      <if test="strname != null" >
+        strName = #{strname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where intIdentityId = #{intidentityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.UserType" >
+    update userType
+    set strName = #{strname,jdbcType=VARCHAR}
+    where intIdentityId = #{intidentityid,jdbcType=INTEGER}
+  </update>
+</mapper>
