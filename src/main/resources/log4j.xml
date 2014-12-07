@@ -22,7 +22,7 @@
 
 
 	<!-- Application Loggers -->
-	<logger name="com.trendmicro"  additivity="false">
+	<logger name="com.jcos"  additivity="false">
 		<level value="debug" />
 		<appender-ref ref="FILE" />
 		<appender-ref ref="console" />

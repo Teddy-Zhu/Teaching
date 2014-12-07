@@ -1,73 +1,97 @@
 package com.jcos.teaching.core.model;
 
+import java.util.Date;
+
 public class User {
-    private Integer intid;
+	private Integer intid;
 
-    private String username;
+	private String username;
 
-    private String password;
+	private String password;
 
-    private String strname;
+	private String strname;
 
-    private Integer strtypeid;
+	private Integer strtypeid;
 
-    private String strphone;
+	private String strphone;
 
-    private String strmail;
+	private String strmail;
 
-    public Integer getIntid() {
-        return intid;
-    }
+	private Date dateregtime;
 
-    public void setIntid(Integer intid) {
-        this.intid = intid;
-    }
+	public User() {
+		super();
+		this.intid = 0;
+		this.username = "";
+		this.password = "";
+		this.strname = "";
+		this.strtypeid = 3;
+		this.strphone = "";
+		this.strmail = "";
+		this.dateregtime = new Date();
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public Integer getIntid() {
+		return intid;
+	}
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
+	public void setIntid(Integer intid) {
+		this.intid = intid;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
+	public void setUsername(String username) {
+		this.username = username == null ? null : username.trim();
+	}
 
-    public String getStrname() {
-        return strname;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setStrname(String strname) {
-        this.strname = strname == null ? null : strname.trim();
-    }
+	public void setPassword(String password) {
+		this.password = password == null ? null : password.trim();
+	}
 
-    public Integer getStrtypeid() {
-        return strtypeid;
-    }
+	public String getStrname() {
+		return strname;
+	}
 
-    public void setStrtypeid(Integer strtypeid) {
-        this.strtypeid = strtypeid;
-    }
+	public void setStrname(String strname) {
+		this.strname = strname == null ? null : strname.trim();
+	}
 
-    public String getStrphone() {
-        return strphone;
-    }
+	public Integer getStrtypeid() {
+		return strtypeid;
+	}
 
-    public void setStrphone(String strphone) {
-        this.strphone = strphone == null ? null : strphone.trim();
-    }
+	public void setStrtypeid(Integer strtypeid) {
+		this.strtypeid = strtypeid;
+	}
 
-    public String getStrmail() {
-        return strmail;
-    }
+	public String getStrphone() {
+		return strphone;
+	}
 
-    public void setStrmail(String strmail) {
-        this.strmail = strmail == null ? null : strmail.trim();
-    }
+	public void setStrphone(String strphone) {
+		this.strphone = strphone == null ? null : strphone.trim();
+	}
+
+	public String getStrmail() {
+		return strmail;
+	}
+
+	public void setStrmail(String strmail) {
+		this.strmail = strmail == null ? null : strmail.trim();
+	}
+
+	public Date getDateregtime() {
+		return dateregtime;
+	}
+
+	public void setDateregtime(Date dateregtime) {
+		this.dateregtime = dateregtime;
+	}
 }
