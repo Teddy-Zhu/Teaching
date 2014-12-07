@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2014-12-07 15:10:25
+Date: 2014-12-07 21:46:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
-  `intBookId` int(11) NOT NULL,
+  `intBookId` int(11) NOT NULL AUTO_INCREMENT,
   `strBookCoding` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教材代码',
   `strBookSN` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'isbn号',
   `intBookTypeId` int(11) NOT NULL COMMENT '教材类型',
@@ -41,7 +41,7 @@ CREATE TABLE `book` (
 -- ----------------------------
 DROP TABLE IF EXISTS `bookEnter`;
 CREATE TABLE `bookEnter` (
-  `intBookEnterId` int(11) NOT NULL,
+  `intBookEnterId` int(11) NOT NULL AUTO_INCREMENT,
   `intBookId` int(11) NOT NULL,
   `intUserId` int(11) NOT NULL,
   `intCount` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `bookEnter` (
 -- ----------------------------
 DROP TABLE IF EXISTS `bookOut`;
 CREATE TABLE `bookOut` (
-  `intBookOutId` int(11) NOT NULL,
+  `intBookOutId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intForId` int(11) NOT NULL,
   `dateOut` datetime NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `bookOut` (
 -- ----------------------------
 DROP TABLE IF EXISTS `bookReturn`;
 CREATE TABLE `bookReturn` (
-  `intBookReturnId` int(11) NOT NULL,
+  `intBookReturnId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intForId` int(11) NOT NULL,
   `intReturnCount` int(11) NOT NULL,
@@ -98,10 +98,10 @@ CREATE TABLE `bookReturn` (
 -- ----------------------------
 DROP TABLE IF EXISTS `bookType`;
 CREATE TABLE `bookType` (
-  `intBookTypeId` int(11) NOT NULL,
+  `intBookTypeId` int(11) NOT NULL AUTO_INCREMENT,
   `strBookTypeName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intBookTypeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of bookType
@@ -114,7 +114,7 @@ INSERT INTO `bookType` VALUES ('2', '自编教材');
 -- ----------------------------
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
-  `intDepartmentId` int(11) NOT NULL,
+  `intDepartmentId` int(11) NOT NULL AUTO_INCREMENT,
   `strDepartmentName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strDepartmentPhone` varchar(255) COLLATE utf8_bin NOT NULL,
   `intDepartmentCoding` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -130,11 +130,11 @@ CREATE TABLE `department` (
 -- ----------------------------
 DROP TABLE IF EXISTS `forType`;
 CREATE TABLE `forType` (
-  `intForId` int(11) NOT NULL,
+  `intForId` int(11) NOT NULL AUTO_INCREMENT,
   `strUseName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intUserId` int(11) NOT NULL,
   PRIMARY KEY (`intForId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of forType
@@ -150,7 +150,7 @@ INSERT INTO `forType` VALUES ('5', '教师退回', '3');
 -- ----------------------------
 DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
-  `intLogId` int(11) NOT NULL,
+  `intLogId` int(11) NOT NULL AUTO_INCREMENT,
   `intOperationId` varchar(255) COLLATE utf8_bin NOT NULL,
   `dateOperationTime` datetime NOT NULL,
   `intUserId` int(11) NOT NULL,
@@ -166,7 +166,7 @@ CREATE TABLE `logs` (
 -- ----------------------------
 DROP TABLE IF EXISTS `moneyResult`;
 CREATE TABLE `moneyResult` (
-  `intResultId` int(11) NOT NULL,
+  `intResultId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intOperationUserId` int(11) NOT NULL COMMENT '结算人',
   `intResultTypeId` int(11) NOT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE `moneyResult` (
 -- ----------------------------
 DROP TABLE IF EXISTS `operation`;
 CREATE TABLE `operation` (
-  `intOperationId` int(11) NOT NULL,
+  `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -197,7 +197,7 @@ CREATE TABLE `operation` (
 -- ----------------------------
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
-  `intSupplierId` int(11) NOT NULL,
+  `intSupplierId` int(11) NOT NULL AUTO_INCREMENT,
   `intCoding` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '供应商代码',
   `strName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '供应商名称',
   `strAddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -218,29 +218,36 @@ CREATE TABLE `supplier` (
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `intId` int(11) NOT NULL,
+  `intId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `strName` varchar(255) NOT NULL,
   `strTypeId` int(11) NOT NULL,
   `strPhone` varchar(255) DEFAULT NULL,
   `strMail` varchar(255) NOT NULL,
+  `dateRegTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', 'Admin', '123456', 'www', '1', '1111', '2123', '2014-12-07 18:32:09');
+INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '3', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '3', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', 'aasf', 'aasf', '2014-12-07 19:27:02');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
 
 -- ----------------------------
 -- Table structure for userType
 -- ----------------------------
 DROP TABLE IF EXISTS `userType`;
 CREATE TABLE `userType` (
-  `intIdentityId` int(11) NOT NULL,
+  `intIdentityId` int(11) NOT NULL AUTO_INCREMENT,
   `strName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intIdentityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of userType
