@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String admin(HttpServletRequest request, Model model) {
-		return "index";
-	}
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String admin(HttpServletRequest request, Model model) {
+        return "index";
+    }
 
-	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
-	public String adminmenu(HttpServletRequest request, Model model) {
-		return "AdminMenu";
-	}
+    @RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
+    public String adminmenu(HttpServletRequest request, Model model) {
+        return "AdminMenu";
+    }
 
-	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
-	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
-		return "ajax/" + html;
-	}
+    @RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
+    public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
+        return "ajax/" + html;
+    }
 }
