@@ -103,13 +103,8 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.2.1-b03</version>
+			<version>2.2</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.surefire</groupId>
-			<artifactId>surefire-booter</artifactId>
-			<version>2.12.4</version>
 		</dependency>
 	</dependencies>
 	<build>
