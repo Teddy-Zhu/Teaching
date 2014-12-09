@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.BookReturnMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.BookReturn" >
+    <id column="intBookReturnId" property="intbookreturnid" jdbcType="INTEGER" />
+    <result column="intUserId" property="intuserid" jdbcType="INTEGER" />
+    <result column="intForId" property="intforid" jdbcType="INTEGER" />
+    <result column="intReturnCount" property="intreturncount" jdbcType="INTEGER" />
+    <result column="dateReturnTime" property="datereturntime" jdbcType="TIMESTAMP" />
+    <result column="intOperationPersionId" property="intoperationpersionid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intBookReturnId, intUserId, intForId, intReturnCount, dateReturnTime, intOperationPersionId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bookReturn
+    where intBookReturnId = #{intbookreturnid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bookReturn
+    where intBookReturnId = #{intbookreturnid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.BookReturn" >
+    insert into bookReturn (intBookReturnId, intUserId, intForId, 
+      intReturnCount, dateReturnTime, intOperationPersionId
+      )
+    values (#{intbookreturnid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intforid,jdbcType=INTEGER}, 
+      #{intreturncount,jdbcType=INTEGER}, #{datereturntime,jdbcType=TIMESTAMP}, #{intoperationpersionid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookReturn" >
+    insert into bookReturn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intbookreturnid != null" >
+        intBookReturnId,
+      </if>
+      <if test="intuserid != null" >
+        intUserId,
+      </if>
+      <if test="intforid != null" >
+        intForId,
+      </if>
+      <if test="intreturncount != null" >
+        intReturnCount,
+      </if>
+      <if test="datereturntime != null" >
+        dateReturnTime,
+      </if>
+      <if test="intoperationpersionid != null" >
+        intOperationPersionId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intbookreturnid != null" >
+        #{intbookreturnid,jdbcType=INTEGER},
+      </if>
+      <if test="intuserid != null" >
+        #{intuserid,jdbcType=INTEGER},
+      </if>
+      <if test="intforid != null" >
+        #{intforid,jdbcType=INTEGER},
+      </if>
+      <if test="intreturncount != null" >
+        #{intreturncount,jdbcType=INTEGER},
+      </if>
+      <if test="datereturntime != null" >
+        #{datereturntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intoperationpersionid != null" >
+        #{intoperationpersionid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookReturn" >
+    update bookReturn
+    <set >
+      <if test="intuserid != null" >
+        intUserId = #{intuserid,jdbcType=INTEGER},
+      </if>
+      <if test="intforid != null" >
+        intForId = #{intforid,jdbcType=INTEGER},
+      </if>
+      <if test="intreturncount != null" >
+        intReturnCount = #{intreturncount,jdbcType=INTEGER},
+      </if>
+      <if test="datereturntime != null" >
+        dateReturnTime = #{datereturntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intoperationpersionid != null" >
+        intOperationPersionId = #{intoperationpersionid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where intBookReturnId = #{intbookreturnid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookReturn" >
+    update bookReturn
+    set intUserId = #{intuserid,jdbcType=INTEGER},
+      intForId = #{intforid,jdbcType=INTEGER},
+      intReturnCount = #{intreturncount,jdbcType=INTEGER},
+      dateReturnTime = #{datereturntime,jdbcType=TIMESTAMP},
+      intOperationPersionId = #{intoperationpersionid,jdbcType=INTEGER}
+    where intBookReturnId = #{intbookreturnid,jdbcType=INTEGER}
+  </update>
+</mapper>

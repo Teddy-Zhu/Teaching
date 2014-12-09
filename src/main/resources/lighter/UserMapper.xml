@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.User">
+		<id column="intId" property="intid" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="strName" property="strname" jdbcType="VARCHAR" />
+		<result column="strTypeId" property="strtypeid" jdbcType="INTEGER" />
+		<result column="strPhone" property="strphone" jdbcType="VARCHAR" />
+		<result column="strMail" property="strmail" jdbcType="VARCHAR" />
+		<result column="dateRegTime" property="dateregtime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		intId, username, password, strName, strTypeId, strPhone, strMail, dateRegTime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where intId = #{intid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		where intId = #{intid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.User">
+		insert into user (intId, username, password,
+		strName, strTypeId, strPhone,
+		strMail, dateRegTime)
+		values (#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{strname,jdbcType=VARCHAR}, #{strtypeid,jdbcType=INTEGER},
+		#{strphone,jdbcType=VARCHAR},
+		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="intid != null">
+				intId,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="strname != null">
+				strName,
+			</if>
+			<if test="strtypeid != null">
+				strTypeId,
+			</if>
+			<if test="strphone != null">
+				strPhone,
+			</if>
+			<if test="strmail != null">
+				strMail,
+			</if>
+			<if test="dateregtime != null">
+				dateRegTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="intid != null">
+				#{intid,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="strname != null">
+				#{strname,jdbcType=VARCHAR},
+			</if>
+			<if test="strtypeid != null">
+				#{strtypeid,jdbcType=INTEGER},
+			</if>
+			<if test="strphone != null">
+				#{strphone,jdbcType=VARCHAR},
+			</if>
+			<if test="strmail != null">
+				#{strmail,jdbcType=VARCHAR},
+			</if>
+			<if test="dateregtime != null">
+				#{dateregtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.User">
+		update user
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="strname != null">
+				strName = #{strname,jdbcType=VARCHAR},
+			</if>
+			<if test="strtypeid != null">
+				strTypeId = #{strtypeid,jdbcType=INTEGER},
+			</if>
+			<if test="strphone != null">
+				strPhone = #{strphone,jdbcType=VARCHAR},
+			</if>
+			<if test="strmail != null">
+				strMail = #{strmail,jdbcType=VARCHAR},
+			</if>
+			<if test="dateregtime != null">
+				dateRegTime = #{dateregtime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where intId = #{intid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.User">
+		update user
+		set username = #{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		strName = #{strname,jdbcType=VARCHAR},
+		strTypeId = #{strtypeid,jdbcType=INTEGER},
+		strPhone = #{strphone,jdbcType=VARCHAR},
+		strMail =
+		#{strmail,jdbcType=VARCHAR},
+		dateRegTime = #{dateregtime,jdbcType=TIMESTAMP}
+		where intId = #{intid,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectUserSelective" resultMap="BaseResultMap" parameterType="com.jcos.teaching.core.model.User">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<trim prefix="where" suffix="" suffixOverrides="AND">
+			<if test="intid != null">
+				intId = #{intid,jdbcType=INTEGER} AND
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR} AND
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR} AND
+			</if>
+			<if test="strname != null">
+				strName = #{strname,jdbcType=VARCHAR} AND
+			</if>
+			<if test="strtypeid != null">
+				strTypeId = #{strtypeid,jdbcType=INTEGER} AND
+			</if>
+			<if test="strphone != null">
+				strPhone = #{strphone,jdbcType=VARCHAR} AND
+			</if>
+			<if test="strmail != null">
+				strMail= #{strmail,jdbcType=VARCHAR} AND
+			</if>
+			<if test="dateregtime != null">
+				dateRegTime = #{dateregtime,jdbcType=TIMESTAMP} AND
+			</if>
+		</trim>
+	</select>
+	<select id="selectUserByUserName" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count(intId)
+		from user where username = #{username,jdbcType=VARCHAR}
+	</select>
+	<insert id="InertUser" parameterType="com.jcos.teaching.core.model.User">
+		insert into user ( username, password,
+		strName, strTypeId, strPhone,
+		strMail, dateRegTime)
+		values ( #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{strname,jdbcType=VARCHAR}, #{strtypeid,jdbcType=INTEGER},
+		#{strphone,jdbcType=VARCHAR},
+		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
+	</insert>
+</mapper>

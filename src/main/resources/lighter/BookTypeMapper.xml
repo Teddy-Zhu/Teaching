@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.BookTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.BookType" >
+    <id column="intBookTypeId" property="intbooktypeid" jdbcType="INTEGER" />
+    <result column="strBookTypeName" property="strbooktypename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intBookTypeId, strBookTypeName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bookType
+    where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bookType
+    where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.BookType" >
+    insert into bookType (intBookTypeId, strBookTypeName)
+    values (#{intbooktypeid,jdbcType=INTEGER}, #{strbooktypename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookType" >
+    insert into bookType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intbooktypeid != null" >
+        intBookTypeId,
+      </if>
+      <if test="strbooktypename != null" >
+        strBookTypeName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intbooktypeid != null" >
+        #{intbooktypeid,jdbcType=INTEGER},
+      </if>
+      <if test="strbooktypename != null" >
+        #{strbooktypename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookType" >
+    update bookType
+    <set >
+      <if test="strbooktypename != null" >
+        strBookTypeName = #{strbooktypename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookType" >
+    update bookType
+    set strBookTypeName = #{strbooktypename,jdbcType=VARCHAR}
+    where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
+  </update>
+</mapper>
