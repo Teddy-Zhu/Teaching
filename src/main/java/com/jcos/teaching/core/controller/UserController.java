@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.controller;
 
+import com.jcos.teaching.core.Exmodel.LoginSession;
+import com.jcos.teaching.core.Util.Common.StringUtil;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,49 +16,99 @@ import com.jcos.teaching.core.service.UserService;
 
 @Controller
 public class UserController {
-	@Inject
-	private UserService userService;
 
-	@RequestMapping(value = "/AuthRegister", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean register(HttpServletRequest request, Model model) {
-		String userName = "", passWord = "", phone = "", realName = "", email = "";
-		if (request.getParameter("UserName") != null && !request.getParameter("UserName").equals(""))
-			userName = request.getParameter("UserName");
-		if (request.getParameter("PassWord") != null && !request.getParameter("PassWord").equals(""))
-			passWord = request.getParameter("PassWord");
-		if (request.getParameter("RealName") != null && !request.getParameter("RealName").equals(""))
-			realName = request.getParameter("RealName");
-		if (request.getParameter("Phone") != null && !request.getParameter("Phone").equals(""))
-			phone = request.getParameter("Phone");
-		if (request.getParameter("Email") != null && !request.getParameter("Email").equals(""))
-			email = request.getParameter("Email");
-		if (userName == "" || passWord == "" || phone == "" || realName == "" || email == "")
-			return false;
-		User record = new User();
-		record.setUsername(userName);
-		record.setPassword(passWord);
-		record.setStrmail(email);
-		record.setStrname(realName);
-		record.setStrphone(phone);
-		int i = userService.registerUser(record);
-		if (i == 1)
-			return true;
-		else
-			return false;
-	}
+    @Inject
+    private UserService userService;
 
-	@RequestMapping(value = "/AuthUserName", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean authUserName(HttpServletRequest request, Model model) {
-		String userName = "";
-		if (request.getParameter("UserName") != null && !request.getParameter("UserName").equals(""))
-			userName = request.getParameter("UserName");
-		if (userName == "")
-			return false;
-		int i = userService.selectUserByUserName(userName);
-		if (i != 0)
-			return false;
-		return true;
-	}
+    private StringUtil tools = new StringUtil();
+
+    @RequestMapping(value = "/AuthRegister", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean register(HttpServletRequest request, Model model) {
+        String userName = "", passWord = "", phone = "", realName = "", email = "";
+        if (!tools.isNull(request, "UserName")) {
+            userName = request.getParameter("UserName");
+        }
+        if (!tools.isNull(request, "PassWord")) {
+            passWord = request.getParameter("PassWord");
+        }
+        if (!tools.isNull(request, "RealName")) {
+            realName = request.getParameter("RealName");
+        }
+        if (!tools.isNull(request, "Phone")) {
+            phone = request.getParameter("Phone");
+        }
+        if (!tools.isNull(request, "Email")) {
+            email = request.getParameter("Email");
+        }
+        if (userName == "" || passWord == "" || phone == "" || realName == "" || email == "") {
+            return false;
+        }
+        User record = new User();
+        record.setUsername(userName);
+        record.setPassword(passWord);
+        record.setStrmail(email);
+        record.setStrname(realName);
+        record.setStrphone(phone);
+        int i = userService.registerUser(record);
+        if (i == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @RequestMapping(value = "/AuthUserName", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean authUserName(HttpServletRequest request, Model model) {
+        String userName = "";
+        if (!tools.isNull(request, "UserName")) {
+            userName = request.getParameter("UserName");
+        } else {
+            return false;
+        }
+        int i = userService.selectUserByUserName(userName);
+        if (i != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    @RequestMapping(value = "/AuthLogout", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean authLogout(HttpServletRequest request, Model model) {
+        request.getSession().setAttribute("loginSession", null);
+        return true;
+    }
+
+    @RequestMapping(value = "/AuthLogin", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean authLogin(HttpServletRequest request, Model model) {
+        String userName = "", passWord = "";
+
+        if (!tools.isNull(request, "UserName")) {
+            userName = request.getParameter("UserName");
+        } else {
+            if (!tools.isNull(request, "PassWord")) {
+                passWord = request.getParameter("PassWord");
+            } else {
+                return false;
+            }
+        }
+        User record = new User();
+        record.setUsername(userName);
+        record.setPassword(passWord);
+
+        User loginUser = userService.authLoginUser(record);
+        if (loginUser != null) {
+            LoginSession loginSession = new LoginSession();
+            loginSession.setLoginUser(loginUser);
+            // set global session
+            request.getSession().setAttribute("loginSession", loginSession);
+        } else {
+            request.getSession().setAttribute("loginSession", null);
+            return false;
+        }
+        return true;
+    }
 }

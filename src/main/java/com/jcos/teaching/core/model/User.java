@@ -11,7 +11,7 @@ public class User {
 
 	private String strname;
 
-	private Integer strtypeid;
+	private Integer inttypeid;
 
 	private String strphone;
 
@@ -19,16 +19,14 @@ public class User {
 
 	private Date dateregtime;
 
-	public User() {
-		super();
-		this.intid = 0;
-		this.username = "";
-		this.password = "";
-		this.strname = "";
-		this.strtypeid = 3;
-		this.strphone = "";
-		this.strmail = "";
-		this.dateregtime = new Date();
+	private UserType userType;
+	
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 	public Integer getIntid() {
@@ -63,12 +61,12 @@ public class User {
 		this.strname = strname == null ? null : strname.trim();
 	}
 
-	public Integer getStrtypeid() {
-		return strtypeid;
+	public Integer getInttypeid() {
+		return inttypeid;
 	}
 
-	public void setStrtypeid(Integer strtypeid) {
-		this.strtypeid = strtypeid;
+	public void setInttypeid(Integer inttypeid) {
+		this.inttypeid = inttypeid;
 	}
 
 	public String getStrphone() {

@@ -41,20 +41,44 @@ var t = false;
 $(function () {
     $('#loginButton').click(function () {
         $(this).button('loading');
-        var userTypeId = $("#UserType label.active input").val();
-        var patt1 = new RegExp("^[0-9A-Za-z]{5,12}");
-        var a = $('#loginUserName').val();
-        console.log(patt1.test(a));
-        $.TeachDialog({
-            title: 'Congratulations',
-            content: 'Register Successfully! Welcome to Use the System!',
-            dialogHidden: function () {
-                window.location.href = '/teaching';
-            }
+        // var userTypeId = $("#UserType label.active input").val();
+        var userName = $('#loginUserName').val();
+        var passWord = $('#loginPassWord').val();
+        $.ajax({
+            url: 'AuthLogin',
+            type: 'post',
+            data: {
+                UserName: userName,
+                PassWord: passWord,
+            },
+            dataType: 'json',
+            complete: function (data) {
+                //$(this).button('reset');
+            },
+            success: function (data) {
+                if (data != null) {
+                    if (data) {
+                        $.TeachDialog({
+                            title: 'Congratulations',
+                            content: 'Login Successfully! Welcome to Use the System!',
+                            dialogHidden: function () {
+                                window.location.href = '/';
+                            }
+                        });
+                        return;
+                    }
+                }
+                $.TeachDialog({
+                    title: 'Faild',
+                    content: 'Failed to Login!Please ensure your password correct!'
+                });
+
+            },
+            error: function (data) {
+                console.debug(data.status);
+            },
+            async: true
         });
-        setTimeout(function () {
-            $('#loginButton').button('reset');
-        }, 5000);
     });
 
     $('.glyphicon.glyphicon-chevron-down').click(function () {
