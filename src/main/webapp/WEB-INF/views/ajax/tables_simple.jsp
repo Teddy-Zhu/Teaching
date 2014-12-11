@@ -152,7 +152,7 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
-			<div class="box-content">
+			<div class="box-content" >
 				<p>
 					Add
 					<code>.table-bordered</code>

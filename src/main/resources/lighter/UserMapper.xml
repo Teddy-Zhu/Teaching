@@ -173,7 +173,7 @@
 	</insert>
 
 	<resultMap id="UserTypeExtendMap" type="User" extends="BaseResultMap">
-		<association property="userType" column="intTypeId" select="UserType.selectByPrimaryKey" />
+		<association property="userType" column="intTypeId" select="com.jcos.teaching.core.dao.UserTypeMapper.selectByPrimaryKey" />
 	</resultMap>
 	<select id="authLoginUser" resultMap="UserTypeExtendMap" parameterType="java.lang.String">
 		select

@@ -9,12 +9,13 @@
     <result column="intOutCount" property="intoutcount" jdbcType="INTEGER" />
     <result column="intStudentId" property="intstudentid" jdbcType="INTEGER" />
     <result column="intStudentName" property="intstudentname" jdbcType="VARCHAR" />
-    <result column="intSex" property="intsex" jdbcType="TINYINT" />
+    <result column="intSex" property="intsex" jdbcType="INTEGER" />
     <result column="intClassId" property="intclassid" jdbcType="INTEGER" />
+    <result column="dateOutTime" property="dateouttime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     intBookOutId, intUserId, intForId, dateOut, intOutCount, intStudentId, intStudentName, 
-    intSex, intClassId
+    intSex, intClassId, dateOutTime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -29,12 +30,12 @@
   <insert id="insert" parameterType="com.jcos.teaching.core.model.BookOut" >
     insert into bookOut (intBookOutId, intUserId, intForId, 
       dateOut, intOutCount, intStudentId, 
-      intStudentName, intSex, intClassId
-      )
+      intStudentName, intSex, intClassId, 
+      dateOutTime)
     values (#{intbookoutid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intforid,jdbcType=INTEGER}, 
       #{dateout,jdbcType=TIMESTAMP}, #{intoutcount,jdbcType=INTEGER}, #{intstudentid,jdbcType=INTEGER}, 
-      #{intstudentname,jdbcType=VARCHAR}, #{intsex,jdbcType=TINYINT}, #{intclassid,jdbcType=INTEGER}
-      )
+      #{intstudentname,jdbcType=VARCHAR}, #{intsex,jdbcType=INTEGER}, #{intclassid,jdbcType=INTEGER}, 
+      #{dateouttime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookOut" >
     insert into bookOut
@@ -66,6 +67,9 @@
       <if test="intclassid != null" >
         intClassId,
       </if>
+      <if test="dateouttime != null" >
+        dateOutTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="intbookoutid != null" >
@@ -90,10 +94,13 @@
         #{intstudentname,jdbcType=VARCHAR},
       </if>
       <if test="intsex != null" >
-        #{intsex,jdbcType=TINYINT},
+        #{intsex,jdbcType=INTEGER},
       </if>
       <if test="intclassid != null" >
         #{intclassid,jdbcType=INTEGER},
+      </if>
+      <if test="dateouttime != null" >
+        #{dateouttime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -119,10 +126,13 @@
         intStudentName = #{intstudentname,jdbcType=VARCHAR},
       </if>
       <if test="intsex != null" >
-        intSex = #{intsex,jdbcType=TINYINT},
+        intSex = #{intsex,jdbcType=INTEGER},
       </if>
       <if test="intclassid != null" >
         intClassId = #{intclassid,jdbcType=INTEGER},
+      </if>
+      <if test="dateouttime != null" >
+        dateOutTime = #{dateouttime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where intBookOutId = #{intbookoutid,jdbcType=INTEGER}
@@ -135,8 +145,9 @@
       intOutCount = #{intoutcount,jdbcType=INTEGER},
       intStudentId = #{intstudentid,jdbcType=INTEGER},
       intStudentName = #{intstudentname,jdbcType=VARCHAR},
-      intSex = #{intsex,jdbcType=TINYINT},
-      intClassId = #{intclassid,jdbcType=INTEGER}
+      intSex = #{intsex,jdbcType=INTEGER},
+      intClassId = #{intclassid,jdbcType=INTEGER},
+      dateOutTime = #{dateouttime,jdbcType=TIMESTAMP}
     where intBookOutId = #{intbookoutid,jdbcType=INTEGER}
   </update>
 </mapper>

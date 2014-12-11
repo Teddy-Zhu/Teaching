@@ -7,5 +7,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="User" type="com.jcos.teaching.core.model.User" />
 		<typeAlias alias="UserType" type="com.jcos.teaching.core.model.UserType" />
 		<typeAlias alias="BookEnter" type="com.jcos.teaching.core.model.BookEnter" />
+		<typeAlias alias="Book" type="com.jcos.teaching.core.model.Book" />
+		<typeAlias alias="BookType" type="com.jcos.teaching.core.model.BookType" />
+		<typeAlias alias="Supplier" type="com.jcos.teaching.core.model.Supplier" />
 	</typeAliases>
 </configuration>

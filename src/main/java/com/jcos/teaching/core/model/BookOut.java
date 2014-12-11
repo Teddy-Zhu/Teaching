@@ -17,9 +17,11 @@ public class BookOut {
 
     private String intstudentname;
 
-    private Byte intsex;
+    private Integer intsex;
 
     private Integer intclassid;
+
+    private Date dateouttime;
 
     public Integer getIntbookoutid() {
         return intbookoutid;
@@ -77,11 +79,11 @@ public class BookOut {
         this.intstudentname = intstudentname == null ? null : intstudentname.trim();
     }
 
-    public Byte getIntsex() {
+    public Integer getIntsex() {
         return intsex;
     }
 
-    public void setIntsex(Byte intsex) {
+    public void setIntsex(Integer intsex) {
         this.intsex = intsex;
     }
 
@@ -91,5 +93,13 @@ public class BookOut {
 
     public void setIntclassid(Integer intclassid) {
         this.intclassid = intclassid;
+    }
+
+    public Date getDateouttime() {
+        return dateouttime;
+    }
+
+    public void setDateouttime(Date dateouttime) {
+        this.dateouttime = dateouttime;
     }
 }

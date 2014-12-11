@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DevOOPS v2</title>
+<title>Teaching ManageMent System</title>
 <meta name="description" content="description">
 <meta name="author" content="DevOOPS">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +49,7 @@
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
-					<a href="/teaching">DevOOPS v2</a>
+					<a href="/">ManageMent</a>
 				</div>
 				<div id="top-panel" class="col-xs-12 col-sm-10">
 					<div class="row">
@@ -59,20 +59,16 @@
 							</div>
 						</div>
 						<div class="col-xs-4 col-sm-8 top-panel-right">
-							<a href="#" class="about">about</a> <a href="index_v1.html" class="style1"></a>
+							<a href="#" class="about">SwitchTheme</a> <a href="index_v1.html" class="style1"></a>
 							<ul class="nav navbar-nav pull-right panel-menu">
-								<li class="hidden-xs"><a href="/" class="modal-link"> <i class="fa fa-bell"></i> <span class="badge">7</span>
-								</a></li>
 								<li class="hidden-xs"><a class="ajax-link" href="ajax/calendar.html"> <i class="fa fa-calendar"></i> <span class="badge">7</span>
-								</a></li>
-								<li class="hidden-xs"><a href="ajax/page_messages.html" class="ajax-link"> <i class="fa fa-envelope"></i> <span class="badge">7</span>
 								</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 										<div class="avatar">
 											<img src="resources/img/avatar.jpg" class="img-circle" alt="avatar" />
 										</div> <i class="fa fa-angle-down pull-right"></i>
 										<div class="user-mini pull-right">
-											<span class="welcome">Welcome,</span> <span>Jane Devoops</span>
+											<span class="welcome">Welcome,</span> <span>${loginUser}</span>
 										</div>
 								</a>
 									<ul class="dropdown-menu">
@@ -104,6 +100,13 @@
 				<ul class="nav main-menu">
 					<li><a href="ajax/dashboard.html" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
 					</a></li>
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Books Manage</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a class="ajax-link" href="ajax/book_query"><i class="fa fa-clipboard"></i> BookQuery</a></li>
+							<li><a class="ajax-link" href="ajax/charts_flot.html">Book Entry</a></li>
+						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-bar-chart-o"></i> <span class="hidden-xs">Charts</span>
 					</a>
 						<ul class="dropdown-menu">

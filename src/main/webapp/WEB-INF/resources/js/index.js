@@ -73,7 +73,6 @@ $(function() {
 			},
 			dataType : 'json',
 			complete : function(data) {
-				$(this).button('reset');
 			},
 			success : function(data) {
 				if (data != null) {
@@ -82,7 +81,7 @@ $(function() {
 							title : 'Congratulations',
 							content : 'Login Successfully! Welcome to Use the System!',
 							dialogHidden : function() {
-								window.location.href = '/';
+								window.location.href = 'AdminMenu';
 							}
 						});
 						return;
@@ -99,6 +98,7 @@ $(function() {
 			},
 			async : true
 		});
+		$(this).button('reset');
 	});
 
 	$('.glyphicon.glyphicon-chevron-down').click(function() {

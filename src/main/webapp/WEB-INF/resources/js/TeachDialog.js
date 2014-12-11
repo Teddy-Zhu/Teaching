@@ -1,8 +1,8 @@
 (function($) {
 	$.fn.TeachDialog = function(options) {
 		var defaults = {
-			title: '标题',
-			content: '<p>内容</p>',
+			title: 'Title',
+			content: '<p>Content</p>',
 			showCloseButton: true,
 			otherButtons: [],
 			otherButtonStyles: [],
@@ -16,7 +16,6 @@
 		options = $.extend(defaults, options);
 		var modalID = '';
 
-		//生成一个惟一的ID
 		function random(a, b) {
 			return Math.random() > 0.5 ? -1 : 1;
 		}

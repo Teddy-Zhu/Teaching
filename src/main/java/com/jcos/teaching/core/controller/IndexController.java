@@ -8,21 +8,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jcos.teaching.core.Exmodel.LoginSession;
+
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String admin(HttpServletRequest request, Model model) {
-        return "index";
-    }
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String admin(HttpServletRequest request, Model model) {
+		return "index";
+	}
 
-    @RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
-    public String adminmenu(HttpServletRequest request, Model model) {
-        return "AdminMenu";
-    }
+	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
+	public String adminmenu(HttpServletRequest request, Model model) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (loginSession == null)
+			return "action/403";
+		else {
+			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
+		}
+		return "AdminMenu";
+	}
 
-    @RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
-    public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
-        return "ajax/" + html;
-    }
+	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
+	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (loginSession == null)
+			return "action/403";
+		if (html.equals("dashboard")) {
+			model.addAttribute("userEmail", loginSession.getLoginUser().getStrmail());
+			model.addAttribute("userPhone", loginSession.getLoginUser().getStrphone());
+			model.addAttribute("userRegTime", loginSession.getLoginUser().getDateregtime().toString());
+			model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
+		}
+		return "ajax/" + html;
+	}
+
 }
