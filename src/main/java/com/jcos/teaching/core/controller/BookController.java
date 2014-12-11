@@ -1,5 +1,8 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -8,14 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jcos.teaching.core.model.Book;
+import com.jcos.teaching.core.service.BookService;
+
 @Controller
 public class BookController {
+	@Inject
+	private BookService bookService;
 
-	@RequestMapping(value = "/books", method = RequestMethod.POST)
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	@ResponseBody
-	public String getbooks(HttpServletRequest request, Model model) {
+	public List<Book> getbooks(HttpServletRequest request, Model model) {
 
-		return "index";
+		return bookService.getAllBooks();
 	}
 
 }

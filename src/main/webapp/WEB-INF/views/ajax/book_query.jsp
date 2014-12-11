@@ -111,6 +111,24 @@
 		// Load Datatables and run plugin on tables 
 		LoadDataTablesScripts(tableinit);
 		// Add Drag-n-Drop feature
+		$.ajax({
+			url : 'books',
+			type : 'post',
+			dataType : 'json',
+			complete : function(data) {
+			},
+			success : function(data) {
+				if (data != null) {
+
+				} else {
+
+				}
+			},
+			error : function(data) {
+				console.debug(data.status);
+			},
+			async : false
+		});
 		WinMove();
 	});
 </script>
