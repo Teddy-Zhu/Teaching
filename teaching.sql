@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : roomorder
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50619
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50619
 File Encoding         : 65001
 
-Date: 2014-12-07 23:42:59
+Date: 2014-12-12 15:07:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,20 +21,24 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `intBookId` int(11) NOT NULL AUTO_INCREMENT,
+  `strBookName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `strBookCoding` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教材代码',
   `strBookSN` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'isbn号',
   `intBookTypeId` int(11) NOT NULL COMMENT '教材类型',
   `strPrice` varchar(255) NOT NULL,
   `strPress` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '出版社',
   `strAuthor` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `intPriceDiscount` int(11) NOT NULL,
-  `intSupplierId` int(11) NOT NULL,
+  `intPriceDiscount` double(11,0) NOT NULL COMMENT '折扣',
+  `intSupplierId` int(11) NOT NULL COMMENT '供应商',
+  `dateAddTime` datetime NOT NULL,
   PRIMARY KEY (`intBookId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
+INSERT INTO `book` VALUES ('1', '阿斯达3', 'B20202', '454545', '1', '410', '1', '阿斯达斯', '10', '1', '2014-12-11 17:54:55');
+INSERT INTO `book` VALUES ('2', 'AAA', 'B22190', '11912030', '2', '22', '2', 'AA', '2', '2', '2014-12-12 12:47:47');
 
 -- ----------------------------
 -- Table structure for bookEnter
@@ -66,8 +70,9 @@ CREATE TABLE `bookOut` (
   `intOutCount` int(11) NOT NULL,
   `intStudentId` int(11) DEFAULT NULL COMMENT '学生必填',
   `intStudentName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `intSex` tinyint(4) NOT NULL COMMENT '0 女 1 男',
+  `intSex` int(11) NOT NULL COMMENT '0 女 1 男',
   `intClassId` int(11) NOT NULL,
+  `dateOutTime` datetime NOT NULL,
   PRIMARY KEY (`intBookOutId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -186,11 +191,13 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
 -- ----------------------------
+INSERT INTO `operation` VALUES ('1', '录入图书');
+INSERT INTO `operation` VALUES ('2', '登录');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -207,11 +214,14 @@ CREATE TABLE `supplier` (
   `strContactPersonName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `strContactPersonPhone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intSupplierId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of supplier
 -- ----------------------------
+INSERT INTO `supplier` VALUES ('1', 'S11050', '测试供应商1', '2aaaa', '111', '控制人', '189111', '联系人', '120580');
+INSERT INTO `supplier` VALUES ('2', 'S15033', 'testSupplier2', '2202sd', '22165', 'controllerPersion', '126980', 'CONTACT', '1222222222');
+INSERT INTO `supplier` VALUES ('3', 'S88212', 'aaaa', 'AAA', '0223030', '111', '20302', '12ass', '2223050');
 
 -- ----------------------------
 -- Table structure for user
@@ -222,7 +232,7 @@ CREATE TABLE `user` (
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `strName` varchar(255) NOT NULL,
-  `strTypeId` int(11) NOT NULL,
+  `intTypeId` int(11) NOT NULL,
   `strPhone` varchar(255) DEFAULT NULL,
   `strMail` varchar(255) NOT NULL,
   `dateRegTime` datetime NOT NULL,
@@ -232,7 +242,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', '123456', 'www', '1', '1111', '2123', '2014-12-07 18:32:09');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '1111', '2123', '2014-12-07 18:32:09');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '3', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '3', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
