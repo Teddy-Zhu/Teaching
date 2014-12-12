@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,11 +20,10 @@ public class BookController {
 	@Inject
 	private BookService bookService;
 
-	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	@RequestMapping(value = "/books", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Book> getbooks(HttpServletRequest request, Model model) {
-
-		return bookService.getAllBooks();
+		List<Book> books = bookService.getAllBooks();
+		return books;
 	}
-
 }

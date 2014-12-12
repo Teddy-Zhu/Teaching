@@ -166,14 +166,14 @@
 		= #{intbookid,jdbcType=INTEGER}
 	</update>
 
-	<resultMap id="BookTypeExtendMap" type="BookType" extends="BaseResultMap">
+	<resultMap id="BookTypeExtendMap" type="Book" extends="BaseResultMap">
 		<association property="bookType" column="intBookTypeId" select="com.jcos.teaching.core.dao.BookTypeMapper.selectNameById" />
 		<association property="supplier" column="intSupplierId" select="com.jcos.teaching.core.dao.SupplierMapper.selectNameById" />
 	</resultMap>
 	<select id="queryBooks" resultMap="BookTypeExtendMap">
-		select strBookName, strBookCoding,
-		strBookSN, strPrice,
-		strPress, strAuthor, intPriceDiscount, dateAddTime
-		from book
+	select
+	strBookName, strBookCoding, strBookSN, intBookTypeId, strPrice, strPress,
+	strAuthor, intPriceDiscount, intSupplierId, dateAddTime
+	from book
 	</select>
 </mapper>

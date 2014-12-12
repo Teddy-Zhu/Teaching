@@ -25,7 +25,7 @@ public class Book {
 
 	private Date dateaddtime;
 
-	private BookType bootType;
+	private BookType bookType;
 
 	private Supplier supplier;
 
@@ -34,23 +34,23 @@ public class Book {
 		this.strbookname = "";
 		this.strbookcoding = "";
 		this.strbooksn = "";
-		this.intbooktypeid = 1;
+		this.intbooktypeid = 0;
 		this.strprice = "";
 		this.strpress = "";
 		this.strauthor = "";
 		this.intpricediscount = 0.0;
 		this.intsupplierid = 1;
 		this.dateaddtime = new Date();
-		this.bootType = new BookType();
+		this.bookType = new BookType();
 		this.supplier = new Supplier();
 	}
 
-	public BookType getBootType() {
-		return bootType;
+	public BookType getBookType() {
+		return bookType;
 	}
 
-	public void setBootType(BookType bootType) {
-		this.bootType = bootType;
+	public void setBookType(BookType bookType) {
+		this.bookType = bookType;
 	}
 
 	public Supplier getSupplier() {
