@@ -31,9 +31,7 @@
 			</div>
 			<div class="box-content no-padding table-responsive">
 				<div>
-					Toggle column: <a class="toggle-vis" data-column="0">Name</a> - <a class="toggle-vis" data-column="1">Position</a> - <a class="toggle-vis" data-column="2">Office</a> - <a class="toggle-vis"
-						data-column="3">Age</a> - <a class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column="5">Salary</a><a class="toggle-vis" data-column="6">Salary</a><a
-						class="toggle-vis" data-column="7">Salary</a><a class="toggle-vis" data-column="8">Salary</a><a class="toggle-vis" data-column="9">Salary</a><a class="toggle-vis" data-column="10">Salary</a>
+					Toggle column: <button class="toggle-vis btn btn-default" data-column="0">Name</button> - <button class="toggle-vis btn btn-default" data-column="1">Position</button> - <button class="toggle-vis btn btn-default" data-column="2">Office</button> - <button class="toggle-vis btn btn-default" data-column="3">Age</button> - <button class="toggle-vis btn btn-default" data-column="4">Start date</button> - <button class="toggle-vis btn btn-default" data-column="5">Salary</button><button class="toggle-vis btn btn-default" data-column="6">Salary</button><button class="toggle-vis btn btn-default" data-column="7">Salary</button><button class="toggle-vis btn btn-default" data-column="8">Salary</button><button class="toggle-vis btn btn-default" data-column="9">Salary</button><button class="toggle-vis btn btn-default" data-column="10">Salary</button>
 				</div>
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable_bookinfo">
 					<thead>
@@ -87,14 +85,13 @@
 			},
 			bAutoWidth : false
 		});
-		$('a.toggle-vis').on('click', function(e) {
+		$('button.toggle-vis').on('click', function(e) {
 			e.preventDefault();
 
 			// Get the column API object
-			var column = oTable.column($(this).attr('data-column'));
-
+			var columnvisible = oTable.api( true ).column( $(this).attr('data-column')).visible();
 			// Toggle the visibility
-			column.visible(!column.visible());
+			oTable.api( true ).column( $(this).attr('data-column')).visible(!columnvisible);
 		});
 		var header_inputs = $("#datatable_bookinfo thead input");
 		header_inputs.on('keyup', function() {
