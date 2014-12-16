@@ -124,8 +124,6 @@
 		LoadSparkLineScript(DrawSparklineDashboard);
 		// Load Morris plugin and run callback for draw Morris charts for dashboard
 		LoadMorrisScripts(MorrisDashboard);
-		// Load Springy plugin and run callback for draw network map for dashboard
-		LoadSpringyScripts(SpringyNetmap);
 		// Make beauty hover in table
 		$("#ticker-table").beautyHover();
 		// Run script for stock block

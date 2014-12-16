@@ -99,9 +99,11 @@
 		</div>
 	</div>
 </div>
+<script src="resources/plugins/datatables/jquery.dataTables.js"></script>
+<script src="resources/plugins/datatables/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
 	//
-	//Function for table, located in element with id = datatable-2
+	//Function for table, located in element with id = datatable_bookinfo
 	//
 	function tableinit() {
 		var asInitVals = [];

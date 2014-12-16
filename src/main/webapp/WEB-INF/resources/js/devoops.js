@@ -97,10 +97,10 @@ function LoadSelect2Script(callback) {
 //
 function LoadDataTablesScripts(callback) {
 	function LoadDatatables() {
-		$.getScript('resources/plugins/datatables/jquery.dataTables.js', function() {
-			$.getScript('resources/plugins/datatables/ZeroClipboard.js', function() {
-				$.getScript('resources/plugins/datatables/TableTools.js', function() {
-					$.getScript('resources/plugins/datatables/dataTables.bootstrap.js', callback);
+		$.getScript('resources/plugins/datatables/jquery.dataTables.min.js', function() {
+			$.getScript('resources/plugins/datatables/ZeroClipboard.min.js', function() {
+				$.getScript('resources/plugins/datatables/TableTools.min.js', function() {
+					$.getScript('resources/plugins/datatables/dataTables.bootstrap.min.js', callback);
 				});
 			});
 		});
