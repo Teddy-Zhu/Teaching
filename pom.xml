@@ -17,6 +17,8 @@
 			<version>4.12-beta-3</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- jackson for json -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -75,6 +77,8 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj.version}</version>
 		</dependency>
+		
+		<!-- for upload file -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -102,11 +106,14 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.10</version>
 		</dependency>
+		<!-- fastjson for json -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.1</version>
 		</dependency>
+		
+		<!-- tomcat servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
