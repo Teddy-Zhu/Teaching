@@ -246,9 +246,9 @@
 	<script src="resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="resources/plugins/bootstrap/bootstrap.min.js"></script>
-	<script src="resources/plugins/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<!-- 	<script src="resources/plugins/justified-gallery/jquery.justifiedGallery.min.js"></script> -->
 	<script src="resources/plugins/tinymce/tinymce.min.js"></script>
-	<script src="resources/plugins/tinymce/jquery.tinymce.min.js"></script>
+	<!-- <script src="resources/plugins/tinymce/jquery.tinymce.min.js"></script> -->
 	<!-- All functions for this theme + document.ready processing -->
 	<script src="resources/js/devoops.js"></script>
 </body>
