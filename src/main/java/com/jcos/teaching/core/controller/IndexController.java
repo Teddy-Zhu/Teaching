@@ -29,6 +29,12 @@ public class IndexController {
 		return "AdminMenu";
 	}
 
+	@RequestMapping(value = "/AuthLogout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, Model model) {
+		request.getSession().setAttribute("loginSession", null);
+		return "ajax/index";
+	}
+
 	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
 	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");

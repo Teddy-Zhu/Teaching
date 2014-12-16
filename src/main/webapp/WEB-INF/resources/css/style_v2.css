@@ -365,6 +365,11 @@ a.show-sidebar:hover {
   padding: 15px;
   background: #FBFBF0;
 }
+
+.box-content-nocolor {
+  position: relative;
+  padding: 15px;
+}
 .box-content.dropbox, .box-content.sortablebox {
   overflow: hidden;
 }

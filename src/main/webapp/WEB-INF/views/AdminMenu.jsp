@@ -57,7 +57,7 @@
 							</div>
 						</div>
 						<div class="col-xs-4 col-sm-8 top-panel-right">
-							<a href="#" class="about">SwitchTheme</a> <a href="index_v1.html" class="style1"></a>
+							<!-- <a href="#" class="about">SwitchTheme</a> <a href="index_v1.html" class="style1"></a> -->
 							<ul class="nav navbar-nav pull-right panel-menu">
 								<li class="hidden-xs"><a class="ajax-link" href="ajax/calendar.html"> <i class="fa fa-calendar"></i> <span class="badge">7</span>
 								</a></li>
@@ -98,14 +98,16 @@
 				<ul class="nav main-menu">
 					<li><a href="ajax/dashboard.html" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
 					</a></li>
-					
+
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Books Manage</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/book_query"><i class="fa fa-clipboard"></i> BookQuery</a></li>
-							<li><a class="ajax-link" href="ajax/charts_flot.html">Book Entry</a></li>
+							<li><a class="ajax-link" href="ajax/book_query"><i class="fa fa-clipboard"></i> Book Query</a></li>
+							<li><a class="ajax-link" href="ajax/book_enter"><i class="fa  fa-check-square-o"></i> Book CheckIn</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-bar-chart-o"></i> <span class="hidden-xs">Charts</span>
+					<li class="dropdown"><a href="AuthLogout" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
+					</a></li>
+					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-bar-chart-o"></i> <span class="hidden-xs">Charts</span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/charts_xcharts.html">xCharts</a></li>
@@ -208,7 +210,7 @@
 											<li><a href="#">Three level menu</a></li>
 										</ul></li>
 								</ul></li>
-						</ul></li>
+						</ul></li> -->
 				</ul>
 			</div>
 			<!--Start Content-->
