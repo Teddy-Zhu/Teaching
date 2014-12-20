@@ -21,18 +21,11 @@ public class IndexController {
 	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null)
-			return "action/403";
-		else {
+		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals(""))
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
-		}
+		else
+			request.getSession().setAttribute("loginUser", "NoUser");
 		return "AdminMenu";
-	}
-
-	@RequestMapping(value = "/AuthLogout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, Model model) {
-		request.getSession().setAttribute("loginSession", null);
-		return "ajax/index";
 	}
 
 	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)

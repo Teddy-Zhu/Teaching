@@ -59,7 +59,7 @@
 				</div>
 
 				<div class="panel panel-default" style="margin-top: 15px;">
-					<div class="panel-body">Data Table</div>
+					<div class="panel-body"><b>Data Table</b></div>
 					<div class="panel-footer">
 						<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable_bookinfo">
 							<thead>
@@ -119,6 +119,7 @@
 				"sInfoEmpty" : '<br><div style="text-align:left">No records available</div>',
 				"sInfoFiltered" : ''
 			},
+			"bProcessing" : true,
 			bAutoWidth : false
 		});
 		$('button.toggle-vis').on('click', function(e) {
@@ -159,7 +160,7 @@
 	}
 	$(document).ready(function() {
 		$.ajax({
-			url : 'books',
+			url : 'Book/GetBooks',
 			type : 'post',
 			dataType : 'json',
 			complete : function(data) {

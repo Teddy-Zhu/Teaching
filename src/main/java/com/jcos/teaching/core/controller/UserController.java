@@ -2,6 +2,7 @@ package com.jcos.teaching.core.controller;
 
 import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.Util.Common.StringUtil;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.service.UserService;
 
 @Controller
+@RequestMapping(value = "/User")
 public class UserController {
 
 	@Inject
@@ -74,11 +76,10 @@ public class UserController {
 		return true;
 	}
 
-	@RequestMapping(value = "/AuthLogout", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean authLogout(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/AuthLogout", method = RequestMethod.GET)
+	public String authLogout(HttpServletRequest request, Model model) {
 		request.getSession().setAttribute("loginSession", null);
-		return true;
+		return "index";
 	}
 
 	@RequestMapping(value = "/AuthLogin", method = RequestMethod.POST)

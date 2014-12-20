@@ -20,7 +20,7 @@ public class UserTypeController {
 	@Inject
 	private UserTypeService userTypeService;
 
-	@RequestMapping(value = "/userType", method = RequestMethod.POST)
+	@RequestMapping(value = "/User/GetUserType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> authUserName(HttpServletRequest request, Model model) {
 		List<UserType> allowUserType = userTypeService.getUserTypeForReg();

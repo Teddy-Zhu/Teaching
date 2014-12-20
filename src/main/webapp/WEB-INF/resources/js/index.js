@@ -65,7 +65,7 @@ $(function() {
 		}
 
 		$.ajax({
-			url : 'AuthLogin',
+			url : 'User/AuthLogin',
 			type : 'post',
 			data : {
 				UserName : userName,
@@ -106,7 +106,7 @@ $(function() {
 			i = false;
 			var optiondefault = '<label class="btn btn-default disabled"><span class="glyphicon glyphicon-stats"></span><input type="radio" name="UserType" value=0>UserType</label>';
 			$.ajax({
-				url : 'userType',
+				url : 'User/GetUserType',
 				type : 'post',
 				dataType : 'json',
 				complete : function(data) {
@@ -225,7 +225,7 @@ $(function() {
 		}
 		if (mark) {
 			$.ajax({
-				url : 'AuthRegister',
+				url : 'User/AuthRegister',
 				type : 'post',
 				data : {
 					UserName : userName,
@@ -277,7 +277,7 @@ $(function() {
 			return;
 		}
 		$.ajax({
-			url : 'AuthUserName',
+			url : 'User/AuthUserName',
 			type : 'post',
 			data : {
 				UserName : userName

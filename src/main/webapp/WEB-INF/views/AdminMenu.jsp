@@ -7,15 +7,12 @@
 <meta name="description" content="description">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-<link href="resources/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="resources/plugins/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="resources/plugins/easyui/themes/color.css">
 <link href="resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="resources/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-<link href="resources/plugins/xcharts/xcharts.min.css" rel="stylesheet">
-<link href="resources/plugins/select2/select2.css" rel="stylesheet">
-<link href="resources/plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
-<link href="resources/plugins/chartist/chartist.min.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
@@ -105,7 +102,7 @@
 							<li><a class="ajax-link" href="ajax/book_query"><i class="fa fa-clipboard"></i> Book Query</a></li>
 							<li><a class="ajax-link" href="ajax/book_enter"><i class="fa  fa-check-square-o"></i> Book CheckIn</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="AuthLogout" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
+					<li class="dropdown"><a href="User/AuthLogout" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
 					</a></li>
 					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-bar-chart-o"></i> <span class="hidden-xs">Charts</span>
 					</a>
@@ -216,20 +213,7 @@
 			<!--Start Content-->
 			<div id="content" class="col-xs-12 col-sm-10">
 				<div id="about">
-					<div class="about-inner">
-						<h4 class="page-header">Open-source admin theme for you</h4>
-						<p>DevOOPS team</p>
-						<p>
-							Homepage - <a href="http://devoops.me" target="_blank">http://devoops.me</a>
-						</p>
-						<p>
-							Email - <a href="mailto:devoopsme@gmail.com">devoopsme@gmail.com</a>
-						</p>
-						<p>
-							Twitter - <a href="http://twitter.com/devoopsme" target="_blank">http://twitter.com/devoopsme</a>
-						</p>
-						<p>Donate - BTC 123Ci1ZFK5V7gyLsyVU36yPNWSB5TDqKn3</p>
-					</div>
+					<div class="about-inner"></div>
 				</div>
 				<div class="preloader">
 					<img src="resources/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
@@ -243,13 +227,9 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<!--<script src="http://code.jquery.com/jquery.js"></script>-->
 	<script src="resources/plugins/jquery/jquery.min.js"></script>
-	<script src="resources/plugins/jquery-ui/jquery-ui.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="resources/plugins/bootstrap/bootstrap.min.js"></script>
-<!-- 	<script src="resources/plugins/justified-gallery/jquery.justifiedGallery.min.js"></script> -->
-	<script src="resources/plugins/tinymce/tinymce.min.js"></script>
-	<!-- <script src="resources/plugins/tinymce/jquery.tinymce.min.js"></script> -->
-	<!-- All functions for this theme + document.ready processing -->
+	<script src="resources/plugins/easyui/jquery.easyui.min.js"></script>
+	<script src="resources/js/TeachDialog.js"></script>
 	<script src="resources/js/devoops.js"></script>
 </body>
 </html>

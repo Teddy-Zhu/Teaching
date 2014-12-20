@@ -16,18 +16,15 @@ import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.service.BookService;
 
 @Controller
+@RequestMapping(value = "/Book")
 public class BookController {
 	@Inject
 	private BookService bookService;
 
-	@RequestMapping(value = "/books", method = RequestMethod.POST)
+	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Book> getbooks(HttpServletRequest request, Model model) {
 		List<Book> books = bookService.getAllBooks();
 		return books;
 	}
-	
-	
-	
-	
 }
