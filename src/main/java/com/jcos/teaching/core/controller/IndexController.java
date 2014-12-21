@@ -15,6 +15,7 @@ public class IndexController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String admin(HttpServletRequest request, Model model) {
+		request.getSession().setAttribute("loginSession", null);
 		return "index";
 	}
 

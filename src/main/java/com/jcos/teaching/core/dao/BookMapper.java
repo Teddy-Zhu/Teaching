@@ -2,6 +2,8 @@ package com.jcos.teaching.core.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jcos.teaching.core.model.Book;
 
 public interface BookMapper {
@@ -17,5 +19,5 @@ public interface BookMapper {
 
 	int updateByPrimaryKey(Book record);
 
-	List<Book> queryBooks();
+	List<Book> queryBooks(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
 }

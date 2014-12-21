@@ -6,5 +6,5 @@ import com.jcos.teaching.core.model.Book;
 
 public interface BookService {
 
-	public List<Book> getAllBooks();
+	public List<Book> getAllBooks(Integer page,Integer rows);
 }

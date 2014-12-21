@@ -170,10 +170,10 @@
 		<association property="bookType" column="intBookTypeId" select="com.jcos.teaching.core.dao.BookTypeMapper.selectNameById" />
 		<association property="supplier" column="intSupplierId" select="com.jcos.teaching.core.dao.SupplierMapper.selectNameById" />
 	</resultMap>
-	<select id="queryBooks" resultMap="BookTypeExtendMap">
-	select
+	<select id="queryBooks" resultMap="BookTypeExtendMap" parameterType="java.lang.Integer">
+	select 
 	strBookName, strBookCoding, strBookSN, intBookTypeId, strPrice, strPress,
 	strAuthor, intPriceDiscount, intSupplierId, dateAddTime
-	from book
+	from book limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
 	</select>
 </mapper>

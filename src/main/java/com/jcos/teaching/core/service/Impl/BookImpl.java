@@ -17,8 +17,8 @@ public class BookImpl implements BookService {
 	private BookMapper bookDao;
 
 	@Override
-	public List<Book> getAllBooks() {
-		return bookDao.queryBooks();
+	public List<Book> getAllBooks(Integer page, Integer rows) {
+		return bookDao.queryBooks(rows * (page - 1), rows);
 	}
 
 }

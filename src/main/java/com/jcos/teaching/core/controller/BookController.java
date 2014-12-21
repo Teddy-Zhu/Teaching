@@ -23,8 +23,9 @@ public class BookController {
 
 	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Book> getbooks(HttpServletRequest request, Model model) {
-		List<Book> books = bookService.getAllBooks();
+	public List<Book> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model) {
+
+		List<Book> books = bookService.getAllBooks(page, rows);
 		return books;
 	}
 }

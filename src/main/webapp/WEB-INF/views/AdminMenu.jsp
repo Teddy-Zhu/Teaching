@@ -102,7 +102,7 @@
 							<li><a class="ajax-link" href="ajax/book_query"><i class="fa fa-clipboard"></i> Book Query</a></li>
 							<li><a class="ajax-link" href="ajax/book_enter"><i class="fa  fa-check-square-o"></i> Book CheckIn</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="User/AuthLogout" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
+					<li class="dropdown"><a href="javascript:window.top.location.href='/';" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
 					</a></li>
 					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-bar-chart-o"></i> <span class="hidden-xs">Charts</span>
 					</a>
