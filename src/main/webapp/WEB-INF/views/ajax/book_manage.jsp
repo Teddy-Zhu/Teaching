@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<
 <style>
 .panel-header, .panel-body {
 	border-width: 0px;
@@ -47,8 +46,17 @@
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="easyui-panel" title="Function Menu">
 					<div style="margin: 15px;">
+						<div class="alert alert-warning" role="alert">
+							<strong>Warning!</strong> <br>[1]Before delelte or edit, you should select <br>[2]If you want clear selected row ,you can refresh the grid.
+						</div>
 						<button class="btn btn-default btn-xs">
 							<i class="fa fa-file-o"></i> Add A New Book
+						</button>
+						<button class="btn btn-default btn-xs">
+							<i class="fa fa-file-text"></i> Edit A Book
+						</button>
+						<button class="btn btn-default btn-xs">
+							<i class="fa fa-trash-o"></i> Remove A Book
 						</button>
 					</div>
 				</div>
@@ -56,11 +64,14 @@
 					<table id="datatable_bookinfo">
 					</table>
 				</div>
+				<div id="book_panel" class="easyui-panel" title="Add A New Book">
+					<table id="datatable_bookinfo">
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-filter.js"></script>
 <script type="text/javascript">
 	function unix2human(unixtime) {
 		var dateObj = new Date(unixtime);
@@ -82,7 +93,6 @@
 			width : 'auto',
 			height : 500,
 			striped : true,
-			singleSelect : true,
 			remoteSort : false,
 			collapsible : true,
 			url : 'Book/GetBooks',
@@ -90,6 +100,11 @@
 			pagination : true,
 			rownumbers : true,
 			columns : [ [ {
+				field : 'intbootid',
+				title : 'id',
+				align : 'center',
+				hidden : true
+			}, {
 				field : 'strbookcoding',
 				title : 'Code',
 				align : 'center',
