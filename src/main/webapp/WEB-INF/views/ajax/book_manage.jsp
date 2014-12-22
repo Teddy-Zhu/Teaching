@@ -1,4 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<
+<style>
+.panel-header, .panel-body {
+	border-width: 0px;
+}
+
+.datagrid, .combo-p {
+	border: solid 1px #D4D4D4;
+}
+
+.datagrid * {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+</style>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
@@ -9,8 +25,7 @@
 			<li><a href="#">Book Query</a></li>
 		</ol>
 		<div id="social" class="pull-right">
-			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a
-				href="#"><i class="fa fa-youtube"></i></a>
+			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
 		</div>
 	</div>
 </div>
@@ -30,6 +45,13 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content table-responsive" style="padding-top: 15px">
+				<div class="easyui-panel" title="Function Menu">
+					<div style="margin: 15px;">
+						<button class="btn btn-default btn-xs">
+							<i class="fa fa-file-o"></i> Add A New Book
+						</button>
+					</div>
+				</div>
 				<div id="book_panel" class="easyui-panel" title="Basic Book Info">
 					<table id="datatable_bookinfo">
 					</table>
@@ -51,10 +73,12 @@
 	}
 	var dg;
 	$(function() {
-		$("#book_panel").panel();
-		cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
+		$(".easyui-panel").panel({
+			collapsible : true
+		});
+		cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
 
-		dg = $('#datatable_bookinfo').datagrid({
+		$('#datatable_bookinfo').datagrid({
 			width : 'auto',
 			height : 500,
 			striped : true,
@@ -136,7 +160,6 @@
 				}
 			} ] ]
 		});
-		dg.datagrid('doFilter');
 		// Add Drag-n-Drop feature
 		WinMove();
 	});
