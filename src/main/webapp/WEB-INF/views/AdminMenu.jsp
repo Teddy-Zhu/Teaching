@@ -101,7 +101,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="javascript:window.top.location.href='/';" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
+					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
 					</a></li>
 				</ul>
 			</div>

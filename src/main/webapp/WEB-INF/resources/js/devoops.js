@@ -2,13 +2,7 @@
 //    Main script of DevOOPS v1.0 Bootstrap Theme
 //
 "use strict";
-/*-------------------------------------------
- Dynamically load plugin scripts
- ---------------------------------------------*/
-//
-// Dynamically load OpenStreetMap Plugin
-// homepage: http://openlayers.org
-//
+
 function LoadOpenLayersScript(callback) {
 	if (!$.fn.OpenLayers) {
 		$.getScript('http://www.openlayers.org/api/OpenLayers.js', callback);
@@ -18,10 +12,7 @@ function LoadOpenLayersScript(callback) {
 		}
 	}
 }
-//
-// Dynamically load Leaflet Plugin
-// homepage: http://leafletjs.com
-//
+
 function LoadLeafletScript(callback) {
 	if (!$.fn.L) {
 		$.getScript('resources/plugins/leaflet/leaflet.js', callback);
@@ -32,10 +23,6 @@ function LoadLeafletScript(callback) {
 	}
 }
 
-//
-// Dynamically load Bootstrap Validator Plugin
-// homepage: https://github.com/nghuuphuoc/bootstrapvalidator
-//
 function LoadBootstrapValidatorScript(callback) {
 	if (!$.fn.bootstrapValidator) {
 		$.getScript('resources/plugins/bootstrapvalidator/bootstrapValidator.min.js', callback);
@@ -46,10 +33,6 @@ function LoadBootstrapValidatorScript(callback) {
 	}
 }
 
-//
-// Dynamically load DataTables plugin
-// homepage: http://datatables.net v1.9.4 license - GPL or BSD
-//
 function LoadDataTablesScripts(callback) {
 	function LoadDatatables() {
 		$.getScript('resources/plugins/datatables/jquery.dataTables.min.js', function() {
@@ -69,10 +52,6 @@ function LoadDataTablesScripts(callback) {
 	}
 }
 
-//
-// Dynamically load Springy plugin
-// homepage: http://getspringy.com/ 2.6.1 as is
-//
 function LoadSpringyScripts(callback) {
 	function LoadSpringyScript() {
 		$.getScript('resources/plugins/springy/springy.js', LoadSpringyUIScript);
@@ -89,6 +68,26 @@ function LoadSpringyScripts(callback) {
 	}
 }
 
+function logout() {
+	$.TeachDialog({
+		title : 'Warnning!',
+		content : 'Are you sure submit to Log Out?',
+		showCloseButton : true,
+		otherButtons : [ 'Yes' ],
+		clickButton : function(sender, modal, index) {
+			if (index == 0) {
+				$.ajax({
+					url : "User/AuthLogout",
+					type : 'post',
+					async : false,
+					success : function() {
+						window.top.location.href = '/';
+					}
+				})
+			}
+		}
+	});
+}
 function sessionout() {
 	$.TeachDialog({
 		title : 'Sorry about the Meaasge!',
@@ -98,9 +97,7 @@ function sessionout() {
 		},
 	});
 }
-// Dynamically load Fancybox 2 plugin
-// homepage: http://fancyapps.com/fancybox/ v2.1.5 License - MIT
-//
+
 function LoadFancyboxScript(callback) {
 	if (!$.fn.fancybox) {
 		$.getScript('resources/plugins/fancybox/jquery.fancybox.js', callback);
@@ -110,12 +107,7 @@ function LoadFancyboxScript(callback) {
 		}
 	}
 }
-/*-------------------------------------------
- Main scripts used by theme
- ---------------------------------------------*/
-//
-// Function for load content from url and put in $('.ajax-content') block
-//
+
 function LoadAjaxContent(url) {
 
 	$('.preloader').show();
@@ -140,10 +132,7 @@ function LoadAjaxContent(url) {
 		async : false
 	});
 }
-//
-// Function maked all .box selector is draggable, to disable for concrete
-// element add class .no-drop
-//
+
 function WinMove() {
 	$("div.box").not('.no-drop').draggable({
 		revert : true,
@@ -177,9 +166,7 @@ function WinMove() {
 		}
 	});
 }
-//
-// Swap 2 elements on page. Used by WinMove function
-//
+
 jQuery.fn.swap = function(b) {
 	b = jQuery(b)[0];
 	var a = this[0];
@@ -190,8 +177,6 @@ jQuery.fn.swap = function(b) {
 	return this;
 };
 
-// Function set min-height of window (required for this theme)
-//
 function SetMinBlockHeight(elem) {
 	elem.css('min-height', window.innerHeight - 49)
 }
@@ -209,10 +194,6 @@ function DashboardTabChecker() {
 	});
 }
 
-//
-// Helper for open ModalBox with requested header, content and bottom
-//
-//
 function OpenModalBox(header, inner, bottom) {
 	var modalbox = $('#modalbox');
 	modalbox.find('.modal-header-name span').html(header);
@@ -221,10 +202,7 @@ function OpenModalBox(header, inner, bottom) {
 	modalbox.fadeIn('fast');
 	$('body').addClass("body-expanded");
 }
-//
-// Close modalbox
-//
-//
+
 function CloseModalBox() {
 	var modalbox = $('#modalbox');
 	modalbox.fadeOut('fast', function() {
@@ -234,10 +212,7 @@ function CloseModalBox() {
 		$('body').removeClass("body-expanded");
 	});
 }
-//
-// Beauty tables plugin (navigation in tables with inputs in cell)
-// Created by DevOOPS.
-//
+
 (function($) {
 	$.fn.beautyTables = function() {
 		var table = this;

@@ -4,6 +4,7 @@
 			title : 'Title',
 			content : '<p>Content</p>',
 			showCloseButton : true,
+			showCloseButtonName : 'Close',
 			otherButtons : [],
 			otherButtonStyles : [],
 			bootstrapModalOption : {
@@ -47,7 +48,7 @@
 					modalID = getModalID();
 					var tmpHtml = '<div class="modal fade" id="{ID}" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button><h1 class="modal-title">{title}</h1></div><div class="modal-body">{body}</div><div class="modal-footer">{button}</div></div></div></div>';
 
-					var buttonHtml = '<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>';
+					var buttonHtml = '<button class="btn" data-dismiss="modal" aria-hidden="true">{CloseName}</button>';
 					if (!options.showCloseButton && options.otherButtons.length > 0) {
 						buttonHtml = '';
 					}
@@ -55,7 +56,8 @@
 					for (var i = 0; i < options.otherButtons.length; i++) {
 						buttonHtml += '<button buttonIndex="' + i + '" class="' + btnClass + ' btn ' + options.otherButtonStyles[i] + '">' + options.otherButtons[i] + '</button>';
 					}
-					tmpHtml = tmpHtml.replace(/{ID}/g, modalID).replace(/{title}/g, options.title).replace(/{body}/g, options.content).replace(/{button}/g, buttonHtml);
+					tmpHtml = tmpHtml.replace(/{ID}/g, modalID).replace(/{title}/g, options.title).replace(/{body}/g, options.content)
+							.replace(/{button}/g, buttonHtml).replace(/{CloseName}/g, options.showCloseButtonName);
 					obj.append(tmpHtml);
 
 					var modalObj = $('#' + modalID);

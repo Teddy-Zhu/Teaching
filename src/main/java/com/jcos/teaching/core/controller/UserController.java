@@ -76,10 +76,11 @@ public class UserController {
 		return true;
 	}
 
-	@RequestMapping(value = "/AuthLogout", method = RequestMethod.GET)
-	public String authLogout(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/AuthLogout", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean authLogout(HttpServletRequest request, Model model) {
 		request.getSession().setAttribute("loginSession", null);
-		return "index";
+		return true;
 	}
 
 	@RequestMapping(value = "/AuthLogin", method = RequestMethod.POST)
