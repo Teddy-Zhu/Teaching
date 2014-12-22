@@ -38,6 +38,7 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-filter.js"></script>
 <script type="text/javascript">
 	function unix2human(unixtime) {
 		var dateObj = new Date(unixtime);
@@ -48,11 +49,12 @@
 	function p(s) {
 		return s < 10 ? '0' + s : s;
 	}
+	var dg;
 	$(function() {
 		$("#book_panel").panel();
-		console.error("a");
 		cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
-		$('#datatable_bookinfo').datagrid({
+
+		dg = $('#datatable_bookinfo').datagrid({
 			width : 'auto',
 			height : 500,
 			striped : true,
@@ -134,6 +136,7 @@
 				}
 			} ] ]
 		});
+		dg.datagrid('doFilter');
 		// Add Drag-n-Drop feature
 		WinMove();
 	});
