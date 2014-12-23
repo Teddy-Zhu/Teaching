@@ -44,29 +44,54 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content table-responsive" style="padding-top: 15px">
-				<div class="easyui-panel" title="Function Menu">
-					<div style="margin: 15px;">
-						<div class="alert alert-warning" role="alert">
-							<strong>Warning!</strong> <br>[1]Before delelte or edit, you should select <br>[2]If you want clear selected row ,you can refresh the grid.
+
+				<div class="panel panel-default" style="border: 1px solid #CCC; border-bottom: 0px; height: 300px">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title" data-toggle="collapse" data-target="#collapseOne">
+							Function Menu <span class="fa fa-chevron-down" style="float: right"></span>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<div style="margin: 10px; margin-right: 30px">
+								<div id="operationpanel">
+									<div class="alert alert-warning" role="alert">
+										<strong>Warning!</strong> <br>[1]Before delelte or edit, you should select <br>[2]If you want clear selected row ,you can refresh the grid.<br>[3]
+									</div>
+									<button class="btn btn-default btn-xs addbook">
+										<i class="fa fa-file-o"></i> Add A New Book
+									</button>
+									<button class="btn btn-default btn-xs editbook">
+										<i class="fa fa-file-text"></i> Edit A Book
+									</button>
+									<button class="btn btn-default btn-xs removebook">
+										<i class="fa fa-trash-o"></i> Remove A Book
+									</button>
+								</div>
+								<div id="addnewbook" class="container-fluid" style="display: none;">
+									<div class="row-fluid">
+										<div class="span12">
+											Code <input id="newCode" type="text" /> Name <input id="newName" type="text" /> SN<input id="newSN" type="text" /> Type <input id="BookTypeSelect" />
+											<button class="btn btn-default btn-xs cancelAdd">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<button class="btn btn-default btn-xs">
-							<i class="fa fa-file-o"></i> Add A New Book
-						</button>
-						<button class="btn btn-default btn-xs">
-							<i class="fa fa-file-text"></i> Edit A Book
-						</button>
-						<button class="btn btn-default btn-xs">
-							<i class="fa fa-trash-o"></i> Remove A Book
-						</button>
 					</div>
 				</div>
-				<div id="book_panel" class="easyui-panel" title="Basic Book Info">
-					<table id="datatable_bookinfo">
-					</table>
-				</div>
-				<div id="book_panel" class="easyui-panel" title="Add A New Book">
-					<table id="datatable_bookinfo">
-					</table>
+				<div class="panel panel-default" style="border: 1px solid #CCC;">
+					<div class="panel-heading" role="tab" id="headingTwo">
+						<h4 class="panel-title" data-toggle="collapse" data-target="#collapseTwo">
+							Basic Book Info<span class="fa fa-chevron-down" style="float: right"></span>
+						</h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="panel-body">
+							<table id="datatable_bookinfo">
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -82,19 +107,50 @@
 	function p(s) {
 		return s < 10 ? '0' + s : s;
 	}
-	var dg;
+	function LoadingBookSync() {
+		$.ajax({
+			url : '',
+			dataType : 'json',
+			type : 'post',
+			success : function(response) {
+				if (response != null && response.length != 0) {
+					var data = response;
+					for ( var i in data) {
+						console.log(i);
+						$("#typesel").append("<option value='"+data[i].intbooktypeid+"'>" + data[i].strbooktypename + "</option>");
+					}
+				} else {
+					$("#typesel").append("<option value='-1'>No Avaiable Book Type</option>");
+				}
+			},
+			async : true
+		})
+	}
 	$(function() {
-		$(".easyui-panel").panel({
-			collapsible : true
+		$('#BookTypeSelect').combobox({
+			url : 'Type/GetBookType',
+			method : 'post',
+			valueField : 'intbooktypeid',
+			textField : 'strbooktypename',
+			filter : function(q, row) {
+				var opts = $(this).combobox('options');
+				return row[opts.textField].indexOf(q) == 0;
+			}
+		});
+		$('button.cancelAdd').click(function() {
+			$('#operationpanel').slideToggle();
+			$('#addnewbook').slideToggle();
+		})
+		$('button.addbook').click(function() {
+			$('#operationpanel').slideToggle();
+			$('#addnewbook').slideToggle();
 		});
 		cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
-
 		$('#datatable_bookinfo').datagrid({
-			width : 'auto',
-			height : 500,
 			striped : true,
 			remoteSort : false,
 			collapsible : true,
+			fit : false,
 			url : 'Book/GetBooks',
 			loadMsg : 'Please waiting for loading date.....',
 			pagination : true,
@@ -174,8 +230,7 @@
 					return unix2human(value);
 				}
 			} ] ]
-		});
-		// Add Drag-n-Drop feature
+		}); // Add Drag-n-Drop
 		WinMove();
 	});
 </script>

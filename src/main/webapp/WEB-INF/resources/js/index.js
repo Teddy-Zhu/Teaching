@@ -41,6 +41,8 @@ var t = false;
 $(function() {
 	$('#loginButton').click(function() {
 		$(this).button('loading');
+		$('.preloader').fadeToggle("slow");
+
 		// var userTypeId = $("#UserType label.active input").val();
 
 		var userName = $('#loginUserName').val();
@@ -61,6 +63,7 @@ $(function() {
 
 		if (!mark) {
 			$(this).button('reset');
+			$('.preloader').fadeToggle("slow");
 			return;
 		}
 
@@ -99,6 +102,7 @@ $(function() {
 			async : true
 		});
 		$(this).button('reset');
+		$('.preloader').fadeToggle("slow");
 	});
 
 	$('.glyphicon.glyphicon-chevron-down').click(function() {
@@ -106,7 +110,7 @@ $(function() {
 			i = false;
 			var optiondefault = '<label class="btn btn-default disabled"><span class="glyphicon glyphicon-stats"></span><input type="radio" name="UserType" value=0>UserType</label>';
 			$.ajax({
-				url : 'User/GetUserType',
+				url : 'Type/GetUserType',
 				type : 'post',
 				dataType : 'json',
 				complete : function(data) {
@@ -158,6 +162,7 @@ $(function() {
 			t = true;
 	});
 	$('#registerButton').click(function() {
+		$('.preloader').fadeToggle("slow");
 		$(this).button('loading');
 		var userTypeId = $("#UserType label.active input").val();
 		if (userTypeId == undefined) {
@@ -171,6 +176,7 @@ $(function() {
 				placement : "right"
 			});
 			$(this).button('reset');
+			$('.preloader').fadeToggle("slow");
 			return;
 		}
 
@@ -221,6 +227,7 @@ $(function() {
 		}
 		if (!mark) {
 			$(this).button('reset');
+			$('.preloader').fadeToggle("slow");
 			return;
 		}
 		if (mark) {
@@ -268,6 +275,7 @@ $(function() {
 			});
 		} else {
 			$(this).button('reset');
+			$('.preloader').fadeToggle("slow");
 		}
 	})
 	$('#UserName').blur(function() {
