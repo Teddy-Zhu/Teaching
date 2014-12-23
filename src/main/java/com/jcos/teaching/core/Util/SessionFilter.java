@@ -27,7 +27,7 @@ public class SessionFilter implements Filter {
 		String loginUrl = httpRequest.getContextPath() + "/";
 		String url = httpRequest.getRequestURI();
 		if (session.getAttribute("loginSession") == null) {
-			if (url.equals("/") || url.equals("/index") || url.contains("logout") || url.contains("/resources/") || url.contains("/Type/") || url.contains("/action/") || url.contains("AdminMenu")) {
+			if (url.equals("/") || url.equals("/index") || url.contains("logout") || url.contains("/resources/") || url.contains("/Type/")|| url.contains("/User/") || url.contains("/action/") || url.contains("AdminMenu")) {
 				chain.doFilter(request, response);
 			} else {
 				if (httpRequest.getHeader("x-requested-with") != null && httpRequest.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
