@@ -71,8 +71,33 @@
 								<div id="addnewbook" class="container-fluid" style="display: none;">
 									<div class="row-fluid">
 										<div class="span12">
-											Code <input id="newCode" type="text" /> Name <input id="newName" type="text" /> SN<input id="newSN" type="text" /> Type <input id="BookTypeSelect" />
-											<button class="btn btn-default btn-xs cancelAdd">Cancel</button>
+
+											<div class="col-md-4">
+												<label class="control-label" contenteditable="true">Code</label>
+												<div class="controls">
+													<input id="newCode" type="text" class="form-control" placeholder="Input Book Code" />
+												</div>
+												<label class="control-label" contenteditable="true">Name</label>
+
+												<div class="controls">
+													<input id="newName" type="text" class="form-control" placeholder="Input Book Name" />
+												</div>
+												<label class="control-label" contenteditable="true">SN</label>
+
+												<div class="controls">
+													<input id="newSN" type="text" class="form-control" placeholder="Input Book SN Number" />
+												</div>
+												<label class="control-label" contenteditable="true">Type</label> <input id="BookTypeSelect" />
+											</div>
+											<div class="col-md-4"></div>
+
+											<div class="control-group">
+												<div class="controls">
+													<button class="btn" contenteditable="true" type="button">Add</button>
+													<button class="btn btn-default btn-xs cancelAdd">Cancel</button>
+												</div>
+											</div>
+
 										</div>
 									</div>
 								</div>
@@ -107,26 +132,9 @@
 	function p(s) {
 		return s < 10 ? '0' + s : s;
 	}
-	function LoadingBookSync() {
-		$.ajax({
-			url : '',
-			dataType : 'json',
-			type : 'post',
-			success : function(response) {
-				if (response != null && response.length != 0) {
-					var data = response;
-					for ( var i in data) {
-						console.log(i);
-						$("#typesel").append("<option value='"+data[i].intbooktypeid+"'>" + data[i].strbooktypename + "</option>");
-					}
-				} else {
-					$("#typesel").append("<option value='-1'>No Avaiable Book Type</option>");
-				}
-			},
-			async : true
-		})
-	}
 	$(function() {
+		//$('#BookTypeSelect').combobox('getValue')
+		//$('#BookTypeSelect').combobox('getText')
 		$('#BookTypeSelect').combobox({
 			url : 'Type/GetBookType',
 			method : 'post',

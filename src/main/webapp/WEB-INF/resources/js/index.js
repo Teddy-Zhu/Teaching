@@ -98,6 +98,11 @@ $(function() {
 			},
 			error : function(data) {
 				console.debug(data.status);
+				$.TeachDialog({
+					title : 'Sorry!Service is down!',
+					content : 'Login failed because the service issue.',
+					bootstrapModalOption : {}
+				});
 			},
 			async : true
 		});
@@ -268,7 +273,11 @@ $(function() {
 					}
 				},
 				error : function(data) {
-
+					$.TeachDialog({
+						title : 'Sorry!Service is down!',
+						content : 'Login failed because the service issue.',
+						bootstrapModalOption : {}
+					});
 					console.debug(data.status);
 				},
 				async : true
