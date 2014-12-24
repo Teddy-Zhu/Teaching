@@ -90,7 +90,6 @@ function logout() {
 }
 function sessionout() {
 	$.TeachDialog({
-		title : 'Sorry about the Meaasge!',
 		content : 'Your Login Session is out of date,please login  again!',
 		dialogHidden : function() {
 			window.top.location.href = '/';

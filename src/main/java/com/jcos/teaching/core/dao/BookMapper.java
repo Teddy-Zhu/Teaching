@@ -20,4 +20,5 @@ public interface BookMapper {
 	int updateByPrimaryKey(Book record);
 
 	List<Book> queryBooks(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
+
 }

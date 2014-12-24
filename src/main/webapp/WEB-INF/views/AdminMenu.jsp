@@ -77,7 +77,7 @@
 										</a></li>
 										<li><a href="#"> <i class="fa fa-cog"></i> <span>Settings</span>
 										</a></li>
-										<li><a href="#"> <i class="fa fa-power-off"></i> <span>Logout</span>
+										<li><a href="javascript:logout();"> <i class="fa fa-power-off"></i> <span>Logout</span>
 										</a></li>
 									</ul></li>
 							</ul>
@@ -101,6 +101,18 @@
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
 						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">System Function</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a class="ajax-link" href="ajax/xxx"><i class="fa fa-book"></i> Type Manage</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">Person Detail</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a class="ajax-link" href="ajax/xx"><i class="fa fa-clipboard"></i> Info Manage</a></li>
+						</ul></li>
+
+
 					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
 					</a></li>
 				</ul>

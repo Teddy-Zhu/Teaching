@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.model.BookType;
+import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.BookTypeService;
+import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.service.UserTypeService;
 
 @Controller
@@ -24,6 +26,8 @@ public class TypeController {
 	private UserTypeService userTypeService;
 	@Inject
 	private BookTypeService bookTypeService;
+	@Inject
+	private SupplierService supplierService;
 
 	@RequestMapping(value = "/GetUserType", method = RequestMethod.POST)
 	@ResponseBody
@@ -37,4 +41,11 @@ public class TypeController {
 	public List<BookType> getBookType(HttpServletRequest request, Model model) {
 		return bookTypeService.getAllBookType();
 	}
+
+	@RequestMapping(value = "/GetSupplierType", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Supplier> getSupplierType(HttpServletRequest request, Model model) {
+		return supplierService.getAllSupplier();
+	}
+
 }

@@ -145,4 +145,8 @@
 	<select id="selectNameById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select strName from supplier where intSupplierId = #{intsupplierid,jdbcType=INTEGER}
 	</select>
+
+	<select id="querySupplierType" resultMap="BaseResultMap">
+		select intSupplierId,strName from supplier
+	</select>
 </mapper>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jcos.teaching.core.dao.BookMapper">
-	<resultMap id="BaseResultMap" type="Book">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Book">
 		<id column="intBookId" property="intbookid" jdbcType="INTEGER" />
 		<result column="strBookName" property="strbookname" jdbcType="VARCHAR" />
 		<result column="strBookCoding" property="strbookcoding" jdbcType="VARCHAR" />
 		<result column="strBookSN" property="strbooksn" jdbcType="VARCHAR" />
 		<result column="intBookTypeId" property="intbooktypeid" jdbcType="INTEGER" />
-		<result column="strPrice" property="strprice" jdbcType="VARCHAR" />
+		<result column="strPrice" property="strprice" jdbcType="DOUBLE" />
 		<result column="strPress" property="strpress" jdbcType="VARCHAR" />
 		<result column="strAuthor" property="strauthor" jdbcType="VARCHAR" />
 		<result column="intPriceDiscount" property="intpricediscount" jdbcType="DOUBLE" />
@@ -28,18 +28,17 @@
 		delete from book
 		where intBookId = #{intbookid,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="Book">
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.Book">
 		insert into book (intBookId, strBookName, strBookCoding,
 		strBookSN, intBookTypeId, strPrice,
 		strPress, strAuthor, intPriceDiscount,
 		intSupplierId, dateAddTime)
 		values (#{intbookid,jdbcType=INTEGER}, #{strbookname,jdbcType=VARCHAR}, #{strbookcoding,jdbcType=VARCHAR},
-		#{strbooksn,jdbcType=VARCHAR}, #{intbooktypeid,jdbcType=INTEGER},
-		#{strprice,jdbcType=VARCHAR},
+		#{strbooksn,jdbcType=VARCHAR}, #{intbooktypeid,jdbcType=INTEGER}, #{strprice,jdbcType=DOUBLE},
 		#{strpress,jdbcType=VARCHAR}, #{strauthor,jdbcType=VARCHAR}, #{intpricediscount,jdbcType=DOUBLE},
 		#{intsupplierid,jdbcType=INTEGER}, #{dateaddtime,jdbcType=TIMESTAMP})
 	</insert>
-	<insert id="insertSelective" parameterType="Book">
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Book">
 		insert into book
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intbookid != null">
@@ -93,7 +92,7 @@
 				#{intbooktypeid,jdbcType=INTEGER},
 			</if>
 			<if test="strprice != null">
-				#{strprice,jdbcType=VARCHAR},
+				#{strprice,jdbcType=DOUBLE},
 			</if>
 			<if test="strpress != null">
 				#{strpress,jdbcType=VARCHAR},
@@ -112,7 +111,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="Book">
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Book">
 		update book
 		<set>
 			<if test="strbookname != null">
@@ -128,7 +127,7 @@
 				intBookTypeId = #{intbooktypeid,jdbcType=INTEGER},
 			</if>
 			<if test="strprice != null">
-				strPrice = #{strprice,jdbcType=VARCHAR},
+				strPrice = #{strprice,jdbcType=DOUBLE},
 			</if>
 			<if test="strpress != null">
 				strPress = #{strpress,jdbcType=VARCHAR},
@@ -148,24 +147,20 @@
 		</set>
 		where intBookId = #{intbookid,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="Book">
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Book">
 		update book
 		set strBookName = #{strbookname,jdbcType=VARCHAR},
 		strBookCoding = #{strbookcoding,jdbcType=VARCHAR},
-		strBookSN =
-		#{strbooksn,jdbcType=VARCHAR},
+		strBookSN = #{strbooksn,jdbcType=VARCHAR},
 		intBookTypeId = #{intbooktypeid,jdbcType=INTEGER},
-		strPrice = #{strprice,jdbcType=VARCHAR},
+		strPrice = #{strprice,jdbcType=DOUBLE},
 		strPress = #{strpress,jdbcType=VARCHAR},
-		strAuthor =
-		#{strauthor,jdbcType=VARCHAR},
+		strAuthor = #{strauthor,jdbcType=VARCHAR},
 		intPriceDiscount = #{intpricediscount,jdbcType=DOUBLE},
 		intSupplierId = #{intsupplierid,jdbcType=INTEGER},
 		dateAddTime = #{dateaddtime,jdbcType=TIMESTAMP}
-		where intBookId
-		= #{intbookid,jdbcType=INTEGER}
+		where intBookId = #{intbookid,jdbcType=INTEGER}
 	</update>
-
 	<resultMap id="BookTypeExtendMap" type="Book" extends="BaseResultMap">
 		<association property="bookType" column="intBookTypeId" select="com.jcos.teaching.core.dao.BookTypeMapper.selectNameById" />
 		<association property="supplier" column="intSupplierId" select="com.jcos.teaching.core.dao.SupplierMapper.selectNameById" />

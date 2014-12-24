@@ -1,7 +1,7 @@
 (function($) {
 	$.fn.TeachDialog = function(options) {
 		var defaults = {
-			title : 'Title',
+			title : 'Sorry about the Meaasge!',
 			content : '<p>Content</p>',
 			showCloseButton : true,
 			showCloseButtonName : 'Close',

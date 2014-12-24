@@ -20,4 +20,12 @@ public class BookTypeImpl implements BookTypeService {
 		return bookTypeDao.queryBookType();
 	}
 
+	@Override
+	public boolean authBookTypeById(Integer id) {
+		BookType type = bookTypeDao.selectByPrimaryKey(id);
+		if (type != null && type.getIntbooktypeid() == id) {
+			return true;
+		}
+		return false;
+	}
 }
