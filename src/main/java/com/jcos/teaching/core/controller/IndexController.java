@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -9,13 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jcos.teaching.core.Exmodel.LoginSession;
+import com.jcos.teaching.core.service.ConfigService;
 
 @Controller
 public class IndexController {
 
+	@Inject
+	private ConfigService configService;
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String admin(HttpServletRequest request, Model model) {
 		request.getSession().setAttribute("loginSession", null);
+		model.addAttribute("version", configService.getAllVersion());
+
 		return "index";
 	}
 

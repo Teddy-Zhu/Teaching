@@ -39,6 +39,22 @@ function returntimeer(domId) {
 var i = true;
 var t = false;
 $(function() {
+	$('a.version').click(function() {
+		$.TeachDialog({
+			title : 'Message',
+			content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!<strong>',
+			bootstrapModalOption : {}
+		});
+	})
+	$('a.version').tooltip({
+		delay : {
+			"show" : 1000,
+			"hide" : 3000
+		},
+		title : '<span style="color:red;">Click Me For Detail!<span>',
+		placement : 'right',
+		html : true
+	}).tooltip('show');
 	$('#loginButton').click(function() {
 		$(this).button('loading');
 		$('.preloader').fadeToggle("slow");

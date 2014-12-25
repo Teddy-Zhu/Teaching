@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.ConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Config" >
+    <id column="intConfigId" property="intconfigid" jdbcType="INTEGER" />
+    <result column="strName" property="strname" jdbcType="VARCHAR" />
+    <result column="strValue" property="strvalue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intConfigId, strName, strValue
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from config
+    where intConfigId = #{intconfigid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from config
+    where intConfigId = #{intconfigid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.Config" >
+    insert into config (intConfigId, strName, strValue
+      )
+    values (#{intconfigid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR}, #{strvalue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Config" >
+    insert into config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intconfigid != null" >
+        intConfigId,
+      </if>
+      <if test="strname != null" >
+        strName,
+      </if>
+      <if test="strvalue != null" >
+        strValue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intconfigid != null" >
+        #{intconfigid,jdbcType=INTEGER},
+      </if>
+      <if test="strname != null" >
+        #{strname,jdbcType=VARCHAR},
+      </if>
+      <if test="strvalue != null" >
+        #{strvalue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Config" >
+    update config
+    <set >
+      <if test="strname != null" >
+        strName = #{strname,jdbcType=VARCHAR},
+      </if>
+      <if test="strvalue != null" >
+        strValue = #{strvalue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where intConfigId = #{intconfigid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Config" >
+    update config
+    set strName = #{strname,jdbcType=VARCHAR},
+      strValue = #{strvalue,jdbcType=VARCHAR}
+    where intConfigId = #{intconfigid,jdbcType=INTEGER}
+  </update>
+  <select id="queryByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select <include refid="Base_Column_List"/>
+  from config where  strName = #{strname,jdbcType=VARCHAR}
+  </select>
+</mapper>

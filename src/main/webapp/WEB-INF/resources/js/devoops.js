@@ -493,12 +493,6 @@ $(function() {
 			LoadAjaxContent(ajax_url);
 		}
 	});
-	$('.about').on('click', function() {
-		$('#about').toggleClass('about-h');
-	})
-	$('#about').on('mouseleave', function() {
-		$('#about').removeClass('about-h');
-	})
 	// for session out of date
 	$.ajaxSetup({
 		complete : function(xhr, textStatus) {
@@ -508,4 +502,5 @@ $(function() {
 			}
 		}
 	});
+
 });

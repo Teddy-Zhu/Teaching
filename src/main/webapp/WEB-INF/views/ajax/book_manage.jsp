@@ -204,6 +204,13 @@
 		$('button.editbook').click(
 				function() {
 					var rows = $('#datatable_bookinfo').datagrid('getSelections');
+					if (rows.length == 0) {
+						$.TeachDialog({
+							content : 'You should select a row at least ?',
+							bootstrapModalOption : {},
+						});
+						return;
+					}
 					for (var i = 0; i < rows.length; i++) {
 						var id = rows[i].intbookid;
 						$('#bookEditTable').append('<li role="presentation"><a href="#editpanel'+ id+'" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
