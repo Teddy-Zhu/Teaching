@@ -43,7 +43,7 @@ public class UserController {
 		if (!tools.isNull(request, "Email")) {
 			email = request.getParameter("Email");
 		}
-		if (userName == "" || passWord == "" || phone == "" || realName == "" || email == "") {
+		if (userName.equals("") || passWord.equals("") || phone.equals("") || realName.equals("") || email.equals("")) {
 			return false;
 		}
 		User record = new User();

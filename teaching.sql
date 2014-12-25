@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50619
 File Encoding         : 65001
 
-Date: 2014-12-12 15:07:43
+Date: 2014-12-25 18:46:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,24 +21,34 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `intBookId` int(11) NOT NULL AUTO_INCREMENT,
-  `strBookName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strBookCoding` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教材代码',
-  `strBookSN` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'isbn号',
+  `strBookName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strBookCoding` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '教材代码',
+  `strBookSN` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'isbn号',
   `intBookTypeId` int(11) NOT NULL COMMENT '教材类型',
-  `strPrice` varchar(255) NOT NULL,
-  `strPress` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '出版社',
-  `strAuthor` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `intPriceDiscount` double(11,0) NOT NULL COMMENT '折扣',
+  `strPrice` double(11,3) NOT NULL,
+  `strPress` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '出版社',
+  `strAuthor` varchar(255) COLLATE utf8_bin NOT NULL,
+  `intPriceDiscount` double(11,3) NOT NULL COMMENT '折扣',
   `intSupplierId` int(11) NOT NULL COMMENT '供应商',
   `dateAddTime` datetime NOT NULL,
   PRIMARY KEY (`intBookId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '阿斯达3', 'B20202', '454545', '1', '410', '1', '阿斯达斯', '10', '1', '2014-12-11 17:54:55');
-INSERT INTO `book` VALUES ('2', 'AAA', 'B22190', '11912030', '2', '22', '2', 'AA', '2', '2', '2014-12-12 12:47:47');
+INSERT INTO `book` VALUES ('1', '阿斯达3', 'B20202', '454545', '1', '41.500', 'XX出版社', '阿斯达斯', '5.600', '1', '2014-12-11 17:54:55');
+INSERT INTO `book` VALUES ('2', 'AAA', 'B22190', '11912030', '2', '22.200', '22行详细', 'AA', '7.800', '2', '2014-12-12 12:47:47');
+INSERT INTO `book` VALUES ('3', 'ASC', 'b2000', '125030', '2', '12.050', '阿斯dad', '22sss', '5.400', '1', '2014-12-22 16:34:18');
+INSERT INTO `book` VALUES ('4', 'XXXX', 'B122', '45145', '2', '101.000', 'SDF', 'SSDFF', '4.000', '2', '2014-12-25 10:01:19');
+INSERT INTO `book` VALUES ('5', '1222', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2014-12-25 10:43:01');
+INSERT INTO `book` VALUES ('6', 'xxxx', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2014-12-25 13:46:50');
+INSERT INTO `book` VALUES ('7', '啊啊啊1', 'B122122', '2S2A2S', '1', '33.100', '阿斯顿的', '砸死是', '9.800', '3', '2014-12-25 14:06:13');
+INSERT INTO `book` VALUES ('8', '121a2', 'Baaa11', 'asa', '2', '12.014', '1231', 'za', '2.500', '1', '2014-12-25 14:57:12');
+INSERT INTO `book` VALUES ('9', 'aasd', 'asasas', 'as12312', '1', '123.000', '122d', '123', '1.300', '1', '2014-12-25 15:19:45');
+INSERT INTO `book` VALUES ('10', '多少岁', 'Baaas', '23', '2', '15.010', 'zsss', 'ssdd', '10.000', '1', '2014-12-25 15:20:15');
+INSERT INTO `book` VALUES ('11', 'asd', 'Baaaa', 'as', '1', '15.000', 'aaz', 'as', '10.000', '1', '2014-12-25 15:34:49');
+INSERT INTO `book` VALUES ('12', 'aa220', 'B1121', '2as', '1', '155.500', '55', 'qasa', '9.800', '2', '2014-12-25 15:35:20');
 
 -- ----------------------------
 -- Table structure for bookEnter
@@ -175,7 +185,7 @@ CREATE TABLE `moneyResult` (
   `intUserId` int(11) NOT NULL,
   `intOperationUserId` int(11) NOT NULL COMMENT '结算人',
   `intResultTypeId` int(11) NOT NULL,
-  `strPrice` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strPrice` double(11,0) NOT NULL,
   PRIMARY KEY (`intResultId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -263,7 +273,7 @@ CREATE TABLE `userType` (
 -- ----------------------------
 -- Records of userType
 -- ----------------------------
-INSERT INTO `userType` VALUES ('1', '管理员', '0');
-INSERT INTO `userType` VALUES ('2', '图书管理员', '0');
+INSERT INTO `userType` VALUES ('1', 'Admin', '0');
+INSERT INTO `userType` VALUES ('2', 'BookManager', '0');
 INSERT INTO `userType` VALUES ('3', 'Teacher', '1');
 INSERT INTO `userType` VALUES ('4', 'Student', '1');

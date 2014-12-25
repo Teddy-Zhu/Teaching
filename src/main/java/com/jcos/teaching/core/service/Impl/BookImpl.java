@@ -21,4 +21,13 @@ public class BookImpl implements BookService {
 		return bookDao.queryBooks(rows * (page - 1), rows);
 	}
 
+	@Override
+	public int addnewbook(Book record) {
+		return bookDao.insertSelective(record);
+	}
+
+	@Override
+	public Integer getBookTotal() {
+		return bookDao.queryBookTotal();
+	}
 }

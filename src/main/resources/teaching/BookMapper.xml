@@ -34,7 +34,8 @@
 		strPress, strAuthor, intPriceDiscount,
 		intSupplierId, dateAddTime)
 		values (#{intbookid,jdbcType=INTEGER}, #{strbookname,jdbcType=VARCHAR}, #{strbookcoding,jdbcType=VARCHAR},
-		#{strbooksn,jdbcType=VARCHAR}, #{intbooktypeid,jdbcType=INTEGER}, #{strprice,jdbcType=DOUBLE},
+		#{strbooksn,jdbcType=VARCHAR}, #{intbooktypeid,jdbcType=INTEGER},
+		#{strprice,jdbcType=DOUBLE},
 		#{strpress,jdbcType=VARCHAR}, #{strauthor,jdbcType=VARCHAR}, #{intpricediscount,jdbcType=DOUBLE},
 		#{intsupplierid,jdbcType=INTEGER}, #{dateaddtime,jdbcType=TIMESTAMP})
 	</insert>
@@ -151,15 +152,18 @@
 		update book
 		set strBookName = #{strbookname,jdbcType=VARCHAR},
 		strBookCoding = #{strbookcoding,jdbcType=VARCHAR},
-		strBookSN = #{strbooksn,jdbcType=VARCHAR},
+		strBookSN =
+		#{strbooksn,jdbcType=VARCHAR},
 		intBookTypeId = #{intbooktypeid,jdbcType=INTEGER},
 		strPrice = #{strprice,jdbcType=DOUBLE},
 		strPress = #{strpress,jdbcType=VARCHAR},
-		strAuthor = #{strauthor,jdbcType=VARCHAR},
+		strAuthor =
+		#{strauthor,jdbcType=VARCHAR},
 		intPriceDiscount = #{intpricediscount,jdbcType=DOUBLE},
 		intSupplierId = #{intsupplierid,jdbcType=INTEGER},
 		dateAddTime = #{dateaddtime,jdbcType=TIMESTAMP}
-		where intBookId = #{intbookid,jdbcType=INTEGER}
+		where intBookId
+		= #{intbookid,jdbcType=INTEGER}
 	</update>
 	<resultMap id="BookTypeExtendMap" type="Book" extends="BaseResultMap">
 		<association property="bookType" column="intBookTypeId" select="com.jcos.teaching.core.dao.BookTypeMapper.selectNameById" />
@@ -171,5 +175,8 @@
 		strAuthor, intPriceDiscount,
 		intSupplierId, dateAddTime
 		from book limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+	</select>
+	<select id="queryBookTotal" resultType="java.lang.Integer">
+		select count(*) from book
 	</select>
 </mapper>

@@ -1,7 +1,9 @@
 package com.jcos.teaching.core.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -31,10 +33,12 @@ public class BookController {
 
 	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Book> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model) {
-
+	public Map<String, Object> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model) {
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("total", bookService.getBookTotal());
 		List<Book> books = bookService.getAllBooks(page, rows);
-		return books;
+		ret.put("rows", books);
+		return ret;
 	}
 
 	@RequestMapping(value = "/AddBook", method = RequestMethod.POST)
@@ -43,7 +47,6 @@ public class BookController {
 		String code = "", name = "", sn = "", press = "", author = "";
 		int booktype = 0, suppliertype = 0;
 		Double price = 0.0, discount = 0.0;
-		Date adddata = new Date();
 		try {
 			code = request.getParameter("newCode").trim().toString();
 			name = request.getParameter("newName").trim().toString();
@@ -64,7 +67,9 @@ public class BookController {
 		if (!supplierService.authSupplierById(suppliertype)) {
 			return false;
 		}
-
-		return true;
+		Book record = new Book(name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
+		if (bookService.addnewbook(record) != 0)
+			return true;
+		return false;
 	}
 }

@@ -6,7 +6,7 @@
     <result column="intUserId" property="intuserid" jdbcType="INTEGER" />
     <result column="intOperationUserId" property="intoperationuserid" jdbcType="INTEGER" />
     <result column="intResultTypeId" property="intresulttypeid" jdbcType="INTEGER" />
-    <result column="strPrice" property="strprice" jdbcType="VARCHAR" />
+    <result column="strPrice" property="strprice" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
     intResultId, intUserId, intOperationUserId, intResultTypeId, strPrice
@@ -25,7 +25,7 @@
     insert into moneyResult (intResultId, intUserId, intOperationUserId, 
       intResultTypeId, strPrice)
     values (#{intresultid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intoperationuserid,jdbcType=INTEGER}, 
-      #{intresulttypeid,jdbcType=INTEGER}, #{strprice,jdbcType=VARCHAR})
+      #{intresulttypeid,jdbcType=INTEGER}, #{strprice,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.MoneyResult" >
     insert into moneyResult
@@ -60,7 +60,7 @@
         #{intresulttypeid,jdbcType=INTEGER},
       </if>
       <if test="strprice != null" >
-        #{strprice,jdbcType=VARCHAR},
+        #{strprice,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         intResultTypeId = #{intresulttypeid,jdbcType=INTEGER},
       </if>
       <if test="strprice != null" >
-        strPrice = #{strprice,jdbcType=VARCHAR},
+        strPrice = #{strprice,jdbcType=DOUBLE},
       </if>
     </set>
     where intResultId = #{intresultid,jdbcType=INTEGER}
@@ -87,7 +87,7 @@
     set intUserId = #{intuserid,jdbcType=INTEGER},
       intOperationUserId = #{intoperationuserid,jdbcType=INTEGER},
       intResultTypeId = #{intresulttypeid,jdbcType=INTEGER},
-      strPrice = #{strprice,jdbcType=VARCHAR}
+      strPrice = #{strprice,jdbcType=DOUBLE}
     where intResultId = #{intresultid,jdbcType=INTEGER}
   </update>
 </mapper>

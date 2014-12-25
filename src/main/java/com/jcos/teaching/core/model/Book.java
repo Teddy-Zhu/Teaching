@@ -3,29 +3,29 @@ package com.jcos.teaching.core.model;
 import java.util.Date;
 
 public class Book {
-    private Integer intbookid;
+	private Integer intbookid;
 
-    private String strbookname;
+	private String strbookname;
 
-    private String strbookcoding;
+	private String strbookcoding;
 
-    private String strbooksn;
+	private String strbooksn;
 
-    private Integer intbooktypeid;
+	private Integer intbooktypeid;
 
-    private Double strprice;
+	private Double strprice;
 
-    private String strpress;
+	private String strpress;
 
-    private String strauthor;
+	private String strauthor;
 
-    private Double intpricediscount;
+	private Double intpricediscount;
 
-    private Integer intsupplierid;
+	private Integer intsupplierid;
 
-    private Date dateaddtime;
+	private Date dateaddtime;
 
-		private BookType bookType;
+	private BookType bookType;
 
 	private Supplier supplier;
 
@@ -45,6 +45,21 @@ public class Book {
 		this.supplier = new Supplier();
 	}
 
+	public Book(String strbookname, String strbookcoding, String strbooksn, Integer intbooktypeid, Double strprice, String strpress, String strauthor, Double intpricediscount, Integer intsupplierid,
+			Date dateaddtime) {
+		super();
+		this.strbookname = strbookname;
+		this.strbookcoding = strbookcoding;
+		this.strbooksn = strbooksn;
+		this.intbooktypeid = intbooktypeid;
+		this.strprice = strprice;
+		this.strpress = strpress;
+		this.strauthor = strauthor;
+		this.intpricediscount = intpricediscount;
+		this.intsupplierid = intsupplierid;
+		this.dateaddtime = dateaddtime;
+	}
+
 	public BookType getBookType() {
 		return bookType;
 	}
@@ -60,91 +75,92 @@ public class Book {
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
-    public Integer getIntbookid() {
-        return intbookid;
-    }
 
-    public void setIntbookid(Integer intbookid) {
-        this.intbookid = intbookid;
-    }
+	public Integer getIntbookid() {
+		return intbookid;
+	}
 
-    public String getStrbookname() {
-        return strbookname;
-    }
+	public void setIntbookid(Integer intbookid) {
+		this.intbookid = intbookid;
+	}
 
-    public void setStrbookname(String strbookname) {
-        this.strbookname = strbookname == null ? null : strbookname.trim();
-    }
+	public String getStrbookname() {
+		return strbookname;
+	}
 
-    public String getStrbookcoding() {
-        return strbookcoding;
-    }
+	public void setStrbookname(String strbookname) {
+		this.strbookname = strbookname == null ? null : strbookname.trim();
+	}
 
-    public void setStrbookcoding(String strbookcoding) {
-        this.strbookcoding = strbookcoding == null ? null : strbookcoding.trim();
-    }
+	public String getStrbookcoding() {
+		return strbookcoding;
+	}
 
-    public String getStrbooksn() {
-        return strbooksn;
-    }
+	public void setStrbookcoding(String strbookcoding) {
+		this.strbookcoding = strbookcoding == null ? null : strbookcoding.trim();
+	}
 
-    public void setStrbooksn(String strbooksn) {
-        this.strbooksn = strbooksn == null ? null : strbooksn.trim();
-    }
+	public String getStrbooksn() {
+		return strbooksn;
+	}
 
-    public Integer getIntbooktypeid() {
-        return intbooktypeid;
-    }
+	public void setStrbooksn(String strbooksn) {
+		this.strbooksn = strbooksn == null ? null : strbooksn.trim();
+	}
 
-    public void setIntbooktypeid(Integer intbooktypeid) {
-        this.intbooktypeid = intbooktypeid;
-    }
+	public Integer getIntbooktypeid() {
+		return intbooktypeid;
+	}
 
-    public Double getStrprice() {
-        return strprice;
-    }
+	public void setIntbooktypeid(Integer intbooktypeid) {
+		this.intbooktypeid = intbooktypeid;
+	}
 
-    public void setStrprice(Double strprice) {
-        this.strprice = strprice;
-    }
+	public Double getStrprice() {
+		return strprice;
+	}
 
-    public String getStrpress() {
-        return strpress;
-    }
+	public void setStrprice(Double strprice) {
+		this.strprice = strprice;
+	}
 
-    public void setStrpress(String strpress) {
-        this.strpress = strpress == null ? null : strpress.trim();
-    }
+	public String getStrpress() {
+		return strpress;
+	}
 
-    public String getStrauthor() {
-        return strauthor;
-    }
+	public void setStrpress(String strpress) {
+		this.strpress = strpress == null ? null : strpress.trim();
+	}
 
-    public void setStrauthor(String strauthor) {
-        this.strauthor = strauthor == null ? null : strauthor.trim();
-    }
+	public String getStrauthor() {
+		return strauthor;
+	}
 
-    public Double getIntpricediscount() {
-        return intpricediscount;
-    }
+	public void setStrauthor(String strauthor) {
+		this.strauthor = strauthor == null ? null : strauthor.trim();
+	}
 
-    public void setIntpricediscount(Double intpricediscount) {
-        this.intpricediscount = intpricediscount;
-    }
+	public Double getIntpricediscount() {
+		return intpricediscount;
+	}
 
-    public Integer getIntsupplierid() {
-        return intsupplierid;
-    }
+	public void setIntpricediscount(Double intpricediscount) {
+		this.intpricediscount = intpricediscount;
+	}
 
-    public void setIntsupplierid(Integer intsupplierid) {
-        this.intsupplierid = intsupplierid;
-    }
+	public Integer getIntsupplierid() {
+		return intsupplierid;
+	}
 
-    public Date getDateaddtime() {
-        return dateaddtime;
-    }
+	public void setIntsupplierid(Integer intsupplierid) {
+		this.intsupplierid = intsupplierid;
+	}
 
-    public void setDateaddtime(Date dateaddtime) {
-        this.dateaddtime = dateaddtime;
-    }
+	public Date getDateaddtime() {
+		return dateaddtime;
+	}
+
+	public void setDateaddtime(Date dateaddtime) {
+		this.dateaddtime = dateaddtime;
+	}
 }

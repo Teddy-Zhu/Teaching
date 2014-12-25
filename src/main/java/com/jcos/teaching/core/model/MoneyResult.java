@@ -9,7 +9,7 @@ public class MoneyResult {
 
     private Integer intresulttypeid;
 
-    private String strprice;
+    private Double strprice;
 
     public Integer getIntresultid() {
         return intresultid;
@@ -43,11 +43,11 @@ public class MoneyResult {
         this.intresulttypeid = intresulttypeid;
     }
 
-    public String getStrprice() {
+    public Double getStrprice() {
         return strprice;
     }
 
-    public void setStrprice(String strprice) {
-        this.strprice = strprice == null ? null : strprice.trim();
+    public void setStrprice(Double strprice) {
+        this.strprice = strprice;
     }
 }
