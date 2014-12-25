@@ -126,11 +126,8 @@
 
 								<div id="editbookcontainer" style="display: none">
 									<ul class="nav nav-tabs" role="tablist" id="bookEditTable">
-										<li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
 									</ul>
-									<div class="tab-content">
-										<div role="tabpanel" class="tab-pane active" id="home">...</div>
-									</div>
+									<div class="tab-content"></div>
 								</div>
 
 							</div>
@@ -157,12 +154,10 @@
 </div>
 <script type="text/javascript">
 	var htmltmp = $('#addnewbook').html();
-	htmltmp = htmltmp.replace('<button class="btn btn-default btn-xs submitAdd">Add</button>', '').replace('<button class="btn btn-default btn-xs cancelAdd">Cancel</button>', '').replace(
-			'<strong><label style="color: red;" id="adderrormsg"></label></strong>', '');
+	htmltmp = htmltmp.replace('<button class="btn btn-default btn-xs submitAdd">Add</button>', '').replace('<button class="btn btn-default btn-xs cancelAdd">Cancel</button>', '').replace('<strong><label style="color: red;" id="adderrormsg"></label></strong>', '');
 	function unix2human(unixtime) {
 		var dateObj = new Date(unixtime);
-		var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':'
-				+ p(dateObj.getSeconds());
+		var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':' + p(dateObj.getSeconds());
 		return UnixTimeToDate;
 	}
 	function p(s) {
@@ -211,23 +206,21 @@
 					var rows = $('#datatable_bookinfo').datagrid('getSelections');
 					for (var i = 0; i < rows.length; i++) {
 						var id = rows[i].intbookid;
-						$('#bookEditTable').append('<li role="presentation"><a href="#editpanel"'+ id+' role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
+						$('#bookEditTable').append('<li role="presentation"><a href="#editpanel'+ id+'" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
 						$('#editbookcontainer .tab-content').append('<div role="tabpanel" class="tab-pane active" id="editpanel'+ id +'"></div>');
 						$('#editpanel' + id).html(
-								htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookTypeSelect', 'editBookTypeSelect' + id)
-										.replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id)
-										.replace('newDisCount', 'editDisCount' + id).replace('newSupplierTypeSelect', 'editSupplierTypeSelect' + id));
+								htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookTypeSelect', 'editBookTypeSelect' + id).replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice',
+										'editPrice' + id).replace('newDisCount', 'editDisCount' + id).replace('newSupplierTypeSelect', 'editSupplierTypeSelect' + id));
 						initBookType('editBookTypeSelect' + id);
 						initSupplierType('editSupplierTypeSelect' + id);
 						setVal(id, rows[i]);
 					}
 					$('#operationpanel').slideToggle();
 					$('#editbookcontainer').slideToggle();
+
+					$('#bookEditTable a:first').tab('show')
+
 				})
-		$('#bookEditTable a').click(function(e) {
-			e.preventDefault()
-			$(this).tab('show')
-		})
 		//$('#BookTypeSelect').combobox('getValue')
 		//$('#BookTypeSelect').combobox('getText')
 		$('button.submitAdd').click(function() {
