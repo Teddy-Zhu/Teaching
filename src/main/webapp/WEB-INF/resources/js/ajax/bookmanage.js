@@ -20,28 +20,30 @@ function setVal(id, obj) {
 	$('#editSupplierTypeSelect' + id).combobox('select', obj.supplier.intsupplierid);
 }
 
-function initBookType(id, widthval) {
+function initBookType(id, widhtId) {
+
 	$('#' + id).combobox({
 		url : 'Type/GetBookType',
 		method : 'post',
 		valueField : 'intbooktypeid',
 		textField : 'strbooktypename',
 		panelHeight : 'auto',
-		width : widthval,
+		width : $(document).width() * widhtId,
 		filter : function(q, row) {
 			var opts = $(this).combobox('options');
 			return row[opts.textField].indexOf(q) == 0;
 		}
 	});
 }
-function initSupplierType(id, widthval) {
+function initSupplierType(id, widhtId) {
+
 	$('#' + id).combobox({
 		url : 'Type/GetSupplierType',
 		method : 'post',
 		valueField : 'intsupplierid',
 		textField : 'strname',
 		panelHeight : 'auto',
-		width : widthval,
+		width : $(document).width() * widhtId,
 		filter : function(q, row) {
 			var opts = $(this).combobox('options');
 			return row[opts.textField].indexOf(q) == 0;
@@ -55,7 +57,7 @@ $(function() {
 				var rows = $('#datatable_bookinfo').datagrid('getSelections');
 				if (rows.length == 0) {
 					$.TeachDialog({
-						content : 'You should select a row at least ?',
+						content : 'You should select a row at least !',
 						bootstrapModalOption : {},
 					});
 					return;
@@ -67,11 +69,10 @@ $(function() {
 					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
 					$('#editbookcontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
-							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookTypeSelect', 'editBookTypeSelect' + id)
-									.replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id).replace('newDisCount', 'editDisCount' + id)
-									.replace('newSupplierTypeSelect', 'editSupplierTypeSelect' + id));
-					initBookType('editBookTypeSelect' + id, 178);
-					initSupplierType('editSupplierTypeSelect' + id, 178);
+							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookTypeSelect', 'editBookTypeSelect' + id).replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice',
+									'editPrice' + id).replace('newDisCount', 'editDisCount' + id).replace('newSupplierTypeSelect', 'editSupplierTypeSelect' + id));
+					initBookType('editBookTypeSelect' + id, 0.1475);
+					initSupplierType('editSupplierTypeSelect' + id, 0.1475);
 					setVal(id, rows[i]);
 				}
 				$('#operationpanel').slideToggle();
@@ -148,28 +149,48 @@ $(function() {
 		})
 	});
 
-	initBookType('newBookTypeSelect', 192);
-	initSupplierType('newSupplierTypeSelect', 192);
-	$(window).resize(function() {
-		$('#datagrid').datagrid('resize', {
-			width : $(".f_main").width()
-		});
-	})
+	initBookType('newBookTypeSelect', 0.159375);
+	initSupplierType('newSupplierTypeSelect', 0.159375);
+
 	$('button.cancelAdd').click(function() {
-		$('#operationpanel').slideUp();
-		$('#addnewbook').slideDown();
-		$('#editbookcontainer').slideDown();
+		$('#operationpanel').slideDown();
+		$('#addnewbook').slideUp();
+		$('#editbookcontainer').slideUp();
 	})
 	$('button.addbook').click(function() {
 		$('#newBookTypeSelect').combobox('setValue', '')
 		$('#newSupplierTypeSelect').combobox('setValue', '')
 		$('.newform').val('');
+		$('#operationpanel').slideUp();
+		$('#addnewbook').slideDown();
+		$('#editbookcontainer').slideUp();
+	});
+
+	$('button.cancelEdit').click(function() {
 		$('#operationpanel').slideDown();
 		$('#addnewbook').slideUp();
-		$('#editbookcontainer').slideDown();
-	});
-	
-	$('button.')
+		$('#editbookcontainer').slideUp();
+	})
+
+	$('button.submitEdit').click(function() {
+		$.TeachDialog({
+			content : 'aaa'
+		});
+	})
+
+	$('button.removebook').click(function() {
+		var rows = $('#datatable_bookinfo').datagrid('getSelections');
+		if (rows.length == 0) {
+			$.TeachDialog({
+				content : 'You should select a row at least !',
+				bootstrapModalOption : {},
+			});
+			return;
+		}
+		for (var i = 0; i < rows.length; i++) {
+			var id = rows[i].intbookid;
+		}
+	})
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
 	$('#datatable_bookinfo').datagrid({
 		striped : true,

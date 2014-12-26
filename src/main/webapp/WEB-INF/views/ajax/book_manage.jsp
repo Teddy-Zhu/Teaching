@@ -73,15 +73,17 @@
 									<div class="alert alert-danger" role="alert">
 										<strong>Warning!</strong> <br>[1]Before delelte or edit, you should select <br>[2]If you want clear selected row ,you can refresh the grid.<br>[3]
 									</div>
-									<button class="btn btn-default btn-xs addbook">
-										<i class="fa fa-file-o"></i> Add A New Book
-									</button>
-									<button class="btn btn-default btn-xs editbook">
-										<i class="fa fa-file-text"></i> Edit A Book
-									</button>
-									<button class="btn btn-default btn-xs removebook">
-										<i class="fa fa-trash-o"></i> Remove A Book
-									</button>
+									<div class="col-xs-5  col-xs-offset-4">
+										<button class="btn btn-default btn-xs addbook">
+											<i class="fa fa-file-o"></i> Add A New Book
+										</button>
+										<button class="btn btn-default btn-xs editbook">
+											<i class="fa fa-file-text"></i> Edit A Book
+										</button>
+										<button class="btn btn-default btn-xs removebook">
+											<i class="fa fa-trash-o"></i> Remove A Book
+										</button>
+									</div>
 								</div>
 
 								<div id="addnewbook" class="col-xs-12" style="display: none; padding-top: 5px">
@@ -124,7 +126,7 @@
 										</div>
 									</div>
 									<div class="col-xs-12 inlineblock" style="margin-top: 10px">
-										<div class="col-xs-5 controls col-xs-offset-4">
+										<div class="col-xs-5 controls col-xs-offset-5">
 											<button class="btn btn-default btn-xs submitAdd" style="width: 100px">Add</button>
 											<button class="btn btn-default btn-xs cancelAdd" style="width: 100px">Cancel</button>
 										</div>
