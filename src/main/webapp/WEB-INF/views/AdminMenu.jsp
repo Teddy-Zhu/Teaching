@@ -7,10 +7,10 @@
 <meta name="description" content="description">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="resources/plugins/easyui/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css" href="resources/plugins/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="resources/plugins/easyui/themes/color.css">
 <link href="resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="resources/plugins/easyui/themes/color.css" rel="stylesheet">
+<link href="resources/plugins/easyui/themes/icon.css" rel="stylesheet">
+<link href="resources/plugins/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
 <link href="resources/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -177,7 +177,7 @@ a.show-sidebar:hover {
 }
 #main {
   margin-top: 50px;
-  min-height: 800px;
+/*   min-height: 800px; */
   overflow: hidden;
 }
 #search {

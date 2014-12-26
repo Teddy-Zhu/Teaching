@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50619
 File Encoding         : 65001
 
-Date: 2014-12-25 18:46:48
+Date: 2014-12-26 18:33:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -123,6 +123,24 @@ CREATE TABLE `bookType` (
 -- ----------------------------
 INSERT INTO `bookType` VALUES ('1', '出版社教材');
 INSERT INTO `bookType` VALUES ('2', '自编教材');
+
+-- ----------------------------
+-- Table structure for config
+-- ----------------------------
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE `config` (
+  `intConfigId` int(11) NOT NULL AUTO_INCREMENT,
+  `strName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`intConfigId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of config
+-- ----------------------------
+INSERT INTO `config` VALUES ('1', 'version', '1');
+INSERT INTO `config` VALUES ('2', 'funcversion', '1');
+INSERT INTO `config` VALUES ('3', 'buildversion', '05');
 
 -- ----------------------------
 -- Table structure for department

@@ -27,7 +27,7 @@ public class BookImpl implements BookService {
 	}
 
 	@Override
-	public Integer getBookTotal() {
+	public int getBookTotal() {
 		return bookDao.queryBookTotal();
 	}
 }

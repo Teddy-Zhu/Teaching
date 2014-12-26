@@ -10,5 +10,5 @@ public interface BookService {
 
 	public int addnewbook(Book record);
 
-	public Integer getBookTotal();
+	public int getBookTotal();
 }

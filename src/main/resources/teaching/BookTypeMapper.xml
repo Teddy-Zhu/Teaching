@@ -55,9 +55,6 @@
 		set strBookTypeName = #{strbooktypename,jdbcType=VARCHAR}
 		where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
 	</update>
-	<select id="selectNameById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-		select strBookTypeName from bookType where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
-	</select>
 	<select id="queryBookType" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

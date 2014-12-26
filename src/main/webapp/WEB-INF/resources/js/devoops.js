@@ -431,7 +431,7 @@ $(function() {
 			e.preventDefault();
 		}
 	});
-	var height = window.innerHeight - 49;
+	var height = window.innerHeight - 50;
 	$('#main').css('min-height', height).on('click', '.expand-link', function(e) {
 		var body = $('body');
 		e.preventDefault();
