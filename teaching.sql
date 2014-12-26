@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50619
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50619
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2014-12-26 18:33:21
+Date: 2014-12-26 22:35:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -139,8 +139,8 @@ CREATE TABLE `config` (
 -- Records of config
 -- ----------------------------
 INSERT INTO `config` VALUES ('1', 'version', '1');
-INSERT INTO `config` VALUES ('2', 'funcversion', '1');
-INSERT INTO `config` VALUES ('3', 'buildversion', '05');
+INSERT INTO `config` VALUES ('2', 'funcversion', '0002');
+INSERT INTO `config` VALUES ('3', 'buildversion', '00');
 
 -- ----------------------------
 -- Table structure for department
@@ -226,6 +226,28 @@ CREATE TABLE `operation` (
 -- ----------------------------
 INSERT INTO `operation` VALUES ('1', '录入图书');
 INSERT INTO `operation` VALUES ('2', '登录');
+
+-- ----------------------------
+-- Table structure for power
+-- ----------------------------
+DROP TABLE IF EXISTS `power`;
+CREATE TABLE `power` (
+  `intPowerId` int(11) NOT NULL,
+  `intUserTypeId` int(11) NOT NULL,
+  `allowLogin` int(11) NOT NULL DEFAULT '1',
+  `allowAddBook` int(11) NOT NULL DEFAULT '0',
+  `allowRmBook` int(11) NOT NULL DEFAULT '0',
+  `allowEditBook` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`intPowerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of power
+-- ----------------------------
+INSERT INTO `power` VALUES ('1', '1', '1', '1', '1', '1');
+INSERT INTO `power` VALUES ('2', '2', '1', '1', '1', '1');
+INSERT INTO `power` VALUES ('3', '3', '1', '0', '0', '0');
+INSERT INTO `power` VALUES ('4', '4', '1', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for supplier
