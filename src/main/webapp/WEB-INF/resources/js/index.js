@@ -124,13 +124,16 @@ $(function() {
 				$.TeachDialog({
 					title : 'Sorry!Service is down!',
 					content : 'Login failed because the service issue.',
-					bootstrapModalOption : {}
+					bootstrapModalOption : {},
+					dialogHidden : function() {
+						$('.preloader').fadeToggle("slow");
+					}
+
 				});
 			},
 			async : true
 		});
 		$(this).button('reset');
-		$('.preloader').fadeToggle("slow");
 	});
 
 	$('.glyphicon.glyphicon-chevron-down').click(function() {
