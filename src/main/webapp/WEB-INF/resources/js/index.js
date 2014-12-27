@@ -39,6 +39,13 @@ function returntimeer(domId) {
 var i = true;
 var t = false;
 $(function() {
+	$('a.UserAccount').click(function() {
+		$.TeachDialog({
+			title : 'Message',
+			content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
+			bootstrapModalOption : {}
+		});
+	})
 	$('a.version').click(function() {
 		$.TeachDialog({
 			title : 'Message',

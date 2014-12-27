@@ -499,6 +499,12 @@ $(function() {
 			if (xhr.status == 3389) {
 				sessionout();
 				return;
+			} else if (xhr.status == 3388) {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'You don\'t have power to operate it!',
+					showCloseButton : true,
+				});
 			}
 		}
 	});

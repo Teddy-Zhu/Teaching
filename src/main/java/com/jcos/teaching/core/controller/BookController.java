@@ -7,16 +7,20 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
+import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
 
 @Controller
@@ -31,10 +35,36 @@ public class BookController {
 	@Inject
 	private SupplierService supplierService;
 
+	@Inject
+	private PowerService powerService;
+
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public boolean authUserTypePower(HttpServletRequest request, String name) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		return powerService.queryBookPowerByName(name, loginSession.getLoginUser().getInttypeid());
+	}
+
+	/**
+	 * 
+	 * @param rows
+	 * @param page
+	 * @param text
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model) {
+	public Map<String, Object> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model, HttpServletResponse response) {
 		Map<String, Object> ret = new HashMap<String, Object>();
+		if (!authUserTypePower(request, "querybook")) {
+			response.setStatus(3388);
+			return ret;
+		}
 		ret.put("total", bookService.getBookTotal());
 		List<Book> books = bookService.getAllBooks(page, rows);
 		ret.put("rows", books);
@@ -43,7 +73,11 @@ public class BookController {
 
 	@RequestMapping(value = "/AddBook", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean addbooks(HttpServletRequest request, Model model) {
+	public boolean addbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request, "addbook")) {
+			response.setStatus(3388);
+			return true;
+		}
 		String code = "", name = "", sn = "", press = "", author = "";
 		int booktype = 0, suppliertype = 0;
 		Double price = 0.0, discount = 0.0;
@@ -68,8 +102,22 @@ public class BookController {
 			return false;
 		}
 		Book record = new Book(name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
-		if (bookService.addnewbook(record) != 0)
+		if (bookService.addnewbook(record))
 			return true;
 		return false;
 	}
+
+	@RequestMapping(value = "/RemoveBook", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean removebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request, "rmbook")) {
+			response.setStatus(3388);
+			return false;
+		}
+		if (bookId != null && bookId.length != 0) {
+			return bookService.deletebookbyId(bookId);
+		} else
+			return false;
+	}
+
 }

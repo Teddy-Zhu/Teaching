@@ -22,12 +22,26 @@ public class BookImpl implements BookService {
 	}
 
 	@Override
-	public int addnewbook(Book record) {
-		return bookDao.insertSelective(record);
+	public boolean addnewbook(Book record) {
+		if (bookDao.insertSelective(record) == 1)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	public int getBookTotal() {
 		return bookDao.queryBookTotal();
 	}
+
+	@Override
+	public boolean deletebookbyId(Integer[] bookIds) {
+		for (Integer id : bookIds) {
+			if (bookDao.deleteByPrimaryKey(id) != 1)
+				return false;
+
+		}
+		return true;
+	}
+
 }

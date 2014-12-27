@@ -1,63 +1,51 @@
 package com.jcos.teaching.core.model;
 
 public class Power {
-    private Integer intpowerid;
+	private Integer intpowerid;
 
-    private Integer intusertypeid;
+	private Integer intusertypeid;
 
-    private Integer allowlogin;
+	private String strauthname;
 
-    private Integer allowaddbook;
+	private Integer intauthvalue;
 
-    private Integer allowrmbook;
+	public Power() {
+		super();
+		this.intpowerid = 0;
+		this.intusertypeid = 0;
+		this.strauthname = "";
+		this.intauthvalue = 0;
+	}
 
-    private Integer alloweditbook;
+	public Integer getIntpowerid() {
+		return intpowerid;
+	}
 
-    public Integer getIntpowerid() {
-        return intpowerid;
-    }
+	public void setIntpowerid(Integer intpowerid) {
+		this.intpowerid = intpowerid;
+	}
 
-    public void setIntpowerid(Integer intpowerid) {
-        this.intpowerid = intpowerid;
-    }
+	public Integer getIntusertypeid() {
+		return intusertypeid;
+	}
 
-    public Integer getIntusertypeid() {
-        return intusertypeid;
-    }
+	public void setIntusertypeid(Integer intusertypeid) {
+		this.intusertypeid = intusertypeid;
+	}
 
-    public void setIntusertypeid(Integer intusertypeid) {
-        this.intusertypeid = intusertypeid;
-    }
+	public String getStrauthname() {
+		return strauthname;
+	}
 
-    public Integer getAllowlogin() {
-        return allowlogin;
-    }
+	public void setStrauthname(String strauthname) {
+		this.strauthname = strauthname == null ? null : strauthname.trim();
+	}
 
-    public void setAllowlogin(Integer allowlogin) {
-        this.allowlogin = allowlogin;
-    }
+	public Integer getIntauthvalue() {
+		return intauthvalue;
+	}
 
-    public Integer getAllowaddbook() {
-        return allowaddbook;
-    }
-
-    public void setAllowaddbook(Integer allowaddbook) {
-        this.allowaddbook = allowaddbook;
-    }
-
-    public Integer getAllowrmbook() {
-        return allowrmbook;
-    }
-
-    public void setAllowrmbook(Integer allowrmbook) {
-        this.allowrmbook = allowrmbook;
-    }
-
-    public Integer getAlloweditbook() {
-        return alloweditbook;
-    }
-
-    public void setAlloweditbook(Integer alloweditbook) {
-        this.alloweditbook = alloweditbook;
-    }
+	public void setIntauthvalue(Integer intauthvalue) {
+		this.intauthvalue = intauthvalue;
+	}
 }

@@ -187,9 +187,32 @@ $(function() {
 			});
 			return;
 		}
+		var bookIdArray = new Array();
 		for (var i = 0; i < rows.length; i++) {
-			var id = rows[i].intbookid;
+			bookIdArray.push(parseInt(rows[i].intbookid));
 		}
+		$.ajax({
+			url : 'Book/RemoveBook',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				bookId : bookIdArray
+			},
+			success : function(response) {
+				if (response) {
+					$.TeachDialog({
+						title : 'Operation Message!',
+						content : 'Remove books successfully!',
+					})
+					$('#datatable_bookinfo').datagrid('reload');
+				} else {
+					$.TeachDialog({
+						content : 'Remove books failedly!',
+					})
+				}
+			},
+			async : true
+		})
 	})
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
 	$('#datatable_bookinfo').datagrid({

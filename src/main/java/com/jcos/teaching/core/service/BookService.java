@@ -8,7 +8,9 @@ public interface BookService {
 
 	public List<Book> getAllBooks(Integer page, Integer rows);
 
-	public int addnewbook(Book record);
+	public boolean addnewbook(Book record);
 
 	public int getBookTotal();
+
+	public boolean deletebookbyId(Integer[] bookIds);
 }

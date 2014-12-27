@@ -1,106 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jcos.teaching.core.dao.PowerMapper" >
-  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Power" >
-    <id column="intPowerId" property="intpowerid" jdbcType="INTEGER" />
-    <result column="intUserTypeId" property="intusertypeid" jdbcType="INTEGER" />
-    <result column="allowLogin" property="allowlogin" jdbcType="INTEGER" />
-    <result column="allowAddBook" property="allowaddbook" jdbcType="INTEGER" />
-    <result column="allowRmBook" property="allowrmbook" jdbcType="INTEGER" />
-    <result column="allowEditBook" property="alloweditbook" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    intPowerId, intUserTypeId, allowLogin, allowAddBook, allowRmBook, allowEditBook
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from power
-    where intPowerId = #{intpowerid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from power
-    where intPowerId = #{intpowerid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.jcos.teaching.core.model.Power" >
-    insert into power (intPowerId, intUserTypeId, allowLogin, 
-      allowAddBook, allowRmBook, allowEditBook
-      )
-    values (#{intpowerid,jdbcType=INTEGER}, #{intusertypeid,jdbcType=INTEGER}, #{allowlogin,jdbcType=INTEGER}, 
-      #{allowaddbook,jdbcType=INTEGER}, #{allowrmbook,jdbcType=INTEGER}, #{alloweditbook,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Power" >
-    insert into power
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="intpowerid != null" >
-        intPowerId,
-      </if>
-      <if test="intusertypeid != null" >
-        intUserTypeId,
-      </if>
-      <if test="allowlogin != null" >
-        allowLogin,
-      </if>
-      <if test="allowaddbook != null" >
-        allowAddBook,
-      </if>
-      <if test="allowrmbook != null" >
-        allowRmBook,
-      </if>
-      <if test="alloweditbook != null" >
-        allowEditBook,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="intpowerid != null" >
-        #{intpowerid,jdbcType=INTEGER},
-      </if>
-      <if test="intusertypeid != null" >
-        #{intusertypeid,jdbcType=INTEGER},
-      </if>
-      <if test="allowlogin != null" >
-        #{allowlogin,jdbcType=INTEGER},
-      </if>
-      <if test="allowaddbook != null" >
-        #{allowaddbook,jdbcType=INTEGER},
-      </if>
-      <if test="allowrmbook != null" >
-        #{allowrmbook,jdbcType=INTEGER},
-      </if>
-      <if test="alloweditbook != null" >
-        #{alloweditbook,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Power" >
-    update power
-    <set >
-      <if test="intusertypeid != null" >
-        intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
-      </if>
-      <if test="allowlogin != null" >
-        allowLogin = #{allowlogin,jdbcType=INTEGER},
-      </if>
-      <if test="allowaddbook != null" >
-        allowAddBook = #{allowaddbook,jdbcType=INTEGER},
-      </if>
-      <if test="allowrmbook != null" >
-        allowRmBook = #{allowrmbook,jdbcType=INTEGER},
-      </if>
-      <if test="alloweditbook != null" >
-        allowEditBook = #{alloweditbook,jdbcType=INTEGER},
-      </if>
-    </set>
-    where intPowerId = #{intpowerid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Power" >
-    update power
-    set intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
-      allowLogin = #{allowlogin,jdbcType=INTEGER},
-      allowAddBook = #{allowaddbook,jdbcType=INTEGER},
-      allowRmBook = #{allowrmbook,jdbcType=INTEGER},
-      allowEditBook = #{alloweditbook,jdbcType=INTEGER}
-    where intPowerId = #{intpowerid,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.jcos.teaching.core.dao.PowerMapper">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Power">
+		<id column="intPowerId" property="intpowerid" jdbcType="INTEGER" />
+		<result column="intUserTypeId" property="intusertypeid" jdbcType="INTEGER" />
+		<result column="strAuthName" property="strauthname" jdbcType="VARCHAR" />
+		<result column="intAuthValue" property="intauthvalue" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		intPowerId, intUserTypeId, strAuthName, intAuthValue
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from power
+		where intPowerId = #{intpowerid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from power
+		where intPowerId = #{intpowerid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.Power">
+		insert into power (intPowerId, intUserTypeId, strAuthName,
+		intAuthValue)
+		values (#{intpowerid,jdbcType=INTEGER}, #{intusertypeid,jdbcType=INTEGER}, #{strauthname,jdbcType=VARCHAR},
+		#{intauthvalue,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Power">
+		insert into power
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="intpowerid != null">
+				intPowerId,
+			</if>
+			<if test="intusertypeid != null">
+				intUserTypeId,
+			</if>
+			<if test="strauthname != null">
+				strAuthName,
+			</if>
+			<if test="intauthvalue != null">
+				intAuthValue,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="intpowerid != null">
+				#{intpowerid,jdbcType=INTEGER},
+			</if>
+			<if test="intusertypeid != null">
+				#{intusertypeid,jdbcType=INTEGER},
+			</if>
+			<if test="strauthname != null">
+				#{strauthname,jdbcType=VARCHAR},
+			</if>
+			<if test="intauthvalue != null">
+				#{intauthvalue,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Power">
+		update power
+		<set>
+			<if test="intusertypeid != null">
+				intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
+			</if>
+			<if test="strauthname != null">
+				strAuthName = #{strauthname,jdbcType=VARCHAR},
+			</if>
+			<if test="intauthvalue != null">
+				intAuthValue = #{intauthvalue,jdbcType=INTEGER},
+			</if>
+		</set>
+		where intPowerId = #{intpowerid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Power">
+		update power
+		set intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
+		strAuthName = #{strauthname,jdbcType=VARCHAR},
+		intAuthValue = #{intauthvalue,jdbcType=INTEGER}
+		where intPowerId = #{intpowerid,jdbcType=INTEGER}
+	</update>
+
+	<select id="qeryPowerByName" resultType="java.lang.Integer" parameterType="com.jcos.teaching.core.model.Power">
+		select intAuthValue from power where strAuthName = #{strauthname,jdbcType=VARCHAR} and intUserTypeId = #{intusertypeid,jdbcType=INTEGER}
+	</select>
 </mapper>

@@ -14,4 +14,6 @@ public interface PowerMapper {
 	int updateByPrimaryKeySelective(Power record);
 
 	int updateByPrimaryKey(Power record);
+
+	int qeryPowerByName(Power record);
 }
