@@ -18,7 +18,7 @@
 </head>
 <body style="background-color: #353535 ! important;">
 	<div class="container">
-		<div class="col-md-12" style="height: 200px;">
+		<div class="col-md-12" style="max-height: 200px;">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<h1 class="text-center" style="color: white; margin-top: 50px;">
@@ -114,15 +114,14 @@
 			<div class="col-md-2"></div>
 		</div>
 		<div class="col-md-12">
-			<div class="col-md-3"></div>
+			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<h5 class="text-center" style="color: white; margin-top: 10px;">Designed By ZhuXi Powered By Bootstrap And Others OpenCode.</h5>
 				<h5 class="text-center" style="color: white; margin-top: 10px;">
-					<strong>Copy Right©2014 JinChengOpenSource Inc.</strong> <br>
-					<br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><a href="#" class="label label-default version"><strong>Current Version :${version}</strong></a>
+					<strong>Copy Right©2014 JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><a href="#" class="label label-default version"><strong>Current Version :${version}</strong></a>
 				</h5>
 			</div>
-			<div class="col-md-1"></div>
+			<div class="col-md-2"></div>
 		</div>
 
 

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Teaching ManageMent System</title>
 <meta name="description" content="description">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/color.css" rel="stylesheet">
