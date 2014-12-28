@@ -18,13 +18,13 @@
 </head>
 <body style="background-color: #353535 ! important;">
 	<div class="container">
-		<div class="col-md-12" style="max-height: 200px;">
+		<div class="col-md-12" style="height: 170px;">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
-				<h1 class="text-center" style="color: white; margin-top: 50px;">
+				<h1 class="text-center" style="color: white; margin-top: 40px;">
 					<strong>Teaching ManageMent System</strong>
 				</h1>
-				<h5 class="text-center" style="color: white; margin-top: 50px;">It's a System For Teaching</h5>
+				<h5 class="text-center" style="color: white; margin-top: 25px;">It's a System For Teaching</h5>
 			</div>
 			<div class="col-md-3"></div>
 			<div class="col-md-12" style="text-align: center">
