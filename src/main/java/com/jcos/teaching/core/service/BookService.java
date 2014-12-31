@@ -13,4 +13,6 @@ public interface BookService {
 	public int getBookTotal();
 
 	public boolean deletebookbyId(Integer[] bookIds);
+
+	public boolean updatebookById(Book record);
 }

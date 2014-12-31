@@ -18,6 +18,12 @@ public class IndexController {
 	@Inject
 	private ConfigService configService;
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String admin(HttpServletRequest request, Model model) {
 		request.getSession().setAttribute("loginSession", null);
@@ -26,6 +32,12 @@ public class IndexController {
 		return "index";
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
@@ -36,6 +48,13 @@ public class IndexController {
 		return "AdminMenu";
 	}
 
+	/**
+	 * 
+	 * @param html
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
 	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");

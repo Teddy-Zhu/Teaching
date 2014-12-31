@@ -71,6 +71,13 @@ public class BookController {
 		return ret;
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/AddBook", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean addbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
@@ -102,11 +109,18 @@ public class BookController {
 			return false;
 		}
 		Book record = new Book(name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
-		if (bookService.addnewbook(record))
-			return true;
-		return false;
+		return bookService.addnewbook(record);
+
 	}
 
+	/**
+	 * 
+	 * @param bookId
+	 * @param request
+	 * @param model
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/RemoveBook", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean removebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
@@ -118,6 +132,43 @@ public class BookController {
 			return bookService.deletebookbyId(bookId);
 		} else
 			return false;
+	}
+
+	@RequestMapping(value = "/EditBook", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updatebook(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request, "editbook")) {
+			response.setStatus(3388);
+			return true;
+		}
+		String code = "", name = "", sn = "", press = "", author = "";
+		int booktype = 0, suppliertype = 0, bookId = 0;
+		Double price = 0.0, discount = 0.0;
+		try {
+			bookId = Integer.valueOf(request.getParameter("bookId").toString());
+			code = request.getParameter("newCode").trim().toString();
+			name = request.getParameter("newName").trim().toString();
+			sn = request.getParameter("newSN").trim().toString();
+			booktype = Integer.valueOf(request.getParameter("BookType").toString());
+			suppliertype = Integer.valueOf(request.getParameter("Supplier").toString());
+			press = request.getParameter("newPress").trim().toString();
+			author = request.getParameter("newAuthor").trim().toString();
+			price = Double.valueOf(request.getParameter("newPrice").toString());
+			discount = Double.valueOf(request.getParameter("newDisCount").toString());
+		} catch (Exception ex) {
+			return false;
+		}
+		if (bookId <= 0)
+			return false;
+		// auth type
+		if (!bookTypeService.authBookTypeById(booktype)) {
+			return false;
+		}
+		if (!supplierService.authSupplierById(suppliertype)) {
+			return false;
+		}
+		Book record = new Book(name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
+		return bookService.updatebookById(record);
 	}
 
 }

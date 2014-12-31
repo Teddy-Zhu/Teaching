@@ -29,6 +29,12 @@ public class TypeController {
 	@Inject
 	private SupplierService supplierService;
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/GetUserType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserType(HttpServletRequest request, Model model) {
@@ -36,12 +42,24 @@ public class TypeController {
 		return allowUserType;
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/GetBookType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<BookType> getBookType(HttpServletRequest request, Model model) {
 		return bookTypeService.getAllBookType();
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/GetSupplierType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Supplier> getSupplierType(HttpServletRequest request, Model model) {

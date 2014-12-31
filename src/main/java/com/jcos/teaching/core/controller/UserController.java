@@ -24,6 +24,12 @@ public class UserController {
 
 	private StringUtil tools = new StringUtil();
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/AuthRegister", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean register(HttpServletRequest request, Model model) {
@@ -60,6 +66,12 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/AuthUserName", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean authUserName(HttpServletRequest request, Model model) {
@@ -76,6 +88,12 @@ public class UserController {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/AuthLogout", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean authLogout(HttpServletRequest request, Model model) {
@@ -83,6 +101,12 @@ public class UserController {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/AuthLogin", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean authLogin(HttpServletRequest request, Model model) {
