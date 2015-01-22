@@ -118,7 +118,8 @@
 			<div class="col-md-8">
 				<h5 class="text-center" style="color: white; margin-top: 10px;">Designed By ZhuXi Powered By Bootstrap And Others OpenCode.</h5>
 				<h5 class="text-center" style="color: white; margin-top: 10px;">
-					<strong>Copy Right©2014 JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><a href="#" class="label label-default version"><strong>Current Version :${version}</strong></a>
+					<strong>Copy Right©2014-${year} JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
+							Version :${version}</strong></a>
 				</h5>
 			</div>
 			<div class="col-md-2"></div>

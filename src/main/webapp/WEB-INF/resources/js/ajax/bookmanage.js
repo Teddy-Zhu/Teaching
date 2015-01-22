@@ -205,23 +205,27 @@ $(function() {
 					check = false;
 					break;
 				} else {
-					postdata.BookType = $('#newBookTypeSelect' + idarray[i]).combobox('getValue');
+					postdata['BookType' + idarray[i]] = $('#editBookTypeSelect' + idarray[i]).combobox('getValue');
 				}
 				if ($('#editSupplierTypeSelect' + idarray[i]).combobox('getValue') == "" || $('#editSupplierTypeSelect' + idarray[i]).combobox('getValue') == -1) {
 					$('#editerrormsg').html("please select one supplier!");
 					check = false;
 					break;
 				} else {
-					postdata.Supplier = $('#editSupplierTypeSelect' + idarray[i]).combobox('getValue');
+					postdata['Supplier' + idarray[i]] = $('#editSupplierTypeSelect' + idarray[i]).combobox('getValue');
 				}
 			}
 			postdata.bookId = idarray;
 			$.ajax({
-				url : 'EditBook',
+				url : 'Book/EditBook',
 				type : 'post',
 				dataType : 'json',
-				data : {
-
+				data : postdata,
+				success : function() {
+					$.TeachDialog({
+						title : 'Operation Message!',
+						content : 'Edit book successfully and do you want to add more ?',
+					});
 				}
 
 			})
@@ -345,6 +349,7 @@ $(function() {
 				return unix2human(value);
 			}
 		} ] ]
-	}); // Add Drag-n-Drop
+	}); 
+	// Add Drag-n-Drop
 	WinMove();
 });

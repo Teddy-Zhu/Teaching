@@ -26,5 +26,4 @@ public interface UserMapper {
 	Integer InertUser(User record);
 
 	User authLoginUser(@Param(value = "username") String userName, @Param(value = "password") String passWord);
-
 }

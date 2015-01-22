@@ -1,22 +1,33 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.Exmodel.LoginSession;
+import com.jcos.teaching.core.model.Book;
+import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.ConfigService;
+import com.jcos.teaching.core.service.VersionLogService;
 
 @Controller
 public class IndexController {
 
 	@Inject
-	private ConfigService configService;
+	private VersionLogService versionLogService;
 
 	/**
 	 * 
@@ -26,9 +37,11 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String admin(HttpServletRequest request, Model model) {
-		request.getSession().setAttribute("loginSession", null);
-		model.addAttribute("version", configService.getAllVersion());
-
+		VersionLog version = versionLogService.queryCururentVersion();
+		model.addAttribute("version", version.getStrversion() + "." + version.getStrfunversion() + "." + version.getStrbuildversion());
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		model.addAttribute("year", cal.get(Calendar.YEAR));
 		return "index";
 	}
 
@@ -67,6 +80,16 @@ public class IndexController {
 			model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
 		}
 		return "ajax/" + html;
+	}
+
+	@RequestMapping(value = "/action/GetVersions", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model, HttpServletResponse response) {
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("total", versionLogService.getTotal());
+		List<VersionLog> verions = versionLogService.getVersions(page, rows);
+		ret.put("rows", verions);
+		return ret;
 	}
 
 }

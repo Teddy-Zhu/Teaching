@@ -13,6 +13,10 @@ public class User {
 
 	private Integer inttypeid;
 
+	private Integer intuserdepartment;
+
+	private String strstunum;
+
 	private String strphone;
 
 	private String strmail;
@@ -20,6 +24,7 @@ public class User {
 	private Date dateregtime;
 
 	private UserType userType;
+
 	
 	public UserType getUserType() {
 		return userType;
@@ -67,6 +72,22 @@ public class User {
 
 	public void setInttypeid(Integer inttypeid) {
 		this.inttypeid = inttypeid;
+	}
+
+	public Integer getIntuserdepartment() {
+		return intuserdepartment;
+	}
+
+	public void setIntuserdepartment(Integer intuserdepartment) {
+		this.intuserdepartment = intuserdepartment;
+	}
+
+	public String getStrstunum() {
+		return strstunum;
+	}
+
+	public void setStrstunum(String strstunum) {
+		this.strstunum = strstunum == null ? null : strstunum.trim();
 	}
 
 	public String getStrphone() {

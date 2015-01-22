@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jcos.teaching.core.dao.UserMapper">
-	<resultMap id="BaseResultMap" type="User">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.User">
 		<id column="intId" property="intid" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
 		<result column="strName" property="strname" jdbcType="VARCHAR" />
 		<result column="intTypeId" property="inttypeid" jdbcType="INTEGER" />
+		<result column="intUserDepartment" property="intuserdepartment" jdbcType="INTEGER" />
+		<result column="strStuNum" property="strstunum" jdbcType="VARCHAR" />
 		<result column="strPhone" property="strphone" jdbcType="VARCHAR" />
 		<result column="strMail" property="strmail" jdbcType="VARCHAR" />
 		<result column="dateRegTime" property="dateregtime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		intId, username, password, strName, intTypeId, strPhone, strMail, dateRegTime
+		intId, username, password, strName, intTypeId, intUserDepartment, strStuNum, strPhone,
+		strMail, dateRegTime
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
@@ -24,16 +27,19 @@
 		delete from user
 		where intId = #{intid,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="User">
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.User">
 		insert into user (intId, username, password,
-		strName, intTypeId, strPhone,
-		strMail, dateRegTime)
-		values (#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR},
-		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{strphone,jdbcType=VARCHAR},
-		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
+		strName, intTypeId, intUserDepartment,
+		strStuNum, strPhone, strMail,
+		dateRegTime)
+		values (#{intid,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
+		#{strstunum,jdbcType=VARCHAR},
+		#{strphone,jdbcType=VARCHAR}, #{strmail,jdbcType=VARCHAR},
+		#{dateregtime,jdbcType=TIMESTAMP})
 	</insert>
-	<insert id="insertSelective" parameterType="User">
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intid != null">
@@ -50,6 +56,12 @@
 			</if>
 			<if test="inttypeid != null">
 				intTypeId,
+			</if>
+			<if test="intuserdepartment != null">
+				intUserDepartment,
+			</if>
+			<if test="strstunum != null">
+				strStuNum,
 			</if>
 			<if test="strphone != null">
 				strPhone,
@@ -77,6 +89,12 @@
 			<if test="inttypeid != null">
 				#{inttypeid,jdbcType=INTEGER},
 			</if>
+			<if test="intuserdepartment != null">
+				#{intuserdepartment,jdbcType=INTEGER},
+			</if>
+			<if test="strstunum != null">
+				#{strstunum,jdbcType=VARCHAR},
+			</if>
 			<if test="strphone != null">
 				#{strphone,jdbcType=VARCHAR},
 			</if>
@@ -88,7 +106,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="User">
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.User">
 		update user
 		<set>
 			<if test="username != null">
@@ -103,6 +121,12 @@
 			<if test="inttypeid != null">
 				intTypeId = #{inttypeid,jdbcType=INTEGER},
 			</if>
+			<if test="intuserdepartment != null">
+				intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
+			</if>
+			<if test="strstunum != null">
+				strStuNum = #{strstunum,jdbcType=VARCHAR},
+			</if>
 			<if test="strphone != null">
 				strPhone = #{strphone,jdbcType=VARCHAR},
 			</if>
@@ -115,15 +139,18 @@
 		</set>
 		where intId = #{intid,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="User">
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.User">
 		update user
 		set username = #{username,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
 		strName = #{strname,jdbcType=VARCHAR},
 		intTypeId =
 		#{inttypeid,jdbcType=INTEGER},
+		intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
+		strStuNum = #{strstunum,jdbcType=VARCHAR},
 		strPhone = #{strphone,jdbcType=VARCHAR},
-		strMail = #{strmail,jdbcType=VARCHAR},
+		strMail =
+		#{strmail,jdbcType=VARCHAR},
 		dateRegTime = #{dateregtime,jdbcType=TIMESTAMP}
 		where intId = #{intid,jdbcType=INTEGER}
 	</update>
@@ -147,6 +174,12 @@
 			<if test="inttypeid != null">
 				intTypeId = #{inttypeid,jdbcType=INTEGER} AND
 			</if>
+			<if test="intuserdepartment != null">
+				intUserDepartment = #{intuserdepartment,jdbcType=INTEGER} AND
+			</if>
+			<if test="strstunum != null">
+				strStuNum = #{strstunum,jdbcType=VARCHAR} AND
+			</if>
 			<if test="strphone != null">
 				strPhone = #{strphone,jdbcType=VARCHAR} AND
 			</if>
@@ -163,11 +196,13 @@
 	</select>
 	<insert id="InertUser" parameterType="User">
 		insert into user ( username, password,
-		strName, intTypeId, strPhone,
+		strName, intTypeId,intUserDepartment,
+		strStuNum, strPhone,
 		strMail, dateRegTime)
 		values ( #{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER},
+		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
+		#{strstunum,jdbcType=VARCHAR},
 		#{strphone,jdbcType=VARCHAR},
 		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
 	</insert>

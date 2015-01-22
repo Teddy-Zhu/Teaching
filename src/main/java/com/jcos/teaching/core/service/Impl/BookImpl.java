@@ -45,6 +45,16 @@ public class BookImpl implements BookService {
 	}
 
 	@Override
+	public boolean updatebookByIds(List<Book> record) {
+		for (Book book : record) {
+			if (bookDao.updateByPrimaryKey(book) != 1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
 	public boolean updatebookById(Book record) {
 		if (bookDao.updateByPrimaryKey(record) != 1) {
 			return false;

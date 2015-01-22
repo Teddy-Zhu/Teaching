@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.VersionLogMapper">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.VersionLog">
+		<id column="intId" property="intid" jdbcType="INTEGER" />
+		<result column="strFunVersion" property="strfunversion" jdbcType="VARCHAR" />
+		<result column="strBuildVersion" property="strbuildversion" jdbcType="VARCHAR" />
+		<result column="strVersion" property="strversion" jdbcType="VARCHAR" />
+		<result column="strUpdateComment" property="strupdatecomment" jdbcType="VARCHAR" />
+		<result column="dateUpdateTime" property="dateupdatetime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		intId, strFunVersion, strBuildVersion, strVersion, strUpdateComment, dateUpdateTime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from versionlog
+		where intId = #{intid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from versionlog
+		where intId = #{intid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.VersionLog">
+		insert into versionlog (intId, strFunVersion, strBuildVersion,
+		strVersion, strUpdateComment, dateUpdateTime
+		)
+		values (#{intid,jdbcType=INTEGER},
+		#{strfunversion,jdbcType=VARCHAR}, #{strbuildversion,jdbcType=VARCHAR},
+		#{strversion,jdbcType=VARCHAR}, #{strupdatecomment,jdbcType=VARCHAR}, #{dateupdatetime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.VersionLog">
+		insert into versionlog
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="intid != null">
+				intId,
+			</if>
+			<if test="strfunversion != null">
+				strFunVersion,
+			</if>
+			<if test="strbuildversion != null">
+				strBuildVersion,
+			</if>
+			<if test="strversion != null">
+				strVersion,
+			</if>
+			<if test="strupdatecomment != null">
+				strUpdateComment,
+			</if>
+			<if test="dateupdatetime != null">
+				dateUpdateTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="intid != null">
+				#{intid,jdbcType=INTEGER},
+			</if>
+			<if test="strfunversion != null">
+				#{strfunversion,jdbcType=VARCHAR},
+			</if>
+			<if test="strbuildversion != null">
+				#{strbuildversion,jdbcType=VARCHAR},
+			</if>
+			<if test="strversion != null">
+				#{strversion,jdbcType=VARCHAR},
+			</if>
+			<if test="strupdatecomment != null">
+				#{strupdatecomment,jdbcType=VARCHAR},
+			</if>
+			<if test="dateupdatetime != null">
+				#{dateupdatetime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.VersionLog">
+		update versionlog
+		<set>
+			<if test="strfunversion != null">
+				strFunVersion = #{strfunversion,jdbcType=VARCHAR},
+			</if>
+			<if test="strbuildversion != null">
+				strBuildVersion = #{strbuildversion,jdbcType=VARCHAR},
+			</if>
+			<if test="strversion != null">
+				strVersion = #{strversion,jdbcType=VARCHAR},
+			</if>
+			<if test="strupdatecomment != null">
+				strUpdateComment = #{strupdatecomment,jdbcType=VARCHAR},
+			</if>
+			<if test="dateupdatetime != null">
+				dateUpdateTime = #{dateupdatetime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where intId = #{intid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.VersionLog">
+		update versionlog
+		set strFunVersion = #{strfunversion,jdbcType=VARCHAR},
+		strBuildVersion = #{strbuildversion,jdbcType=VARCHAR},
+		strVersion =
+		#{strversion,jdbcType=VARCHAR},
+		strUpdateComment = #{strupdatecomment,jdbcType=VARCHAR},
+		dateUpdateTime = #{dateupdatetime,jdbcType=TIMESTAMP}
+		where intId = #{intid,jdbcType=INTEGER}
+	</update>
+	<select id="queryCurrentVersion" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from versionlog
+		ORDER BY dateUpdateTime DESC LIMIT 0,1
+	</select>
+	<select id="queryVersions" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from versionlog
+		order by dateUpdateTime desc
+		limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+	</select>
+	<select id="getTotalVersion" resultType="java.lang.Integer">
+		select count(intId) from versionlog
+	</select>
+</mapper>

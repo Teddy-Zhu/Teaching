@@ -1,3 +1,11 @@
+function unix2human(unixtime) {
+	var dateObj = new Date(unixtime);
+	var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':' + p(dateObj.getSeconds());
+	return UnixTimeToDate;
+}
+function p(s) {
+	return s < 10 ? '0' + s : s;
+}
 var hander = {
 	action : {
 		FormSetTimer : function(domId) {
@@ -39,18 +47,21 @@ function returntimeer(domId) {
 var i = true;
 var t = false;
 $(function() {
-	$('a.UserAccount').click(function() {
-		$.TeachDialog({
-			title : 'Message',
-			content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
-			bootstrapModalOption : {}
-		});
-	})
+	$('a.UserAccount')
+			.click(
+					function() {
+						$
+								.TeachDialog({
+									title : 'Message',
+									content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
+									bootstrapModalOption : {}
+								});
+					})
 	$('a.version').click(function() {
 		$.TeachDialog({
 			title : 'Message',
-			content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!<strong>',
-			bootstrapModalOption : {}
+			content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!</strong><div id="versiontable"></div>',
+			largeSize : true
 		});
 	})
 	$('a.version').tooltip({
