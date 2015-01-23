@@ -84,12 +84,9 @@ public class IndexController {
 
 	@RequestMapping(value = "/action/GetVersions", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model, HttpServletResponse response) {
-		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("total", versionLogService.getTotal());
+	public List<VersionLog> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model, HttpServletResponse response) {
 		List<VersionLog> verions = versionLogService.getVersions(page, rows);
-		ret.put("rows", verions);
-		return ret;
+		return verions;
 	}
 
 }

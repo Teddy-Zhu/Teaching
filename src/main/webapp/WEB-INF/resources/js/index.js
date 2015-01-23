@@ -57,13 +57,34 @@ $(function() {
 									bootstrapModalOption : {}
 								});
 					})
-	$('a.version').click(function() {
-		$.TeachDialog({
-			title : 'Message',
-			content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!</strong><div id="versiontable"></div>',
-			largeSize : true
-		});
-	})
+	$('a.version').click(
+			function() {
+				$.TeachDialog({
+					title : 'Versions',
+					content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!</strong><div id="versioninfo" style="margin-top:10px;"></div>',
+					largeSize : true
+				});
+				$.ajax({
+					url : 'action/GetVersions',
+					type : 'post',
+					dataType : 'json',
+					data : {
+						page : 1,
+						rows : 10
+					},
+					success : function(data) {
+						for (var i = 0; i < data.length; i++) {
+							$('#versioninfo').append(
+									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion
+											+ '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime) + '</div></div><div class="panel-body">'
+											+ data[i].strupdatecomment + '</div></div>');
+						}
+					},
+					error : function(data) {
+					},
+					async : true
+				});
+			})
 	$('a.version').tooltip({
 		delay : {
 			"show" : 1000,
