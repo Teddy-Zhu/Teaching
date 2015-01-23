@@ -80,7 +80,7 @@
 		where intPowerId = #{intpowerid,jdbcType=INTEGER}
 	</update>
 
-	<select id="qeryPowerByName" resultType="java.lang.Integer" parameterType="com.jcos.teaching.core.model.Power">
+	<select id="queryPowerByName" resultType="java.lang.Integer" parameterType="com.jcos.teaching.core.model.Power">
 		select intAuthValue from power where strAuthName = #{strauthname,jdbcType=VARCHAR} and intUserTypeId = #{intusertypeid,jdbcType=INTEGER}
 	</select>
 </mapper>

@@ -166,7 +166,7 @@ public class BookController {
 						return false;
 					}
 
-					Book book = new Book(name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
+					Book book = new Book(i, name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
 					record.add(book);
 				} catch (Exception ex) {
 					return false;

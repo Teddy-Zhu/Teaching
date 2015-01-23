@@ -19,7 +19,10 @@ public class PowerImpl implements PowerService {
 		Power record = new Power();
 		record.setIntusertypeid(userType);
 		record.setStrauthname(name);
-		if (powerDao.qeryPowerByName(record) == 1)
+		Integer i = powerDao.queryPowerByName(record);
+		if (i == null)
+			i = 0;
+		if (powerDao.queryPowerByName(record) == 1)
 			return true;
 		else
 			return false;

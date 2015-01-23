@@ -224,7 +224,12 @@ $(function() {
 				success : function() {
 					$.TeachDialog({
 						title : 'Operation Message!',
-						content : 'Edit book successfully and do you want to add more ?',
+						content : 'Edit book successfully!',
+						CloseButtonAddFunc : function() {
+							$('#operationpanel').slideToggle();
+							$('#editbookcontainer').slideToggle();
+							$('#datatable_bookinfo').datagrid('reload');
+						},
 					});
 				}
 

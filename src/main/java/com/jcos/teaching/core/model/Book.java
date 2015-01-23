@@ -60,6 +60,22 @@ public class Book {
 		this.dateaddtime = dateaddtime;
 	}
 
+	public Book(Integer intbookid, String strbookname, String strbookcoding, String strbooksn, Integer intbooktypeid, Double strprice, String strpress, String strauthor, Double intpricediscount,
+			Integer intsupplierid, Date dateaddtime) {
+		super();
+		this.intbookid = intbookid;
+		this.strbookname = strbookname;
+		this.strbookcoding = strbookcoding;
+		this.strbooksn = strbooksn;
+		this.intbooktypeid = intbooktypeid;
+		this.strprice = strprice;
+		this.strpress = strpress;
+		this.strauthor = strauthor;
+		this.intpricediscount = intpricediscount;
+		this.intsupplierid = intsupplierid;
+		this.dateaddtime = dateaddtime;
+	}
+
 	public BookType getBookType() {
 		return bookType;
 	}
