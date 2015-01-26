@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2014-12-27 16:00:14
+Date: 2015-01-26 08:21:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,14 +32,13 @@ CREATE TABLE `book` (
   `intSupplierId` int(11) NOT NULL COMMENT '供应商',
   `dateAddTime` datetime NOT NULL,
   PRIMARY KEY (`intBookId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
 INSERT INTO `book` VALUES ('1', '阿斯达3', 'B20202', '454545', '1', '41.500', 'XX出版社', '阿斯达斯', '5.600', '1', '2014-12-11 17:54:55');
-INSERT INTO `book` VALUES ('2', 'AAA', 'B22190', '11912030', '2', '22.200', '22行详细', 'AA', '7.800', '2', '2014-12-12 12:47:47');
-INSERT INTO `book` VALUES ('3', 'ASC', 'b2000', '125030', '2', '12.050', '阿斯dad', '22sss', '5.400', '1', '2014-12-22 16:34:18');
+INSERT INTO `book` VALUES ('3', 'ASC', 'B2000', '125030', '2', '12.050', '阿斯dad', '22sss', '5.410', '1', '2015-01-23 14:13:17');
 INSERT INTO `book` VALUES ('4', 'XXXX', 'B122', '45145', '2', '101.000', 'SDF', 'SSDFF', '4.000', '2', '2014-12-25 10:01:19');
 INSERT INTO `book` VALUES ('5', '1222', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2014-12-25 10:43:01');
 INSERT INTO `book` VALUES ('6', 'xxxx', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2014-12-25 13:46:50');
@@ -48,12 +47,13 @@ INSERT INTO `book` VALUES ('8', '121a2', 'Baaa11', 'asa', '2', '12.014', '1231',
 INSERT INTO `book` VALUES ('9', 'aasd', 'asasas', 'as12312', '1', '123.000', '122d', '123', '1.300', '1', '2014-12-25 15:19:45');
 INSERT INTO `book` VALUES ('10', '多少岁', 'Baaas', '23', '2', '15.010', 'zsss', 'ssdd', '10.000', '1', '2014-12-25 15:20:15');
 INSERT INTO `book` VALUES ('13', '打底裤', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '2', '2014-12-27 13:39:53');
+INSERT INTO `book` VALUES ('14', 'ass', 'A44556', 'aaa22254', '1', '100.230', 'Self', 'AAAx', '9.800', '2', '2014-12-30 18:42:35');
 
 -- ----------------------------
--- Table structure for bookEnter
+-- Table structure for bookenter
 -- ----------------------------
-DROP TABLE IF EXISTS `bookEnter`;
-CREATE TABLE `bookEnter` (
+DROP TABLE IF EXISTS `bookenter`;
+CREATE TABLE `bookenter` (
   `intBookEnterId` int(11) NOT NULL AUTO_INCREMENT,
   `intBookId` int(11) NOT NULL,
   `intUserId` int(11) NOT NULL,
@@ -64,14 +64,14 @@ CREATE TABLE `bookEnter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of bookEnter
+-- Records of bookenter
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for bookOut
+-- Table structure for bookout
 -- ----------------------------
-DROP TABLE IF EXISTS `bookOut`;
-CREATE TABLE `bookOut` (
+DROP TABLE IF EXISTS `bookout`;
+CREATE TABLE `bookout` (
   `intBookOutId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intForId` int(11) NOT NULL,
@@ -86,14 +86,35 @@ CREATE TABLE `bookOut` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of bookOut
+-- Records of bookout
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for bookReturn
+-- Table structure for bookplan
 -- ----------------------------
-DROP TABLE IF EXISTS `bookReturn`;
-CREATE TABLE `bookReturn` (
+DROP TABLE IF EXISTS `bookplan`;
+CREATE TABLE `bookplan` (
+  `intPlanId` int(11) NOT NULL AUTO_INCREMENT,
+  `intCourseId` int(11) NOT NULL,
+  `strClass` varchar(255) NOT NULL,
+  `intCountAll` int(11) NOT NULL,
+  `intStudCount` int(11) NOT NULL,
+  `intTeacCount` int(11) NOT NULL,
+  `intOrderAllCount` int(11) NOT NULL,
+  `intBookId` int(11) NOT NULL,
+  `strMark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`intPlanId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bookplan
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bookreturn
+-- ----------------------------
+DROP TABLE IF EXISTS `bookreturn`;
+CREATE TABLE `bookreturn` (
   `intBookReturnId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intForId` int(11) NOT NULL,
@@ -104,24 +125,24 @@ CREATE TABLE `bookReturn` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of bookReturn
+-- Records of bookreturn
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for bookType
+-- Table structure for booktype
 -- ----------------------------
-DROP TABLE IF EXISTS `bookType`;
-CREATE TABLE `bookType` (
+DROP TABLE IF EXISTS `booktype`;
+CREATE TABLE `booktype` (
   `intBookTypeId` int(11) NOT NULL AUTO_INCREMENT,
-  `strBookTypeName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `strBookTypeName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intBookTypeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of bookType
+-- Records of booktype
 -- ----------------------------
-INSERT INTO `bookType` VALUES ('1', '出版社教材');
-INSERT INTO `bookType` VALUES ('2', '自编教材');
+INSERT INTO `booktype` VALUES ('1', '出版社教材');
+INSERT INTO `booktype` VALUES ('2', '自编教材');
 
 -- ----------------------------
 -- Table structure for config
@@ -139,7 +160,35 @@ CREATE TABLE `config` (
 -- ----------------------------
 INSERT INTO `config` VALUES ('1', 'version', '1');
 INSERT INTO `config` VALUES ('2', 'funcversion', '0003');
-INSERT INTO `config` VALUES ('3', 'buildversion', '00');
+INSERT INTO `config` VALUES ('3', 'buildversion', '03');
+
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course` (
+  `intCourseId` int(11) NOT NULL AUTO_INCREMENT,
+  `intCourseType` int(11) NOT NULL,
+  PRIMARY KEY (`intCourseId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for coursetype
+-- ----------------------------
+DROP TABLE IF EXISTS `coursetype`;
+CREATE TABLE `coursetype` (
+  `intCourseTypeId` int(11) NOT NULL AUTO_INCREMENT,
+  `strCourseTypeName` varchar(255) NOT NULL,
+  PRIMARY KEY (`intCourseTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of coursetype
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for department
@@ -158,10 +207,10 @@ CREATE TABLE `department` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for forType
+-- Table structure for fortype
 -- ----------------------------
-DROP TABLE IF EXISTS `forType`;
-CREATE TABLE `forType` (
+DROP TABLE IF EXISTS `fortype`;
+CREATE TABLE `fortype` (
   `intForId` int(11) NOT NULL AUTO_INCREMENT,
   `strUseName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intUserId` int(11) NOT NULL,
@@ -169,13 +218,13 @@ CREATE TABLE `forType` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of forType
+-- Records of fortype
 -- ----------------------------
-INSERT INTO `forType` VALUES ('1', '教师领用', '3');
-INSERT INTO `forType` VALUES ('2', '学生领用', '4');
-INSERT INTO `forType` VALUES ('3', '书商回收', '0');
-INSERT INTO `forType` VALUES ('4', '学生退回', '4');
-INSERT INTO `forType` VALUES ('5', '教师退回', '3');
+INSERT INTO `fortype` VALUES ('1', '教师领用', '3');
+INSERT INTO `fortype` VALUES ('2', '学生领用', '4');
+INSERT INTO `fortype` VALUES ('3', '书商回收', '0');
+INSERT INTO `fortype` VALUES ('4', '学生退回', '4');
+INSERT INTO `fortype` VALUES ('5', '教师退回', '3');
 
 -- ----------------------------
 -- Table structure for logs
@@ -194,10 +243,10 @@ CREATE TABLE `logs` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for moneyResult
+-- Table structure for moneyresult
 -- ----------------------------
-DROP TABLE IF EXISTS `moneyResult`;
-CREATE TABLE `moneyResult` (
+DROP TABLE IF EXISTS `moneyresult`;
+CREATE TABLE `moneyresult` (
   `intResultId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserId` int(11) NOT NULL,
   `intOperationUserId` int(11) NOT NULL COMMENT '结算人',
@@ -207,7 +256,7 @@ CREATE TABLE `moneyResult` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of moneyResult
+-- Records of moneyresult
 -- ----------------------------
 
 -- ----------------------------
@@ -258,7 +307,7 @@ INSERT INTO `power` VALUES ('14', '2', 'rmbook', '1');
 INSERT INTO `power` VALUES ('15', '3', 'rmbook', '0');
 INSERT INTO `power` VALUES ('16', '4', 'rmbook', '0');
 INSERT INTO `power` VALUES ('17', '1', 'editbook', '0');
-INSERT INTO `power` VALUES ('18', '2', 'eidtbook', '1');
+INSERT INTO `power` VALUES ('18', '2', 'editbook', '1');
 INSERT INTO `power` VALUES ('19', '3', 'editbook', '0');
 INSERT INTO `power` VALUES ('20', '4', 'eidtbook', '0');
 INSERT INTO `power` VALUES ('21', '1', 'managebook', '0');
@@ -272,16 +321,16 @@ INSERT INTO `power` VALUES ('24', '4', 'managebook', '0');
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
   `intSupplierId` int(11) NOT NULL AUTO_INCREMENT,
-  `intCoding` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '供应商代码',
-  `strName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '供应商名称',
-  `strAddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strCompanyPhone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strHandlePersonName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `sttHandlePhone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strContactPersonName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strContactPersonPhone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `intCoding` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '供应商代码',
+  `strName` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '供应商名称',
+  `strAddress` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strCompanyPhone` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strHandlePersonName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `sttHandlePhone` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strContactPersonName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strContactPersonPhone` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intSupplierId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of supplier
@@ -296,41 +345,86 @@ INSERT INTO `supplier` VALUES ('3', 'S88212', 'aaaa', 'AAA', '0223030', '111', '
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `intId` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strName` varchar(255) NOT NULL,
+  `username` varchar(255) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strName` varchar(255) CHARACTER SET latin1 NOT NULL,
   `intTypeId` int(11) NOT NULL,
-  `strPhone` varchar(255) DEFAULT NULL,
-  `strMail` varchar(255) NOT NULL,
+  `intUserDepartment` int(255) NOT NULL,
+  `strStuNum` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '学号或教师号',
+  `strPhone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `strMail` varchar(255) CHARACTER SET latin1 NOT NULL,
   `dateRegTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '1111', '2123', '2014-12-07 18:32:09');
-INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '2', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
-INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
-INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', 'aasf', 'aasf', '2014-12-07 19:27:02');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '0', '222', '1111', '2123', '2014-12-07 18:32:09');
+INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '2', '0', '1234234', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '0', '2342342', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '0', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '0', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '0', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
 
 -- ----------------------------
--- Table structure for userType
+-- Table structure for userdepartment
 -- ----------------------------
-DROP TABLE IF EXISTS `userType`;
-CREATE TABLE `userType` (
+DROP TABLE IF EXISTS `userdepartment`;
+CREATE TABLE `userdepartment` (
+  `intId` int(11) NOT NULL AUTO_INCREMENT,
+  `intParentId` int(11) NOT NULL,
+  `strName` varchar(255) NOT NULL,
+  `isLeaf` int(11) NOT NULL,
+  PRIMARY KEY (`intId`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of userdepartment
+-- ----------------------------
+INSERT INTO `userdepartment` VALUES ('1', '0', 'System', '0');
+INSERT INTO `userdepartment` VALUES ('2', '1', '信息工程', '0');
+INSERT INTO `userdepartment` VALUES ('3', '2', '软件工程', '1');
+INSERT INTO `userdepartment` VALUES ('4', '1', '机电工程', '0');
+INSERT INTO `userdepartment` VALUES ('5', '4', '机械工程及自动化', '1');
+INSERT INTO `userdepartment` VALUES ('6', '4', '车辆工程', '1');
+
+-- ----------------------------
+-- Table structure for usertype
+-- ----------------------------
+DROP TABLE IF EXISTS `usertype`;
+CREATE TABLE `usertype` (
   `intIdentityId` int(11) NOT NULL AUTO_INCREMENT,
-  `strName` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intAllowReg` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intIdentityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of userType
+-- Records of usertype
 -- ----------------------------
-INSERT INTO `userType` VALUES ('1', 'Admin', '0');
-INSERT INTO `userType` VALUES ('2', 'BookManager', '0');
-INSERT INTO `userType` VALUES ('3', 'Teacher', '1');
-INSERT INTO `userType` VALUES ('4', 'Student', '1');
+INSERT INTO `usertype` VALUES ('1', 'Admin', '0');
+INSERT INTO `usertype` VALUES ('2', 'BookManager', '0');
+INSERT INTO `usertype` VALUES ('3', 'Teacher', '1');
+INSERT INTO `usertype` VALUES ('4', 'Student', '1');
+
+-- ----------------------------
+-- Table structure for versionlog
+-- ----------------------------
+DROP TABLE IF EXISTS `versionlog`;
+CREATE TABLE `versionlog` (
+  `intId` int(11) NOT NULL AUTO_INCREMENT,
+  `strFunVersion` varchar(255) NOT NULL,
+  `strBuildVersion` varchar(255) NOT NULL,
+  `strVersion` varchar(255) NOT NULL,
+  `strUpdateComment` varchar(255) NOT NULL,
+  `dateUpdateTime` datetime NOT NULL,
+  PRIMARY KEY (`intId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of versionlog
+-- ----------------------------
+INSERT INTO `versionlog` VALUES ('1', '0003', '03', '1', 'none', '2015-01-08 15:19:17');
+INSERT INTO `versionlog` VALUES ('2', '0004', '00', '1', '新增version log 查阅', '2015-01-22 15:20:07');
+INSERT INTO `versionlog` VALUES ('3', '0004', '01', '1', '修复批量编辑book的bug', '2015-01-23 14:05:24');

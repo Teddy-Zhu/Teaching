@@ -21,6 +21,7 @@ import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.ConfigService;
+import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.VersionLogService;
 
 @Controller
@@ -28,6 +29,19 @@ public class IndexController {
 
 	@Inject
 	private VersionLogService versionLogService;
+
+	@Inject
+	private PowerService powerService;
+
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public boolean authUserTypePower(HttpServletRequest request, String name) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		return powerService.queryBookPowerByName(name, loginSession.getLoginUser().getInttypeid());
+	}
 
 	/**
 	 * 
@@ -74,10 +88,27 @@ public class IndexController {
 		if (loginSession == null)
 			return "action/403";
 		if (html.equals("dashboard")) {
+
+		}
+		switch (html) {
+		case "dashboard": {
 			model.addAttribute("userEmail", loginSession.getLoginUser().getStrmail());
 			model.addAttribute("userPhone", loginSession.getLoginUser().getStrphone());
 			model.addAttribute("userRegTime", loginSession.getLoginUser().getDateregtime().toString());
 			model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
+			break;
+		}
+		case "book_manage": {
+			String[] powers = new String[] { "addbook", "editbook", "rmbook" };
+			for (String pw : powers) {
+				if (authUserTypePower(request, pw)) {
+					model.addAttribute(pw, true);
+				} else {
+					model.addAttribute(pw, false);
+				}
+			}
+			break;
+		}
 		}
 		return "ajax/" + html;
 	}

@@ -44,19 +44,15 @@ function returntimeer(domId) {
 		delShakeClass(domId);
 	};
 }
-var i = true;
-var t = false;
+
 $(function() {
-	$('a.UserAccount')
-			.click(
-					function() {
-						$
-								.TeachDialog({
-									title : 'Message',
-									content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
-									bootstrapModalOption : {}
-								});
-					})
+	$('a.UserAccount').click(function() {
+		$.TeachDialog({
+			title : 'Message',
+			content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
+			bootstrapModalOption : {}
+		});
+	})
 	$('a.version').click(
 			function() {
 				$.TeachDialog({
@@ -75,9 +71,8 @@ $(function() {
 					success : function(data) {
 						for (var i = 0; i < data.length; i++) {
 							$('#versioninfo').append(
-									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion
-											+ '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime) + '</div></div><div class="panel-body">'
-											+ data[i].strupdatecomment + '</div></div>');
+									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion + '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime)
+											+ '</div></div><div class="panel-body">' + data[i].strupdatecomment + '</div></div>');
 						}
 					},
 					error : function(data) {
@@ -168,9 +163,11 @@ $(function() {
 		$(this).button('reset');
 	});
 
+	$('#DepartMent').change(function() {
+		selectchange();
+	})
 	$('.glyphicon.glyphicon-chevron-down').click(function() {
-		if (i == true) {
-			i = false;
+		if ($('#loginModal')[0].style.display == "block") {
 			var optiondefault = '<label class="btn btn-default disabled"><span class="glyphicon glyphicon-stats"></span><input type="radio" name="UserType" value=0>UserType</label>';
 			$.ajax({
 				url : 'Type/GetUserType',
@@ -186,6 +183,7 @@ $(function() {
 							var option = '<label class="btn btn-primary"><input type="radio" name="UserType" value=' + data[i].intidentityid + '>' + data[i].strname + '</label>';
 							$('#UserType').append(option);
 						}
+						selectchange();
 					} else {
 						$.TeachDialog({
 							title : 'Faild',
@@ -198,31 +196,54 @@ $(function() {
 				},
 				async : true
 			});
+			$.ajax({
+				url : 'Type/GetDepartMent',
+				type : 'post',
+				dataType : 'json',
+				data : {
+					id : 1
+				},
+				complete : function(data) {
+				},
+				success : function(data) {
+					if (data != null) {
+						$('#DepartMent').empty();
+						for ( var i in data) {
+							$('#DepartMent').append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
+						}
+					} else {
+						$.TeachDialog({
+							title : 'Faild',
+							content : 'Failed to achieve department!'
+						});
+					}
+				},
+				error : function(data) {
+					console.debug(data.status);
+				},
+				async : true
+			});
 			$('#loginModal').slideToggle();
 			$('#registerModal').slideToggle();
 		} else {
-			i = true;
 			$('#registerModal').slideToggle();
 			$('#loginModal').slideToggle();
 		}
 	});
 
 	$('.passwordc.input-group-addon.glyphicon').click(function() {
+		var ret = $(this).hasClass('glyphicon-eye-open');
 		var str = 'text';
-		if (t)
+		if (ret)
 			str = "password";
 		$(this).prev().attr('type', str);
-		if (t) {
+		if (ret) {
 			$(this).removeClass('glyphicon-eye-open');
 			$(this).addClass('glyphicon-eye-close');
 		} else {
 			$(this).removeClass('glyphicon-eye-close');
 			$(this).addClass('glyphicon-eye-open');
 		}
-		if (t)
-			t = false;
-		else
-			t = true;
 	});
 	$('#registerButton').click(function() {
 		$('.preloader').fadeToggle("slow");
@@ -379,3 +400,34 @@ $(function() {
 	})
 
 })
+
+function selectchange() {
+	$.ajax({
+		url : 'Type/GetDepartMent',
+		type : 'post',
+		dataType : 'json',
+		data : {
+			id : $('#DepartMent').val()
+		},
+		complete : function(data) {
+		},
+		success : function(data) {
+			if (data != null) {
+				$('#Majors').empty();
+				for ( var i in data) {
+					$('#Majors').append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
+				}
+			} else {
+				$.TeachDialog({
+					title : 'Faild',
+					content : 'Failed to achieve Majors!'
+				});
+			}
+
+		},
+		error : function(data) {
+			console.debug(data.status);
+		},
+		async : true
+	});
+}

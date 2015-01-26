@@ -6,15 +6,10 @@
 <!--        <meta name="viewport" content="width=device-width, initial-scale=1">-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Teaching ManageMent System</title>
-
-<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/self.css" />
-<script type="text/javascript" src="resources/js/TeachDialog.js"></script>
-<script type="text/javascript" src="resources/js/index.js"></script>
-
+<link rel="stylesheet" href="resources/plugins/bootstrapselect/css/bootstrap-select.min.css" />
 </head>
 <body style="background-color: #353535 ! important;">
 	<div class="container">
@@ -34,7 +29,7 @@
 			</div>
 		</div>
 
-		<div id="loginModal" class="col-md-12 zx-anima-slide-top">
+		<div id="loginModal" class="col-md-12 zx-anima-slide-top" style="display: block">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="col-md-12">
@@ -92,6 +87,14 @@
 							</div>
 							<br>
 							<div class="input-group col-md-7 col-sm-offset-2">
+								<span class="input-group-addon" style="width: 100px; text-align: left;"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="form-control"></select>
+							</div>
+							<br>
+							<div class="input-group col-md-7 col-sm-offset-2">
+								<span class="input-group-addon" style="width: 100px; text-align: left;"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="form-control"></select>
+							</div>
+							<br>
+							<div class="input-group col-md-7 col-sm-offset-2">
 								<span class="input-group-addon" style="width: 100px; text-align: left;"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="form-control" placeholder="Your Name">
 							</div>
 							<br>
@@ -125,7 +128,11 @@
 			<div class="col-md-2"></div>
 		</div>
 
-
 	</div>
+	<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="resources/plugins/bootstrapselect/js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="resources/js/TeachDialog.js"></script>
+	<script type="text/javascript" src="resources/js/index.js"></script>
 </body>
 </html>

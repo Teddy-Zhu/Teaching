@@ -101,10 +101,10 @@
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">System Function</span>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/xxx"><i class="fa fa-book"></i> Type Manage</a></li>
+							<li><a class="ajax-link" href="ajax/user_manage"><i class="fa fa-book"></i> User Manage</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">Person Detail</span>
 					</a>

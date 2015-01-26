@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.BookPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.BookPlan" >
+    <id column="intPlanId" property="intplanid" jdbcType="INTEGER" />
+    <result column="intCourseId" property="intcourseid" jdbcType="INTEGER" />
+    <result column="strClass" property="strclass" jdbcType="VARCHAR" />
+    <result column="intCountAll" property="intcountall" jdbcType="INTEGER" />
+    <result column="intStudCount" property="intstudcount" jdbcType="INTEGER" />
+    <result column="intTeacCount" property="intteaccount" jdbcType="INTEGER" />
+    <result column="intOrderAllCount" property="intorderallcount" jdbcType="INTEGER" />
+    <result column="intBookId" property="intbookid" jdbcType="INTEGER" />
+    <result column="strMark" property="strmark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intPlanId, intCourseId, strClass, intCountAll, intStudCount, intTeacCount, intOrderAllCount, 
+    intBookId, strMark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bookplan
+    where intPlanId = #{intplanid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bookplan
+    where intPlanId = #{intplanid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.BookPlan" >
+    insert into bookplan (intPlanId, intCourseId, strClass, 
+      intCountAll, intStudCount, intTeacCount, 
+      intOrderAllCount, intBookId, strMark
+      )
+    values (#{intplanid,jdbcType=INTEGER}, #{intcourseid,jdbcType=INTEGER}, #{strclass,jdbcType=VARCHAR}, 
+      #{intcountall,jdbcType=INTEGER}, #{intstudcount,jdbcType=INTEGER}, #{intteaccount,jdbcType=INTEGER}, 
+      #{intorderallcount,jdbcType=INTEGER}, #{intbookid,jdbcType=INTEGER}, #{strmark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlan" >
+    insert into bookplan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intplanid != null" >
+        intPlanId,
+      </if>
+      <if test="intcourseid != null" >
+        intCourseId,
+      </if>
+      <if test="strclass != null" >
+        strClass,
+      </if>
+      <if test="intcountall != null" >
+        intCountAll,
+      </if>
+      <if test="intstudcount != null" >
+        intStudCount,
+      </if>
+      <if test="intteaccount != null" >
+        intTeacCount,
+      </if>
+      <if test="intorderallcount != null" >
+        intOrderAllCount,
+      </if>
+      <if test="intbookid != null" >
+        intBookId,
+      </if>
+      <if test="strmark != null" >
+        strMark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intplanid != null" >
+        #{intplanid,jdbcType=INTEGER},
+      </if>
+      <if test="intcourseid != null" >
+        #{intcourseid,jdbcType=INTEGER},
+      </if>
+      <if test="strclass != null" >
+        #{strclass,jdbcType=VARCHAR},
+      </if>
+      <if test="intcountall != null" >
+        #{intcountall,jdbcType=INTEGER},
+      </if>
+      <if test="intstudcount != null" >
+        #{intstudcount,jdbcType=INTEGER},
+      </if>
+      <if test="intteaccount != null" >
+        #{intteaccount,jdbcType=INTEGER},
+      </if>
+      <if test="intorderallcount != null" >
+        #{intorderallcount,jdbcType=INTEGER},
+      </if>
+      <if test="intbookid != null" >
+        #{intbookid,jdbcType=INTEGER},
+      </if>
+      <if test="strmark != null" >
+        #{strmark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookPlan" >
+    update bookplan
+    <set >
+      <if test="intcourseid != null" >
+        intCourseId = #{intcourseid,jdbcType=INTEGER},
+      </if>
+      <if test="strclass != null" >
+        strClass = #{strclass,jdbcType=VARCHAR},
+      </if>
+      <if test="intcountall != null" >
+        intCountAll = #{intcountall,jdbcType=INTEGER},
+      </if>
+      <if test="intstudcount != null" >
+        intStudCount = #{intstudcount,jdbcType=INTEGER},
+      </if>
+      <if test="intteaccount != null" >
+        intTeacCount = #{intteaccount,jdbcType=INTEGER},
+      </if>
+      <if test="intorderallcount != null" >
+        intOrderAllCount = #{intorderallcount,jdbcType=INTEGER},
+      </if>
+      <if test="intbookid != null" >
+        intBookId = #{intbookid,jdbcType=INTEGER},
+      </if>
+      <if test="strmark != null" >
+        strMark = #{strmark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where intPlanId = #{intplanid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookPlan" >
+    update bookplan
+    set intCourseId = #{intcourseid,jdbcType=INTEGER},
+      strClass = #{strclass,jdbcType=VARCHAR},
+      intCountAll = #{intcountall,jdbcType=INTEGER},
+      intStudCount = #{intstudcount,jdbcType=INTEGER},
+      intTeacCount = #{intteaccount,jdbcType=INTEGER},
+      intOrderAllCount = #{intorderallcount,jdbcType=INTEGER},
+      intBookId = #{intbookid,jdbcType=INTEGER},
+      strMark = #{strmark,jdbcType=VARCHAR}
+    where intPlanId = #{intplanid,jdbcType=INTEGER}
+  </update>
+</mapper>
