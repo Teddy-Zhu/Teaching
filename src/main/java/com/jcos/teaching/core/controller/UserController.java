@@ -34,6 +34,7 @@ public class UserController {
 	@ResponseBody
 	public boolean register(HttpServletRequest request, Model model) {
 		String userName = "", passWord = "", phone = "", realName = "", email = "";
+		int DepartId = 0, MajorId = 0;
 		if (!tools.isNull(request, "UserName")) {
 			userName = request.getParameter("UserName");
 		}
@@ -49,8 +50,13 @@ public class UserController {
 		if (!tools.isNull(request, "Email")) {
 			email = request.getParameter("Email");
 		}
-		if(!tools.isNull(request, ""))
-		if (userName.equals("") || passWord.equals("") || phone.equals("") || realName.equals("") || email.equals("")) {
+		if (!tools.isNull(request, "DepartId")) {
+			DepartId = Integer.valueOf(request.getParameter("DepartId"));
+		}
+		if (!tools.isNull(request, "MajorId")) {
+			MajorId = Integer.valueOf(request.getParameter("MajorId"));
+		}
+		if (userName.equals("") || passWord.equals("") || phone.equals("") || realName.equals("") || email.equals("") || DepartId == 0 || MajorId == 0) {
 			return false;
 		}
 		User record = new User();
@@ -59,6 +65,7 @@ public class UserController {
 		record.setStrmail(email);
 		record.setStrname(realName);
 		record.setStrphone(phone);
+		record.setIntuserdepartment(MajorId);
 		int i = userService.registerUser(record);
 		if (i == 1) {
 			return true;

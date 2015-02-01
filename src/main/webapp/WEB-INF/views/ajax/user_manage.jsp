@@ -75,7 +75,6 @@
 										<strong>Warning!</strong> <br>[1]Before delelte or edit, you should select <br>[2]If you want clear selected row ,you can refresh the grid.<br>[3]Or you have no power and you can browser users below.
 									</div>
 									<div class="col-xs-5  col-xs-offset-4">
-
 										<button class="btn btn-default btn-xs adduser">
 											<i class="fa fa-file-o"></i> Add A New User
 										</button>

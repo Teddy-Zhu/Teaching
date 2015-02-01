@@ -59,7 +59,7 @@
 			</div>
 			<div class="box-content table-responsive" style="padding-top: 15px">
 
-				<div class="panel panel-default" style="border: 1px solid #CCC; height: 240px;">
+				<div class="panel panel-default" style="border: 1px solid #CCC; height: auto;">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
 							Function Menu <span class="fa fa-chevron-down" style="float: right"></span>
@@ -76,9 +76,6 @@
 									</div>
 									<div class="col-xs-5  col-xs-offset-4">
 										<c:if test="${addbook eq true}">
-											<button class="btn btn-default btn-xs addbook">
-												<i class="fa fa-file-o"></i> Add A New Book
-											</button>
 											<button class="btn btn-default btn-xs addbook">
 												<i class="fa fa-file-o"></i> Add A New Book
 											</button>
@@ -123,10 +120,10 @@
 											</div>
 											<div class="col-xs-12 inlineblock" style="margin-top: 10px">
 												<div class="col-xs-4">
-													<label class="col-xs-3">Type</label><span id="newBookTypeSelect"></span>
+													<label class="col-xs-3">Type</label><select id="newBookTypeSelect"></select>
 												</div>
 												<div class="col-xs-4 controls">
-													<label class="col-xs-3">Supplier</label><span id="newSupplierTypeSelect"></span>
+													<label class="col-xs-3">Supplier</label><select id="newSupplierTypeSelect"></select>
 												</div>
 
 												<div class="col-xs-4">

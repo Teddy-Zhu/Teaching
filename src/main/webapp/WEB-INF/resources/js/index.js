@@ -46,13 +46,16 @@ function returntimeer(domId) {
 }
 
 $(function() {
-	$('a.UserAccount').click(function() {
-		$.TeachDialog({
-			title : 'Message',
-			content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
-			bootstrapModalOption : {}
-		});
-	})
+	$('a.UserAccount')
+			.click(
+					function() {
+						$
+								.TeachDialog({
+									title : 'Message',
+									content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
+									bootstrapModalOption : {}
+								});
+					})
 	$('a.version').click(
 			function() {
 				$.TeachDialog({
@@ -71,8 +74,9 @@ $(function() {
 					success : function(data) {
 						for (var i = 0; i < data.length; i++) {
 							$('#versioninfo').append(
-									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion + '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime)
-											+ '</div></div><div class="panel-body">' + data[i].strupdatecomment + '</div></div>');
+									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion
+											+ '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime) + '</div></div><div class="panel-body">'
+											+ data[i].strupdatecomment + '</div></div>');
 						}
 					},
 					error : function(data) {
@@ -183,7 +187,6 @@ $(function() {
 							var option = '<label class="btn btn-primary"><input type="radio" name="UserType" value=' + data[i].intidentityid + '>' + data[i].strname + '</label>';
 							$('#UserType').append(option);
 						}
-						selectchange();
 					} else {
 						$.TeachDialog({
 							title : 'Faild',
@@ -211,6 +214,8 @@ $(function() {
 						for ( var i in data) {
 							$('#DepartMent').append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 						}
+						//selectchange();
+						$('#DepartMent').val('4');
 					} else {
 						$.TeachDialog({
 							title : 'Faild',
@@ -314,6 +319,8 @@ $(function() {
 			$('.preloader').fadeToggle("slow");
 			return;
 		}
+		var departid = $('#DepartMent').val();
+		var majorid = $('#Majors').val();
 		if (mark) {
 			$.ajax({
 				url : 'User/AuthRegister',
@@ -323,7 +330,9 @@ $(function() {
 					PassWord : passsWord,
 					RealName : realName,
 					Phone : phone,
-					Email : email
+					Email : email,
+					DepartId : departid,
+					MajorId : majorid
 				},
 				dataType : 'json',
 				complete : function(data) {
