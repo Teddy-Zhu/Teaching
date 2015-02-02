@@ -8,4 +8,6 @@ public interface UserDepartMentService {
 
 	List<UserDepartMent> getAllDepartMent(int id);
 
+	Integer getParentDepartMent(int intid);
+
 }

@@ -153,19 +153,16 @@
 								</c:if>
 
 								<c:if test="${editbook eq true}">
-									<div id="editbookcontainer" class="col-xs-12" style="display: none">
-
-										<div class="col-xs-12" style="overflow-x: hidden;">
-											<div class="col-xs-12">
-												<ul class="nav nav-tabs" role="tablist" id="bookEditTable">
-												</ul>
-												<div class="tab-content"></div>
-											</div>
-											<div class="col-xs-12 col-xs-offset-5" style="margin-top: 10px">
-												<button class="btn btn-default btn-xs submitEdit">Submit To Modify</button>
-												<button class="btn btn-default btn-xs cancelEdit">Cancel</button>
-												<strong><label style="color: red;" id="editerrormsg"></label></strong>
-											</div>
+									<div id="editbookcontainer" class="col-xs-12" style="display: none; overflow-x: hidden;">
+										<div class="col-xs-12">
+											<ul class="nav nav-tabs" role="tablist" id="bookEditTable">
+											</ul>
+											<div class="tab-content"></div>
+										</div>
+										<div class="col-xs-12 col-xs-offset-5" style="margin-top: 10px">
+											<button class="btn btn-default btn-xs submitEdit">Submit To Modify</button>
+											<button class="btn btn-default btn-xs cancelEdit">Cancel</button>
+											<strong><label style="color: red;" id="editerrormsg"></label></strong>
 										</div>
 									</div>
 								</c:if>

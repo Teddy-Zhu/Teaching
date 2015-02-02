@@ -220,7 +220,7 @@ public class UserController {
 			userTypeId = Integer.valueOf(request.getParameter("newType"));
 			passWord = request.getParameter("newPassword");
 			realName = request.getParameter("newRealName");
-			phone = request.getParameter("newPhome");
+			phone = request.getParameter("newPhone");
 			IdCard = request.getParameter("newNumber");
 			email = request.getParameter("newEmail");
 			DepartId = Integer.valueOf(request.getParameter("newDepartMent"));

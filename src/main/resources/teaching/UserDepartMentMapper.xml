@@ -23,7 +23,8 @@
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.UserDepartMent">
 		insert into userdepartment (intId, intParentId, strName,
 		isLeaf)
-		values (#{intid,jdbcType=INTEGER}, #{intparentid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR},
+		values (#{intid,jdbcType=INTEGER}, #{intparentid,jdbcType=INTEGER},
+		#{strname,jdbcType=VARCHAR},
 		#{isleaf,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.UserDepartMent">
@@ -82,6 +83,10 @@
 	<select id="getUserDepartMent" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from userdepartment where intparentid = #{intparentid,jdbcType=INTEGER}
+		from userdepartment where intParentId = #{intparentid,jdbcType=INTEGER}
+	</select>
+	<select id="getParentUserDepartMent" resultMap="java.lang.Integer" parameterType="java.lang.Integer">
+		select intParentId
+		from userdepartment where intId = #{intid,jdbcType=INTEGER}
 	</select>
 </mapper>

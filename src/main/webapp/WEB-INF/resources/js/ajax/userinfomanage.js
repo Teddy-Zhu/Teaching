@@ -7,7 +7,15 @@ function unix2human(unixtime) {
 function p(s) {
 	return s < 10 ? '0' + s : s;
 }
-
+function setVal(id, obj) {
+	$('#editUserName' + id).val(obj.strbookcoding);
+	$('#editPassword' + id).val("[%keep%]");
+	$('#editRealName' + id).val(obj.strpress);
+	$('#editType' + id).val(obj.strauthor);
+	$('#editNumber' + id).val(obj.strprice);
+	$('#editEmail' + id).val(obj.intpricediscount);
+	$('#editPhone' + id).val(obj.bookType.intbooktypeid);
+}
 function initUserType(id) {
 	$.ajax({
 		url : 'Type/GetUserTypeAll',
@@ -18,7 +26,8 @@ function initUserType(id) {
 			for ( var i in data) {
 				$('#' + id).append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
 			}
-		}
+		},
+		async : true
 	})
 }
 function initUserDepartMent(id, type, dtd) {
@@ -123,6 +132,7 @@ $(function() {
 		} ] ]
 	});
 
+	// for add user
 	$('button.adduser').click(function() {
 		initUserType('newType');
 		var dtd = $.Deferred();
@@ -189,11 +199,59 @@ $(function() {
 		});
 	});
 
-	$('button.edituser').click(function() {
-
-		$('#operationpanel').slideUp();
-		$('#editusercontainer').slideDown();
+	$('button.cancelAdd').click(function() {
+		$('#addnewuser').slideUp();
+		$('#operationpanel').slideDown();
 	});
+	// end
+	// for edit user
+
+	$('button.edituser').click(
+			function() {
+				var rows = $('#datatable_userinfo').datagrid('getSelections');
+				if (rows.length == 0) {
+					$.TeachDialog({
+						content : 'You should select one row at least !',
+						bootstrapModalOption : {},
+					});
+					return;
+				}
+				$('#userEditTable').html("");
+				$('#editusercontainer .tab-content').html("");
+
+				for (var i = 0; i < rows.length; i++) {
+					var id = rows[i].intid;
+					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
+					$('#editusercontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
+					$('#editpanel' + id).html(
+							htmltmp.replace('newUserName', 'editUserName' + id).replace('newPassword', 'editPassword' + id).replace('newRealName', 'editRealName' + id).replace('newType',
+									'editType' + id).replace('newNumber', 'editNumber' + id).replace('newEmail', 'editEmail' + id).replace('newPhone', 'editPhone' + id).replace('newDepartMent',
+									'editDepartMent' + id).replace('newMajor', 'editMajor' + id).replace(new RegExp('newform', "gm"), 'editform'));
+					$.ajax({
+						url : 'Type/GetParentDepartMent',
+						dataType : 'json',
+						type : 'post',
+						data : {
+							id : rows[i].userDepartMent.intid
+						},
+						async : true
+					}).success(function(data) {
+						
+					})
+					setVal(id, rows[i]);
+				}
+				for (var i = 0; i < rows.length; i++) {
+					var id = rows[i].intid;
+				}
+
+				initBookType('editBookType' + id);
+				initSupplierType('editSupplierType' + id);
+				setVal(id, rows[i]);
+				$('#operationpanel').slideUp();
+				$('#editusercontainer').slideDown();
+
+				$('#bookEditTable a:first').tab('show')
+			});
 	// Add Drag-n-Drop
 	WinMove();
 });

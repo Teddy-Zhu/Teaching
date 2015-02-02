@@ -86,7 +86,7 @@
 										<button class="btn btn-default btn-xs adduser">
 											<i class="fa fa-file-o"></i> Add A New User
 										</button>
-										<button class="btn btn-default btn-xs adduser">
+										<button class="btn btn-default btn-xs copyuser">
 											<i class="fa fa-file-o"></i> Copy Users
 										</button>
 										<button class="btn btn-default btn-xs edituser">
@@ -105,10 +105,10 @@
 												<label class="col-xs-4">UserName</label><input class="newform form-control col-xs-8" id="newUserName" type="text" placeholder="Input UserName" />
 											</div>
 											<div class="col-xs-4">
-												<label class="col-xs-4">Password</label><input id="newPassword" class="newform form-control col-xs-8" type="text" placeholder="Input New Passsword" />
+												<label class="col-xs-4">Password</label><input class="newform form-control col-xs-8" id="newPassword" type="text" placeholder="Input New Passsword" />
 											</div>
 											<div class="col-xs-4">
-												<label class="col-xs-4">RealName</label><input class="newform form-control col-xs-8" type="text" id="newRealName" placeholder="Input Real Name" />
+												<label class="col-xs-4">RealName</label><input class="newform form-control col-xs-8" id="newRealName" type="text" placeholder="Input Real Name" />
 											</div>
 										</div>
 										<div class="col-xs-12 inlineblock">
@@ -124,7 +124,7 @@
 										</div>
 										<div class="col-xs-12 inlineblock">
 											<div class="col-xs-4">
-												<label class="col-xs-4">Phone</label><input class="newform form-control col-xs-8" id="newPhome" type="text" placeholder="Input Phone" />
+												<label class="col-xs-4">Phone</label><input class="newform form-control col-xs-8" id="newPhone" type="text" placeholder="Input Phone" />
 											</div>
 											<div class="col-xs-4">
 												<label class="col-xs-4">DepartMent</label><select class="newform form-control" id="newDepartMent"></select>
@@ -145,20 +145,17 @@
 									</div>
 								</div>
 
-								<div id="editusercontainer" class="col-xs-12" style="display: none">
-									<div class="col-xs-12" style="overflow-x: hidden;">
-										<div class="col-xs-12">
-											<ul class="nav nav-tabs" role="tablist" id="userEditTable">
-											</ul>
-											<div class="tab-content"></div>
-										</div>
-										<div class="col-xs-12 col-xs-offset-5" style="margin-top: 10px">
-											<button class="btn btn-default btn-xs submitEdit">Submit To Modify</button>
-											<button class="btn btn-default btn-xs cancelEdit">Cancel</button>
-											<strong><label style="color: red;" id="editerrormsg"></label></strong>
-										</div>
+								<div id="editusercontainer" class="col-xs-12" style="display: none; overflow-x: hidden;">
+									<div class="col-xs-12">
+										<ul class="nav nav-tabs" role="tablist" id="userEditTable">
+										</ul>
+										<div class="tab-content"></div>
 									</div>
-
+									<div class="col-xs-12 col-xs-offset-5" style="margin-top: 10px">
+										<button class="btn btn-default btn-xs submitEdit">Submit To Modify</button>
+										<button class="btn btn-default btn-xs cancelEdit">Cancel</button>
+										<strong><label style="color: red;" id="editerrormsg"></label></strong>
+									</div>
 								</div>
 							</div>
 						</div>

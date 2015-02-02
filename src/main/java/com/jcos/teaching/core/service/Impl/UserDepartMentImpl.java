@@ -20,4 +20,12 @@ public class UserDepartMentImpl implements UserDepartMentService {
 	public List<UserDepartMent> getAllDepartMent(int id) {
 		return userDepartMentDao.getUserDepartMent(id);
 	}
+
+	@Override
+	public Integer getParentDepartMent(int intid) {
+		Integer i = userDepartMentDao.getParentUserDepartMent(intid);
+		if (i == null)
+			i = -1;
+		return i;
+	}
 }

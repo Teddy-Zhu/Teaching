@@ -18,4 +18,6 @@ public interface UserDepartMentMapper {
 	int updateByPrimaryKey(UserDepartMent record);
 
 	List<UserDepartMent> getUserDepartMent(int intparentid);
+
+	Integer getParentUserDepartMent(int intid);
 }

@@ -49,10 +49,23 @@ public class TypeController {
 		return powerService.queryPowerByName(name, loginSession.getLoginUser().getInttypeid());
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/GetDepartMent", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserDepartMent> getDepartMent(int id, HttpServletRequest request, Model model) {
 		return userDepartMentService.getAllDepartMent(id);
+	}
+
+	@RequestMapping(value = "/GetParentDepartMent", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer getParentDepartMent(int id, HttpServletRequest request, Model model) {
+		return userDepartMentService.getParentDepartMent(id);
 	}
 
 	/**
@@ -95,7 +108,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetUserTypeAll", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request,"getallusertype")) {
+		if (!authUserTypePower(request, "getallusertype")) {
 			response.setStatus(3388);
 			return null;
 		}
