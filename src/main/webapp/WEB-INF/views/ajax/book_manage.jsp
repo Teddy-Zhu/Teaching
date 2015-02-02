@@ -15,6 +15,10 @@
 	box-sizing: content-box;
 }
 
+.inlineblock {
+	margin-top: 10px;
+}
+
 .inlineblock div {
 	display: inline-block;
 }
@@ -25,6 +29,10 @@
 }
 
 .inlineblock div input {
+	width: 70%;
+}
+
+.inlineblock div select {
 	width: 70%;
 }
 </style>
@@ -70,11 +78,11 @@
 						<div class="panel-body">
 							<div class="container-fluid" style="margin-top: 10px;">
 
-								<div id="operationpanel" class="col-xs-12">
+								<div id="operationpanel" class="col-xs-12" style="overflow-x: hidden;">
 									<div class="alert alert-danger" role="alert">
-										<strong>Warning!</strong> <br>[1]Before delelte or edit, you should select <br>[2]If you want clear selected row ,you can refresh the grid.<br>[3]Or you have no power and you can browser books below.
+										<strong>Warning!</strong> <br>[1]Before delete or edit, you should select one at least.<br>[2]If you want clear selected row quickly,you can refresh the grid.<br>[3]Or you have no power and you can browser books below.
 									</div>
-									<div class="col-xs-5  col-xs-offset-4">
+									<div class="col-xs-10  col-xs-offset-3">
 										<c:if test="${addbook eq true}">
 											<button class="btn btn-default btn-xs addbook">
 												<i class="fa fa-file-o"></i> Add A New Book
@@ -95,7 +103,7 @@
 								<c:if test="${addbook eq true}">
 									<div id="addnewbook" class="col-xs-12" style="display: none; padding-top: 5px">
 										<div id="newformRange">
-											<div class="col-xs-12 inlineblock" style="margin-top: 10px">
+											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
 													<label class="col-xs-3">Code</label><input class="newform form-control col-xs-9" id="newCode" type="text" placeholder="Input Book Code" />
 												</div>
@@ -106,24 +114,24 @@
 													<label class="col-xs-3">SN</label><input id="newSN" class="newform form-control col-xs-9" type="text" placeholder="Input Book SN Number" />
 												</div>
 											</div>
-											<div class="col-xs-12 inlineblock" style="margin-top: 10px">
+											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
 													<label class="col-xs-3">Price</label><input class="newform form-control col-xs-9" type="text" id="newPrice" placeholder="Input Book's Price" />
 												</div>
-												<div class="col-xs-4 controls">
+												<div class="col-xs-4">
 													<label class="col-xs-3">Press</label><input class="newform form-control col-xs-9" id="newPress" type="text" placeholder="Input Book's Press" />
 												</div>
-												<div class="col-xs-4 controls">
+												<div class="col-xs-4">
 													<label class="col-xs-3">Author</label><input class="newform form-control col-xs-9" id="newAuthor" type="text" placeholder="Input Book's Author" />
 												</div>
 
 											</div>
-											<div class="col-xs-12 inlineblock" style="margin-top: 10px">
+											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-3">Type</label><select id="newBookTypeSelect"></select>
+													<label class="col-xs-3">Type</label><select class="newform form-control" id="newBookType"></select>
 												</div>
-												<div class="col-xs-4 controls">
-													<label class="col-xs-3">Supplier</label><select id="newSupplierTypeSelect"></select>
+												<div class="col-xs-4">
+													<label class="col-xs-3">Supplier</label><select class="newform form-control" id="newSupplierType"></select>
 												</div>
 
 												<div class="col-xs-4">
@@ -132,7 +140,7 @@
 
 											</div>
 										</div>
-										<div class="col-xs-12 inlineblock" style="margin-top: 10px">
+										<div class="col-xs-12 inlineblock">
 											<div class="col-xs-5 controls col-xs-offset-5">
 												<button class="btn btn-default btn-xs submitAdd" style="width: 100px">Add</button>
 												<button class="btn btn-default btn-xs cancelAdd" style="width: 100px">Cancel</button>

@@ -25,7 +25,31 @@ public class User {
 
 	private UserType userType;
 
-	
+	private UserDepartMent userDepartMent;
+
+	public User() {
+		this.intid = 0;
+		this.username = "";
+		this.password = "you can guess";
+		this.strname = "";
+		this.inttypeid = 0;
+		this.intuserdepartment = 0;
+		this.strstunum = "";
+		this.strphone = "";
+		this.strmail = "";
+		this.dateregtime = new Date();
+		this.userType = new UserType();
+		this.userDepartMent = new UserDepartMent();
+	}
+
+	public UserDepartMent getUserDepartMent() {
+		return userDepartMent;
+	}
+
+	public void setUserDepartMent(UserDepartMent userDepartMent) {
+		this.userDepartMent = userDepartMent;
+	}
+
 	public UserType getUserType() {
 		return userType;
 	}

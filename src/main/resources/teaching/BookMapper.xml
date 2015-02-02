@@ -174,7 +174,10 @@
 		strBookName, strBookCoding, strBookSN, intBookTypeId, strPrice, strPress,
 		strAuthor, intPriceDiscount,
 		intSupplierId, dateAddTime
-		from book limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+		from book 
+		order by intBookId asc
+		limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+		
 	</select>
 	<select id="queryBookTotal" resultType="java.lang.Integer">
 		select count(*) from book

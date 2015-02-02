@@ -209,11 +209,26 @@
 
 	<resultMap id="UserTypeExtendMap" type="User" extends="BaseResultMap">
 		<association property="userType" column="intTypeId" select="com.jcos.teaching.core.dao.UserTypeMapper.selectByPrimaryKey" />
+		<association property="userDepartMent" column="intUserDepartment" select="com.jcos.teaching.core.dao.UserDepartMentMapper.selectByPrimaryKey" />
 	</resultMap>
+
+
 	<select id="authLoginUser" resultMap="UserTypeExtendMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from user
 		where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+	</select>
+	<select id="GetAllUser" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
+		select
+		intId, username, strName, intTypeId, intUserDepartment, strStuNum, strPhone,
+		strMail, dateRegTime
+		from user
+		order by intId asc
+		limit
+		#{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+	</select>
+	<select id="queryUserTotal" resultType="java.lang.Integer">
+		select count(*) from user
 	</select>
 </mapper>

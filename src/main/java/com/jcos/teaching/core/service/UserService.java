@@ -13,4 +13,8 @@ public interface UserService {
     public Integer registerUser(User record);
 
     public User authLoginUser(User record);
+    
+	List<User> getAllUser(Integer page, Integer rows);
+
+	Integer getuUserTotal();
 }

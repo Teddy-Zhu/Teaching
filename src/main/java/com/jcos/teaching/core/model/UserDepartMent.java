@@ -1,43 +1,50 @@
 package com.jcos.teaching.core.model;
 
 public class UserDepartMent {
-    private Integer intid;
+	private Integer intid;
 
-    private Integer intparentid;
+	private Integer intparentid;
 
-    private String strname;
+	private String strname;
 
-    private Integer isleaf;
+	private Integer isleaf;
 
-    public Integer getIntid() {
-        return intid;
-    }
+	public UserDepartMent() {
+		this.intid = 0;
+		this.intparentid = 0;
+		this.strname = "";
+		this.isleaf = 0;
+	}
 
-    public void setIntid(Integer intid) {
-        this.intid = intid;
-    }
+	public Integer getIntid() {
+		return intid;
+	}
 
-    public Integer getIntparentid() {
-        return intparentid;
-    }
+	public void setIntid(Integer intid) {
+		this.intid = intid;
+	}
 
-    public void setIntparentid(Integer intparentid) {
-        this.intparentid = intparentid;
-    }
+	public Integer getIntparentid() {
+		return intparentid;
+	}
 
-    public String getStrname() {
-        return strname;
-    }
+	public void setIntparentid(Integer intparentid) {
+		this.intparentid = intparentid;
+	}
 
-    public void setStrname(String strname) {
-        this.strname = strname == null ? null : strname.trim();
-    }
+	public String getStrname() {
+		return strname;
+	}
 
-    public Integer getIsleaf() {
-        return isleaf;
-    }
+	public void setStrname(String strname) {
+		this.strname = strname == null ? null : strname.trim();
+	}
 
-    public void setIsleaf(Integer isleaf) {
-        this.isleaf = isleaf;
-    }
+	public Integer getIsleaf() {
+		return isleaf;
+	}
+
+	public void setIsleaf(Integer isleaf) {
+		this.isleaf = isleaf;
+	}
 }

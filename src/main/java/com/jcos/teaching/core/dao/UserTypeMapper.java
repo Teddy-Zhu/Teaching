@@ -19,5 +19,5 @@ public interface UserTypeMapper {
 
 	int updateByPrimaryKey(UserType record);
 
-	List<UserType> selectUserTypeForReg(@Param(value = "allow") Integer allow);
+	List<UserType> selectUserType(@Param(value = "allow") Integer allow);
 }

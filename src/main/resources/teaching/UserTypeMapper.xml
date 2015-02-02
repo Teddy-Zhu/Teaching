@@ -22,7 +22,8 @@
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.UserType">
 		insert into userType (intIdentityId, strName, intAllowReg
 		)
-		values (#{intidentityid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR}, #{intallowreg,jdbcType=INTEGER}
+		values (#{intidentityid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR},
+		#{intallowreg,jdbcType=INTEGER}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.UserType">
@@ -66,12 +67,15 @@
 		update userType
 		set strName = #{strname,jdbcType=VARCHAR},
 		intAllowReg = #{intallowreg,jdbcType=INTEGER}
-		where intIdentityId = #{intidentityid,jdbcType=INTEGER}
+		where intIdentityId =
+		#{intidentityid,jdbcType=INTEGER}
 	</update>
-	<select id="selectUserTypeForReg" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="selectUserType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		intIdentityId, strName
 		from userType
-		where intAllowReg = #{allow,jdbcType=INTEGER}
+		<if test="allow != null">
+			where intAllowReg = #{allow,jdbcType=INTEGER}
+		</if>
 	</select>
 </mapper>

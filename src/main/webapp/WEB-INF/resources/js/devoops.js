@@ -496,15 +496,27 @@ $(function() {
 	// for session out of date
 	$.ajaxSetup({
 		complete : function(xhr, textStatus) {
-			if (xhr.status == 3389) {
+			switch (xhr.status) {
+			case 3389: {
 				sessionout();
-				return;
-			} else if (xhr.status == 3388) {
+				break;
+			}
+			case 3388: {
 				$.TeachDialog({
 					title : 'Warnning!',
 					content : 'You don\'t have power to operate it!',
 					showCloseButton : true,
 				});
+				break;
+			}
+			case 3397: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'Unknown Error!',
+					showCloseButton : true,
+				});
+				break;
+			}
 			}
 		}
 	});

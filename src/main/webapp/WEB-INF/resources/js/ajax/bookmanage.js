@@ -15,14 +15,13 @@ function setVal(id, obj) {
 	$('#editAuthor' + id).val(obj.strauthor);
 	$('#editPrice' + id).val(obj.strprice);
 	$('#editDisCount' + id).val(obj.intpricediscount);
-
-	$('#editBookTypeSelect' + id).combobox('select', obj.bookType.intbooktypeid);
-	$('#editSupplierTypeSelect' + id).combobox('select', obj.supplier.intsupplierid);
+	$('#editBookType' + id).val(obj.bookType.intbooktypeid);
+	$('#editSupplierType' + id).val(obj.supplier.intsupplierid);
 }
 
 function initBookType(id) {
 	$.ajax({
-		url : 'Type/GetSupplierType',
+		url : 'Type/GetBookType',
 		dataType : 'json',
 		type : 'post',
 		success : function(data) {
@@ -33,6 +32,7 @@ function initBookType(id) {
 		}
 	})
 }
+
 function initSupplierType(id) {
 	$.ajax({
 		url : 'Type/GetSupplierType',
@@ -46,6 +46,7 @@ function initSupplierType(id) {
 		}
 	})
 }
+
 $(function() {
 	console.debug('aaa');
 	$('button.editbook').click(
@@ -65,11 +66,11 @@ $(function() {
 					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
 					$('#editbookcontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
-							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookTypeSelect', 'editBookTypeSelect' + id)
+							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookType', 'editBookType' + id)
 									.replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id).replace('newDisCount', 'editDisCount' + id)
-									.replace('newSupplierTypeSelect', 'editSupplierTypeSelect' + id).replace(new RegExp('newform', "gm"), 'editform'));
-					initBookType('editBookTypeSelect' + id);
-					initSupplierType('editSupplierTypeSelect' + id);
+									.replace('newSupplierType', 'editSupplierType' + id).replace(new RegExp('newform', "gm"), 'editform'));
+					initBookType('editBookType' + id);
+					initSupplierType('editSupplierType' + id);
 					setVal(id, rows[i]);
 				}
 				$('#operationpanel').slideToggle();
@@ -94,18 +95,6 @@ $(function() {
 		if (!check) {
 			return;
 		}
-		if ($('#newBookTypeSelect').val() == "" || $('#newBookTypeSelect').val() == undefined) {
-			$('#adderrormsg').html("please select one book type !");
-			return;
-		} else {
-			postdata.BookType = $('#newBookTypeSelect').combobox('getValue');
-		}
-		if ($('#newSupplierTypeSelect').val() == "" || $('#newSupplierTypeSelect').val() == undefined) {
-			$('#adderrormsg').html("please select one supplier!");
-			return;
-		} else {
-			postdata.Supplier = $('#newSupplierTypeSelect').val();
-		}
 		$.ajax({
 			url : 'Book/AddBook',
 			dataType : 'json',
@@ -126,9 +115,9 @@ $(function() {
 						clickButton : function(sender, modal, index) {
 							if (index == 0 || index == 1) {
 								if (index == 0) {
-									$('#newBookTypeSelect').
-									$('#newSupplierTypeSelect').combobox('setValue', '')
 									$('.newform').val('');
+									$('#newBookType').get(0).selectedIndex = 0;
+									$('#newSupplierType').get(0).selectedIndex = 0;
 								}
 							}
 							$('#datatable_bookinfo').datagrid('reload');
@@ -144,27 +133,23 @@ $(function() {
 		})
 	});
 
-	initBookType('newBookTypeSelect');
-	initSupplierType('newSupplierTypeSelect');
-
 	$('button.cancelAdd').click(function() {
+		$('.newform').val('');
 		$('#operationpanel').slideDown();
 		$('#addnewbook').slideUp();
-		$('#editbookcontainer').slideUp();
 	})
 	$('button.addbook').click(function() {
-		$('.newform').val('');
+		initBookType('newBookType');
+		initSupplierType('newSupplierType');
 		$('#adderrormsg').html("");
 		$('#operationpanel').slideUp();
 		$('#addnewbook').slideDown();
-		$('#editbookcontainer').slideUp();
 	});
 
 	$('button.cancelEdit').click(function() {
 		$('#bookEditTable').html("");
 		$('#editbookcontainer .tab-content').html("");
 		$('#operationpanel').slideDown();
-		$('#addnewbook').slideUp();
 		$('#editbookcontainer').slideUp();
 	})
 
@@ -189,23 +174,6 @@ $(function() {
 			});
 			if (!check) {
 				return;
-			}
-			check = true;
-			for ( var i in idarray) {
-				if ($('#editBookTypeSelect' + idarray[i]).combobox('getValue') == "" || $('#editBookTypeSelect' + idarray[i]).combobox('getValue') == -1) {
-					$('#editerrormsg').html("please select one book type !");
-					check = false;
-					break;
-				} else {
-					postdata['BookType' + idarray[i]] = $('#editBookTypeSelect' + idarray[i]).combobox('getValue');
-				}
-				if ($('#editSupplierTypeSelect' + idarray[i]).combobox('getValue') == "" || $('#editSupplierTypeSelect' + idarray[i]).combobox('getValue') == -1) {
-					$('#editerrormsg').html("please select one supplier!");
-					check = false;
-					break;
-				} else {
-					postdata['Supplier' + idarray[i]] = $('#editSupplierTypeSelect' + idarray[i]).combobox('getValue');
-				}
 			}
 			postdata.bookId = idarray;
 			$.ajax({

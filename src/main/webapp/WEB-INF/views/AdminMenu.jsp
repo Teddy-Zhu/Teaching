@@ -104,7 +104,7 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/user_manage"><i class="fa fa-book"></i> User Manage</a></li>
+							<li><a class="ajax-link" href="ajax/userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">Person Detail</span>
 					</a>

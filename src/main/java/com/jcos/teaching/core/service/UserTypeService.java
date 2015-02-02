@@ -8,4 +8,6 @@ public interface UserTypeService {
 
 	public List<UserType> getUserTypeForReg();
 
+	public List<UserType> getUserType();
+
 }

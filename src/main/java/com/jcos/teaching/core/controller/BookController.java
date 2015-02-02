@@ -46,7 +46,7 @@ public class BookController {
 	 */
 	public boolean authUserTypePower(HttpServletRequest request, String name) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		return powerService.queryBookPowerByName(name, loginSession.getLoginUser().getInttypeid());
+		return powerService.queryPowerByName(name, loginSession.getLoginUser().getInttypeid());
 	}
 
 	/**
@@ -60,11 +60,19 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getbooks(Integer rows, Integer page, String text, HttpServletRequest request, Model model, HttpServletResponse response) {
+	public Map<String, Object> getbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		if (!authUserTypePower(request, "querybook")) {
 			response.setStatus(3388);
 			return ret;
+		}
+		Integer rows = 10, page = 1;
+		try {
+			rows = Integer.valueOf(request.getParameter("rows"));
+			page = Integer.valueOf(request.getParameter("page"));
+		} catch (Exception e) {
+			response.setStatus(3387);
+			return null;
 		}
 		ret.put("total", bookService.getBookTotal());
 		List<Book> books = bookService.getAllBooks(page, rows);
@@ -93,8 +101,8 @@ public class BookController {
 			code = request.getParameter("newCode").trim().toString();
 			name = request.getParameter("newName").trim().toString();
 			sn = request.getParameter("newSN").trim().toString();
-			booktype = Integer.valueOf(request.getParameter("BookType").toString());
-			suppliertype = Integer.valueOf(request.getParameter("Supplier").toString());
+			booktype = Integer.valueOf(request.getParameter("newBookType").toString());
+			suppliertype = Integer.valueOf(request.getParameter("newSupplierType").toString());
 			press = request.getParameter("newPress").trim().toString();
 			author = request.getParameter("newAuthor").trim().toString();
 			price = Double.valueOf(request.getParameter("newPrice").toString());
@@ -152,8 +160,8 @@ public class BookController {
 					code = request.getParameter("editCode" + i).trim().toString();
 					name = request.getParameter("editName" + i).trim().toString();
 					sn = request.getParameter("editSN" + i).trim().toString();
-					booktype = Integer.valueOf(request.getParameter("BookType" + i).toString());
-					suppliertype = Integer.valueOf(request.getParameter("Supplier" + i).toString());
+					booktype = Integer.valueOf(request.getParameter("editBookType" + i).toString());
+					suppliertype = Integer.valueOf(request.getParameter("editSupplierType" + i).toString());
 					press = request.getParameter("editPress" + i).trim().toString();
 					author = request.getParameter("editAuthor" + i).trim().toString();
 					price = Double.valueOf(request.getParameter("editPrice" + i).toString());

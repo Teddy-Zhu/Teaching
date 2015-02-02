@@ -214,8 +214,7 @@ $(function() {
 						for ( var i in data) {
 							$('#DepartMent').append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 						}
-						//selectchange();
-						$('#DepartMent').val('4');
+						selectchange();
 					} else {
 						$.TeachDialog({
 							title : 'Faild',
@@ -269,50 +268,57 @@ $(function() {
 			return;
 		}
 
-		var userName = $('#UserName').val();
+		var userName = $('#UserName').val().trim();
 		var mark = true;
-		if (userName == "" || userName.trim() == "") {
+		if (userName == "") {
 			hander.action.FormSetTimer('UserName');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('UserName');
 		}
-		var passsWord = $('#PassWord').val();
-		if (passsWord == "" || passsWord.trim() == "") {
+		var passsWord = $('#PassWord').val().trim();
+		if (passsWord == "") {
 			hander.action.FormSetTimer('PassWord');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('PassWord');
 		}
-		var rePassword = $('#RePassWord').val();
-		if (rePassword == "" || rePassword.trim() == "" || rePassword != passsWord) {
+		var rePassword = $('#RePassWord').val().trim();
+		if (rePassword == "" || rePassword != passsWord) {
 			hander.action.FormSetTimer('RePassWord');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('RePassWord');
 		}
-		var phone = $('#Phone').val();
-		if (phone == "" || phone.trim() == "") {
+		var phone = $('#Phone').val().trim();
+		if (phone == "") {
 			hander.action.FormSetTimer('Phone');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('Phone');
 		}
 
-		var email = $('#Email').val();
-		if (email == "" || email.trim() == "") {
+		var email = $('#Email').val().trim();
+		if (email == "" ) {
 			hander.action.FormSetTimer('Email');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('Email');
 		}
 
-		var realName = $('#RealName').val();
-		if (realName == "" || realName.trim() == "") {
+		var realName = $('#RealName').val().trim();
+		if (realName == "" ) {
 			hander.action.FormSetTimer('RealName');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('RealName');
+		}
+		var idcard = $('#StudentId').val().trim();
+		if (idcard == "") {
+			hander.action.FormSetTimer('StudentId');
+			mark = false;
+		} else {
+			hander.action.SetSucccess('StudentId');
 		}
 		if (!mark) {
 			$(this).button('reset');
@@ -327,17 +333,16 @@ $(function() {
 				type : 'post',
 				data : {
 					UserName : userName,
+					UserType : userTypeId,
 					PassWord : passsWord,
 					RealName : realName,
+					IdCard : idcard,
 					Phone : phone,
 					Email : email,
 					DepartId : departid,
 					MajorId : majorid
 				},
 				dataType : 'json',
-				complete : function(data) {
-					$(this).button('reset');
-				},
 				success : function(data) {
 					if (data != null) {
 						if (data) {
@@ -345,19 +350,24 @@ $(function() {
 								title : 'Congratulations',
 								content : 'Register Successfully! Welcome to Use the System!',
 								dialogHidden : function() {
-									window.location.href = '/teaching';
+									window.location.href = '/';
 								}
 							});
-						} else
+						} else {
 							$.TeachDialog({
 								title : 'Faild',
 								content : 'Failed to register!'
 							});
+							$(this).button('reset');
+							$('.preloader').fadeToggle("slow");
+						}
 					} else {
 						$.TeachDialog({
 							title : 'Faild',
 							content : 'Failed to register!'
 						});
+						$(this).button('reset');
+						$('.preloader').fadeToggle("slow");
 					}
 				},
 				error : function(data) {

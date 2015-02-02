@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.model.BookType;
 import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.BookTypeService;
+import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserTypeService;
@@ -33,6 +36,19 @@ public class TypeController {
 	@Inject
 	private UserDepartMentService userDepartMentService;
 
+	@Inject
+	private PowerService powerService;
+
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public boolean authUserTypePower(HttpServletRequest request, String name) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		return powerService.queryPowerByName(name, loginSession.getLoginUser().getInttypeid());
+	}
+
 	@RequestMapping(value = "/GetDepartMent", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserDepartMent> getDepartMent(int id, HttpServletRequest request, Model model) {
@@ -47,7 +63,7 @@ public class TypeController {
 	 */
 	@RequestMapping(value = "/GetUserType", method = RequestMethod.POST)
 	@ResponseBody
-	public List<UserType> getUserType(HttpServletRequest request, Model model) {
+	public List<UserType> getUserTypeForReg(HttpServletRequest request, Model model) {
 		List<UserType> allowUserType = userTypeService.getUserTypeForReg();
 		return allowUserType;
 	}
@@ -76,4 +92,14 @@ public class TypeController {
 		return supplierService.getAllSupplier();
 	}
 
+	@RequestMapping(value = "/GetUserTypeAll", method = RequestMethod.POST)
+	@ResponseBody
+	public List<UserType> getUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request,"getallusertype")) {
+			response.setStatus(3388);
+			return null;
+		}
+		List<UserType> allowUserType = userTypeService.getUserType();
+		return allowUserType;
+	}
 }

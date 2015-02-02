@@ -18,6 +18,11 @@ public class UserTypeImpl implements UserTypeService {
 
 	@Override
 	public List<UserType> getUserTypeForReg() {
-		return userTypeDao.selectUserTypeForReg(1);
+		return userTypeDao.selectUserType(1);
+	}
+
+	@Override
+	public List<UserType> getUserType() {
+		return userTypeDao.selectUserType(null);
 	}
 }

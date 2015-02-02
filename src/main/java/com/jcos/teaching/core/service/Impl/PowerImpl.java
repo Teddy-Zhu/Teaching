@@ -15,7 +15,7 @@ public class PowerImpl implements PowerService {
 	private PowerMapper powerDao;
 
 	@Override
-	public boolean queryBookPowerByName(String name, Integer userType) {
+	public boolean queryPowerByName(String name, Integer userType) {
 		Power record = new Power();
 		record.setIntusertypeid(userType);
 		record.setStrauthname(name);
