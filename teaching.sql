@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-01-26 08:21:45
+Date: 2015-02-02 18:13:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,22 +32,23 @@ CREATE TABLE `book` (
   `intSupplierId` int(11) NOT NULL COMMENT '供应商',
   `dateAddTime` datetime NOT NULL,
   PRIMARY KEY (`intBookId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '阿斯达3', 'B20202', '454545', '1', '41.500', 'XX出版社', '阿斯达斯', '5.600', '1', '2014-12-11 17:54:55');
-INSERT INTO `book` VALUES ('3', 'ASC', 'B2000', '125030', '2', '12.050', '阿斯dad', '22sss', '5.410', '1', '2015-01-23 14:13:17');
-INSERT INTO `book` VALUES ('4', 'XXXX', 'B122', '45145', '2', '101.000', 'SDF', 'SSDFF', '4.000', '2', '2014-12-25 10:01:19');
-INSERT INTO `book` VALUES ('5', '1222', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2014-12-25 10:43:01');
-INSERT INTO `book` VALUES ('6', 'xxxx', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2014-12-25 13:46:50');
-INSERT INTO `book` VALUES ('7', '啊啊啊1', 'B122122', '2S2A2S', '1', '33.100', '阿斯顿的', '砸死是', '9.800', '3', '2014-12-25 14:06:13');
-INSERT INTO `book` VALUES ('8', '121a2', 'Baaa11', 'asa', '2', '12.014', '1231', 'za', '2.500', '1', '2014-12-25 14:57:12');
-INSERT INTO `book` VALUES ('9', 'aasd', 'asasas', 'as12312', '1', '123.000', '122d', '123', '1.300', '1', '2014-12-25 15:19:45');
-INSERT INTO `book` VALUES ('10', '多少岁', 'Baaas', '23', '2', '15.010', 'zsss', 'ssdd', '10.000', '1', '2014-12-25 15:20:15');
-INSERT INTO `book` VALUES ('13', '打底裤', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '2', '2014-12-27 13:39:53');
-INSERT INTO `book` VALUES ('14', 'ass', 'A44556', 'aaa22254', '1', '100.230', 'Self', 'AAAx', '9.800', '2', '2014-12-30 18:42:35');
+INSERT INTO `book` VALUES ('1', '工程项目管理', 'B20202', '454545', '1', '41.500', 'XX出版社', '阿斯达斯', '5.600', '1', '2015-02-02 16:08:15');
+INSERT INTO `book` VALUES ('4', '电子商务与物流管理第2版', 'B122', '45145', '1', '101.000', '纷纭出版社', 'SSDFF', '4.000', '1', '2015-02-02 17:37:54');
+INSERT INTO `book` VALUES ('5', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2015-02-02 16:06:25');
+INSERT INTO `book` VALUES ('6', '驼峰航线', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2015-02-02 16:06:38');
+INSERT INTO `book` VALUES ('8', '中南海备忘录', 'Baaa233', 'asa', '1', '12.014', '1231', 'za', '2.500', '1', '2015-02-02 16:08:15');
+INSERT INTO `book` VALUES ('13', 'SQL Server 2008 商业智能完美解决方案', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '1', '2015-02-02 16:01:37');
+INSERT INTO `book` VALUES ('15', '英语口语短句大王', 'B1230', '45', '1', '458.400', '45', '4545', '6.000', '1', '2015-02-02 16:06:25');
+INSERT INTO `book` VALUES ('16', '跟毛泽东学思维', 'B1230', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-02 16:06:25');
+INSERT INTO `book` VALUES ('17', '图书汉字的故事', 'B1230ss', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-02 16:06:25');
+INSERT INTO `book` VALUES ('18', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '1', '199.000', '45454', 'ssss', '10.000', '1', '2015-02-02 15:59:57');
+INSERT INTO `book` VALUES ('19', '公务员电子政务技 术实用指南', 'A25554', '45AS3', '1', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-02-02 16:07:46');
+INSERT INTO `book` VALUES ('20', '母亲杨沫', 'A25554', '45AS3', '1', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-02-02 16:07:33');
 
 -- ----------------------------
 -- Table structure for bookenter
@@ -282,10 +283,10 @@ DROP TABLE IF EXISTS `power`;
 CREATE TABLE `power` (
   `intPowerId` int(11) NOT NULL AUTO_INCREMENT,
   `intUserTypeId` int(11) NOT NULL,
-  `strAuthName` varchar(11) COLLATE utf8_bin NOT NULL DEFAULT '1',
+  `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
@@ -298,22 +299,25 @@ INSERT INTO `power` VALUES ('5', '1', 'querybook', '1');
 INSERT INTO `power` VALUES ('6', '2', 'querybook', '1');
 INSERT INTO `power` VALUES ('7', '3', 'querybook', '1');
 INSERT INTO `power` VALUES ('8', '4', 'querybook', '1');
-INSERT INTO `power` VALUES ('9', '1', 'addbook', '0');
+INSERT INTO `power` VALUES ('9', '1', 'addbook', '1');
 INSERT INTO `power` VALUES ('10', '2', 'addbook', '1');
 INSERT INTO `power` VALUES ('11', '3', 'addbook', '0');
 INSERT INTO `power` VALUES ('12', '4', 'addbook', '0');
-INSERT INTO `power` VALUES ('13', '1', 'rmbook', '0');
+INSERT INTO `power` VALUES ('13', '1', 'rmbook', '1');
 INSERT INTO `power` VALUES ('14', '2', 'rmbook', '1');
 INSERT INTO `power` VALUES ('15', '3', 'rmbook', '0');
 INSERT INTO `power` VALUES ('16', '4', 'rmbook', '0');
-INSERT INTO `power` VALUES ('17', '1', 'editbook', '0');
+INSERT INTO `power` VALUES ('17', '1', 'editbook', '1');
 INSERT INTO `power` VALUES ('18', '2', 'editbook', '1');
 INSERT INTO `power` VALUES ('19', '3', 'editbook', '0');
 INSERT INTO `power` VALUES ('20', '4', 'eidtbook', '0');
-INSERT INTO `power` VALUES ('21', '1', 'managebook', '0');
+INSERT INTO `power` VALUES ('21', '1', 'managebook', '1');
 INSERT INTO `power` VALUES ('22', '2', 'managebook', '1');
 INSERT INTO `power` VALUES ('23', '3', 'managebook', '0');
 INSERT INTO `power` VALUES ('24', '4', 'managebook', '0');
+INSERT INTO `power` VALUES ('25', '1', 'getalluser', '1');
+INSERT INTO `power` VALUES ('26', '1', 'getallusertype', '1');
+INSERT INTO `power` VALUES ('27', '1', 'adduser', '1');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -355,17 +359,20 @@ CREATE TABLE `user` (
   `strMail` varchar(255) CHARACTER SET latin1 NOT NULL,
   `dateRegTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '0', '222', '1111', '2123', '2014-12-07 18:32:09');
-INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '2', '0', '1234234', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '0', '2342342', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
-INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '0', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
-INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '0', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '0', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '1', '222', '1111', '2123', '2014-12-07 18:32:09');
+INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '2', '3', '1234234', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '3', '2342342', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '3', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '3', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '3', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
+INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '3', '3', '1112232', '1111', 'TestForInject', '2015-02-02 16:59:32');
+INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '1', '3', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-02 17:24:57');
+INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '1', '5', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-02 17:25:44');
 
 -- ----------------------------
 -- Table structure for userdepartment
