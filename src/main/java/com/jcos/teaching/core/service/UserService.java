@@ -17,4 +17,6 @@ public interface UserService {
 	List<User> getAllUser(Integer page, Integer rows);
 
 	Integer getuUserTotal();
+
+	boolean updateUserByIds(List<User> record);
 }

@@ -54,11 +54,4 @@ public class BookImpl implements BookService {
 		return true;
 	}
 
-	@Override
-	public boolean updatebookById(Book record) {
-		if (bookDao.updateByPrimaryKey(record) != 1) {
-			return false;
-		}
-		return true;
-	}
 }

@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.Exmodel.LoginSession;
@@ -20,6 +22,7 @@ import com.jcos.teaching.core.Util.Common.StringUtil;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.PowerService;
+import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
 
@@ -40,6 +43,9 @@ public class UserController {
 	@Inject
 	private UserTypeService userTypeService;
 
+	@Inject
+	private UserDepartMentService userDepartMentService;
+
 	private StringUtil tools = new StringUtil();
 
 	/**
@@ -49,7 +55,10 @@ public class UserController {
 	 */
 	public boolean authUserTypePower(HttpServletRequest request, String name) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getInttypeid());
+		if (loginSession == null) {
+			return false;
+		}
+		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
 	}
 
 	/**
@@ -64,17 +73,22 @@ public class UserController {
 		String userName = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
 		int DepartId = 0, MajorId = 0, userTypeId = 0;
 		try {
-			userName = request.getParameter("UserName");
-			userTypeId = Integer.valueOf(request.getParameter("UserType"));
-			passWord = request.getParameter("PassWord");
-			realName = request.getParameter("RealName");
-			IdCard = request.getParameter("IdCard");
-			phone = request.getParameter("Phone");
-			email = request.getParameter("Email");
-			DepartId = Integer.valueOf(request.getParameter("DepartId"));
-			MajorId = Integer.valueOf(request.getParameter("MajorId"));
+			userName = request.getParameter("UserName").trim();
+			userTypeId = Integer.valueOf(request.getParameter("UserType").trim());
+			passWord = request.getParameter("PassWord").trim();
+			realName = request.getParameter("RealName").trim();
+			IdCard = request.getParameter("IdCard").trim();
+			phone = request.getParameter("Phone").trim();
+			email = request.getParameter("Email").trim();
+			DepartId = Integer.valueOf(request.getParameter("DepartId").trim());
+			MajorId = Integer.valueOf(request.getParameter("MajorId").trim());
 		} catch (Exception e) {
+			response.setStatus(3386);
 			logger.debug(e.getMessage());
+			return false;
+		}
+		if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
+			response.setStatus(3386);
 			return false;
 		}
 		List<UserType> allowUserType = userTypeService.getUserTypeForReg();
@@ -87,7 +101,7 @@ public class UserController {
 		}
 
 		if (!checktype) {
-			response.setStatus(3389);
+			response.setStatus(3386);
 			return false;
 		}
 
@@ -99,7 +113,8 @@ public class UserController {
 		record.setStrstunum(IdCard);
 		record.setStrname(realName);
 		record.setStrphone(phone);
-		record.setIntuserdepartment(MajorId);
+		record.setIntuserdepartment(DepartId);
+		record.setIntusermajor(MajorId);
 		int i = userService.registerUser(record);
 		if (i == 1) {
 			return true;
@@ -189,7 +204,7 @@ public class UserController {
 			rows = Integer.valueOf(request.getParameter("rows"));
 			page = Integer.valueOf(request.getParameter("page"));
 		} catch (Exception e) {
-			response.setStatus(3387);
+			response.setStatus(3386);
 			return null;
 		}
 
@@ -216,17 +231,37 @@ public class UserController {
 		String userName = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
 		int DepartId = 0, MajorId = 0, userTypeId = 0;
 		try {
-			userName = request.getParameter("newUserName");
-			userTypeId = Integer.valueOf(request.getParameter("newType"));
-			passWord = request.getParameter("newPassword");
-			realName = request.getParameter("newRealName");
-			phone = request.getParameter("newPhone");
-			IdCard = request.getParameter("newNumber");
-			email = request.getParameter("newEmail");
-			DepartId = Integer.valueOf(request.getParameter("newDepartMent"));
-			MajorId = Integer.valueOf(request.getParameter("newMajor"));
+			userName = request.getParameter("newUserName").trim();
+			userTypeId = Integer.valueOf(request.getParameter("newType").trim());
+			passWord = request.getParameter("newPassword").trim();
+			realName = request.getParameter("newRealName").trim();
+			phone = request.getParameter("newPhone").trim();
+			IdCard = request.getParameter("newNumber").trim();
+			email = request.getParameter("newEmail").trim();
+			DepartId = Integer.valueOf(request.getParameter("newDepartMent").trim());
+			MajorId = Integer.valueOf(request.getParameter("newMajor").trim());
 		} catch (Exception e) {
+			response.setStatus(3386);
 			logger.debug(e.getMessage());
+			return false;
+		}
+
+		if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		List<UserType> allowUserType = userTypeService.getUserTypeForReg();
+		boolean checktype = false;
+		for (UserType type : allowUserType) {
+			if (type.getIntidentityid() == userTypeId) {
+				checktype = true;
+				break;
+			}
+		}
+
+		if (!checktype) {
+			response.setStatus(3386);
 			return false;
 		}
 
@@ -238,12 +273,65 @@ public class UserController {
 		record.setStrstunum(IdCard);
 		record.setStrname(realName);
 		record.setStrphone(phone);
-		record.setIntuserdepartment(MajorId);
+		record.setIntuserdepartment(DepartId);
+		record.setIntusermajor(MajorId);
 		int i = userService.registerUser(record);
 		if (i == 1) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	@RequestMapping(value = "/UpdateUserInfoAdmin", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean UpdateUserForAdmin(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request, "edituser")) {
+			response.setStatus(3389);
+			return false;
+		}
+		String userName = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
+		int DepartId = 0, MajorId = 0, userTypeId = 0;
+		List<User> users = new ArrayList<User>();
+		try {
+			for (int i : userId) {
+				userName = request.getParameter("editUserName" + i).trim();
+				userTypeId = Integer.valueOf(request.getParameter("editType" + i).trim());
+				passWord = request.getParameter("editPassword" + i).trim();
+				realName = request.getParameter("editRealName" + i).trim();
+				phone = request.getParameter("editPhone" + i).trim();
+				IdCard = request.getParameter("editNumber" + i).trim();
+				email = request.getParameter("editEmail" + i).trim();
+				DepartId = Integer.valueOf(request.getParameter("editDepartMent" + i).trim());
+				MajorId = Integer.valueOf(request.getParameter("editMajor" + i).trim());
+
+				if (passWord.equals("[%keep%]")) {
+					passWord = null;
+				}
+				if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
+					response.setStatus(3386);
+					return false;
+				}
+
+				User record = new User();
+				record.setIntid(i);
+				record.setUsername(userName);
+				record.setInttypeid(userTypeId);
+				record.setPassword(passWord);
+				record.setStrmail(email);
+				record.setStrstunum(IdCard);
+				record.setStrname(realName);
+				record.setStrphone(phone);
+				record.setIntuserdepartment(DepartId);
+				record.setIntusermajor(MajorId);
+				users.add(record);
+			}
+		} catch (Exception e) {
+			response.setStatus(3386);
+			logger.debug(e.getMessage());
+			return false;
+		}
+
+		return userService.updateUserByIds(users);
 	}
 }

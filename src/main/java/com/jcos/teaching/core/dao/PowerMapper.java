@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jcos.teaching.core.model.Power;
 
 public interface PowerMapper {
@@ -15,5 +17,5 @@ public interface PowerMapper {
 
 	int updateByPrimaryKey(Power record);
 
-	int queryPowerByName(Power record);
+	Integer queryPowerByName(@Param(value = "name") String name, @Param(value = "intId") Integer IntId);
 }

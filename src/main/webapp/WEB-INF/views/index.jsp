@@ -53,16 +53,18 @@ span.passwordc {
 						<div class="panel-body text-center">
 							<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right; margin-right: 20px;"></a>
 							<div class="input-group col-md-7 col-sm-offset-2">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-user">User</span></span> <input id="loginUserName" type="text" class="form-control" value="Admin" placeholder="Username">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user">User</span></span> <input id="loginUserName" type="text" class="form-control" value="Admin" placeholder="Username">
 							</div>
 
 							<div class="input-group col-md-7 col-sm-offset-2">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="loginPassWord" type="password" value="a" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="loginPassWord" type="password" value="a" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 
 							<div class="input-group col-md-7 col-sm-offset-2">
 								<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Login</button>
+								<div class="input-group col-md-9"></div>
 								<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
+
 							</div>
 						</div>
 					</div>

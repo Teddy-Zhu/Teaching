@@ -30,4 +30,5 @@ public interface UserMapper {
 	List<User> GetAllUser(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
 	Integer queryUserTotal();
+
 }

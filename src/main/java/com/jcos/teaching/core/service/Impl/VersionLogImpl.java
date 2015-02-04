@@ -18,7 +18,7 @@ public class VersionLogImpl implements VersionLogService {
 
 	@Override
 	public VersionLog queryCururentVersion() {
-		VersionLog curVersionInfo = versionLogDao.queryCurrentVersion();
+		VersionLog curVersionInfo = versionLogDao.queryVersions(0, 1).get(0);
 		return curVersionInfo;
 	}
 

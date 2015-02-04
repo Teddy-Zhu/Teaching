@@ -14,7 +14,7 @@ public interface BookService {
 
 	public boolean deletebookbyId(Integer[] bookIds);
 
-	public boolean updatebookById(Book record);
+	//public boolean updatebookById(Book record);
 
 	boolean updatebookByIds(List<Book> record);
 }

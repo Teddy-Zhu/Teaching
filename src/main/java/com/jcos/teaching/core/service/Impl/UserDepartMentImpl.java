@@ -28,4 +28,13 @@ public class UserDepartMentImpl implements UserDepartMentService {
 			i = -1;
 		return i;
 	}
+
+	@Override
+	public boolean authDepartAndMajor(int DepartId, int Major) {
+		if (userDepartMentDao.selectByIdAndParId(DepartId, Major) != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

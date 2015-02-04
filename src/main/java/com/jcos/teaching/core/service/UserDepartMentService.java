@@ -10,4 +10,6 @@ public interface UserDepartMentService {
 
 	Integer getParentDepartMent(int intid);
 
+	boolean authDepartAndMajor(int DepartId, int Major);
+
 }

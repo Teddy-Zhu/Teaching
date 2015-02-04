@@ -105,12 +105,7 @@
 		dateUpdateTime = #{dateupdatetime,jdbcType=TIMESTAMP}
 		where intId = #{intid,jdbcType=INTEGER}
 	</update>
-	<select id="queryCurrentVersion" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from versionlog
-		ORDER BY dateUpdateTime DESC LIMIT 0,1
-	</select>
+	
 	<select id="queryVersions" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />

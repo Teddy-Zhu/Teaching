@@ -66,9 +66,9 @@ $(function() {
 					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
 					$('#editbookcontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
-							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookType', 'editBookType' + id)
-									.replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id).replace('newDisCount', 'editDisCount' + id)
-									.replace('newSupplierType', 'editSupplierType' + id).replace(new RegExp('newform', "gm"), 'editform'));
+							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookType', 'editBookType' + id).replace(
+									'newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id).replace('newDisCount', 'editDisCount' + id).replace(
+									'newSupplierType', 'editSupplierType' + id).replace(new RegExp('newform', "gm"), 'editform'));
 					initBookType('editBookType' + id);
 					initSupplierType('editSupplierType' + id);
 					setVal(id, rows[i]);
@@ -111,6 +111,7 @@ $(function() {
 						CloseButtonAddFunc : function() {
 							$('#operationpanel').slideToggle();
 							$('#addnewbook').slideToggle();
+							$('#datatable_bookinfo').datagrid('reload');
 						},
 						clickButton : function(sender, modal, index) {
 							if (index == 0 || index == 1) {
@@ -161,7 +162,6 @@ $(function() {
 		})
 		var postdata = {};
 		if (idarray.length != 0) {
-
 			var check = true;
 			$('.editform').each(function() {
 				if ($(this).val().trim() == "") {
@@ -181,18 +181,29 @@ $(function() {
 				type : 'post',
 				dataType : 'json',
 				data : postdata,
-				success : function() {
-					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Edit book successfully!',
-						CloseButtonAddFunc : function() {
-							$('#operationpanel').slideToggle();
-							$('#editbookcontainer').slideToggle();
-							$('#datatable_bookinfo').datagrid('reload');
-						},
-					});
+				success : function(data) {
+					if (data) {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Edit book successfully!',
+							CloseButtonAddFunc : function() {
+								$('#operationpanel').slideToggle();
+								$('#editbookcontainer').slideToggle();
+								$('#datatable_bookinfo').datagrid('reload');
+							},
+						});
+					} else {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Edit book failed!',
+							CloseButtonAddFunc : function() {
+								$('#operationpanel').slideToggle();
+								$('#editbookcontainer').slideToggle();
+								$('#datatable_bookinfo').datagrid('reload');
+							},
+						});
+					}
 				}
-
 			})
 		}
 	})

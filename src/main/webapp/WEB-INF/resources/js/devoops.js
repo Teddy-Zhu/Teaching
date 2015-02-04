@@ -501,6 +501,14 @@ $(function() {
 				sessionout();
 				break;
 			}
+			case 500: {
+				$.TeachDialog({
+					title : 'Sorry!',
+					content : 'Service is Down!Please Contact us!',
+					showCloseButton : true,
+				});
+				break;
+			}
 			case 3388: {
 				$.TeachDialog({
 					title : 'Warnning!',
@@ -509,7 +517,7 @@ $(function() {
 				});
 				break;
 			}
-			case 3397: {
+			case 3387: {
 				$.TeachDialog({
 					title : 'Warnning!',
 					content : 'Unknown Error!',
@@ -517,6 +525,15 @@ $(function() {
 				});
 				break;
 			}
+			case 3386: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'Parameters Error!',
+					showCloseButton : true,
+				});
+				break;
+			}
+
 			}
 		}
 	});

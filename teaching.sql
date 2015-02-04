@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-02 18:13:25
+Date: 2015-02-04 18:02:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -286,7 +286,7 @@ CREATE TABLE `power` (
   `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
@@ -318,6 +318,7 @@ INSERT INTO `power` VALUES ('24', '4', 'managebook', '0');
 INSERT INTO `power` VALUES ('25', '1', 'getalluser', '1');
 INSERT INTO `power` VALUES ('26', '1', 'getallusertype', '1');
 INSERT INTO `power` VALUES ('27', '1', 'adduser', '1');
+INSERT INTO `power` VALUES ('28', '1', 'edituser', '1');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -351,28 +352,30 @@ CREATE TABLE `user` (
   `intId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_bin NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
-  `strName` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intTypeId` int(11) NOT NULL,
-  `intUserDepartment` int(255) NOT NULL,
+  `intUserMajor` int(11) NOT NULL,
+  `intUserDepartment` int(11) NOT NULL,
   `strStuNum` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '学号或教师号',
-  `strPhone` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `strMail` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `strPhone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `strMail` varchar(255) COLLATE utf8_bin NOT NULL,
   `dateRegTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '1', '222', '1111', '2123', '2014-12-07 18:32:09');
-INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSF', '2', '3', '1234234', '18994323', '2121@qq.com', '2014-12-07 18:58:27');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '3', '2342342', 'asd', 'TestUser@qq.com', '2014-12-07 19:23:43');
-INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '3', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
-INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '3', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '3', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
-INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '3', '3', '1112232', '1111', 'TestForInject', '2015-02-02 16:59:32');
-INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '1', '3', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-02 17:24:57');
-INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '1', '5', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-02 17:25:44');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '3', '2', '222', '1111', '2123', '2015-02-04 17:54:01');
+INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-04 17:20:41');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-04 17:20:53');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '6', '4', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '5', '4', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
+INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '4', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-04 17:54:08');
+INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '1', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-02 17:24:57');
+INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '1', '6', '4', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-02 17:25:44');
+INSERT INTO `user` VALUES ('10', '测试', '测试测试', '测试', '1', '6', '4', '210212', '21111212', '测试@qq.com', '2015-02-04 16:04:31');
 
 -- ----------------------------
 -- Table structure for userdepartment
@@ -427,7 +430,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -435,3 +438,4 @@ CREATE TABLE `versionlog` (
 INSERT INTO `versionlog` VALUES ('1', '0003', '03', '1', 'none', '2015-01-08 15:19:17');
 INSERT INTO `versionlog` VALUES ('2', '0004', '00', '1', '新增version log 查阅', '2015-01-22 15:20:07');
 INSERT INTO `versionlog` VALUES ('3', '0004', '01', '1', '修复批量编辑book的bug', '2015-01-23 14:05:24');
+INSERT INTO `versionlog` VALUES ('4', '0005', '00', '1', '新增管理员管理用户功能【添加】【批量查询修改用户】\\n 修复若干Bug', '2015-02-04 18:02:02');

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.UserMapper;
+import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.service.UserService;
 
@@ -61,4 +62,15 @@ public class UserImpl implements UserService {
 	public Integer getuUserTotal() {
 		return userDao.queryUserTotal();
 	}
+
+	@Override
+	public boolean updateUserByIds(List<User> record) {
+		for (User user : record) {
+			if (userDao.updateByPrimaryKeySelective(user) != 1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

@@ -40,7 +40,10 @@ public class IndexController {
 	 */
 	public boolean authUserTypePower(HttpServletRequest request, String name) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getInttypeid());
+		if (loginSession == null) {
+			return false;
+		}
+		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
 	}
 
 	/**

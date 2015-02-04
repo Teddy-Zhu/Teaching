@@ -7,6 +7,7 @@
 		<result column="password" property="password" jdbcType="VARCHAR" />
 		<result column="strName" property="strname" jdbcType="VARCHAR" />
 		<result column="intTypeId" property="inttypeid" jdbcType="INTEGER" />
+		<result column="intUserMajor" property="intusermajor" jdbcType="INTEGER" />
 		<result column="intUserDepartment" property="intuserdepartment" jdbcType="INTEGER" />
 		<result column="strStuNum" property="strstunum" jdbcType="VARCHAR" />
 		<result column="strPhone" property="strphone" jdbcType="VARCHAR" />
@@ -14,8 +15,8 @@
 		<result column="dateRegTime" property="dateregtime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		intId, username, password, strName, intTypeId, intUserDepartment, strStuNum, strPhone,
-		strMail, dateRegTime
+		intId, username, password, strName, intTypeId, intUserMajor, intUserDepartment, strStuNum,
+		strPhone, strMail, dateRegTime
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
@@ -29,15 +30,14 @@
 	</delete>
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.User">
 		insert into user (intId, username, password,
-		strName, intTypeId, intUserDepartment,
-		strStuNum, strPhone, strMail,
-		dateRegTime)
-		values (#{intid,jdbcType=INTEGER},
-		#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
-		#{strstunum,jdbcType=VARCHAR},
-		#{strphone,jdbcType=VARCHAR}, #{strmail,jdbcType=VARCHAR},
-		#{dateregtime,jdbcType=TIMESTAMP})
+		strName, intTypeId, intUserMajor,
+		intUserDepartment, strStuNum, strPhone,
+		strMail, dateRegTime)
+		values
+		(#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intusermajor,jdbcType=INTEGER},
+		#{intuserdepartment,jdbcType=INTEGER}, #{strstunum,jdbcType=VARCHAR}, #{strphone,jdbcType=VARCHAR},
+		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.User">
 		insert into user
@@ -56,6 +56,9 @@
 			</if>
 			<if test="inttypeid != null">
 				intTypeId,
+			</if>
+			<if test="intusermajor != null">
+				intUserMajor,
 			</if>
 			<if test="intuserdepartment != null">
 				intUserDepartment,
@@ -89,6 +92,9 @@
 			<if test="inttypeid != null">
 				#{inttypeid,jdbcType=INTEGER},
 			</if>
+			<if test="intusermajor != null">
+				#{intusermajor,jdbcType=INTEGER},
+			</if>
 			<if test="intuserdepartment != null">
 				#{intuserdepartment,jdbcType=INTEGER},
 			</if>
@@ -121,6 +127,9 @@
 			<if test="inttypeid != null">
 				intTypeId = #{inttypeid,jdbcType=INTEGER},
 			</if>
+			<if test="intusermajor != null">
+				intUserMajor = #{intusermajor,jdbcType=INTEGER},
+			</if>
 			<if test="intuserdepartment != null">
 				intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
 			</if>
@@ -146,14 +155,16 @@
 		strName = #{strname,jdbcType=VARCHAR},
 		intTypeId =
 		#{inttypeid,jdbcType=INTEGER},
+		intUserMajor = #{intusermajor,jdbcType=INTEGER},
 		intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
 		strStuNum = #{strstunum,jdbcType=VARCHAR},
-		strPhone = #{strphone,jdbcType=VARCHAR},
-		strMail =
-		#{strmail,jdbcType=VARCHAR},
+		strPhone =
+		#{strphone,jdbcType=VARCHAR},
+		strMail = #{strmail,jdbcType=VARCHAR},
 		dateRegTime = #{dateregtime,jdbcType=TIMESTAMP}
 		where intId = #{intid,jdbcType=INTEGER}
 	</update>
+
 	<select id="selectUserSelective" resultMap="BaseResultMap" parameterType="User">
 		select
 		<include refid="Base_Column_List" />
@@ -173,6 +184,9 @@
 			</if>
 			<if test="inttypeid != null">
 				intTypeId = #{inttypeid,jdbcType=INTEGER} AND
+			</if>
+			<if test="intusermajor != null">
+				intUserMajor = #{intusermajor,jdbcType=INTEGER} AND
 			</if>
 			<if test="intuserdepartment != null">
 				intUserDepartment = #{intuserdepartment,jdbcType=INTEGER} AND
@@ -196,12 +210,13 @@
 	</select>
 	<insert id="InertUser" parameterType="User">
 		insert into user ( username, password,
-		strName, intTypeId,intUserDepartment,
+		strName, intTypeId,intUserMajor,intUserDepartment,
 		strStuNum, strPhone,
 		strMail, dateRegTime)
-		values ( #{username,jdbcType=VARCHAR},
+		values (
+		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
+		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intusermajor,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
 		#{strstunum,jdbcType=VARCHAR},
 		#{strphone,jdbcType=VARCHAR},
 		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
@@ -210,6 +225,7 @@
 	<resultMap id="UserTypeExtendMap" type="User" extends="BaseResultMap">
 		<association property="userType" column="intTypeId" select="com.jcos.teaching.core.dao.UserTypeMapper.selectByPrimaryKey" />
 		<association property="userDepartMent" column="intUserDepartment" select="com.jcos.teaching.core.dao.UserDepartMentMapper.selectByPrimaryKey" />
+		<association property="userMajor" column="intUserMajor" select="com.jcos.teaching.core.dao.UserDepartMentMapper.selectByPrimaryKey" />
 	</resultMap>
 
 
@@ -221,10 +237,11 @@
 	</select>
 	<select id="GetAllUser" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
 		select
-		intId, username, strName, intTypeId, intUserDepartment, strStuNum, strPhone,
+		intId, username, strName, intTypeId, intUserMajor,intUserDepartment, strStuNum, strPhone,
 		strMail, dateRegTime
 		from user
-		order by intId asc
+		order by
+		intId asc
 		limit
 		#{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
 	</select>

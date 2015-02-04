@@ -18,9 +18,7 @@ public interface VersionLogMapper {
 	int updateByPrimaryKeySelective(VersionLog record);
 
 	int updateByPrimaryKey(VersionLog record);
-
-	VersionLog queryCurrentVersion();
-
+	
 	List<VersionLog> queryVersions(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
 	int getTotalVersion();

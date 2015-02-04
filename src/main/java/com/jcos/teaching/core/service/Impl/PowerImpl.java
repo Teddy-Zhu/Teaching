@@ -15,14 +15,11 @@ public class PowerImpl implements PowerService {
 	private PowerMapper powerDao;
 
 	@Override
-	public boolean queryPowerByName(String name, Integer userType) {
-		Power record = new Power();
-		record.setIntusertypeid(userType);
-		record.setStrauthname(name);
-		Integer i = powerDao.queryPowerByName(record);
+	public boolean queryPowerByName(String name, Integer userId) {
+		Integer i = powerDao.queryPowerByName(name, userId);
 		if (i == null)
 			i = 0;
-		if (powerDao.queryPowerByName(record) == 1)
+		if (i == 1)
 			return true;
 		else
 			return false;

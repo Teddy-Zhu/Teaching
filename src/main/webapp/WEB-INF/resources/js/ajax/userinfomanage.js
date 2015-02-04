@@ -8,15 +8,29 @@ function p(s) {
 	return s < 10 ? '0' + s : s;
 }
 function setVal(id, obj) {
-	$('#editUserName' + id).val(obj.strbookcoding);
+	$('#editUserName' + id).val(obj.username);
 	$('#editPassword' + id).val("[%keep%]");
-	$('#editRealName' + id).val(obj.strpress);
-	$('#editType' + id).val(obj.strauthor);
-	$('#editNumber' + id).val(obj.strprice);
-	$('#editEmail' + id).val(obj.intpricediscount);
-	$('#editPhone' + id).val(obj.bookType.intbooktypeid);
+	$('#editRealName' + id).val(obj.strname);
+	$('#editNumber' + id).val(obj.strstunum);
+	$('#editEmail' + id).val(obj.strmail);
+	$('#editPhone' + id).val(obj.strphone);
+	var dtdtype = $.Deferred();
+	$.when(initUserType('editType' + id, dtdtype)).done(function() {
+		$('#editType' + id).val(obj.userType.intidentityid);
+	})
+	var dtd = $.Deferred();
+	$.when(initUserDepartMent('editDepartMent' + id, 1, dtd)).done(function() {
+		$("#editDepartMent" + id).change(function() {
+			initUserDepartMent('editMajor' + id, $('#editDepartMent' + id).val());
+		})
+		$("#editDepartMent" + id).val(obj.userDepartMent.intid);
+		var dtdin = $.Deferred();
+		$.when(initUserDepartMent('editMajor' + id, $('#editDepartMent' + id).val(), dtdin)).done(function() {
+			$("#editMajor" + id).val(obj.userMajor.intid);
+		});
+	})
 }
-function initUserType(id) {
+function initUserType(id, dtd) {
 	$.ajax({
 		url : 'Type/GetUserTypeAll',
 		dataType : 'json',
@@ -26,9 +40,15 @@ function initUserType(id) {
 			for ( var i in data) {
 				$('#' + id).append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
 			}
+			if (dtd != undefined) {
+				dtd.resolve();
+			}
 		},
 		async : true
 	})
+	if (dtd != undefined) {
+		return dtd.promise();
+	}
 }
 function initUserDepartMent(id, type, dtd) {
 	$.ajax({
@@ -61,7 +81,7 @@ $('#newDepartMent').change(function() {
 $(function() {
 	console.debug('aaa');
 	// initial tablegrid
-	cellwidth = ($(".box-content.table-responsive").width() - 55) / 9;
+	cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
 	$('#datatable_userinfo').datagrid({
 		striped : true,
 		remoteSort : false,
@@ -95,7 +115,16 @@ $(function() {
 			}
 		}, {
 			field : 'userDepartMent',
-			title : 'Group',
+			title : 'DepartMent',
+			align : 'center',
+			width : cellwidth,
+			sortable : true,
+			formatter : function(value) {
+				return value.strname;
+			}
+		}, {
+			field : 'userMajor',
+			title : 'Major',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -124,7 +153,7 @@ $(function() {
 			field : 'dateregtime',
 			title : 'CreateTime',
 			align : 'center',
-			width : cellwidth,
+			width : cellwidth + 5,
 			sortable : true,
 			formatter : function(value) {
 				return unix2human(value);
@@ -176,6 +205,7 @@ $(function() {
 						CloseButtonAddFunc : function() {
 							$('#operationpanel').slideToggle();
 							$('#addnewuser').slideToggle();
+							$('#datatable_userinfo').datagrid('reload');
 						},
 						clickButton : function(sender, modal, index) {
 							if (index == 0 || index == 1) {
@@ -221,37 +251,76 @@ $(function() {
 
 				for (var i = 0; i < rows.length; i++) {
 					var id = rows[i].intid;
-					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
+					$('#userEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].username + '</a></li>')
 					$('#editusercontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
 							htmltmp.replace('newUserName', 'editUserName' + id).replace('newPassword', 'editPassword' + id).replace('newRealName', 'editRealName' + id).replace('newType',
 									'editType' + id).replace('newNumber', 'editNumber' + id).replace('newEmail', 'editEmail' + id).replace('newPhone', 'editPhone' + id).replace('newDepartMent',
 									'editDepartMent' + id).replace('newMajor', 'editMajor' + id).replace(new RegExp('newform', "gm"), 'editform'));
-					$.ajax({
-						url : 'Type/GetParentDepartMent',
-						dataType : 'json',
-						type : 'post',
-						data : {
-							id : rows[i].userDepartMent.intid
-						},
-						async : true
-					}).success(function(data) {
-						
-					})
 					setVal(id, rows[i]);
 				}
-				for (var i = 0; i < rows.length; i++) {
-					var id = rows[i].intid;
-				}
-
-				initBookType('editBookType' + id);
-				initSupplierType('editSupplierType' + id);
-				setVal(id, rows[i]);
-				$('#operationpanel').slideUp();
 				$('#editusercontainer').slideDown();
+				$('#operationpanel').slideUp();
 
-				$('#bookEditTable a:first').tab('show')
+				$('#userEditTable a:first').tab('show')
 			});
+	$('button.submitEdit').click(function() {
+		var idarray = new Array();
+		$('[id^=editUserName]').each(function() {
+			var l = $(this).attr('id');
+			idarray.push(l.substring(12, l.length));
+		})
+		var postdata = {};
+		if (idarray.length != 0) {
+			var check = true;
+			$('.editform').each(function() {
+				if ($(this).val().trim() == "") {
+					$('#editerrormsg').html("please input " + $(this).prev().html() + "!");
+					check = false;
+					return false;
+				} else {
+					postdata[$(this).attr('id')] = $(this).val().trim();
+				}
+			});
+			if (!check) {
+				return;
+			}
+			postdata.userId = idarray;
+			$.ajax({
+				url : 'User/UpdateUserInfoAdmin',
+				type : 'post',
+				dataType : 'json',
+				data : postdata,
+				success : function(data) {
+					if (data) {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Edit Users Info successfully!',
+							CloseButtonAddFunc : function() {
+								$('#operationpanel').slideDown();
+								$('#editusercontainer').slideUp();
+								$('#datatable_userinfo').datagrid('reload');
+							},
+						});
+					} else {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Edit Users Info failed!',
+							CloseButtonAddFunc : function() {
+								$('#operationpanel').slideDown();
+								$('#editusercontainer').slideUp();
+								$('#datatable_userinfo').datagrid('reload');
+							},
+						});
+					}
+				}
+			})
+		}
+	});
+	$('button.cancelEdit').click(function() {
+		$('#operationpanel').slideDown();
+		$('#editusercontainer').slideUp();
+	});
 	// Add Drag-n-Drop
 	WinMove();
 });
