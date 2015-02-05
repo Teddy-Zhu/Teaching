@@ -8,8 +8,8 @@
 <title>Teaching ManageMent System</title>
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css" />
+<link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/self.css" />
-<link rel="stylesheet" href="resources/plugins/bootstrapselect/css/bootstrap-select.min.css" />
 </head>
 <style>
 span.passwordc {
@@ -134,11 +134,10 @@ span.passwordc {
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-
 	</div>
 	<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="resources/plugins/bootstrapselect/js/bootstrap-select.min.js"></script>
+	<script src="resources/plugins/nprogress/nprogress.js"></script>
 	<script type="text/javascript" src="resources/js/TeachDialog.js"></script>
 	<script type="text/javascript" src="resources/js/index.js"></script>
 </body>

@@ -493,7 +493,19 @@ $(function() {
 			LoadAjaxContent(ajax_url);
 		}
 	});
+	NProgress.configure({
+		parent : '#headernavbar',
+		ease : 'ease',
+		speed : 500
+	})
+	$(document).ajaxStart(function() {
+		NProgress.start();
+	});
+	$(document).ajaxStop(function() {
+		NProgress.done();
+	});
 	// for session out of date
+	headernavbar
 	$.ajaxSetup({
 		complete : function(xhr, textStatus) {
 			switch (xhr.status) {

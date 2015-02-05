@@ -7,10 +7,12 @@
 <title>Teaching ManageMent System</title>
 <meta name="description" content="description">
 <link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
+<link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
 <link href="resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/color.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/icon.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
+
 <link href="resources/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -40,11 +42,11 @@
 			<div class="devoops-modal-bottom"></div>
 		</div>
 	</div>
-	<header class="navbar">
+	<header id="headernavbar" class="navbar">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
-					<a href="/">JC ManageMent</a>
+					<a href="/AdminMenu">JC ManageMent</a>
 				</div>
 				<div id="top-panel" class="col-xs-12 col-sm-10">
 					<div class="row">
@@ -54,7 +56,6 @@
 							</div>
 						</div>
 						<div class="col-xs-4 col-sm-8 top-panel-right">
-							<!-- <a href="#" class="about">SwitchTheme</a> <a href="index_v1.html" class="style1"></a> -->
 							<ul class="nav navbar-nav pull-right panel-menu">
 								<li class="hidden-xs"><a class="ajax-link" href="ajax/calendar.html"> <i class="fa fa-calendar"></i> <span class="badge">7</span>
 								</a></li>
@@ -140,6 +141,7 @@
 	<script src="resources/plugins/jquery/jquery.min.js"></script>
 	<script src="resources/plugins/bootstrap/bootstrap.min.js"></script>
 	<script src="resources/plugins/easyui/jquery.easyui.min.js"></script>
+	<script src="resources/plugins/nprogress/nprogress.js"></script>
 	<script src="resources/js/TeachDialog.js"></script>
 	<script src="resources/js/devoops.js"></script>
 </body>

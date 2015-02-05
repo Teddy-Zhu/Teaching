@@ -1805,7 +1805,7 @@
   background: url('images/spinner_arrows.png') no-repeat -15px center;
 }
 .spinner {
-  border-color: #D4D4D4;
+  /*border-color: #D4D4D4;*/
 }
 .progressbar {
   border-width: 1px;
