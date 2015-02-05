@@ -44,7 +44,7 @@
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
-					<a href="/">ManageMent</a>
+					<a href="/">JC ManageMent</a>
 				</div>
 				<div id="top-panel" class="col-xs-12 col-sm-10">
 					<div class="row">
@@ -109,9 +109,13 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">Person Detail</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/xx"><i class="fa fa-clipboard"></i> Info Manage</a></li>
+							<li><a class="ajax-link" href="ajax/personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
 						</ul></li>
-
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">System Settings</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a class="ajax-link" href="ajax/xx"><i class="fa fa-clipboard"></i> Type Manage</a></li>
+						</ul></li>
 
 					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
 					</a></li>

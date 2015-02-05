@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.model.Book;
+import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.ConfigService;
 import com.jcos.teaching.core.service.PowerService;
@@ -86,12 +87,11 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
-	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model) {
+	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model, HttpServletResponse response) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null)
-			return "action/403";
-		if (html.equals("dashboard")) {
-
+		if (loginSession == null) {
+			response.setStatus(3389);
+			return "ajax/index";
 		}
 		switch (html) {
 		case "dashboard": {
@@ -111,6 +111,21 @@ public class IndexController {
 				}
 			}
 			break;
+		}
+		case "userinfo_manage": {
+			String[] powers = new String[] { "adduser", "edituser", "rmuser", "getalluser" };
+			for (String pw : powers) {
+				if (authUserTypePower(request, pw)) {
+					model.addAttribute(pw, true);
+				} else {
+					model.addAttribute(pw, false);
+				}
+			}
+			break;
+		}
+		case "personinfo_manage": {
+			User loginUser = loginSession.getLoginUser();
+			model.addAttribute("user", loginUser);
 		}
 		}
 		return "ajax/" + html;

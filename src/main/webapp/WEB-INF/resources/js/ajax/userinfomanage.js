@@ -201,7 +201,6 @@ $(function() {
 						content : 'Add a new User successfully and do you want to add more ?',
 						showCloseButtonName : 'No',
 						otherButtons : [ 'Yes', 'Yes & Keep Val' ],
-						bootstrapModalOption : {},
 						CloseButtonAddFunc : function() {
 							$('#operationpanel').slideToggle();
 							$('#addnewuser').slideToggle();
@@ -321,6 +320,70 @@ $(function() {
 		$('#operationpanel').slideDown();
 		$('#editusercontainer').slideUp();
 	});
+
+	// remove user
+	$('button.removeuser').click(function() {
+		var rows = $('#datatable_userinfo').datagrid('getSelections');
+		if (rows.length == 0) {
+			$.TeachDialog({
+				content : 'You should select one row at least !',
+				bootstrapModalOption : {},
+			});
+			return;
+		}
+		var userIdArray = new Array();
+		var namesArray = new Array();
+		for (var i = 0; i < rows.length; i++) {
+			userIdArray.push(parseInt(rows[i].intid));
+			namesArray.push(rows[i].username);
+		}
+		var dtd = $.Deferred();
+		var suredialog = function(dtd) {
+			$.TeachDialog({
+				title : 'Warnning Message!',
+				content : 'Are you sure remove this users :' + namesArray + ' ?',
+				showCloseButtonName : 'No',
+				otherButtons : [ 'Yes' ],
+				CloseButtonAddFunc : function() {
+					dtd.reject();
+				},
+				clickButton : function(sender, modal, index) {
+					if (index == 0) {
+						dtd.resolve();
+					}
+					modal.modal('hide');
+				}
+			});
+			return dtd;
+		};
+		$.when(suredialog(dtd)).done(function() {
+			$.ajax({
+				url : 'User/RemoveUser',
+				type : 'post',
+				dataType : 'json',
+				data : {
+					userId : userIdArray
+				},
+				success : function(response) {
+					if (response) {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Remove users successfully!',
+						})
+						$('#datatable_userinfo').datagrid('reload');
+					} else {
+						$.TeachDialog({
+							content : 'Remove users failed!',
+						})
+					}
+				},
+				async : true
+			})
+		}).fail(function() {
+
+		})
+	})
+	
 	// Add Drag-n-Drop
 	WinMove();
 });

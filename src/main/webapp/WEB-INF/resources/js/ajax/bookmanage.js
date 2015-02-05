@@ -237,7 +237,7 @@ $(function() {
 					$('#datatable_bookinfo').datagrid('reload');
 				} else {
 					$.TeachDialog({
-						content : 'Remove books failedly!',
+						content : 'Remove books failed!',
 					})
 				}
 			},

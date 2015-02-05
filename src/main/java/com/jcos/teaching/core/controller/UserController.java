@@ -87,6 +87,11 @@ public class UserController {
 			logger.debug(e.getMessage());
 			return false;
 		}
+		int reti = userService.selectUserByUserName(userName);
+		if (reti != 0) {
+			response.setStatus(3386);
+			return false;
+		}
 		if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
 			response.setStatus(3386);
 			return false;
@@ -305,6 +310,11 @@ public class UserController {
 				DepartId = Integer.valueOf(request.getParameter("editDepartMent" + i).trim());
 				MajorId = Integer.valueOf(request.getParameter("editMajor" + i).trim());
 
+				int reti = userService.selectUserByUserName(userName);
+				if (reti != 0) {
+					response.setStatus(3386);
+					return false;
+				}
 				if (passWord.equals("[%keep%]")) {
 					passWord = null;
 				}
@@ -334,4 +344,91 @@ public class UserController {
 
 		return userService.updateUserByIds(users);
 	}
+
+	@RequestMapping(value = "/RemoveUser", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean removeuser(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request, "rmuser")) {
+			response.setStatus(3388);
+			return false;
+		}
+		if (userId != null && userId.length != 0) {
+			return userService.deleteuserbyId(userId);
+		} else
+			return false;
+	}
+
+	@RequestMapping(value = "/UpdateUser", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updateUser(HttpServletRequest request, Model model, HttpServletResponse response) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		Integer userId = loginSession.getLoginUser().getIntid();
+		String userName = "", oldPassword = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
+		Integer DepartId = 0, MajorId = 0, userTypeId = 0;
+
+		try {
+			userName = request.getParameter("UserName").trim();
+			userTypeId = null;
+			oldPassword = request.getParameter("OldPassword").trim();
+			passWord = request.getParameter("Password").trim();
+			if (passWord.equals("")) {
+				passWord = null;
+			}
+			realName = request.getParameter("RealName").trim();
+			phone = request.getParameter("Phone").trim();
+			IdCard = request.getParameter("Number").trim();
+			email = request.getParameter("Email").trim();
+			DepartId = Integer.valueOf(request.getParameter("DepartMent").trim());
+			MajorId = Integer.valueOf(request.getParameter("Major").trim());
+		} catch (Exception e) {
+			response.setStatus(3386);
+			return false;
+		}
+		User recordauth = new User();
+		recordauth.setUsername(userName);
+		recordauth.setPassword(oldPassword);
+
+		User loginUser = userService.authLoginUser(recordauth);
+		if (loginUser == null) {
+			response.setStatus(3385);
+			return false;
+		}
+
+		if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		User record = new User();
+		record.setIntid(userId);
+		record.setUsername(userName);
+		record.setInttypeid(userTypeId);
+		record.setPassword(passWord);
+		record.setStrmail(email);
+		record.setStrstunum(IdCard);
+		record.setStrname(realName);
+		record.setStrphone(phone);
+		record.setIntuserdepartment(DepartId);
+		record.setIntusermajor(MajorId);
+
+		if (userService.updateUser(record)) {
+			LoginSession loginSessiontmp = new LoginSession();
+			recordauth = new User();
+			recordauth.setUsername(userName);
+			if (passWord == null) {
+				recordauth.setPassword(oldPassword);
+			} else {
+				recordauth.setPassword(passWord);
+			}
+			User loginUsertmp = userService.authLoginUser(recordauth);
+			loginSessiontmp.setLoginUser(loginUsertmp);
+			// set global session
+			request.getSession().setAttribute("loginSession", loginSessiontmp);
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }

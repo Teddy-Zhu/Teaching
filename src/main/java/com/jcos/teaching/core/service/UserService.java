@@ -19,4 +19,8 @@ public interface UserService {
 	Integer getuUserTotal();
 
 	boolean updateUserByIds(List<User> record);
+
+	boolean deleteuserbyId(Integer[] userIds);
+
+	boolean updateUser(User record);
 }

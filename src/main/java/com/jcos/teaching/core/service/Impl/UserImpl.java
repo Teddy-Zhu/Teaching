@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.UserMapper;
-import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.service.UserService;
 
@@ -73,4 +72,22 @@ public class UserImpl implements UserService {
 		return true;
 	}
 
+	@Override
+	public boolean deleteuserbyId(Integer[] userIds) {
+		for (Integer id : userIds) {
+			if (userDao.deleteByPrimaryKey(id) != 1)
+				return false;
+
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updateUser(User record) {
+		if (userDao.updateByPrimaryKeySelective(record) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

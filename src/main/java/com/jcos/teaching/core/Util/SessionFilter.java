@@ -26,8 +26,11 @@ public class SessionFilter implements Filter {
 
 		String loginUrl = httpRequest.getContextPath() + "/";
 		String url = httpRequest.getRequestURI();
+		String[] allowlistc = new String[] { "/", "index" };
+		String[] allowliste = new String[] { "logout", "/resources/", "/Type/", "/action/", "User/AuthLogout", "/User/AuthUserName", "/User/AuthLogin", "/User/AuthRegister", "AdminMenu" };
+
 		if (session.getAttribute("loginSession") == null) {
-			if (url.equals("/") || url.equals("/index") || url.contains("logout") || url.contains("/resources/") || url.contains("/Type/")|| url.contains("/User/") || url.contains("/action/") || url.contains("AdminMenu")) {
+			if (isEqualsStr(url, allowliste) || isContainStr(url, allowlistc)) {
 				chain.doFilter(request, response);
 			} else {
 				if (httpRequest.getHeader("x-requested-with") != null && httpRequest.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
@@ -48,6 +51,24 @@ public class SessionFilter implements Filter {
 		} else {
 			chain.doFilter(request, response);
 		}
+	}
+
+	public boolean isEqualsStr(String origin, String[] allowlist) {
+		for (String list : allowlist) {
+			if (origin.equals(list)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isContainStr(String origin, String[] allowlist) {
+		for (String list : allowlist) {
+			if (origin.contains(list)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

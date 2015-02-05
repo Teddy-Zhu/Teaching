@@ -533,6 +533,14 @@ $(function() {
 				});
 				break;
 			}
+			case 3385: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'Information validation error!',
+					showCloseButton : true,
+				});
+				break;
+			}
 
 			}
 		}
