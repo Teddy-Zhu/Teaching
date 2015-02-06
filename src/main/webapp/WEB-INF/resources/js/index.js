@@ -6,38 +6,37 @@ function unix2human(unixtime) {
 function p(s) {
 	return s < 10 ? '0' + s : s;
 }
+
+var error = '<div class="alert alert-danger" role="alert" style="display:none;line-height: 0px;width: 80%;height: 1px;">{errormsg}</div>'
 var hander = {
 	action : {
 		FormSetTimer : function(domId) {
-			$('#' + domId).parent().removeClass('has-success');
-			$('#' + domId).parent().removeClass('has-error');
-			$('#' + domId).parent().addClass('has-error');
-			$('#' + domId).parent().addClass('zx-anima-shake');
-			if (domId == "PassWord" || domId == "RePassWord" || domId == "loginPassWord") {
-				$('#' + domId).next().tooltip({
-					title : 'Incorrect!',
-					placement : "right",
-					html : true
-				});
-				$('#' + domId).next().tooltip('show');
-			} else {
-				$('#' + domId).tooltip({
-					title : 'Incorrect!',
-					placement : "right",
-				});
-				$('#' + domId).tooltip('show');
-			}
+			var Opdom = $('#' + domId).parent();
+			if (domId == "UserType")
+				Opdom = $('#' + domId);
+			Opdom.removeClass('has-success');
+			Opdom.removeClass('has-error');
+			Opdom.addClass('has-error');
+			Opdom.addClass('zx-anima-shake');
+			Opdom.parent().next().html(error.replace(/{errormsg}/g, "Parameter Error!"));
 			setTimeout(returntimeer(domId), 1000);
 		},
 		SetSucccess : function(domId) {
-			$('#' + domId).parent().removeClass('has-success');
-			$('#' + domId).parent().removeClass('has-error');
-			$('#' + domId).parent().addClass('has-success');
+			var Opdom = $('#' + domId).parent();
+			if (domId == "UserType")
+				Opdom = $('#' + domId);
+			Opdom.removeClass('has-success');
+			Opdom.removeClass('has-error');
+			Opdom.addClass('has-success');
 		}
 	}
 }
 function delShakeClass(domId) {
-	$('#' + domId).parent().removeClass('zx-anima-shake');
+	if (domId == "UserType") {
+		$('#' + domId).removeClass('zx-anima-shake');
+	} else {
+		$('#' + domId).parent().removeClass('zx-anima-shake');
+	}
 }
 function returntimeer(domId) {
 	return function() {
@@ -46,6 +45,13 @@ function returntimeer(domId) {
 }
 
 $(function() {
+
+	$(document).ajaxStart(function() {
+		NProgress.start();
+	});
+	$(document).ajaxStop(function() {
+		NProgress.done();
+	});
 	$('a.UserAccount')
 			.click(
 					function() {
@@ -96,7 +102,6 @@ $(function() {
 	$('#loginButton').click(function() {
 		$(this).button('loading');
 		$('.preloader').fadeToggle("slow");
-
 		// var userTypeId = $("#UserType label.active input").val();
 
 		var userName = $('#loginUserName').val();
@@ -250,22 +255,16 @@ $(function() {
 		}
 	});
 	$('#registerButton').click(function() {
+		$('.alert.alert-danger').slideDown();
+		$('.alert.alert-danger').remove();
 		$('.preloader').fadeToggle("slow");
 		$(this).button('loading');
 		var userTypeId = $("#UserType label.active input").val();
-		if (userTypeId == undefined) {
-			$("#UserType").addClass('has-error');
-			$("#UserType").addClass('zx-anima-shake');
-			setTimeout(function() {
-				$("#UserType").removeClass('zx-anima-shake');
-			}, 1000);
-			$("#UserType").tooltip({
-				title : 'Please select a type at least!',
-				placement : "right"
-			});
-			$(this).button('reset');
-			$('.preloader').fadeToggle("slow");
-			return;
+		if (userTypeId == undefined || userTypeId == "") {
+			hander.action.FormSetTimer('UserType');
+			mark = false;
+		} else {
+			hander.action.SetSucccess('UserType');
 		}
 
 		var userName = $('#UserName').val().trim();
@@ -299,7 +298,7 @@ $(function() {
 		}
 
 		var email = $('#Email').val().trim();
-		if (email == "" ) {
+		if (email == "") {
 			hander.action.FormSetTimer('Email');
 			mark = false;
 		} else {
@@ -307,7 +306,7 @@ $(function() {
 		}
 
 		var realName = $('#RealName').val().trim();
-		if (realName == "" ) {
+		if (realName == "") {
 			hander.action.FormSetTimer('RealName');
 			mark = false;
 		} else {
@@ -321,6 +320,7 @@ $(function() {
 			hander.action.SetSucccess('StudentId');
 		}
 		if (!mark) {
+			$('.alert.alert-danger').slideDown();
 			$(this).button('reset');
 			$('.preloader').fadeToggle("slow");
 			return;
