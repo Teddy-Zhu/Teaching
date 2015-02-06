@@ -251,6 +251,12 @@ public class UserController {
 			return false;
 		}
 
+		int i = userService.selectUserByUserName(userName);
+		if (i != 0) {
+			response.setStatus(3386);
+			return false;
+		}
+
 		if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
 			response.setStatus(3386);
 			return false;
@@ -280,7 +286,7 @@ public class UserController {
 		record.setStrphone(phone);
 		record.setIntuserdepartment(DepartId);
 		record.setIntusermajor(MajorId);
-		int i = userService.registerUser(record);
+		i = userService.registerUser(record);
 		if (i == 1) {
 			return true;
 		} else {
@@ -310,7 +316,7 @@ public class UserController {
 				DepartId = Integer.valueOf(request.getParameter("editDepartMent" + i).trim());
 				MajorId = Integer.valueOf(request.getParameter("editMajor" + i).trim());
 
-				int reti = userService.selectUserByUserNameAndId(userName, ((LoginSession) request.getSession().getAttribute("loginSession")).getLoginUser().getIntid());
+				int reti = userService.selectUserByUserNameAndId(userName, i);
 				if (reti != 0) {
 					response.setStatus(3386);
 					return false;
