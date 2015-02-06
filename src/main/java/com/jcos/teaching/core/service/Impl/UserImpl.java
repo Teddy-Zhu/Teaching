@@ -30,7 +30,16 @@ public class UserImpl implements UserService {
 		if (userName != null && !userName.equals("")) {
 			return userDao.selectUserByUserName(userName);
 		} else {
-			return null;
+			return 1;
+		}
+	}
+	
+	@Override
+	public Integer selectUserByUserNameAndId(String userName,int userId) {
+		if (userName != null && !userName.equals("")) {
+			return userDao.selectUserByUserNameAndId(userName, userId);
+		} else {
+			return 1;
 		}
 	}
 

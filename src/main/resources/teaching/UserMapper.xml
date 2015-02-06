@@ -156,7 +156,8 @@
 		intTypeId =
 		#{inttypeid,jdbcType=INTEGER},
 		intUserMajor = #{intusermajor,jdbcType=INTEGER},
-		intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
+		intUserDepartment =
+		#{intuserdepartment,jdbcType=INTEGER},
 		strStuNum = #{strstunum,jdbcType=VARCHAR},
 		strPhone =
 		#{strphone,jdbcType=VARCHAR},
@@ -208,6 +209,9 @@
 	<select id="selectUserByUserName" resultType="java.lang.Integer" parameterType="java.lang.String">
 		select count(intId) from user where username = #{username,jdbcType=VARCHAR}
 	</select>
+	<select id="selectUserByUserNameAndId" resultType="java.lang.Integer">
+		select count(intId) from user where username = #{username,jdbcType=VARCHAR} and intId != #{userId,jdbcType=INTEGER}
+	</select>
 	<insert id="InertUser" parameterType="User">
 		insert into user ( username, password,
 		strName, intTypeId,intUserMajor,intUserDepartment,
@@ -216,7 +220,8 @@
 		values (
 		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intusermajor,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
+		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER},
+		#{intusermajor,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
 		#{strstunum,jdbcType=VARCHAR},
 		#{strphone,jdbcType=VARCHAR},
 		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})

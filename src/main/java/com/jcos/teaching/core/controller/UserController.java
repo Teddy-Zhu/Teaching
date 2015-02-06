@@ -310,12 +310,12 @@ public class UserController {
 				DepartId = Integer.valueOf(request.getParameter("editDepartMent" + i).trim());
 				MajorId = Integer.valueOf(request.getParameter("editMajor" + i).trim());
 
-				int reti = userService.selectUserByUserName(userName);
+				int reti = userService.selectUserByUserNameAndId(userName, ((LoginSession) request.getSession().getAttribute("loginSession")).getLoginUser().getIntid());
 				if (reti != 0) {
 					response.setStatus(3386);
 					return false;
 				}
-				if (passWord.equals("[%keep%]")) {
+				if (passWord.equals("[%keep%]") || passWord.equals("")) {
 					passWord = null;
 				}
 				if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {

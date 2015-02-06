@@ -23,4 +23,6 @@ public interface UserService {
 	boolean deleteuserbyId(Integer[] userIds);
 
 	boolean updateUser(User record);
+
+	Integer selectUserByUserNameAndId(String userName, int userId);
 }
