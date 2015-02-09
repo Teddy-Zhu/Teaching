@@ -496,7 +496,7 @@ $(function() {
 	NProgress.configure({
 		parent : '#headernavbar',
 		ease : 'ease',
-		speed : 500
+		speed : 700
 	})
 	$(document).ajaxStart(function() {
 		NProgress.start();

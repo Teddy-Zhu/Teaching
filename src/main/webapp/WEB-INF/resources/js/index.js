@@ -17,7 +17,7 @@ var hander = {
 			Opdom.removeClass('has-success');
 			Opdom.removeClass('has-error');
 			Opdom.addClass('has-error');
-			Opdom.addClass('zx-anima-shake');
+			Opdom.addClass('am-animation-shake');
 			Opdom.parent().next().html(error.replace(/{errormsg}/g, "Parameter Error!"));
 			setTimeout(returntimeer(domId), 1000);
 		},
@@ -33,9 +33,9 @@ var hander = {
 }
 function delShakeClass(domId) {
 	if (domId == "UserType") {
-		$('#' + domId).removeClass('zx-anima-shake');
+		$('#' + domId).removeClass('am-animation-shake');
 	} else {
-		$('#' + domId).parent().removeClass('zx-anima-shake');
+		$('#' + domId).parent().removeClass('am-animation-shake');
 	}
 }
 function returntimeer(domId) {
@@ -45,7 +45,10 @@ function returntimeer(domId) {
 }
 
 $(function() {
-
+	NProgress.configure({
+		ease : 'ease',
+		speed : 700
+	})
 	$(document).ajaxStart(function() {
 		NProgress.start();
 	});
@@ -232,11 +235,16 @@ $(function() {
 				},
 				async : true
 			});
+			
 			$('#loginModal').slideToggle();
 			$('#registerModal').slideToggle();
+			$('#registerModal').removeClass("am-animation-slide-bottom");
+			$('#registerModal').addClass("am-animation-slide-bottom");
 		} else {
 			$('#registerModal').slideToggle();
 			$('#loginModal').slideToggle();
+			$('#loginModal').removeClass("am-animation-slide-bottom");
+			$('#loginModal').addClass("am-animation-slide-bottom");
 		}
 	});
 

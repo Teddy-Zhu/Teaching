@@ -23,8 +23,8 @@
 			<version>4.12-beta-3</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- jackson for json -->
+		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -71,7 +71,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.aspectj</groupId>

@@ -8,8 +8,9 @@
 <title>Teaching ManageMent System</title>
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css" />
-<link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
 <link rel="stylesheet" href="resources/css/self.css" />
+<link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
+
 </head>
 <style>
 span.passwordc {
@@ -62,7 +63,7 @@ span.passwordc {
 			</div>
 		</div>
 
-		<div id="loginModal" class="col-md-12 zx-anima-slide-top" style="display: block">
+		<div id="loginModal" class="col-md-12 am-animation-slide-top" style="display: block">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="col-md-12">
@@ -90,7 +91,7 @@ span.passwordc {
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-		<div id="registerModal" class="col-md-12 zx-anima-slide-top" style="display: none;">
+		<div id="registerModal" class="col-md-12 am-animation-slide-top" style="display: none;">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="col-md-12">
