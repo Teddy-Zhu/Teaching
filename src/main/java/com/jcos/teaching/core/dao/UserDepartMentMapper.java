@@ -22,6 +22,9 @@ public interface UserDepartMentMapper {
 	List<UserDepartMent> getUserDepartMent(int intparentid);
 
 	Integer getParentUserDepartMent(int intid);
-	
+
 	Integer selectByIdAndParId(@Param(value = "intparentid") Integer intparentid, @Param(value = "intid") Integer intid);
+
+	List<UserDepartMent> getAllDepartMents();
+
 }

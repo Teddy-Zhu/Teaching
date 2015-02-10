@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-10 15:30:36
+Date: 2015-02-10 17:57:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -292,7 +292,7 @@ CREATE TABLE `power` (
   `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
@@ -333,6 +333,8 @@ INSERT INTO `power` VALUES ('33', '1', 'rmsupplier', '1');
 INSERT INTO `power` VALUES ('34', '1', 'adduserdepart', '1');
 INSERT INTO `power` VALUES ('35', '1', 'edituserdepart', '1');
 INSERT INTO `power` VALUES ('36', '1', 'rmuserdepart', '1');
+INSERT INTO `power` VALUES ('37', '1', 'getalluserdepart', '1');
+INSERT INTO `power` VALUES ('38', '1', 'getallbook', '1');
 
 -- ----------------------------
 -- Table structure for supplier

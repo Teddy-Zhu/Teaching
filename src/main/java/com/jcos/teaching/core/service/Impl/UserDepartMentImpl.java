@@ -37,4 +37,10 @@ public class UserDepartMentImpl implements UserDepartMentService {
 			return true;
 		}
 	}
+	@Override
+	public List<UserDepartMent> getAllDepartMent() {
+		return userDepartMentDao.getAllDepartMents();
+	}
+
+	
 }

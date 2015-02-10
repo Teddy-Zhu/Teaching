@@ -12,4 +12,6 @@ public interface UserDepartMentService {
 
 	boolean authDepartAndMajor(int DepartId, int Major);
 
+	List<UserDepartMent> getAllDepartMent();
+
 }

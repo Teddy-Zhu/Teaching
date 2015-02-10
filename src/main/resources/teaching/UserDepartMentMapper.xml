@@ -92,6 +92,13 @@
 
 	<select id="selectByIdAndParId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 		select count(intId) from userdepartment
-		where intParentId =#{intparentid,jdbcType=INTEGER} and intId = #{intid,jdbcType=INTEGER}
+		where intParentId =#{intparentid,jdbcType=INTEGER} and intId =
+		#{intid,jdbcType=INTEGER}
+	</select>
+
+	<select id="getAllDepartMents" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from userdepartment
 	</select>
 </mapper>

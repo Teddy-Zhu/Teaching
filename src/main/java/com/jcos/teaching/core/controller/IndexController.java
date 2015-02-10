@@ -102,7 +102,7 @@ public class IndexController {
 			break;
 		}
 		case "book_manage": {
-			String[] powers = new String[] { "addbook", "editbook", "rmbook" };
+			String[] powers = new String[] { "addbook", "editbook", "rmbook", "getallbook" };
 			for (String pw : powers) {
 				if (authUserTypePower(request, pw)) {
 					model.addAttribute(pw, true);
@@ -140,7 +140,7 @@ public class IndexController {
 			break;
 		}
 		case "department_manage": {
-			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart" };
+			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart", "getalluserdepart" };
 			for (String pw : powers) {
 				if (authUserTypePower(request, pw)) {
 					model.addAttribute(pw, true);
