@@ -8,13 +8,13 @@
 		<result column="strAddress" property="straddress" jdbcType="VARCHAR" />
 		<result column="strCompanyPhone" property="strcompanyphone" jdbcType="VARCHAR" />
 		<result column="strHandlePersonName" property="strhandlepersonname" jdbcType="VARCHAR" />
-		<result column="sttHandlePhone" property="stthandlephone" jdbcType="VARCHAR" />
+		<result column="strHandlePhone" property="strhandlephone" jdbcType="VARCHAR" />
 		<result column="strContactPersonName" property="strcontactpersonname" jdbcType="VARCHAR" />
 		<result column="strContactPersonPhone" property="strcontactpersonphone" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		intSupplierId, intCoding, strName, strAddress, strCompanyPhone, strHandlePersonName,
-		sttHandlePhone, strContactPersonName, strContactPersonPhone
+		strHandlePhone, strContactPersonName, strContactPersonPhone
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
@@ -29,13 +29,13 @@
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.Supplier">
 		insert into supplier (intSupplierId, intCoding, strName,
 		strAddress, strCompanyPhone, strHandlePersonName,
-		sttHandlePhone, strContactPersonName,
+		strHandlePhone, strContactPersonName,
 		strContactPersonPhone
 		)
 		values (#{intsupplierid,jdbcType=INTEGER}, #{intcoding,jdbcType=VARCHAR}, #{strname,jdbcType=VARCHAR},
 		#{straddress,jdbcType=VARCHAR}, #{strcompanyphone,jdbcType=VARCHAR},
 		#{strhandlepersonname,jdbcType=VARCHAR},
-		#{stthandlephone,jdbcType=VARCHAR}, #{strcontactpersonname,jdbcType=VARCHAR}, #{strcontactpersonphone,jdbcType=VARCHAR}
+		#{strhandlephone,jdbcType=VARCHAR}, #{strcontactpersonname,jdbcType=VARCHAR}, #{strcontactpersonphone,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Supplier">
@@ -59,8 +59,8 @@
 			<if test="strhandlepersonname != null">
 				strHandlePersonName,
 			</if>
-			<if test="stthandlephone != null">
-				sttHandlePhone,
+			<if test="strhandlephone != null">
+				strHandlePhone,
 			</if>
 			<if test="strcontactpersonname != null">
 				strContactPersonName,
@@ -88,8 +88,8 @@
 			<if test="strhandlepersonname != null">
 				#{strhandlepersonname,jdbcType=VARCHAR},
 			</if>
-			<if test="stthandlephone != null">
-				#{stthandlephone,jdbcType=VARCHAR},
+			<if test="strhandlephone != null">
+				#{strhandlephone,jdbcType=VARCHAR},
 			</if>
 			<if test="strcontactpersonname != null">
 				#{strcontactpersonname,jdbcType=VARCHAR},
@@ -117,8 +117,8 @@
 			<if test="strhandlepersonname != null">
 				strHandlePersonName = #{strhandlepersonname,jdbcType=VARCHAR},
 			</if>
-			<if test="stthandlephone != null">
-				sttHandlePhone = #{stthandlephone,jdbcType=VARCHAR},
+			<if test="strhandlephone != null">
+				strHandlePhone = #{strhandlephone,jdbcType=VARCHAR},
 			</if>
 			<if test="strcontactpersonname != null">
 				strContactPersonName = #{strcontactpersonname,jdbcType=VARCHAR},
@@ -136,7 +136,7 @@
 		strAddress = #{straddress,jdbcType=VARCHAR},
 		strCompanyPhone = #{strcompanyphone,jdbcType=VARCHAR},
 		strHandlePersonName = #{strhandlepersonname,jdbcType=VARCHAR},
-		sttHandlePhone = #{stthandlephone,jdbcType=VARCHAR},
+		strHandlePhone = #{strhandlephone,jdbcType=VARCHAR},
 		strContactPersonName =
 		#{strcontactpersonname,jdbcType=VARCHAR},
 		strContactPersonPhone = #{strcontactpersonphone,jdbcType=VARCHAR}
@@ -144,5 +144,11 @@
 	</update>
 	<select id="querySupplierType" resultMap="BaseResultMap">
 		select intSupplierId,strName from supplier
+	</select>
+	
+	<select id="queryAllSupplier" resultMap="BaseResultMap">
+	  	select
+		<include refid="Base_Column_List" />
+		from supplier
 	</select>
 </mapper>

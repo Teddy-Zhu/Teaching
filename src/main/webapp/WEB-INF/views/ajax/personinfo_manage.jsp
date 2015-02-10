@@ -6,6 +6,10 @@
 	margin-bottom: 15px;
 }
 
+.panel-title {
+	cursor: pointer
+}
+
 .inlineblock div {
 	display: inline-block;
 	height: 40px;

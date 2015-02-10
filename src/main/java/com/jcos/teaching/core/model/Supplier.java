@@ -13,7 +13,7 @@ public class Supplier {
 
 	private String strhandlepersonname;
 
-	private String stthandlephone;
+	private String strhandlephone;
 
 	private String strcontactpersonname;
 
@@ -26,7 +26,7 @@ public class Supplier {
 		this.straddress = "";
 		this.strcompanyphone = "";
 		this.strhandlepersonname = "";
-		this.stthandlephone = "";
+		this.strhandlephone = "";
 		this.strcontactpersonname = "";
 		this.strcontactpersonphone = "";
 	}
@@ -79,12 +79,12 @@ public class Supplier {
 		this.strhandlepersonname = strhandlepersonname == null ? null : strhandlepersonname.trim();
 	}
 
-	public String getStthandlephone() {
-		return stthandlephone;
+	public String getStrhandlephone() {
+		return strhandlephone;
 	}
 
-	public void setStthandlephone(String stthandlephone) {
-		this.stthandlephone = stthandlephone == null ? null : stthandlephone.trim();
+	public void setStrhandlephone(String strhandlephone) {
+		this.strhandlephone = strhandlephone == null ? null : strhandlephone.trim();
 	}
 
 	public String getStrcontactpersonname() {

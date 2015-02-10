@@ -9,4 +9,12 @@ public interface SupplierService {
 	List<Supplier> getAllSupplier();
 
 	boolean authSupplierById(Integer id);
+
+	List<Supplier> getAllSuppliersForadmin();
+
+	boolean addSupplier(Supplier record);
+
+	boolean updateSupplierByIds(List<Supplier> record);
+
+	boolean deleteSupplierByIds(Integer[] supplierId);
 }

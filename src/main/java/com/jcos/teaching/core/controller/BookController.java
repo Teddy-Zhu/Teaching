@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.model.Book;
+import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
@@ -38,6 +39,9 @@ public class BookController {
 
 	@Inject
 	private PowerService powerService;
+
+	@Inject
+	private BookPlanService bookPlanService;
 
 	/**
 	 * 
@@ -135,15 +139,21 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/RemoveBook", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean removebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
+	public Object removebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
 		if (!authUserTypePower(request, "rmbook")) {
 			response.setStatus(3388);
 			return false;
 		}
 		if (bookId != null && bookId.length != 0) {
+			Integer ret = bookPlanService.authExistBookInUse(bookId);
+			if (ret != 0) {
+				return ret;
+			}
 			return bookService.deletebookbyId(bookId);
-		} else
+		} else {
+			response.setStatus(3386);
 			return false;
+		}
 	}
 
 	@RequestMapping(value = "/EditBook", method = RequestMethod.POST)

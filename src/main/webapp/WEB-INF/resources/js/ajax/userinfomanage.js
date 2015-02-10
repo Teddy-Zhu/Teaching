@@ -81,7 +81,7 @@ $('#newDepartMent').change(function() {
 $(function() {
 	console.debug('aaa');
 	// initial tablegrid
-	cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
+	var cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
 	$('#datatable_userinfo').datagrid({
 		striped : true,
 		remoteSort : false,
@@ -247,7 +247,7 @@ $(function() {
 				}
 				$('#userEditTable').html("");
 				$('#editusercontainer .tab-content').html("");
-
+				$('#editerrormsg').html("");
 				for (var i = 0; i < rows.length; i++) {
 					var id = rows[i].intid;
 					$('#userEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].username + '</a></li>')
@@ -365,16 +365,29 @@ $(function() {
 					userId : userIdArray
 				},
 				success : function(response) {
-					if (response) {
+					if (response === true) {
 						$.TeachDialog({
 							title : 'Operation Message!',
 							content : 'Remove users successfully!',
 						})
 						$('#datatable_userinfo').datagrid('reload');
 					} else {
-						$.TeachDialog({
-							content : 'Remove users failed!',
-						})
+						if (!isNaN(response)) {
+							var username = "";
+							for (var i = 0; i < rows.length; i++) {
+								if (parseInt(rows[i].intid) == parseInt(response)) {
+									username = rows[i].username;
+									break;
+								}
+							}
+							$.TeachDialog({
+								content : 'Remove users failed! User:' + username + ' in use.',
+							})
+						} else {
+							$.TeachDialog({
+								content : 'Remove users failed!',
+							})
+						}
 					}
 				},
 				async : true
@@ -383,7 +396,7 @@ $(function() {
 
 		})
 	})
-	
+
 	// Add Drag-n-Drop
 	WinMove();
 });

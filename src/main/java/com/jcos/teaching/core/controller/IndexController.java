@@ -126,6 +126,29 @@ public class IndexController {
 		case "personinfo_manage": {
 			User loginUser = loginSession.getLoginUser();
 			model.addAttribute("user", loginUser);
+			break;
+		}
+		case "supplier_manage": {
+			String[] powers = new String[] { "addsupplier", "editsupplier", "rmsupplier", "getallsupplier" };
+			for (String pw : powers) {
+				if (authUserTypePower(request, pw)) {
+					model.addAttribute(pw, true);
+				} else {
+					model.addAttribute(pw, false);
+				}
+			}
+			break;
+		}
+		case "department_manage": {
+			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart" };
+			for (String pw : powers) {
+				if (authUserTypePower(request, pw)) {
+					model.addAttribute(pw, true);
+				} else {
+					model.addAttribute(pw, false);
+				}
+			}
+			break;
 		}
 		}
 		return "ajax/" + html;

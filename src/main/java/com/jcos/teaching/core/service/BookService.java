@@ -17,4 +17,6 @@ public interface BookService {
 	//public boolean updatebookById(Book record);
 
 	boolean updatebookByIds(List<Book> record);
+
+	Integer authExistSupplierInUse(Integer[] supplierId);
 }

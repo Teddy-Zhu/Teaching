@@ -9,6 +9,10 @@
 	border: solid 1px #D4D4D4;
 }
 
+.panel-title {
+	cursor: pointer
+}
+
 .datagrid * {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;

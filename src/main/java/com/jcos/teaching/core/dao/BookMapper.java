@@ -22,4 +22,6 @@ public interface BookMapper {
 	List<Book> queryBooks(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
 	int queryBookTotal();
+
+	Integer authSupplierById(Integer intsupplierid);
 }

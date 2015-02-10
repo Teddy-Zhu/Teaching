@@ -21,6 +21,7 @@ import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.Util.Common.StringUtil;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
+import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
@@ -45,6 +46,10 @@ public class UserController {
 
 	@Inject
 	private UserDepartMentService userDepartMentService;
+
+	@Inject
+	private BookPlanService bookPlanService;
+
 
 	private StringUtil tools = new StringUtil();
 
@@ -353,12 +358,16 @@ public class UserController {
 
 	@RequestMapping(value = "/RemoveUser", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean removeuser(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
+	public Object removeuser(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
 		if (!authUserTypePower(request, "rmuser")) {
 			response.setStatus(3388);
 			return false;
 		}
 		if (userId != null && userId.length != 0) {
+			Integer ret = bookPlanService.authExistBookInUse(userId);
+			if (ret != 0) {
+				return ret;
+			}
 			return userService.deleteuserbyId(userId);
 		} else
 			return false;

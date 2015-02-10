@@ -505,7 +505,6 @@ $(function() {
 		NProgress.done();
 	});
 	// for session out of date
-	headernavbar
 	$.ajaxSetup({
 		complete : function(xhr, textStatus) {
 			switch (xhr.status) {

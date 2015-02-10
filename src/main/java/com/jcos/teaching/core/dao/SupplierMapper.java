@@ -18,4 +18,6 @@ public interface SupplierMapper {
 	int updateByPrimaryKey(Supplier record);
 
 	List<Supplier> querySupplierType();
+	
+	List<Supplier> queryAllSupplier();
 }

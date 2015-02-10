@@ -5,6 +5,10 @@
 	border-width: 0px;
 }
 
+.panel-title {
+	cursor: pointer
+}
+
 .datagrid, .combo-p {
 	border: solid 1px #D4D4D4;
 }
@@ -29,11 +33,11 @@
 }
 
 .inlineblock div select {
-	width: 65%;
+	width: 48%;
 }
 
 .inlineblock div input {
-	width: 65%;
+	width: 48%;
 }
 </style>
 <div class="row">
@@ -85,17 +89,17 @@
 									<div class="col-xs-10  col-xs-offset-3">
 										<c:if test="${addsupplier eq true}">
 											<button class="btn btn-default btn-xs addsupplier">
-												<i class="fa fa-file-o"></i> Add A New supplier
+												<i class="fa fa-file-o"></i> Add A New Supplier
 											</button>
 										</c:if>
 										<c:if test="${editsupplier eq true}">
 											<button class="btn btn-default btn-xs editsupplier">
-												<i class="fa fa-file-text"></i> Edit A supplier
+												<i class="fa fa-file-text"></i> Edit A Supplier
 											</button>
 										</c:if>
 										<c:if test="${rmsupplier eq true}">
 											<button class="btn btn-default btn-xs removesupplier">
-												<i class="fa fa-trash-o"></i> Remove A supplier
+												<i class="fa fa-trash-o"></i> Remove A Supplier
 											</button>
 										</c:if>
 									</div>
@@ -105,35 +109,35 @@
 										<div id="newformRange">
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-4">UserName</label><input class="newform form-control col-xs-8" id="newUserName" type="text" placeholder="Input UserName" />
+													<label class="col-xs-6">Code</label><input class="newform form-control col-xs-6" id="newCode" type="text" placeholder="Input Code" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">Password</label><input class="newform form-control col-xs-8" id="newPassword" type="text" placeholder="Input New Passsword" />
+													<label class="col-xs-6">Name</label><input class="newform form-control col-xs-6" id="newName" type="text" placeholder="Input Name" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">RealName</label><input class="newform form-control col-xs-8" id="newRealName" type="text" placeholder="Input Real Name" />
+													<label class="col-xs-6">Address</label><input class="newform form-control col-xs-6" id="newAddress" type="text" placeholder="Input Address" />
 												</div>
 											</div>
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4 controls">
-													<label class="col-xs-4">Type</label><select class="newform form-control" id="newType"></select>
+													<label class="col-xs-6">Company Phone</label><input class="newform form-control col-xs-6" id="newCompanyPhone" placeholder="Input Company Phone" />
 												</div>
 												<div class="col-xs-4 controls">
-													<label class="col-xs-4">Number</label><input class="newform form-control col-xs-8" id="newNumber" type="text" placeholder="Input Student ID" />
+													<label class="col-xs-6">Handle Person</label><input class="newform form-control col-xs-6" id="newHandlePerson" type="text" placeholder="Input Handle Person" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">Email</label><input class="newform form-control col-xs-8" id="newEmail" type="text" placeholder="Input Email" />
+													<label class="col-xs-6">Handle Phone</label><input class="newform form-control col-xs-6" id="newHandlePhone" type="text" placeholder="Input Handle Phone" />
 												</div>
 											</div>
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-4">Phone</label><input class="newform form-control col-xs-8" id="newPhone" type="text" placeholder="Input Phone" />
+													<label class="col-xs-6">Contact Person</label><input class="newform form-control col-xs-6" id="newContactPerson" type="text" placeholder="Input Contact Person" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">DepartMent</label><select class="newform form-control" id="newDepartMent"></select>
+													<label class="col-xs-6">Contact Phone</label><input class="newform form-control col-xs-6" id="newContactPhone" placeholder="Input Contact Phone" />
 												</div>
-												<div class="col-xs-4 controls">
-													<label class="col-xs-4">Major</label><select class="newform form-control" id="newMajor"></select>
+												<div class="col-xs-4">
+													<strong><label style="color: red;" id="adderrormsg"></label></strong>
 												</div>
 											</div>
 										</div>
@@ -141,9 +145,6 @@
 											<div class="col-xs-6 controls col-xs-offset-4">
 												<button class="btn btn-default btn-xs submitAdd" style="width: 100px">Add</button>
 												<button class="btn btn-default btn-xs cancelAdd" style="width: 100px">Cancel</button>
-											</div>
-											<div class="col-xs-6">
-												<strong><label style="color: red;" id="adderrormsg"></label></strong>
 											</div>
 										</div>
 									</div>
@@ -190,7 +191,7 @@
 <script type="text/javascript">
 	<c:if test="${getallsupplier eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/userinfomanage.js");
+		$.getScript("resources/js/ajax/supplier.js");
 	})
 	</c:if>
 </script>

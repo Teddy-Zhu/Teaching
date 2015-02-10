@@ -61,6 +61,7 @@ $(function() {
 				}
 				$('#bookEditTable').html("");
 				$('#editbookcontainer .tab-content').html("");
+				$('#editerrormsg').html("");
 				for (var i = 0; i < rows.length; i++) {
 					var id = rows[i].intbookid;
 					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
@@ -140,6 +141,7 @@ $(function() {
 		$('#addnewbook').slideUp();
 	})
 	$('button.addbook').click(function() {
+		$('.newform').val('');
 		initBookType('newBookType');
 		initSupplierType('newSupplierType');
 		$('#adderrormsg').html("");
@@ -229,16 +231,29 @@ $(function() {
 				bookId : bookIdArray
 			},
 			success : function(response) {
-				if (response) {
+				if (response === true) {
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Remove books successfully!',
 					})
 					$('#datatable_bookinfo').datagrid('reload');
 				} else {
-					$.TeachDialog({
-						content : 'Remove books failed!',
-					})
+					if (!isNaN(response)) {
+						var bookname = "";
+						for (var i = 0; i < rows.length; i++) {
+							if (parseInt(rows[i].intbookid) == parseInt(response)) {
+								bookname = rows[i].strbookname;
+								break;
+							}
+						}
+						$.TeachDialog({
+							content : 'Remove books failed! Book:' + bookname + " exist in use.",
+						})
+					} else {
+						$.TeachDialog({
+							content : 'Remove books failed!',
+						})
+					}
 				}
 			},
 			async : true

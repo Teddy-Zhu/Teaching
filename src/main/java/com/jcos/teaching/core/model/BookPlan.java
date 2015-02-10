@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.model;
 
+import java.util.Date;
+
 public class BookPlan {
     private Integer intplanid;
 
@@ -17,7 +19,13 @@ public class BookPlan {
 
     private Integer intbookid;
 
+    private Integer intuserid;
+
     private String strmark;
+
+    private Integer isallow;
+
+    private Date dateaddtime;
 
     public Integer getIntplanid() {
         return intplanid;
@@ -83,11 +91,35 @@ public class BookPlan {
         this.intbookid = intbookid;
     }
 
+    public Integer getIntuserid() {
+        return intuserid;
+    }
+
+    public void setIntuserid(Integer intuserid) {
+        this.intuserid = intuserid;
+    }
+
     public String getStrmark() {
         return strmark;
     }
 
     public void setStrmark(String strmark) {
         this.strmark = strmark == null ? null : strmark.trim();
+    }
+
+    public Integer getIsallow() {
+        return isallow;
+    }
+
+    public void setIsallow(Integer isallow) {
+        this.isallow = isallow;
+    }
+
+    public Date getDateaddtime() {
+        return dateaddtime;
+    }
+
+    public void setDateaddtime(Date dateaddtime) {
+        this.dateaddtime = dateaddtime;
     }
 }

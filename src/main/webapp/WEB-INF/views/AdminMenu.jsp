@@ -101,6 +101,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
+							<li><a class="ajax-link" href="ajax/supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
 					</a>
@@ -115,6 +116,7 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">System Settings</span>
 					</a>
 						<ul class="dropdown-menu">
+							<li><a class="ajax-link" href="ajax/department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
 							<li><a class="ajax-link" href="ajax/xx"><i class="fa fa-clipboard"></i> Type Manage</a></li>
 						</ul></li>
 
