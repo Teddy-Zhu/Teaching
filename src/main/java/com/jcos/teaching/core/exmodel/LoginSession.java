@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jcos.teaching.core.Exmodel;
+package com.jcos.teaching.core.exmodel;
 
 import com.jcos.teaching.core.model.User;
 

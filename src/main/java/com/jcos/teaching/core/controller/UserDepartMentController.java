@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.Exmodel.LoginSession;
+import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;

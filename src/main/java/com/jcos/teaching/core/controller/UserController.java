@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.Exmodel.LoginSession;
 import com.jcos.teaching.core.Util.Common.StringUtil;
+import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.BookPlanService;
@@ -49,7 +49,6 @@ public class UserController {
 
 	@Inject
 	private BookPlanService bookPlanService;
-
 
 	private StringUtil tools = new StringUtil();
 
@@ -176,7 +175,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/AuthLogin", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean authLogin(HttpServletRequest request, Model model) {
+	public boolean authLogin(HttpServletRequest request, Model model, HttpServletResponse response) {
 		String userName = "", passWord = "";
 
 		if (!tools.isNull(request, "UserName") && !tools.isNull(request, "PassWord")) {
@@ -195,6 +194,11 @@ public class UserController {
 			loginSession.setLoginUser(loginUser);
 			// set global session
 			request.getSession().setAttribute("loginSession", loginSession);
+			if (!authUserTypePower(request, "Login")) {
+				response.setStatus(3388);
+				request.getSession().setAttribute("loginSession", null);
+				return false;
+			}
 		} else {
 			request.getSession().setAttribute("loginSession", null);
 			return false;

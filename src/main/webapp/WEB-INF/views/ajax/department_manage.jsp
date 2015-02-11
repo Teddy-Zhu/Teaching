@@ -77,7 +77,7 @@
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h3 class="panel-title">
-												DepartMent Tree<i class="fa fa-refresh pull-right"></i>
+												DepartMent Tree<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
 											</h3>
 
 										</div>
@@ -112,7 +112,7 @@
 											</div>
 											<div role="tabpanel" class="tab-pane" id="parent_insert">
 												<div class="row">
-													<label class="col-xs-4">Parent Id</label><select class="form-control col-xs-8" id="parent_insert_sel"></select>
+													<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_insert_sel"></select>
 												</div>
 												<div class="row">
 													<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_insert_name" type="text" placeholder="Input Name" />

@@ -140,35 +140,44 @@ $(function() {
 			complete : function(data) {
 			},
 			success : function(data) {
-				if (data != null) {
-					if (data) {
-						$.TeachDialog({
-							title : 'Congratulations',
-							content : 'Login Successfully! Welcome to Use the System!',
-							dialogHidden : function() {
-								window.location.href = 'AdminMenu';
-							}
-						});
-						return;
-					}
+				if (data) {
+					$.TeachDialog({
+						title : 'Congratulations',
+						content : 'Login Successfully! Welcome to Use the System!',
+						dialogHidden : function() {
+							window.location.href = 'AdminMenu';
+						}
+					});
+					return;
+				} else {
+					$.TeachDialog({
+						title : 'Faild',
+						content : 'Failed to Login!Please ensure your password correct!'
+					});
 				}
-				$.TeachDialog({
-					title : 'Faild',
-					content : 'Failed to Login!Please ensure your password correct!'
-				});
-
 			},
 			error : function(data) {
 				console.debug(data.status);
-				$.TeachDialog({
-					title : 'Sorry!Service is down!',
-					content : 'Login failed because the service issue.',
-					bootstrapModalOption : {},
-					dialogHidden : function() {
-						$('.preloader').fadeToggle("slow");
-					}
+				if (data.status == 3388) {
+					$.TeachDialog({
+						title : 'Sorry!',
+						content : 'Login failed because the user is blocked.',
+						bootstrapModalOption : {},
+						dialogHidden : function() {
+							$('.preloader').fadeToggle("slow");
+						}
+					});
+				} else {
+					$.TeachDialog({
+						title : 'Sorry!Service is down!',
+						content : 'Login failed because the service issue.',
+						bootstrapModalOption : {},
+						dialogHidden : function() {
+							$('.preloader').fadeToggle("slow");
+						}
 
-				});
+					});
+				}
 			},
 			async : true
 		});
@@ -235,7 +244,7 @@ $(function() {
 				},
 				async : true
 			});
-			
+
 			$('#loginModal').slideToggle();
 			$('#registerModal').slideToggle();
 			$('#registerModal').removeClass("am-animation-slide-bottom");

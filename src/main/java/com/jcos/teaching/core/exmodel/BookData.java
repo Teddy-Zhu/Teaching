@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.Exmodel;
+package com.jcos.teaching.core.exmodel;
 
 import java.util.Date;
 
