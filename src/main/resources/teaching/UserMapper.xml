@@ -240,6 +240,13 @@
 		from user
 		where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
 	</select>
+
+	<select id="selectUserById" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where intId = #{intid,jdbcType=INTEGER}
+	</select>
 	<select id="GetAllUser" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
 		select
 		intId, username, strName, intTypeId, intUserMajor,intUserDepartment, strStuNum, strPhone,

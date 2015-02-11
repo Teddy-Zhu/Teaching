@@ -25,4 +25,6 @@ public interface UserService {
 	boolean updateUser(User record);
 
 	Integer selectUserByUserNameAndId(String userName, int userId);
+
+	User selectUserById(Integer userid);
 }

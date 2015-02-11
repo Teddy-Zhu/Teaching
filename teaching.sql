@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-10 17:57:08
+Date: 2015-02-11 13:43:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -383,7 +383,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '6', '4', '222', '1111', 'administrator@qq.com', '2015-02-05 15:21:41');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '10', '9', '222', '1111', 'administrator@qq.com', '2015-02-11 13:11:54');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-09 16:07:07');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-04 17:20:53');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '6', '4', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
@@ -404,7 +404,7 @@ CREATE TABLE `userdepartment` (
   `strName` varchar(255) NOT NULL,
   `isLeaf` int(11) NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of userdepartment
@@ -415,6 +415,16 @@ INSERT INTO `userdepartment` VALUES ('3', '2', '软件工程', '1');
 INSERT INTO `userdepartment` VALUES ('4', '1', '机电工程', '0');
 INSERT INTO `userdepartment` VALUES ('5', '4', '机械工程及自动化', '1');
 INSERT INTO `userdepartment` VALUES ('6', '4', '车辆工程', '1');
+INSERT INTO `userdepartment` VALUES ('7', '4', '工业设计', '0');
+INSERT INTO `userdepartment` VALUES ('9', '1', '自动化', '0');
+INSERT INTO `userdepartment` VALUES ('10', '9', '电气工程与自动化', '0');
+INSERT INTO `userdepartment` VALUES ('11', '1', '管理', '0');
+INSERT INTO `userdepartment` VALUES ('12', '11', '市场营销', '0');
+INSERT INTO `userdepartment` VALUES ('13', '11', '工商管理', '0');
+INSERT INTO `userdepartment` VALUES ('14', '1', '英语', '0');
+INSERT INTO `userdepartment` VALUES ('15', '14', '英语(国际贸易)', '0');
+INSERT INTO `userdepartment` VALUES ('16', '14', '英语(商务翻译)', '0');
+INSERT INTO `userdepartment` VALUES ('17', '4', '产品设计', '0');
 
 -- ----------------------------
 -- Table structure for usertype
@@ -447,7 +457,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -460,3 +470,5 @@ INSERT INTO `versionlog` VALUES ('5', '0006', '00', '1', '新增批量删除用�
 INSERT INTO `versionlog` VALUES ('6', '0007', '00', '1', '【新增】Nprogress进度条插件', '2015-02-05 16:48:10');
 INSERT INTO `versionlog` VALUES ('7', '0007', '01', '1', '修复管理员更新user信息时判断用户名重复的bug', '2015-02-06 20:24:18');
 INSERT INTO `versionlog` VALUES ('8', '0008', '00', '1', '新增供应商管理功能。 <br> 修复删除书籍，删除用户时关联表问题，当删除记录被使用是禁止删除<br> 修复若干其他Bug', '2015-02-10 15:18:47');
+INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信息浏览.', '2015-02-10 20:07:43');
+INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');

@@ -37,10 +37,40 @@ public class UserDepartMentImpl implements UserDepartMentService {
 			return true;
 		}
 	}
+
 	@Override
 	public List<UserDepartMent> getAllDepartMent() {
 		return userDepartMentDao.getAllDepartMents();
 	}
 
-	
+	@Override
+	public boolean updateDepartMent(UserDepartMent record) {
+		Integer i = userDepartMentDao.updateByPrimaryKeySelective(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean insertDepartMent(UserDepartMent record) {
+		Integer i = userDepartMentDao.insertSelective(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean deleteDepartMent(int id) {
+		Integer i = userDepartMentDao.deleteByPrimaryKey(id);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

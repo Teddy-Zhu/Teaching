@@ -23,6 +23,7 @@ import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.ConfigService;
 import com.jcos.teaching.core.service.PowerService;
+import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
 
 @Controller
@@ -33,6 +34,8 @@ public class IndexController {
 
 	@Inject
 	private PowerService powerService;
+	@Inject
+	private UserService userService;
 
 	/**
 	 * 
@@ -125,7 +128,10 @@ public class IndexController {
 		}
 		case "personinfo_manage": {
 			User loginUser = loginSession.getLoginUser();
-			model.addAttribute("user", loginUser);
+			User user = userService.selectUserById(loginUser.getIntid());
+			loginSession.setLoginUser(user);
+			request.getSession().setAttribute("loginSession", loginSession);
+			model.addAttribute("user", user);
 			break;
 		}
 		case "supplier_manage": {

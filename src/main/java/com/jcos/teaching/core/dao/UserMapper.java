@@ -32,4 +32,6 @@ public interface UserMapper {
 	Integer queryUserTotal();
 
 	Integer selectUserByUserNameAndId(@Param(value = "username") String userName, @Param(value = "userId") Integer userId);
+
+	User selectUserById(Integer intid);
 }

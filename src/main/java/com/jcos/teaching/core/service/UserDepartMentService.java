@@ -14,4 +14,10 @@ public interface UserDepartMentService {
 
 	List<UserDepartMent> getAllDepartMent();
 
+	boolean updateDepartMent(UserDepartMent record);
+
+	boolean insertDepartMent(UserDepartMent record);
+
+	boolean deleteDepartMent(int id);
+
 }

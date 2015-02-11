@@ -33,9 +33,9 @@ public class UserImpl implements UserService {
 			return 1;
 		}
 	}
-	
+
 	@Override
-	public Integer selectUserByUserNameAndId(String userName,int userId) {
+	public Integer selectUserByUserNameAndId(String userName, int userId) {
 		if (userName != null && !userName.equals("")) {
 			return userDao.selectUserByUserNameAndId(userName, userId);
 		} else {
@@ -99,4 +99,10 @@ public class UserImpl implements UserService {
 			return false;
 		}
 	}
+
+	@Override
+	public User selectUserById(Integer userid) {
+		return userDao.selectUserById(userid);
+	}
+
 }
