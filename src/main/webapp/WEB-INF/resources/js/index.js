@@ -181,7 +181,6 @@ $(function() {
 	})
 	$('.glyphicon.glyphicon-chevron-down').click(function() {
 		if ($('#loginModal')[0].style.display == "block") {
-			var optiondefault = '<label class="btn btn-default disabled"><span class="glyphicon glyphicon-stats"></span><input type="radio" name="UserType" value=0>UserType</label>';
 			$.ajax({
 				url : 'Type/GetUserType',
 				type : 'post',

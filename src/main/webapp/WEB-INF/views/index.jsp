@@ -102,7 +102,7 @@ span.passwordc {
 							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-md-6 col-md-offset-1">
 									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">UserType</span></span><select id="UserType" class="form-control"></select>
+										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">UserType</span></span><select id="UserType" class="form-control"></select>
 									</div>
 								</div>
 								<div class="col-md-4"></div>
