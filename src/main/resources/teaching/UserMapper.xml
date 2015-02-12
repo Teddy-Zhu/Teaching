@@ -260,4 +260,11 @@
 	<select id="queryUserTotal" resultType="java.lang.Integer">
 		select count(*) from user
 	</select>
+	<select id="authUserDepartMent" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(intId) from user where intUserMajor = #{id,jdbcType=INTEGER} or intUserDepartment =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<select id="authUserType" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(intId) from user where intTypeId = #{id,jdbcType=INTEGER}
+	</select>
 </mapper>

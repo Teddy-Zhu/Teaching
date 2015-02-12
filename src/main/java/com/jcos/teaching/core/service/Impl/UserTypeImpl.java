@@ -25,4 +25,34 @@ public class UserTypeImpl implements UserTypeService {
 	public List<UserType> getUserType() {
 		return userTypeDao.selectUserType(null);
 	}
+
+	@Override
+	public boolean updateUserType(UserType record) {
+		Integer i = userTypeDao.updateByPrimaryKey(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean insertUserType(UserType record) {
+		Integer i = userTypeDao.insertSelective(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean deleteUserType(Integer id) {
+		Integer i = userTypeDao.deleteByPrimaryKey(id);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

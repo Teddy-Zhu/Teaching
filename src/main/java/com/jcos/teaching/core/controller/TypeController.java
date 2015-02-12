@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +18,21 @@ import com.jcos.teaching.core.model.BookType;
 import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.model.UserType;
+import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.service.UserDepartMentService;
+import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
 
 @Controller
 @RequestMapping(value = "/Type")
 public class TypeController {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(TypeController.class);
 
 	@Inject
 	private UserTypeService userTypeService;
@@ -35,7 +42,10 @@ public class TypeController {
 	private SupplierService supplierService;
 	@Inject
 	private UserDepartMentService userDepartMentService;
-
+	@Inject
+	private BookService bookService;
+	@Inject
+	private UserService userService;
 	@Inject
 	private PowerService powerService;
 
@@ -92,7 +102,23 @@ public class TypeController {
 	 */
 	@RequestMapping(value = "/GetBookType", method = RequestMethod.POST)
 	@ResponseBody
-	public List<BookType> getBookType(HttpServletRequest request, Model model) {
+	public List<BookType> getBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return bookTypeService.getAllBookType();
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/GetBookTypeForType", method = RequestMethod.POST)
+	@ResponseBody
+	public List<BookType> getBookTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!authUserTypePower(request, "getallbooktype")) {
+			response.setStatus(3388);
+			return null;
+		}
 		return bookTypeService.getAllBookType();
 	}
 
@@ -111,6 +137,13 @@ public class TypeController {
 	@RequestMapping(value = "/GetUserTypeAll", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
+		List<UserType> allowUserType = userTypeService.getUserType();
+		return allowUserType;
+	}
+	
+	@RequestMapping(value = "/GetUserTypeAllForType", method = RequestMethod.POST)
+	@ResponseBody
+	public List<UserType> getUserTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
 		if (!authUserTypePower(request, "getallusertype")) {
 			response.setStatus(3388);
 			return null;

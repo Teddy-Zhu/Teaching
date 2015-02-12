@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.Util;
+package com.jcos.teaching.core.util;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,8 +26,8 @@ public class SessionFilter implements Filter {
 
 		String loginUrl = httpRequest.getContextPath() + "/";
 		String url = httpRequest.getRequestURI();
-		String[] allowlistc = new String[] { "/", "index" };
-		String[] allowliste = new String[] { "logout", "/resources/", "/Type/", "/action/", "User/AuthLogout", "/User/AuthUserName", "/User/AuthLogin", "/User/AuthRegister", "AdminMenu" };
+		String[] allowliste = new String[] { "/", "index" };
+		String[] allowlistc = new String[] { "logout", "/resources/", "/Type/", "/action/", "User/AuthLogout", "/User/AuthUserName", "/User/AuthLogin", "/User/AuthRegister", "AdminMenu" };
 
 		if (session.getAttribute("loginSession") == null) {
 			if (isEqualsStr(url, allowliste) || isContainStr(url, allowlistc)) {

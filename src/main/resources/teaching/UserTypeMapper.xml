@@ -72,7 +72,7 @@
 	</update>
 	<select id="selectUserType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
-		intIdentityId, strName
+		<include refid="Base_Column_List" />
 		from userType
 		<if test="allow != null">
 			where intAllowReg = #{allow,jdbcType=INTEGER}

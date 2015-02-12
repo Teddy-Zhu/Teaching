@@ -53,7 +53,7 @@ public class BookImpl implements BookService {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public Integer authExistSupplierInUse(Integer[] supplierId) {
 		for (Integer i : supplierId) {
@@ -63,5 +63,15 @@ public class BookImpl implements BookService {
 		}
 		return 0;
 	}
-	
+
+	@Override
+	public boolean authBookType(int id) {
+		Integer i = bookDao.authBookType(id);
+		if (i != 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

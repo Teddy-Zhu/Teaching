@@ -187,4 +187,9 @@
 		select count(intBookId) from book
 		where intSupplierId = #{intsupplierid,jdbcType=INTEGER}
 	</select>
+	<select id="authBookType" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select count(intBookId) from book
+		where intBookTypeId = #{id,jdbcType=INTEGER}
+	</select>
+
 </mapper>

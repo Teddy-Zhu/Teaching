@@ -27,4 +27,8 @@ public interface UserService {
 	Integer selectUserByUserNameAndId(String userName, int userId);
 
 	User selectUserById(Integer userid);
+
+	boolean authUserDepartMent(int id);
+
+	boolean authUserType(int id);
 }

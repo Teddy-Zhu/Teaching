@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-11 18:14:37
+Date: 2015-02-12 17:02:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,13 +39,13 @@ CREATE TABLE `book` (
 -- ----------------------------
 INSERT INTO `book` VALUES ('4', '电子商务与物流管理第2版', 'B122', '45145', '1', '101.000', '纷纭出版社', 'SSDFF', '4.000', '1', '2015-02-02 17:37:54');
 INSERT INTO `book` VALUES ('5', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2015-02-02 16:06:25');
-INSERT INTO `book` VALUES ('6', '驼峰航线', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2015-02-02 16:06:38');
-INSERT INTO `book` VALUES ('8', '中南海备忘录', 'Baaa233', 'asa', '1', '12.014', '1231', 'za', '2.500', '4', '2015-02-10 13:19:00');
+INSERT INTO `book` VALUES ('6', '驼峰航线', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2015-02-12 15:35:38');
+INSERT INTO `book` VALUES ('8', '中南海备忘录', 'Baaa233', 'asa', '4', '12.014', '1231', 'za', '2.500', '1', '2015-02-12 15:26:55');
 INSERT INTO `book` VALUES ('13', 'SQL Server 2008 商业智能完美解决方案', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '1', '2015-02-02 16:01:37');
 INSERT INTO `book` VALUES ('15', '英语口语短句大王', 'B1230', '45', '1', '458.400', '45', '4545', '6.000', '1', '2015-02-02 16:06:25');
 INSERT INTO `book` VALUES ('16', '跟毛泽东学思维', 'B1230', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-10 11:29:20');
 INSERT INTO `book` VALUES ('17', '图书汉字的故事', 'B1230ss', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-02 16:06:25');
-INSERT INTO `book` VALUES ('18', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '1', '199.000', '45454', 'ssss', '10.000', '1', '2015-02-02 15:59:57');
+INSERT INTO `book` VALUES ('18', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '4', '199.000', '45454', 'ssss', '10.000', '1', '2015-02-12 15:26:12');
 INSERT INTO `book` VALUES ('19', '公务员电子政务技 术实用指南', 'A25554', '45AS3', '1', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-02-02 16:07:46');
 INSERT INTO `book` VALUES ('20', '母亲杨沫', 'A25554', '45AS3', '1', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-02-02 16:07:33');
 INSERT INTO `book` VALUES ('21', '国家电网公司电力安全工作规程', 'B22206', '9787508391311', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '1', '2015-02-10 14:28:13');
@@ -143,13 +143,13 @@ CREATE TABLE `booktype` (
   `intBookTypeId` int(11) NOT NULL AUTO_INCREMENT,
   `strBookTypeName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intBookTypeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of booktype
 -- ----------------------------
 INSERT INTO `booktype` VALUES ('1', '出版社教材');
-INSERT INTO `booktype` VALUES ('2', '自编教材');
+INSERT INTO `booktype` VALUES ('4', '自编教材');
 
 -- ----------------------------
 -- Table structure for config
@@ -292,7 +292,7 @@ CREATE TABLE `power` (
   `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
@@ -335,6 +335,14 @@ INSERT INTO `power` VALUES ('35', '1', 'edituserdepart', '1');
 INSERT INTO `power` VALUES ('36', '1', 'rmuserdepart', '1');
 INSERT INTO `power` VALUES ('37', '1', 'getalluserdepart', '1');
 INSERT INTO `power` VALUES ('38', '1', 'getallbook', '1');
+INSERT INTO `power` VALUES ('39', '1', 'addusertype', '1');
+INSERT INTO `power` VALUES ('40', '1', 'editusertype', '1');
+INSERT INTO `power` VALUES ('41', '1', 'rmusertype', '1');
+INSERT INTO `power` VALUES ('42', '1', 'addbooktype', '1');
+INSERT INTO `power` VALUES ('43', '1', 'editbooktype', '1');
+INSERT INTO `power` VALUES ('44', '1', 'rmbooktype', '1');
+INSERT INTO `power` VALUES ('45', '1', 'getallbooktype', '1');
+INSERT INTO `power` VALUES ('46', '1', 'accesscontrol', '1');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -390,8 +398,8 @@ INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '6', '4', '3634
 INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
 INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '5', '4', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
 INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '4', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-04 17:54:08');
-INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '1', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-02 17:24:57');
-INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '1', '6', '4', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-02 17:25:44');
+INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '5', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-12 15:29:11');
+INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '6', '4', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-12 15:27:21');
 INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '3', '6', '4', '656564', '11111', '655', '2015-02-05 10:02:07');
 
 -- ----------------------------
@@ -422,7 +430,6 @@ INSERT INTO `userdepartment` VALUES ('11', '1', '管理', '0');
 INSERT INTO `userdepartment` VALUES ('12', '11', '市场营销', '0');
 INSERT INTO `userdepartment` VALUES ('13', '11', '工商管理', '0');
 INSERT INTO `userdepartment` VALUES ('14', '1', '英语', '0');
-INSERT INTO `userdepartment` VALUES ('15', '14', '英语(国际贸易)', '0');
 INSERT INTO `userdepartment` VALUES ('16', '14', '英语(商务翻译)', '0');
 INSERT INTO `userdepartment` VALUES ('17', '4', '产品设计', '0');
 
@@ -435,7 +442,7 @@ CREATE TABLE `usertype` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intAllowReg` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intIdentityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of usertype
@@ -444,6 +451,7 @@ INSERT INTO `usertype` VALUES ('1', 'Admin', '0');
 INSERT INTO `usertype` VALUES ('2', 'BookManager', '0');
 INSERT INTO `usertype` VALUES ('3', 'Teacher', '1');
 INSERT INTO `usertype` VALUES ('4', 'Student', '1');
+INSERT INTO `usertype` VALUES ('5', '测试用户类型-t', '1');
 
 -- ----------------------------
 -- Table structure for versionlog
@@ -457,7 +465,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -472,3 +480,4 @@ INSERT INTO `versionlog` VALUES ('7', '0007', '01', '1', '修复管理员更新u
 INSERT INTO `versionlog` VALUES ('8', '0008', '00', '1', '新增供应商管理功能。 <br> 修复删除书籍，删除用户时关联表问题，当删除记录被使用是禁止删除<br> 修复若干其他Bug', '2015-02-10 15:18:47');
 INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信息浏览.', '2015-02-10 20:07:43');
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
+INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');

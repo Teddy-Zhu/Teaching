@@ -73,6 +73,7 @@ function logout() {
 		title : 'Warnning!',
 		content : 'Are you sure submit to Log Out?',
 		showCloseButton : true,
+		bootstrapModalOption : {},
 		otherButtons : [ 'Yes' ],
 		clickButton : function(sender, modal, index) {
 			if (index == 0) {
@@ -552,7 +553,14 @@ $(function() {
 				});
 				break;
 			}
-
+			case 3384: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'the type is in use!',
+					showCloseButton : true,
+				});
+				break;
+			}
 			}
 		}
 	});

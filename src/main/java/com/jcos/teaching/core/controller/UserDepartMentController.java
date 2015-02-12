@@ -18,6 +18,7 @@ import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
+import com.jcos.teaching.core.service.UserService;
 
 @Controller
 @RequestMapping(value = "/DepartMent")
@@ -29,6 +30,8 @@ public class UserDepartMentController {
 
 	@Inject
 	private PowerService powerService;
+	@Inject
+	private UserService userService;
 
 	@Inject
 	private UserDepartMentService userDepartMentService;
@@ -140,6 +143,9 @@ public class UserDepartMentController {
 			if (depart.size() > 0) {
 				return false;
 			}
+		}
+		if (!userService.authUserDepartMent(id)) {
+			return false;
 		}
 		return userDepartMentService.deleteDepartMent(id);
 	}

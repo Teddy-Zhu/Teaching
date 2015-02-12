@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.Util.Common.StringUtil;
 import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
@@ -26,6 +25,7 @@ import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
+import com.jcos.teaching.core.util.common.StringUtil;
 
 @Controller
 @RequestMapping(value = "/User")

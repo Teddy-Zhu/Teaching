@@ -193,6 +193,8 @@ $(function() {
 		});
 
 	});
+	
+	WinMove();
 })
 
 function initial() {

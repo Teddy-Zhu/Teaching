@@ -75,7 +75,7 @@
 		<!-- for session out of date -->
 	<filter>
 		<filter-name>sessionFilter</filter-name>
-		<filter-class>com.jcos.teaching.core.Util.SessionFilter</filter-class>
+		<filter-class>com.jcos.teaching.core.util.SessionFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>sessionFilter</filter-name>

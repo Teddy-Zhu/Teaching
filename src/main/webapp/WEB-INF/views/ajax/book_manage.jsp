@@ -98,7 +98,7 @@
 											</button>
 										</c:if>
 										<c:if test="${rmbook eq true}">
-											<button class="btn btn-default btn-xs removebook">
+											<button class="btn btn-danger btn-xs removebook">
 												<i class="fa fa-trash-o"></i> Remove A Book
 											</button>
 										</c:if>

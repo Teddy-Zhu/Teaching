@@ -106,24 +106,12 @@ public class IndexController {
 		}
 		case "book_manage": {
 			String[] powers = new String[] { "addbook", "editbook", "rmbook", "getallbook" };
-			for (String pw : powers) {
-				if (authUserTypePower(request, pw)) {
-					model.addAttribute(pw, true);
-				} else {
-					model.addAttribute(pw, false);
-				}
-			}
+			setModel(request, model, powers);
 			break;
 		}
 		case "userinfo_manage": {
 			String[] powers = new String[] { "adduser", "edituser", "rmuser", "getalluser" };
-			for (String pw : powers) {
-				if (authUserTypePower(request, pw)) {
-					model.addAttribute(pw, true);
-				} else {
-					model.addAttribute(pw, false);
-				}
-			}
+			setModel(request, model, powers);
 			break;
 		}
 		case "personinfo_manage": {
@@ -136,24 +124,17 @@ public class IndexController {
 		}
 		case "supplier_manage": {
 			String[] powers = new String[] { "addsupplier", "editsupplier", "rmsupplier", "getallsupplier" };
-			for (String pw : powers) {
-				if (authUserTypePower(request, pw)) {
-					model.addAttribute(pw, true);
-				} else {
-					model.addAttribute(pw, false);
-				}
-			}
+			setModel(request, model, powers);
 			break;
 		}
 		case "department_manage": {
 			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart", "getalluserdepart" };
-			for (String pw : powers) {
-				if (authUserTypePower(request, pw)) {
-					model.addAttribute(pw, true);
-				} else {
-					model.addAttribute(pw, false);
-				}
-			}
+			setModel(request, model, powers);
+			break;
+		}
+		case "type_manage": {
+			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "getallusertype", "getallbooktype", "addbooktype", "editbooktype", "rmbooktype" };
+			setModel(request, model, powers);
 			break;
 		}
 		}
@@ -167,4 +148,14 @@ public class IndexController {
 		return verions;
 	}
 
+	public boolean setModel(HttpServletRequest request, Model model, String[] powers) {
+		for (String pw : powers) {
+			if (authUserTypePower(request, pw)) {
+				model.addAttribute(pw, true);
+			} else {
+				model.addAttribute(pw, false);
+			}
+		}
+		return true;
+	}
 }

@@ -68,13 +68,7 @@
 										</div>
 								</a>
 									<ul class="dropdown-menu">
-										<li><a href="#"> <i class="fa fa-user"></i> <span>Profile</span>
-										</a></li>
-										<li><a href="ajax/page_messages.html" class="ajax-link"> <i class="fa fa-envelope"></i> <span>Messages</span>
-										</a></li>
-										<li><a href="ajax/gallery_simple.html" class="ajax-link"> <i class="fa fa-picture-o"></i> <span>Albums</span>
-										</a></li>
-										<li><a href="ajax/calendar.html" class="ajax-link"> <i class="fa fa-tasks"></i> <span>Tasks</span>
+										<li><a class="ajax-link" href="ajax/personinfo_manage"> <i class="fa fa-user"></i> <span>Profile</span>
 										</a></li>
 										<li><a href="#"> <i class="fa fa-cog"></i> <span>Settings</span>
 										</a></li>
@@ -117,7 +111,8 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
-							<li><a class="ajax-link" href="ajax/xx"><i class="fa fa-clipboard"></i> Type Manage</a></li>
+							<li><a class="ajax-link" href="ajax/type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
+							<li><a class="ajax-link" href="ajax/access_manage"><i class="fa fa-clipboard"></i> Access Manage</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
@@ -138,8 +133,6 @@
 		</div>
 	</div>
 	<!--End Container-->
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<!--<script src="http://code.jquery.com/jquery.js"></script>-->
 	<script src="resources/plugins/jquery/jquery.min.js"></script>
 	<script src="resources/plugins/bootstrap/bootstrap.min.js"></script>
 	<script src="resources/plugins/easyui/jquery.easyui.min.js"></script>

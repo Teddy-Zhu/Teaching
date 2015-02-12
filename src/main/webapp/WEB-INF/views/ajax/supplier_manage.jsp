@@ -98,7 +98,7 @@
 											</button>
 										</c:if>
 										<c:if test="${rmsupplier eq true}">
-											<button class="btn btn-default btn-xs removesupplier">
+											<button class="btn btn-danger btn-xs removesupplier">
 												<i class="fa fa-trash-o"></i> Remove A Supplier
 											</button>
 										</c:if>

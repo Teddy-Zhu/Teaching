@@ -94,7 +94,7 @@
 											</button>
 										</c:if>
 										<c:if test="${rmuser eq true}">
-											<button class="btn btn-default btn-xs removeuser">
+											<button class="btn btn-danger btn-xs removeuser">
 												<i class="fa fa-trash-o"></i> Remove A User
 											</button>
 										</c:if>

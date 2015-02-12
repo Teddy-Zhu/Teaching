@@ -61,75 +61,73 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content table-responsive" style="padding-top: 15px">
+				<div class="container-fluid" style="margin-top: 10px;">
 
-				<div class="panel panel-default" style="border: 1px solid #CCC;">
-					<div class="panel-heading" role="tab" id="headingOne">
-						<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
-							Function Menu <span class="fa fa-chevron-down" style="float: right"></span>
-						</h4>
+					<div id="department_tree" class="col-xs-4" style="height: 400px;">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">
+									DepartMent Tree<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
+								</h3>
+
+							</div>
+							<div class="panel-body">
+								<div id="ul_tree" class="ztree"></div>
+							</div>
+						</div>
 					</div>
+					<div id="operate_menu" class="col-xs-8" style="height: 100px;">
 
-					<div id="collapseForAdd" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-						<div class="panel-body">
-							<div class="container-fluid" style="margin-top: 10px;">
+						<div id="DepartPanel" role="tabpanel">
 
-								<div id="department_tree" class="col-xs-4" style="height: 400px;">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h3 class="panel-title">
-												DepartMent Tree<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
-											</h3>
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<c:if test="${edituserdepart eq true}">
+									<li role="presentation" class="active"><a href="#parent_edit" aria-controls="parent_edit" role="tab" data-toggle="tab">Edit</a></li>
+								</c:if>
+								<c:if test="${adduserdepart eq true}">
+									<li role="presentation"><a href="#parent_insert" aria-controls="parent_insert" role="tab" data-toggle="tab">Insert</a></li>
+								</c:if>
+								<c:if test="${rmuserdepart eq true}">
+									<li role="presentation"><a href="#parent_delete" aria-controls="parent_delete" role="tab" data-toggle="tab">Delete</a></li>
+								</c:if>
+							</ul>
 
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<c:if test="${edituserdepart eq true}">
+									<div role="tabpanel" class="tab-pane active" id="parent_edit">
+										<div class="row">
+											<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_edit_sel"></select>
 										</div>
-										<div class="panel-body">
-											<div id="ul_tree" class="ztree"></div>
+										<div class="row">
+											<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_edit_name" type="text" placeholder="Input Name" />
+										</div>
+										<div class="row text-center">
+											<button class="btn btn-primary btn-xs center-block" id="edit">Submit</button>
 										</div>
 									</div>
-								</div>
-								<div id="operate_menu" class="col-xs-8" style="height: 100px;">
-
-									<div id="insertDepartPanel" role="tabpanel">
-
-										<!-- Nav tabs -->
-										<ul class="nav nav-tabs" role="tablist">
-											<li role="presentation" class="active"><a href="#parent_edit" aria-controls="parent_edit" role="tab" data-toggle="tab">Edit</a></li>
-											<li role="presentation"><a href="#parent_insert" aria-controls="parent_insert" role="tab" data-toggle="tab">Insert</a></li>
-											<li role="presentation"><a href="#parent_delete" aria-controls="parent_delete" role="tab" data-toggle="tab">Delete</a></li>
-										</ul>
-
-										<!-- Tab panes -->
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane active" id="parent_edit">
-												<div class="row">
-													<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_edit_sel"></select>
-												</div>
-												<div class="row">
-													<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_edit_name" type="text" placeholder="Input Name" />
-												</div>
-												<div class="row text-center">
-													<button class="btn btn-primary btn-xs center-block" id="edit">Submit</button>
-												</div>
-											</div>
-											<div role="tabpanel" class="tab-pane" id="parent_insert">
-												<div class="row">
-													<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_insert_sel"></select>
-												</div>
-												<div class="row">
-													<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_insert_name" type="text" placeholder="Input Name" />
-												</div>
-												<div class="row text-center">
-													<button class="btn btn-primary btn-xs center-block" id="insert">Submit</button>
-												</div>
-											</div>
-											<div role="tabpanel" class="tab-pane" id="parent_delete">
-												<div class="row text-center">
-													<button id="delete" class="btn btn-danger center-block">Delete</button>
-												</div>
-											</div>
+								</c:if>
+								<c:if test="${adduserdepart eq true}">
+									<div role="tabpanel" class="tab-pane" id="parent_insert">
+										<div class="row">
+											<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_insert_sel"></select>
 										</div>
-
+										<div class="row">
+											<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_insert_name" type="text" placeholder="Input Name" />
+										</div>
+										<div class="row text-center">
+											<button class="btn btn-primary btn-xs center-block" id="insert">Submit</button>
+										</div>
 									</div>
-								</div>
+								</c:if>
+								<c:if test="${rmuserdepart eq true}">
+									<div role="tabpanel" class="tab-pane" id="parent_delete">
+										<div class="row text-center">
+											<button id="delete" class="btn btn-danger center-block">Delete</button>
+										</div>
+									</div>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -140,9 +138,11 @@
 	</div>
 </div>
 <script type="text/javascript">
+	<c:if test="${getalluserdepart eq true}">
 	$(function() {
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
 			$.getScript("resources/js/ajax/department.js");
 		});
 	})
+	</c:if>
 </script>

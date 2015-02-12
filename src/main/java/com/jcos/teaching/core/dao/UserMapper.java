@@ -34,4 +34,8 @@ public interface UserMapper {
 	Integer selectUserByUserNameAndId(@Param(value = "username") String userName, @Param(value = "userId") Integer userId);
 
 	User selectUserById(Integer intid);
+
+	Integer authUserDepartMent(int id);
+
+	Integer authUserType(int id);
 }

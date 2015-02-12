@@ -10,4 +10,10 @@ public interface UserTypeService {
 
 	public List<UserType> getUserType();
 
+	boolean updateUserType(UserType record);
+
+	boolean insertUserType(UserType record);
+
+	boolean deleteUserType(Integer id);
+
 }

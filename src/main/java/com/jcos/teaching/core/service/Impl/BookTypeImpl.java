@@ -28,4 +28,34 @@ public class BookTypeImpl implements BookTypeService {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean updateBookType(BookType record) {
+		Integer i = bookTypeDao.updateByPrimaryKey(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean insertBookType(BookType record) {
+		Integer i = bookTypeDao.insertSelective(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean deleteBookType(Integer id) {
+		Integer i = bookTypeDao.deleteByPrimaryKey(id);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

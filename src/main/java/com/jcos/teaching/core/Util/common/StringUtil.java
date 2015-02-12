@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jcos.teaching.core.Util.Common;
+package com.jcos.teaching.core.util.common;
 
 import javax.servlet.http.HttpServletRequest;
 

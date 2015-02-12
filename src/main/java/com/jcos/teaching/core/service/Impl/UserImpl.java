@@ -105,4 +105,24 @@ public class UserImpl implements UserService {
 		return userDao.selectUserById(userid);
 	}
 
+	@Override
+	public boolean authUserDepartMent(int id) {
+		Integer i = userDao.authUserDepartMent(id);
+		if (i != 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean authUserType(int id) {
+		Integer i = userDao.authUserType(id);
+		if (i != 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }
