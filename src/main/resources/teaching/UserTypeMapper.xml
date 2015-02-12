@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jcos.teaching.core.dao.UserTypeMapper">
-	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.UserType">
+<mapper namespace="com.jcos.teaching.core.dao.usertypeMapper">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.usertype">
 		<id column="intIdentityId" property="intidentityid" jdbcType="INTEGER" />
 		<result column="strName" property="strname" jdbcType="VARCHAR" />
 		<result column="intAllowReg" property="intallowreg" jdbcType="INTEGER" />
@@ -12,22 +12,22 @@
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from userType
+		from usertype
 		where intIdentityId = #{intidentityid,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from userType
+		delete from usertype
 		where intIdentityId = #{intidentityid,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.jcos.teaching.core.model.UserType">
-		insert into userType (intIdentityId, strName, intAllowReg
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.usertype">
+		insert into usertype (intIdentityId, strName, intAllowReg
 		)
 		values (#{intidentityid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR},
 		#{intallowreg,jdbcType=INTEGER}
 		)
 	</insert>
-	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.UserType">
-		insert into userType
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.usertype">
+		insert into usertype
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intidentityid != null">
 				intIdentityId,
@@ -51,8 +51,8 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.UserType">
-		update userType
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.usertype">
+		update usertype
 		<set>
 			<if test="strname != null">
 				strName = #{strname,jdbcType=VARCHAR},
@@ -63,17 +63,17 @@
 		</set>
 		where intIdentityId = #{intidentityid,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.UserType">
-		update userType
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.usertype">
+		update usertype
 		set strName = #{strname,jdbcType=VARCHAR},
 		intAllowReg = #{intallowreg,jdbcType=INTEGER}
 		where intIdentityId =
 		#{intidentityid,jdbcType=INTEGER}
 	</update>
-	<select id="selectUserType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="selectusertype" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from userType
+		from usertype
 		<if test="allow != null">
 			where intAllowReg = #{allow,jdbcType=INTEGER}
 		</if>
