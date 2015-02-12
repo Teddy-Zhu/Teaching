@@ -62,20 +62,23 @@
 			</div>
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="container-fluid" style="margin-top: 10px;">
+					<c:if test="${queryuserdepart eq true}">
+						<div id="department_tree" class="col-xs-4" style="height: 400px;">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+										DepartMent Tree<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
+									</h3>
 
-					<div id="department_tree" class="col-xs-4" style="height: 400px;">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									DepartMent Tree<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
-								</h3>
+								</div>
+								<div class="panel-body">
 
-							</div>
-							<div class="panel-body">
-								<div id="ul_tree" class="ztree"></div>
+									<div id="ul_tree" class="ztree"></div>
+
+								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>
 					<div id="operate_menu" class="col-xs-8" style="height: 100px;">
 
 						<div id="DepartPanel" role="tabpanel">
@@ -138,7 +141,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	<c:if test="${getalluserdepart eq true}">
+	<c:if test="${manageuserdepart eq true}">
 	$(function() {
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
 			$.getScript("resources/js/ajax/department.js");

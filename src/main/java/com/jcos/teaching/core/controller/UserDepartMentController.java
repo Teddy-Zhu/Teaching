@@ -47,7 +47,7 @@ public class UserDepartMentController {
 	@RequestMapping(value = "/GetAllDepartMent", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserDepartMent> getAlldepartMent(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "getalluserdepart")) {
+		if (!authUserTypePower(request, "queryuserdepart")) {
 			response.setStatus(3388);
 			return null;
 		}

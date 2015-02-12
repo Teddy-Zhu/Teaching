@@ -3,12 +3,14 @@
 <mapper namespace="com.jcos.teaching.core.dao.PowerMapper">
 	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Power">
 		<id column="intPowerId" property="intpowerid" jdbcType="INTEGER" />
+		<result column="intParentId" property="intparentid" jdbcType="INTEGER" />
+		<result column="strName" property="strname" jdbcType="VARCHAR" />
 		<result column="intUserTypeId" property="intusertypeid" jdbcType="INTEGER" />
 		<result column="strAuthName" property="strauthname" jdbcType="VARCHAR" />
 		<result column="intAuthValue" property="intauthvalue" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		intPowerId, intUserTypeId, strAuthName, intAuthValue
+		intPowerId, intParentId, strName, intUserTypeId, strAuthName, intAuthValue
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
@@ -21,16 +23,24 @@
 		where intPowerId = #{intpowerid,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.Power">
-		insert into power (intPowerId, intUserTypeId, strAuthName,
-		intAuthValue)
-		values (#{intpowerid,jdbcType=INTEGER}, #{intusertypeid,jdbcType=INTEGER}, #{strauthname,jdbcType=VARCHAR},
-		#{intauthvalue,jdbcType=INTEGER})
+		insert into power (intPowerId, intParentId, strName,
+		intUserTypeId, strAuthName, intAuthValue
+		)
+		values (#{intpowerid,jdbcType=INTEGER}, #{intparentid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR},
+		#{intusertypeid,jdbcType=INTEGER}, #{strauthname,jdbcType=VARCHAR}, #{intauthvalue,jdbcType=INTEGER}
+		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Power">
 		insert into power
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intpowerid != null">
 				intPowerId,
+			</if>
+			<if test="intparentid != null">
+				intParentId,
+			</if>
+			<if test="strname != null">
+				strName,
 			</if>
 			<if test="intusertypeid != null">
 				intUserTypeId,
@@ -46,6 +56,12 @@
 			<if test="intpowerid != null">
 				#{intpowerid,jdbcType=INTEGER},
 			</if>
+			<if test="intparentid != null">
+				#{intparentid,jdbcType=INTEGER},
+			</if>
+			<if test="strname != null">
+				#{strname,jdbcType=VARCHAR},
+			</if>
 			<if test="intusertypeid != null">
 				#{intusertypeid,jdbcType=INTEGER},
 			</if>
@@ -60,6 +76,12 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Power">
 		update power
 		<set>
+			<if test="intparentid != null">
+				intParentId = #{intparentid,jdbcType=INTEGER},
+			</if>
+			<if test="strname != null">
+				strName = #{strname,jdbcType=VARCHAR},
+			</if>
 			<if test="intusertypeid != null">
 				intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
 			</if>
@@ -74,12 +96,13 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Power">
 		update power
-		set intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
+		set intParentId = #{intparentid,jdbcType=INTEGER},
+		strName = #{strname,jdbcType=VARCHAR},
+		intUserTypeId = #{intusertypeid,jdbcType=INTEGER},
 		strAuthName = #{strauthname,jdbcType=VARCHAR},
 		intAuthValue = #{intauthvalue,jdbcType=INTEGER}
 		where intPowerId = #{intpowerid,jdbcType=INTEGER}
 	</update>
-
 	<select id="queryPowerByName" resultType="java.lang.Integer">
 		select intAuthValue from power
 		where strAuthName = #{name,jdbcType=VARCHAR} and intUserTypeId = (select intTypeId from user where intId = #{intId,jdbcType=INTEGER})

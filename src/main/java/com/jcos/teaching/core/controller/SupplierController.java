@@ -62,7 +62,7 @@ public class SupplierController {
 	@RequestMapping(value = "/GetAllSuppliers", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Supplier> getAllSuppliers(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "getallsupplier")) {
+		if (!authUserTypePower(request, "querysupplier")) {
 			response.setStatus(3388);
 			return null;
 		}

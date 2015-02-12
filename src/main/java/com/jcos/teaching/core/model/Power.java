@@ -1,9 +1,13 @@
 package com.jcos.teaching.core.model;
 
 public class Power {
-	private Integer intpowerid;
+    private Integer intpowerid;
 
-	private Integer intusertypeid;
+    private Integer intparentid;
+
+    private String strname;
+
+    private Integer intusertypeid;
 
 	private String strauthname;
 
@@ -16,36 +20,51 @@ public class Power {
 		this.strauthname = "";
 		this.intauthvalue = 0;
 	}
+    public Integer getIntpowerid() {
+        return intpowerid;
+    }
 
-	public Integer getIntpowerid() {
-		return intpowerid;
-	}
+    public void setIntpowerid(Integer intpowerid) {
+        this.intpowerid = intpowerid;
+    }
 
-	public void setIntpowerid(Integer intpowerid) {
-		this.intpowerid = intpowerid;
-	}
+    public Integer getIntparentid() {
+        return intparentid;
+    }
 
-	public Integer getIntusertypeid() {
-		return intusertypeid;
-	}
+    public void setIntparentid(Integer intparentid) {
+        this.intparentid = intparentid;
+    }
 
-	public void setIntusertypeid(Integer intusertypeid) {
-		this.intusertypeid = intusertypeid;
-	}
+    public String getStrname() {
+        return strname;
+    }
 
-	public String getStrauthname() {
-		return strauthname;
-	}
+    public void setStrname(String strname) {
+        this.strname = strname == null ? null : strname.trim();
+    }
 
-	public void setStrauthname(String strauthname) {
-		this.strauthname = strauthname == null ? null : strauthname.trim();
-	}
+    public Integer getIntusertypeid() {
+        return intusertypeid;
+    }
 
-	public Integer getIntauthvalue() {
-		return intauthvalue;
-	}
+    public void setIntusertypeid(Integer intusertypeid) {
+        this.intusertypeid = intusertypeid;
+    }
 
-	public void setIntauthvalue(Integer intauthvalue) {
-		this.intauthvalue = intauthvalue;
-	}
+    public String getStrauthname() {
+        return strauthname;
+    }
+
+    public void setStrauthname(String strauthname) {
+        this.strauthname = strauthname == null ? null : strauthname.trim();
+    }
+
+    public Integer getIntauthvalue() {
+        return intauthvalue;
+    }
+
+    public void setIntauthvalue(Integer intauthvalue) {
+        this.intauthvalue = intauthvalue;
+    }
 }

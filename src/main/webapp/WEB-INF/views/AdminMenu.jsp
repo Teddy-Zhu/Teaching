@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -91,30 +92,43 @@
 					<li><a href="ajax/dashboard.html" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
 					</a></li>
 
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Books Manage</span>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Books</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
-							<li><a class="ajax-link" href="ajax/supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
+							<c:if test="${managebook eq true}">
+								<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
+							</c:if>
+							<c:if test="${managesupplier eq true}">
+								<li><a class="ajax-link" href="ajax/supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
+							</c:if>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
-						</ul></li>
+					<c:if test="${manageuser eq true}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a class="ajax-link" href="ajax/userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
+							</ul></li>
+					</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">Person Detail</span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">System Settings</span>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
-							<li><a class="ajax-link" href="ajax/type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
-							<li><a class="ajax-link" href="ajax/access_manage"><i class="fa fa-clipboard"></i> Access Manage</a></li>
-						</ul></li>
-
+					<c:if test="${managesetting eq true}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">System Settings</span>
+						</a>
+							<ul class="dropdown-menu">
+								<c:if test="${manageuserdepart eq true}">
+									<li><a class="ajax-link" href="ajax/department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
+								</c:if>
+								<c:if test="${manageusertype eq true}">
+									<li><a class="ajax-link" href="ajax/type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
+								</c:if>
+								<c:if test="${accesscontrol eq true}">
+									<li><a class="ajax-link" href="ajax/access_manage"><i class="fa fa-clipboard"></i> Access Manage</a></li>
+								</c:if>
+							</ul></li>
+					</c:if>
 					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
 					</a></li>
 				</ul>

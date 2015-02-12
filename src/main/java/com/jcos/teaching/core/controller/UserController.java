@@ -209,7 +209,7 @@ public class UserController {
 	@RequestMapping(value = "/GetAllUser", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getAllUser(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "getalluser")) {
+		if (!authUserTypePower(request, "queryuser")) {
 			response.setStatus(3388);
 			return null;
 		}

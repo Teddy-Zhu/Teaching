@@ -168,7 +168,7 @@
 					</div>
 				</div>
 
-				<c:if test="${getallsupplier eq true}">
+				<c:if test="${querysupplier eq true}">
 					<div class="panel panel-default" style="border: 1px solid #CCC;">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForsupplierTable">
@@ -189,7 +189,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	<c:if test="${getallsupplier eq true}">
+	<c:if test="${managesupplier eq true}">
 	$(function() {
 		$.getScript("resources/js/ajax/supplier.js");
 	})

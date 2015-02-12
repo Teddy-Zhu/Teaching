@@ -115,7 +115,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetBookTypeForType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<BookType> getBookTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "getallbooktype")) {
+		if (!authUserTypePower(request, "querybooktype")) {
 			response.setStatus(3388);
 			return null;
 		}
@@ -144,7 +144,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetUserTypeAllForType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "getallusertype")) {
+		if (!authUserTypePower(request, "queryusertype")) {
 			response.setStatus(3388);
 			return null;
 		}

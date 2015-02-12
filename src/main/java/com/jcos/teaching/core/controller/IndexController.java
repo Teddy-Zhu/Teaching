@@ -75,10 +75,13 @@ public class IndexController {
 	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals(""))
+		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
+			String[] powers = new String[] { "managebook", "managesupplier", "managesetting", "manageusertype", "manageuserdepart", "manageuser", "accesscontrol" };
+			setModel(request, model, powers);
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
-		else
-			request.getSession().setAttribute("loginUser", "NoUser");
+		} else {
+			request.getSession().setAttribute("loginSession", null);
+		}
 		return "AdminMenu";
 	}
 
@@ -105,12 +108,12 @@ public class IndexController {
 			break;
 		}
 		case "book_manage": {
-			String[] powers = new String[] { "addbook", "editbook", "rmbook", "getallbook" };
+			String[] powers = new String[] { "addbook", "editbook", "rmbook", "querybook", "managebook" };
 			setModel(request, model, powers);
 			break;
 		}
 		case "userinfo_manage": {
-			String[] powers = new String[] { "adduser", "edituser", "rmuser", "getalluser" };
+			String[] powers = new String[] { "adduser", "edituser", "rmuser", "queryuser", "manageuser" };
 			setModel(request, model, powers);
 			break;
 		}
@@ -123,17 +126,17 @@ public class IndexController {
 			break;
 		}
 		case "supplier_manage": {
-			String[] powers = new String[] { "addsupplier", "editsupplier", "rmsupplier", "getallsupplier" };
+			String[] powers = new String[] { "addsupplier", "editsupplier", "rmsupplier", "querysupplier", "managesupplier" };
 			setModel(request, model, powers);
 			break;
 		}
 		case "department_manage": {
-			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart", "getalluserdepart" };
+			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart", "queryuserdepart", "manageuserdepart" };
 			setModel(request, model, powers);
 			break;
 		}
 		case "type_manage": {
-			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "getallusertype", "getallbooktype", "addbooktype", "editbooktype", "rmbooktype" };
+			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "queryusertype", "querybooktype", "addbooktype", "editbooktype", "rmbooktype", "managebooktype", "manageusertype" };
 			setModel(request, model, powers);
 			break;
 		}

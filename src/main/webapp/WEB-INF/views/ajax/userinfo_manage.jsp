@@ -167,7 +167,7 @@
 					</div>
 				</div>
 
-				<c:if test="${getalluser eq true}">
+				<c:if test="${queryuser eq true}">
 					<div class="panel panel-default" style="border: 1px solid #CCC;">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForUserTable">
@@ -188,7 +188,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	<c:if test="${getalluser eq true}">
+	<c:if test="${manageuser eq true}">
 	$(function() {
 		$.getScript("resources/js/ajax/userinfomanage.js");
 	})

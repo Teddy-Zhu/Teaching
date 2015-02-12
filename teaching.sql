@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-02-12 20:58:45
+Date: 2015-02-12 22:21:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,7 +39,6 @@ CREATE TABLE `book` (
 -- ----------------------------
 INSERT INTO `book` VALUES ('4', '电子商务与物流管理第2版', 'B122', '45145', '1', '101.000', '纷纭出版社', 'SSDFF', '4.000', '1', '2015-02-02 17:37:54');
 INSERT INTO `book` VALUES ('5', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2015-02-02 16:06:25');
-INSERT INTO `book` VALUES ('6', '驼峰航线', 'Bookaa', 'xxxzx', '1', '12.900', '121', 'azzz', '1.500', '1', '2015-02-12 15:35:38');
 INSERT INTO `book` VALUES ('8', '中南海备忘录', 'Baaa233', 'asa', '4', '12.014', '1231', 'za', '2.500', '1', '2015-02-12 15:26:55');
 INSERT INTO `book` VALUES ('13', 'SQL Server 2008 商业智能完美解决方案', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '1', '2015-02-02 16:01:37');
 INSERT INTO `book` VALUES ('15', '英语口语短句大王', 'B1230', '45', '1', '458.400', '45', '4545', '6.000', '1', '2015-02-02 16:06:25');
@@ -108,6 +107,7 @@ CREATE TABLE `bookplan` (
   `intUserId` int(11) NOT NULL COMMENT '申请人',
   `strMark` varchar(255) DEFAULT NULL,
   `isAllow` int(11) NOT NULL DEFAULT '0' COMMENT '0 审核 1 通过 2 拒绝 3 作废',
+  `intYear` int(11) NOT NULL,
   `dateaddtime` datetime NOT NULL,
   PRIMARY KEY (`intPlanId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -115,7 +115,7 @@ CREATE TABLE `bookplan` (
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '1', '121', '12', '12', '12', '121', '4', '0', null, '0', '2015-02-10 14:03:34');
+INSERT INTO `bookplan` VALUES ('1', '1', '121', '12', '12', '12', '121', '4', '0', null, '0', '0', '2015-02-10 14:03:34');
 
 -- ----------------------------
 -- Table structure for bookreturn
@@ -288,61 +288,69 @@ INSERT INTO `operation` VALUES ('2', '登录');
 DROP TABLE IF EXISTS `power`;
 CREATE TABLE `power` (
   `intPowerId` int(11) NOT NULL AUTO_INCREMENT,
+  `intParentId` int(11) NOT NULL,
+  `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intUserTypeId` int(11) NOT NULL,
   `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
 -- ----------------------------
-INSERT INTO `power` VALUES ('1', '1', 'Login', '1');
-INSERT INTO `power` VALUES ('2', '2', 'Login', '1');
-INSERT INTO `power` VALUES ('3', '3', 'Login', '1');
-INSERT INTO `power` VALUES ('4', '4', 'Login', '1');
-INSERT INTO `power` VALUES ('5', '1', 'querybook', '1');
-INSERT INTO `power` VALUES ('6', '2', 'querybook', '1');
-INSERT INTO `power` VALUES ('7', '3', 'querybook', '1');
-INSERT INTO `power` VALUES ('8', '4', 'querybook', '1');
-INSERT INTO `power` VALUES ('9', '1', 'addbook', '1');
-INSERT INTO `power` VALUES ('10', '2', 'addbook', '1');
-INSERT INTO `power` VALUES ('11', '3', 'addbook', '0');
-INSERT INTO `power` VALUES ('12', '4', 'addbook', '0');
-INSERT INTO `power` VALUES ('13', '1', 'rmbook', '1');
-INSERT INTO `power` VALUES ('14', '2', 'rmbook', '1');
-INSERT INTO `power` VALUES ('15', '3', 'rmbook', '0');
-INSERT INTO `power` VALUES ('16', '4', 'rmbook', '0');
-INSERT INTO `power` VALUES ('17', '1', 'editbook', '1');
-INSERT INTO `power` VALUES ('18', '2', 'editbook', '1');
-INSERT INTO `power` VALUES ('19', '3', 'editbook', '0');
-INSERT INTO `power` VALUES ('20', '4', 'eidtbook', '0');
-INSERT INTO `power` VALUES ('21', '1', 'managebook', '1');
-INSERT INTO `power` VALUES ('22', '2', 'managebook', '1');
-INSERT INTO `power` VALUES ('23', '3', 'managebook', '0');
-INSERT INTO `power` VALUES ('24', '4', 'managebook', '0');
-INSERT INTO `power` VALUES ('25', '1', 'getalluser', '1');
-INSERT INTO `power` VALUES ('26', '1', 'getallusertype', '1');
-INSERT INTO `power` VALUES ('27', '1', 'adduser', '1');
-INSERT INTO `power` VALUES ('28', '1', 'edituser', '1');
-INSERT INTO `power` VALUES ('29', '1', 'rmuser', '1');
-INSERT INTO `power` VALUES ('30', '1', 'getallsupplier', '1');
-INSERT INTO `power` VALUES ('31', '1', 'addsupplier', '1');
-INSERT INTO `power` VALUES ('32', '1', 'editsupplier', '1');
-INSERT INTO `power` VALUES ('33', '1', 'rmsupplier', '1');
-INSERT INTO `power` VALUES ('34', '1', 'adduserdepart', '1');
-INSERT INTO `power` VALUES ('35', '1', 'edituserdepart', '1');
-INSERT INTO `power` VALUES ('36', '1', 'rmuserdepart', '1');
-INSERT INTO `power` VALUES ('37', '1', 'getalluserdepart', '1');
-INSERT INTO `power` VALUES ('38', '1', 'getallbook', '1');
-INSERT INTO `power` VALUES ('39', '1', 'addusertype', '1');
-INSERT INTO `power` VALUES ('40', '1', 'editusertype', '1');
-INSERT INTO `power` VALUES ('41', '1', 'rmusertype', '1');
-INSERT INTO `power` VALUES ('42', '1', 'addbooktype', '1');
-INSERT INTO `power` VALUES ('43', '1', 'editbooktype', '1');
-INSERT INTO `power` VALUES ('44', '1', 'rmbooktype', '1');
-INSERT INTO `power` VALUES ('45', '1', 'getallbooktype', '1');
-INSERT INTO `power` VALUES ('46', '1', 'accesscontrol', '1');
+INSERT INTO `power` VALUES ('1', '0', '权限表', '1', '1', '1');
+INSERT INTO `power` VALUES ('2', '1', '登录', '1', 'Login', '1');
+INSERT INTO `power` VALUES ('3', '1', '登录', '2', 'Login', '1');
+INSERT INTO `power` VALUES ('4', '1', '登录', '3', 'Login', '1');
+INSERT INTO `power` VALUES ('5', '1', '登录', '4', 'Login', '1');
+INSERT INTO `power` VALUES ('6', '0', '查询书籍', '1', 'querybook', '1');
+INSERT INTO `power` VALUES ('7', '0', '查询书籍', '2', 'querybook', '1');
+INSERT INTO `power` VALUES ('8', '0', '查询书籍', '3', 'querybook', '1');
+INSERT INTO `power` VALUES ('9', '0', '查询书籍', '4', 'querybook', '1');
+INSERT INTO `power` VALUES ('10', '0', '添加书籍', '1', 'addbook', '1');
+INSERT INTO `power` VALUES ('11', '0', '添加书籍', '2', 'addbook', '1');
+INSERT INTO `power` VALUES ('12', '0', '添加书籍', '3', 'addbook', '0');
+INSERT INTO `power` VALUES ('13', '0', '添加书籍', '4', 'addbook', '0');
+INSERT INTO `power` VALUES ('14', '0', '删除书籍', '1', 'rmbook', '1');
+INSERT INTO `power` VALUES ('15', '0', '删除书籍', '2', 'rmbook', '1');
+INSERT INTO `power` VALUES ('16', '0', '删除书籍', '3', 'rmbook', '0');
+INSERT INTO `power` VALUES ('17', '0', '删除书籍', '4', 'rmbook', '0');
+INSERT INTO `power` VALUES ('18', '0', '编辑书籍', '1', 'editbook', '1');
+INSERT INTO `power` VALUES ('19', '0', '编辑书籍', '2', 'editbook', '1');
+INSERT INTO `power` VALUES ('20', '0', '编辑书籍', '3', 'editbook', '0');
+INSERT INTO `power` VALUES ('21', '0', '编辑书籍', '4', 'eidtbook', '0');
+INSERT INTO `power` VALUES ('22', '1', '管理书籍', '1', 'managebook', '1');
+INSERT INTO `power` VALUES ('23', '1', '管理书籍', '2', 'managebook', '1');
+INSERT INTO `power` VALUES ('24', '1', '管理书籍', '3', 'managebook', '0');
+INSERT INTO `power` VALUES ('25', '1', '管理书籍', '4', 'managebook', '0');
+INSERT INTO `power` VALUES ('26', '1', '管理用户', '1', 'queryuser', '1');
+INSERT INTO `power` VALUES ('27', '1', '管理用户类型', '1', 'queryusertype', '1');
+INSERT INTO `power` VALUES ('28', '0', '', '1', 'adduser', '1');
+INSERT INTO `power` VALUES ('29', '0', '', '1', 'edituser', '1');
+INSERT INTO `power` VALUES ('30', '0', '', '1', 'rmuser', '1');
+INSERT INTO `power` VALUES ('31', '1', '', '1', 'querysupplier', '1');
+INSERT INTO `power` VALUES ('32', '0', '', '1', 'addsupplier', '1');
+INSERT INTO `power` VALUES ('33', '0', '', '1', 'editsupplier', '1');
+INSERT INTO `power` VALUES ('34', '0', '', '1', 'rmsupplier', '1');
+INSERT INTO `power` VALUES ('35', '0', '', '1', 'adduserdepart', '1');
+INSERT INTO `power` VALUES ('36', '0', '', '1', 'edituserdepart', '1');
+INSERT INTO `power` VALUES ('37', '0', '', '1', 'rmuserdepart', '1');
+INSERT INTO `power` VALUES ('38', '1', '', '1', 'queryuserdepart', '1');
+INSERT INTO `power` VALUES ('40', '0', '', '1', 'addusertype', '1');
+INSERT INTO `power` VALUES ('41', '0', '', '1', 'editusertype', '1');
+INSERT INTO `power` VALUES ('42', '0', '', '1', 'rmusertype', '1');
+INSERT INTO `power` VALUES ('43', '0', '', '1', 'addbooktype', '1');
+INSERT INTO `power` VALUES ('44', '0', '', '1', 'editbooktype', '1');
+INSERT INTO `power` VALUES ('45', '0', '', '1', 'rmbooktype', '1');
+INSERT INTO `power` VALUES ('46', '1', '', '1', 'querybooktype', '1');
+INSERT INTO `power` VALUES ('47', '1', '', '1', 'accesscontrol', '1');
+INSERT INTO `power` VALUES ('48', '1', '管理用户', '1', 'manageuser', '1');
+INSERT INTO `power` VALUES ('49', '1', '管理用户类型', '1', 'manageusertype', '1');
+INSERT INTO `power` VALUES ('50', '1', '管理书籍类型', '1', 'managebooktype', '1');
+INSERT INTO `power` VALUES ('51', '1', '管理供应商', '1', 'managesupplier', '1');
+INSERT INTO `power` VALUES ('52', '1', '管理用户系部', '1', 'manageuserdepart', '1');
+INSERT INTO `power` VALUES ('53', '1', '系统设置', '1', 'managesetting', '1');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -481,4 +489,4 @@ INSERT INTO `versionlog` VALUES ('8', '0008', '00', '1', '新增供应商管理�
 INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信息浏览.', '2015-02-10 20:07:43');
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
 INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');
-INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库带小写敏感的BUG', '2015-02-12 20:57:56');
+INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库大小写敏感的BUG', '2015-02-12 20:57:56');

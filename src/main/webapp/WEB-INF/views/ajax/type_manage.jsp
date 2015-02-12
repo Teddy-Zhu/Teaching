@@ -63,7 +63,7 @@
 			</div>
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="container-fluid" style="margin-top: 10px;">
-					<c:if test="${getallusertype eq true}">
+					<c:if test="${queryusertype eq true}">
 						<div id="usertypecontainer">
 							<div id="tree" class="col-xs-4" style="height: 250px">
 								<div class="panel panel-default">
@@ -134,7 +134,7 @@
 							</div>
 						</div>
 					</c:if>
-					<c:if test="${getallbooktype eq true}">
+					<c:if test="${querybooktype eq true}">
 						<div id="bookTypecontainer">
 							<div id="tree" class="col-xs-4" style="height: 250px;">
 								<div class="panel panel-default">
@@ -208,10 +208,10 @@
 	$(function() {
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
 			$.getScript("resources/plugins/icheck/icheck.min.js", function() {
-				<c:if test="${getallusertype eq true}">
+				<c:if test="${manageusertype eq true}">
 				$.getScript("resources/js/ajax/usertypemanage.js");
 				</c:if>
-				<c:if test="${getallbooktype eq true}">
+				<c:if test="${managebooktype eq true}">
 				$.getScript("resources/js/ajax/booktypemanage.js");
 				</c:if>
 			});
