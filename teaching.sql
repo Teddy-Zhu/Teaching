@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-02-12 17:02:09
+Date: 2015-02-12 20:58:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -465,7 +465,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -481,3 +481,4 @@ INSERT INTO `versionlog` VALUES ('8', '0008', '00', '1', '新增供应商管理�
 INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信息浏览.', '2015-02-10 20:07:43');
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
 INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');
+INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库带小写敏感的BUG', '2015-02-12 20:57:56');
