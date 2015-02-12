@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jcos.teaching.core.dao.usertypeMapper">
+<mapper namespace="com.jcos.teaching.core.dao.UserTypeMapper">
 	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.UserType">
 		<id column="intIdentityId" property="intidentityid" jdbcType="INTEGER" />
 		<result column="strName" property="strname" jdbcType="VARCHAR" />
@@ -70,7 +70,7 @@
 		where intIdentityId =
 		#{intidentityid,jdbcType=INTEGER}
 	</update>
-	<select id="selectusertype" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="selectUserType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
 		from usertype
