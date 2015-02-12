@@ -14,21 +14,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from moneyResult
+    from moneyresult
     where intResultId = #{intresultid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from moneyResult
+    delete from moneyresult
     where intResultId = #{intresultid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jcos.teaching.core.model.MoneyResult" >
-    insert into moneyResult (intResultId, intUserId, intOperationUserId, 
+    insert into moneyresult (intResultId, intUserId, intOperationUserId, 
       intResultTypeId, strPrice)
     values (#{intresultid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intoperationuserid,jdbcType=INTEGER}, 
       #{intresulttypeid,jdbcType=INTEGER}, #{strprice,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.MoneyResult" >
-    insert into moneyResult
+    insert into moneyresult
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="intresultid != null" >
         intResultId,
@@ -65,7 +65,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.MoneyResult" >
-    update moneyResult
+    update moneyresult
     <set >
       <if test="intuserid != null" >
         intUserId = #{intuserid,jdbcType=INTEGER},
@@ -83,7 +83,7 @@
     where intResultId = #{intresultid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.MoneyResult" >
-    update moneyResult
+    update moneyresult
     set intUserId = #{intuserid,jdbcType=INTEGER},
       intOperationUserId = #{intoperationuserid,jdbcType=INTEGER},
       intResultTypeId = #{intresulttypeid,jdbcType=INTEGER},

@@ -12,21 +12,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from forType
+    from fortype
     where intForId = #{intforid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from forType
+    delete from fortype
     where intForId = #{intforid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jcos.teaching.core.model.ForType" >
-    insert into forType (intForId, strUseName, intUserId
+    insert into fortype (intForId, strUseName, intUserId
       )
     values (#{intforid,jdbcType=INTEGER}, #{strusename,jdbcType=VARCHAR}, #{intuserid,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.ForType" >
-    insert into forType
+    insert into fortype
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="intforid != null" >
         intForId,
@@ -51,7 +51,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.ForType" >
-    update forType
+    update fortype
     <set >
       <if test="strusename != null" >
         strUseName = #{strusename,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
     where intForId = #{intforid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.ForType" >
-    update forType
+    update fortype
     set strUseName = #{strusename,jdbcType=VARCHAR},
       intUserId = #{intuserid,jdbcType=INTEGER}
     where intForId = #{intforid,jdbcType=INTEGER}

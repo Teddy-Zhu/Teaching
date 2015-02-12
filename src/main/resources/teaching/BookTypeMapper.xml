@@ -11,19 +11,19 @@
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from bookType
+		from booktype
 		where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from bookType
+		delete from booktype
 		where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.BookType">
-		insert into bookType (intBookTypeId, strBookTypeName)
+		insert into booktype (intBookTypeId, strBookTypeName)
 		values (#{intbooktypeid,jdbcType=INTEGER}, #{strbooktypename,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookType">
-		insert into bookType
+		insert into booktype
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intbooktypeid != null">
 				intBookTypeId,
@@ -42,7 +42,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookType">
-		update bookType
+		update booktype
 		<set>
 			<if test="strbooktypename != null">
 				strBookTypeName = #{strbooktypename,jdbcType=VARCHAR},
@@ -51,13 +51,13 @@
 		where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookType">
-		update bookType
+		update booktype
 		set strBookTypeName = #{strbooktypename,jdbcType=VARCHAR}
 		where intBookTypeId = #{intbooktypeid,jdbcType=INTEGER}
 	</update>
 	<select id="queryBookType" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from bookType
+		from booktype
 	</select>
 </mapper>
