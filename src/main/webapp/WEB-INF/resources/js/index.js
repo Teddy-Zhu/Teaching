@@ -78,7 +78,7 @@ $(function() {
 					dataType : 'json',
 					data : {
 						page : 1,
-						rows : 10
+						rows : 5
 					},
 					success : function(data) {
 						for (var i = 0; i < data.length; i++) {
