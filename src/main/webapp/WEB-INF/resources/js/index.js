@@ -12,8 +12,6 @@ var hander = {
 	action : {
 		FormSetTimer : function(domId) {
 			var Opdom = $('#' + domId).parent();
-			if (domId == "UserType")
-				Opdom = $('#' + domId);
 			Opdom.removeClass('has-success');
 			Opdom.removeClass('has-error');
 			Opdom.addClass('has-error');
@@ -23,8 +21,6 @@ var hander = {
 		},
 		SetSucccess : function(domId) {
 			var Opdom = $('#' + domId).parent();
-			if (domId == "UserType")
-				Opdom = $('#' + domId);
 			Opdom.removeClass('has-success');
 			Opdom.removeClass('has-error');
 			Opdom.addClass('has-success');
@@ -55,16 +51,13 @@ $(function() {
 	$(document).ajaxStop(function() {
 		NProgress.done();
 	});
-	$('a.UserAccount')
-			.click(
-					function() {
-						$
-								.TeachDialog({
-									title : 'Message',
-									content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
-									bootstrapModalOption : {}
-								});
-					})
+	$('a.UserAccount').click(function() {
+		$.TeachDialog({
+			title : 'Message',
+			content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
+			bootstrapModalOption : {}
+		});
+	})
 	$('a.version').click(
 			function() {
 				$.TeachDialog({
@@ -83,9 +76,8 @@ $(function() {
 					success : function(data) {
 						for (var i = 0; i < data.length; i++) {
 							$('#versioninfo').append(
-									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion
-											+ '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime) + '</div></div><div class="panel-body">'
-											+ data[i].strupdatecomment + '</div></div>');
+									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion + '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime)
+											+ '</div></div><div class="panel-body">' + data[i].strupdatecomment + '</div></div>');
 						}
 					},
 					error : function(data) {
@@ -199,9 +191,8 @@ $(function() {
 				success : function(data) {
 					if (data != null) {
 						$('#UserType').empty();
-						$('#UserType').append(optiondefault);
 						for ( var i in data) {
-							var option = '<label class="btn btn-primary"><input type="radio" name="UserType" value=' + data[i].intidentityid + '>' + data[i].strname + '</label>';
+							var option = '<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>';
 							$('#UserType').append(option);
 						}
 					} else {
@@ -276,7 +267,7 @@ $(function() {
 		$('.alert.alert-danger').remove();
 		$('.preloader').fadeToggle("slow");
 		$(this).button('loading');
-		var userTypeId = $("#UserType label.active input").val();
+		var userTypeId = $("#UserType").val();
 		if (userTypeId == undefined || userTypeId == "") {
 			hander.action.FormSetTimer('UserType');
 			mark = false;
@@ -305,6 +296,20 @@ $(function() {
 			mark = false;
 		} else {
 			hander.action.SetSucccess('RePassWord');
+		}
+		var departid = $('#DepartMent').val();
+		if (departid == undefined || departid == "") {
+			hander.action.FormSetTimer('DepartMent');
+			mark = false;
+		} else {
+			hander.action.SetSucccess('DepartMent');
+		}
+		var majorid = $('#Majors').val();
+		if (majorid == undefined || majorid == "") {
+			hander.action.FormSetTimer('Majors');
+			mark = false;
+		} else {
+			hander.action.SetSucccess('Majors');
 		}
 		var phone = $('#Phone').val().trim();
 		if (phone == "") {
@@ -342,8 +347,7 @@ $(function() {
 			$('.preloader').fadeToggle("slow");
 			return;
 		}
-		var departid = $('#DepartMent').val();
-		var majorid = $('#Majors').val();
+
 		if (mark) {
 			$.ajax({
 				url : 'User/AuthRegister',

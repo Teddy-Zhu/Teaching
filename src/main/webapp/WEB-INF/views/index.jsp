@@ -101,11 +101,8 @@ span.passwordc {
 							<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
 							<div class="row" style="margin-bottom: 10px;">
 								<div class="col-md-6 col-md-offset-1">
-									<div id="UserType" class="btn-group" style="display: block;" data-toggle="buttons">
-										<div class="spinner-bounce-circle" style="width: 30px; height: 30px;">
-											<div></div>
-											<div></div>
-										</div>
+									<div class="input-group">
+										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">UserType</span></span><select id="UserType" class="form-control"></select>
 									</div>
 								</div>
 								<div class="col-md-4"></div>
