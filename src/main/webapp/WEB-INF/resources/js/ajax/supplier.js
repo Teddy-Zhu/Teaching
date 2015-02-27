@@ -169,10 +169,9 @@ $(function() {
 									'editContactPerson' + id).replace('newContactPhone', 'editContactPhone' + id).replace(new RegExp('newform', "gm"), 'editform'));
 					setVal(id, rows[i]);
 				}
+				$('#supplierEditTable a:first').tab('show')
 				$('#editsuppliercontainer').slideDown();
 				$('#operationpanel').slideUp();
-
-				$('#supplierEditTable a:first').tab('show')
 			});
 	$('button.submitEdit').click(function() {
 		var idarray = new Array();

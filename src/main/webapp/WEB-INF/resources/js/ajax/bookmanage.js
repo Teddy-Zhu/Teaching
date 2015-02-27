@@ -74,11 +74,9 @@ $(function() {
 					initSupplierType('editSupplierType' + id);
 					setVal(id, rows[i]);
 				}
+				$('#bookEditTable a:first').tab('show')
 				$('#operationpanel').slideToggle();
 				$('#editbookcontainer').slideToggle();
-
-				$('#bookEditTable a:first').tab('show')
-
 			})
 	$('button.submitAdd').click(function() {
 		// auth form
@@ -137,8 +135,9 @@ $(function() {
 
 	$('button.cancelAdd').click(function() {
 		$('.newform').val('');
-		$('#operationpanel').slideDown();
 		$('#addnewbook').slideUp();
+		$('#operationpanel').slideDown();
+		
 	})
 	$('button.addbook').click(function() {
 		$('.newform').val('');

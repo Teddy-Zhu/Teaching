@@ -258,10 +258,9 @@ $(function() {
 									'editDepartMent' + id).replace('newMajor', 'editMajor' + id).replace(new RegExp('newform', "gm"), 'editform'));
 					setVal(id, rows[i]);
 				}
+				$('#userEditTable a:first').tab('show')
 				$('#editusercontainer').slideDown();
 				$('#operationpanel').slideUp();
-
-				$('#userEditTable a:first').tab('show')
 			});
 	$('button.submitEdit').click(function() {
 		var idarray = new Array();

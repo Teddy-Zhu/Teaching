@@ -237,13 +237,13 @@ $(function() {
 
 			$('#loginModal').slideToggle();
 			$('#registerModal').slideToggle();
-			$('#registerModal').removeClass("am-animation-slide-bottom");
-			$('#registerModal').addClass("am-animation-slide-bottom");
+			$('#registerModal').removeClass("am-animation-slide-top");
+			$('#registerModal').addClass("am-animation-slide-top");
 		} else {
 			$('#registerModal').slideToggle();
 			$('#loginModal').slideToggle();
-			$('#loginModal').removeClass("am-animation-slide-bottom");
-			$('#loginModal').addClass("am-animation-slide-bottom");
+			$('#loginModal').removeClass("am-animation-slide-top");
+			$('#loginModal').addClass("am-animation-slide-top");
 		}
 	});
 
