@@ -1,13 +1,8 @@
 *.class
-
-
 .mtj
 .tmp/
 *.jar
-
 *.war
-
 *.ear
-*
 target
 src/main/resources/config.properties
