@@ -114,7 +114,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
 						</ul></li>
-					<c:if test="${managesetting eq true}">
+					<c:if test="${setting eq true}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">System Settings</span>
 						</a>
 							<ul class="dropdown-menu">

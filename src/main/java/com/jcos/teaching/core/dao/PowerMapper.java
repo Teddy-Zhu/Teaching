@@ -21,7 +21,11 @@ public interface PowerMapper {
 
 	Integer queryPowerByName(@Param(value = "name") String name, @Param(value = "intId") Integer IntId);
 
-	List<Power> selectManagePower(@Param(value = "intparentid") int intparentid,@Param(value = "intusertypeid") int intusertypeid);
+	List<Power> selectManagePower(@Param(value = "intparentid") int intparentid, @Param(value = "intusertypeid") int intusertypeid);
 
 	Integer insertParentPower(Power record);
+
+	Integer deletePowerByUserType(Integer intusertypeid);
+
+	Integer insertPowerList(List<Power> powers);
 }

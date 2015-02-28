@@ -122,7 +122,7 @@ public class TypeOperateController {
 		if (newtypeId == 0) {
 			return false;
 		}
-		
+
 		// insert access controller
 		List<Power> parentPower = powerService.selectParentPower(1, 1);
 		for (Power parentpower : parentPower) {
@@ -130,23 +130,24 @@ public class TypeOperateController {
 			parentpower.setIntpowerid(null);
 			parentpower.setIntusertypeid(newtypeId);
 			if (parentpower.getStrauthname().contains("manage")) {
-				Integer tmp = powerService.insertPowerRetId(parentpower);
-				if (tmp == 0) {
+				if(!powerService.insertPowerRetId(parentpower)){
+					return false;
+				}
+				if (parentpower.getIntpowerid() == null) {
 					return false;
 				}
 				List<Power> tmpchildren = powerService.selectParentPower(originId, 1);
 				for (Power tmpchild : tmpchildren) {
 					tmpchild.setIntpowerid(null);
 					tmpchild.setIntusertypeid(newtypeId);
-					tmpchild.setIntparentid(tmp);
-					powerService.insertPower(tmpchild);
+					tmpchild.setIntparentid(parentpower.getIntpowerid());
 				}
+				powerService.insertPowers(tmpchildren);
 			} else {
 				powerService.insertPower(parentpower);
 			}
 		}
 
-		
 		return true;
 	}
 
@@ -169,6 +170,10 @@ public class TypeOperateController {
 			response.setStatus(3384);
 			return false;
 		}
+
+		// delete access control
+		powerService.deletePowerByUserType(id);
+		
 		return userTypeService.deleteUserType(id);
 	}
 

@@ -28,8 +28,8 @@ public class PowerImpl implements PowerService {
 	}
 
 	@Override
-	public List<Power> selectParentPower(int intParentId,int UserTypeId) {
-		return powerDao.selectManagePower(intParentId,UserTypeId);
+	public List<Power> selectParentPower(int intParentId, int UserTypeId) {
+		return powerDao.selectManagePower(intParentId, UserTypeId);
 	}
 
 	@Override
@@ -43,7 +43,32 @@ public class PowerImpl implements PowerService {
 	}
 
 	@Override
-	public int insertPowerRetId(Power record) {
-		return powerDao.insertParentPower(record);
+	public boolean insertPowerRetId(Power record) {
+		Integer i =  powerDao.insertParentPower(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean deletePowerByUserType(int usertypeid) {
+		Integer i = powerDao.deletePowerByUserType(usertypeid);
+		if (i < 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean insertPowers(List<Power> powers) {
+		Integer i = powerDao.insertPowerList(powers);
+		if (i != powers.size()) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

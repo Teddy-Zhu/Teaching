@@ -28,7 +28,8 @@
 		)
 		values (#{intpowerid,jdbcType=INTEGER},
 		#{intparentid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR},
-		#{intusertypeid,jdbcType=INTEGER}, #{strauthname,jdbcType=VARCHAR}, #{intauthvalue,jdbcType=INTEGER}
+		#{intusertypeid,jdbcType=INTEGER},
+		#{strauthname,jdbcType=VARCHAR}, #{intauthvalue,jdbcType=INTEGER}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Power">
@@ -110,11 +111,11 @@
 		where strAuthName = #{name,jdbcType=VARCHAR} and intUserTypeId = (select intTypeId from user where intId =
 		#{intId,jdbcType=INTEGER})
 	</select>
-	<select id="selectManagePower" resultType="java.lang.Integer">
-		select intParentId,strName,strAuthName from power
+	<select id="selectManagePower" resultType="com.jcos.teaching.core.model.Power">
+		select intPowerId,intParentId,strName,strAuthName from power
 		where intParentId = #{intparentid,jdbcType=INTEGER} and intUserTypeId = #{intusertypeid,jdbcType=INTEGER}
 	</select>
-	<insert id="insertParentPower" parameterType="com.jcos.teaching.core.model.Power">
+	<insert id="insertParentPower" parameterType="com.jcos.teaching.core.model.Power" useGeneratedKeys="true" keyProperty="intpowerid">
 		insert into power (intParentId, strName,
 		intUserTypeId, strAuthName, intAuthValue
 		)
@@ -123,8 +124,22 @@
 		#{intusertypeid,jdbcType=INTEGER},
 		#{strauthname,jdbcType=VARCHAR}, #{intauthvalue,jdbcType=INTEGER}
 		)
-		<selectKey keyProperty="intpowerid" resultType="int" order="AFTER">
-			select LAST_INSERT_ID()
-		</selectKey>
+	</insert>
+
+	<delete id="deletePowerByUserType" parameterType="java.lang.Integer">
+		delete from power
+		where intUserTypeId = #{intusertypeid,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insertPowerList" parameterType="java.util.List">
+		insert into power (intParentId, strName,
+		intUserTypeId, strAuthName, intAuthValue
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.intparentid,jdbcType=INTEGER}, #{item.strname,jdbcType=VARCHAR},
+			#{item.intusertypeid,jdbcType=INTEGER},
+			#{item.strauthname,jdbcType=VARCHAR}, #{item.intauthvalue,jdbcType=INTEGER})
+		</foreach>
 	</insert>
 </mapper>

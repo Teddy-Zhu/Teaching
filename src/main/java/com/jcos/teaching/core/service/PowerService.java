@@ -10,8 +10,12 @@ public interface PowerService {
 
 	boolean insertPower(Power record);
 
-	int insertPowerRetId(Power record);
+	boolean insertPowerRetId(Power record);
 
 	List<Power> selectParentPower(int intParentId, int UserTypeId);
+
+	boolean deletePowerByUserType(int usertypeid);
+
+	boolean insertPowers(List<Power> powers);
 
 }
