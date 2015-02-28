@@ -20,4 +20,9 @@ public interface UserTypeMapper {
 	int updateByPrimaryKey(UserType record);
 
 	List<UserType> selectUserType(@Param(value = "allow") Integer allow);
+
+	UserType selectUserTypeByName(@Param(value = "name") String name);
+
+	int selectUserTypeCountByName(@Param(value = "name") String name);
+
 }

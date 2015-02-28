@@ -1,5 +1,8 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.BookType;
+import com.jcos.teaching.core.model.Power;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
@@ -101,11 +105,49 @@ public class TypeOperateController {
 		if (name.equals("")) {
 			return false;
 		}
+		if (!userTypeService.authusertype(name)) {
+			return false;
+		}
 		UserType type = new UserType();
 		type.setIntidentityid(null);
 		type.setStrname(name);
 		type.setIntallowreg(check);
-		return userTypeService.insertUserType(type);
+
+		Integer newtypeId = 0;
+		if (userTypeService.insertUserType(type)) {
+			newtypeId = userTypeService.selectidByName(name);
+		} else {
+			return false;
+		}
+		if (newtypeId == 0) {
+			return false;
+		}
+		
+		// insert access controller
+		List<Power> parentPower = powerService.selectParentPower(1, 1);
+		for (Power parentpower : parentPower) {
+			Integer originId = parentpower.getIntpowerid();
+			parentpower.setIntpowerid(null);
+			parentpower.setIntusertypeid(newtypeId);
+			if (parentpower.getStrauthname().contains("manage")) {
+				Integer tmp = powerService.insertPowerRetId(parentpower);
+				if (tmp == 0) {
+					return false;
+				}
+				List<Power> tmpchildren = powerService.selectParentPower(originId, 1);
+				for (Power tmpchild : tmpchildren) {
+					tmpchild.setIntpowerid(null);
+					tmpchild.setIntusertypeid(newtypeId);
+					tmpchild.setIntparentid(tmp);
+					powerService.insertPower(tmpchild);
+				}
+			} else {
+				powerService.insertPower(parentpower);
+			}
+		}
+
+		
+		return true;
 	}
 
 	@RequestMapping(value = "/DeleteUserType", method = RequestMethod.POST)

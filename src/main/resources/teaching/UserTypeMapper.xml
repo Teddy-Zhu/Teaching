@@ -78,4 +78,13 @@
 			where intAllowReg = #{allow,jdbcType=INTEGER}
 		</if>
 	</select>
+	<select id="selectUserTypeCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(intIdentityId) from usertype where strName = #{name,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectUserTypeByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from usertype where strName = #{name,jdbcType=VARCHAR}
+	</select>
 </mapper>

@@ -16,4 +16,8 @@ public interface UserTypeService {
 
 	boolean deleteUserType(Integer id);
 
+	boolean authusertype(String name);
+
+	int selectidByName(String name);
+
 }

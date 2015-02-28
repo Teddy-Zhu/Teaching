@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-12 22:21:16
+Date: 2015-02-28 17:50:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -299,58 +299,40 @@ CREATE TABLE `power` (
 -- ----------------------------
 -- Records of power
 -- ----------------------------
-INSERT INTO `power` VALUES ('1', '0', '权限表', '1', '1', '1');
+INSERT INTO `power` VALUES ('1', '0', '权限表', '0', '1', '1');
 INSERT INTO `power` VALUES ('2', '1', '登录', '1', 'Login', '1');
-INSERT INTO `power` VALUES ('3', '1', '登录', '2', 'Login', '1');
-INSERT INTO `power` VALUES ('4', '1', '登录', '3', 'Login', '1');
-INSERT INTO `power` VALUES ('5', '1', '登录', '4', 'Login', '1');
-INSERT INTO `power` VALUES ('6', '0', '查询书籍', '1', 'querybook', '1');
-INSERT INTO `power` VALUES ('7', '0', '查询书籍', '2', 'querybook', '1');
-INSERT INTO `power` VALUES ('8', '0', '查询书籍', '3', 'querybook', '1');
-INSERT INTO `power` VALUES ('9', '0', '查询书籍', '4', 'querybook', '1');
-INSERT INTO `power` VALUES ('10', '0', '添加书籍', '1', 'addbook', '1');
-INSERT INTO `power` VALUES ('11', '0', '添加书籍', '2', 'addbook', '1');
-INSERT INTO `power` VALUES ('12', '0', '添加书籍', '3', 'addbook', '0');
-INSERT INTO `power` VALUES ('13', '0', '添加书籍', '4', 'addbook', '0');
-INSERT INTO `power` VALUES ('14', '0', '删除书籍', '1', 'rmbook', '1');
-INSERT INTO `power` VALUES ('15', '0', '删除书籍', '2', 'rmbook', '1');
-INSERT INTO `power` VALUES ('16', '0', '删除书籍', '3', 'rmbook', '0');
-INSERT INTO `power` VALUES ('17', '0', '删除书籍', '4', 'rmbook', '0');
-INSERT INTO `power` VALUES ('18', '0', '编辑书籍', '1', 'editbook', '1');
-INSERT INTO `power` VALUES ('19', '0', '编辑书籍', '2', 'editbook', '1');
-INSERT INTO `power` VALUES ('20', '0', '编辑书籍', '3', 'editbook', '0');
-INSERT INTO `power` VALUES ('21', '0', '编辑书籍', '4', 'eidtbook', '0');
-INSERT INTO `power` VALUES ('22', '1', '管理书籍', '1', 'managebook', '1');
-INSERT INTO `power` VALUES ('23', '1', '管理书籍', '2', 'managebook', '1');
-INSERT INTO `power` VALUES ('24', '1', '管理书籍', '3', 'managebook', '0');
-INSERT INTO `power` VALUES ('25', '1', '管理书籍', '4', 'managebook', '0');
-INSERT INTO `power` VALUES ('26', '1', '管理用户', '1', 'queryuser', '1');
-INSERT INTO `power` VALUES ('27', '1', '管理用户类型', '1', 'queryusertype', '1');
-INSERT INTO `power` VALUES ('28', '0', '', '1', 'adduser', '1');
-INSERT INTO `power` VALUES ('29', '0', '', '1', 'edituser', '1');
-INSERT INTO `power` VALUES ('30', '0', '', '1', 'rmuser', '1');
-INSERT INTO `power` VALUES ('31', '1', '', '1', 'querysupplier', '1');
-INSERT INTO `power` VALUES ('32', '0', '', '1', 'addsupplier', '1');
-INSERT INTO `power` VALUES ('33', '0', '', '1', 'editsupplier', '1');
-INSERT INTO `power` VALUES ('34', '0', '', '1', 'rmsupplier', '1');
-INSERT INTO `power` VALUES ('35', '0', '', '1', 'adduserdepart', '1');
-INSERT INTO `power` VALUES ('36', '0', '', '1', 'edituserdepart', '1');
-INSERT INTO `power` VALUES ('37', '0', '', '1', 'rmuserdepart', '1');
-INSERT INTO `power` VALUES ('38', '1', '', '1', 'queryuserdepart', '1');
-INSERT INTO `power` VALUES ('40', '0', '', '1', 'addusertype', '1');
-INSERT INTO `power` VALUES ('41', '0', '', '1', 'editusertype', '1');
-INSERT INTO `power` VALUES ('42', '0', '', '1', 'rmusertype', '1');
-INSERT INTO `power` VALUES ('43', '0', '', '1', 'addbooktype', '1');
-INSERT INTO `power` VALUES ('44', '0', '', '1', 'editbooktype', '1');
-INSERT INTO `power` VALUES ('45', '0', '', '1', 'rmbooktype', '1');
-INSERT INTO `power` VALUES ('46', '1', '', '1', 'querybooktype', '1');
-INSERT INTO `power` VALUES ('47', '1', '', '1', 'accesscontrol', '1');
-INSERT INTO `power` VALUES ('48', '1', '管理用户', '1', 'manageuser', '1');
-INSERT INTO `power` VALUES ('49', '1', '管理用户类型', '1', 'manageusertype', '1');
-INSERT INTO `power` VALUES ('50', '1', '管理书籍类型', '1', 'managebooktype', '1');
-INSERT INTO `power` VALUES ('51', '1', '管理供应商', '1', 'managesupplier', '1');
-INSERT INTO `power` VALUES ('52', '1', '管理用户系部', '1', 'manageuserdepart', '1');
-INSERT INTO `power` VALUES ('53', '1', '系统设置', '1', 'managesetting', '1');
+INSERT INTO `power` VALUES ('3', '1', '权限控管', '1', 'accesscontrol', '1');
+INSERT INTO `power` VALUES ('4', '1', '管理用户', '1', 'manageuser', '1');
+INSERT INTO `power` VALUES ('5', '1', '管理用户类型', '1', 'manageusertype', '1');
+INSERT INTO `power` VALUES ('6', '1', '管理书籍类型', '1', 'managebooktype', '1');
+INSERT INTO `power` VALUES ('7', '1', '管理供应商', '1', 'managesupplier', '1');
+INSERT INTO `power` VALUES ('8', '1', '管理用户系部', '1', 'manageuserdepart', '1');
+INSERT INTO `power` VALUES ('9', '1', '管理书籍', '1', 'managebook', '1');
+INSERT INTO `power` VALUES ('10', '1', '系统设置', '1', 'managesetting', '1');
+INSERT INTO `power` VALUES ('11', '9', '查询书籍', '1', 'querybook', '1');
+INSERT INTO `power` VALUES ('12', '9', '添加书籍', '1', 'addbook', '1');
+INSERT INTO `power` VALUES ('13', '9', '删除书籍', '1', 'rmbook', '1');
+INSERT INTO `power` VALUES ('14', '9', '编辑书籍', '1', 'editbook', '1');
+INSERT INTO `power` VALUES ('15', '4', '查询用户', '1', 'queryuser', '1');
+INSERT INTO `power` VALUES ('16', '4', '添加用户', '1', 'adduser', '1');
+INSERT INTO `power` VALUES ('17', '4', '编辑用户', '1', 'edituser', '1');
+INSERT INTO `power` VALUES ('18', '4', '删除用户', '1', 'rmuser', '1');
+INSERT INTO `power` VALUES ('19', '7', '查询供应商', '1', 'querysupplier', '1');
+INSERT INTO `power` VALUES ('20', '7', '添加供应商', '1', 'addsupplier', '1');
+INSERT INTO `power` VALUES ('21', '7', '编辑供应商', '1', 'editsupplier', '1');
+INSERT INTO `power` VALUES ('22', '7', '删除供应商', '1', 'rmsupplier', '1');
+INSERT INTO `power` VALUES ('23', '8', '添加用户系部', '1', 'adduserdepart', '1');
+INSERT INTO `power` VALUES ('24', '8', '编辑用户系部', '1', 'edituserdepart', '1');
+INSERT INTO `power` VALUES ('25', '8', '删除用户系部', '1', 'rmuserdepart', '1');
+INSERT INTO `power` VALUES ('26', '8', '查询用户系部', '1', 'queryuserdepart', '1');
+INSERT INTO `power` VALUES ('27', '5', '查询用户类型', '1', 'queryusertype', '1');
+INSERT INTO `power` VALUES ('28', '5', '添加用户类型', '1', 'addusertype', '1');
+INSERT INTO `power` VALUES ('29', '5', '编辑用户类型', '1', 'editusertype', '1');
+INSERT INTO `power` VALUES ('30', '5', '删除用户类型', '1', 'rmusertype', '1');
+INSERT INTO `power` VALUES ('31', '6', '添加书籍类型', '1', 'addbooktype', '1');
+INSERT INTO `power` VALUES ('32', '6', '编辑书记类型', '1', 'editbooktype', '1');
+INSERT INTO `power` VALUES ('33', '6', '删除书籍类型', '1', 'rmbooktype', '1');
+INSERT INTO `power` VALUES ('34', '6', '查询书籍类型', '1', 'querybooktype', '1');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -399,16 +381,16 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', '2015-02-11 13:47:46');
-INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-09 16:07:07');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-04 17:20:53');
-INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '6', '4', '363464', 'AAAA', 'AAAA', '2014-12-07 19:25:29');
-INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', '2014-12-07 19:27:02');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '3', '5', '4', '2342343', '1111178888', 'qqq@11.com', '2014-12-07 20:01:39');
-INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '4', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-04 17:54:08');
-INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '5', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-12 15:29:11');
-INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '6', '4', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-12 15:27:21');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '3', '6', '4', '656564', '11111', '655', '2015-02-05 10:02:07');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '1', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '1', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '1', '6', '4', '363464', 'AAAA', 'AAAA', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '1', '6', '4', '34432453', 'aasf', 'aasf', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '1', '5', '4', '2342343', '1111178888', 'qqq@11.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '1', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '1', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '1', '6', '4', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '1', '6', '4', '656564', '11111', '655', '2015-02-28 15:34:22');
 
 -- ----------------------------
 -- Table structure for userdepartment
@@ -450,16 +432,12 @@ CREATE TABLE `usertype` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intAllowReg` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intIdentityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of usertype
 -- ----------------------------
 INSERT INTO `usertype` VALUES ('1', 'Admin', '0');
-INSERT INTO `usertype` VALUES ('2', 'BookManager', '0');
-INSERT INTO `usertype` VALUES ('3', 'Teacher', '1');
-INSERT INTO `usertype` VALUES ('4', 'Student', '1');
-INSERT INTO `usertype` VALUES ('5', '测试用户类型-t', '1');
 
 -- ----------------------------
 -- Table structure for versionlog
@@ -473,7 +451,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -490,3 +468,4 @@ INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信�
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
 INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');
 INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库大小写敏感的BUG', '2015-02-12 20:57:56');
+INSERT INTO `versionlog` VALUES ('13', '0012', '00', '1', '加入权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');

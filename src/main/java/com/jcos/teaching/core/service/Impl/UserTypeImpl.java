@@ -55,4 +55,24 @@ public class UserTypeImpl implements UserTypeService {
 			return true;
 		}
 	}
+
+	@Override
+	public boolean authusertype(String name) {
+		Integer i = userTypeDao.selectUserTypeCountByName(name);
+		if (i > 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public int selectidByName(String name) {
+		UserType userType = userTypeDao.selectUserTypeByName(name);
+		if (userType != null) {
+			return userType.getIntidentityid();
+		} else {
+			return 0;
+		}
+	}
 }

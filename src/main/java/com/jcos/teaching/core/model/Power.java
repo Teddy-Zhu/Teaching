@@ -16,6 +16,8 @@ public class Power {
 	public Power() {
 		super();
 		this.intpowerid = 0;
+		this.intparentid = 0;
+		this.strname = "";
 		this.intusertypeid = 0;
 		this.strauthname = "";
 		this.intauthvalue = 0;

@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.service.Impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -23,5 +25,25 @@ public class PowerImpl implements PowerService {
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public List<Power> selectParentPower(int intParentId,int UserTypeId) {
+		return powerDao.selectManagePower(intParentId,UserTypeId);
+	}
+
+	@Override
+	public boolean insertPower(Power record) {
+		Integer i = powerDao.insertSelective(record);
+		if (i != 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public int insertPowerRetId(Power record) {
+		return powerDao.insertParentPower(record);
 	}
 }
