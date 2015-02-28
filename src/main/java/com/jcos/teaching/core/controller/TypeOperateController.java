@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 @Controller
 @RequestMapping(value = "/TypeOperate")
@@ -125,12 +127,13 @@ public class TypeOperateController {
 
 		// insert access controller
 		List<Power> parentPower = powerService.selectParentPower(1, 1);
+		List<Power> needinsertPowers = new ArrayList<Power>();
 		for (Power parentpower : parentPower) {
 			Integer originId = parentpower.getIntpowerid();
 			parentpower.setIntpowerid(null);
 			parentpower.setIntusertypeid(newtypeId);
 			if (parentpower.getStrauthname().contains("manage")) {
-				if(!powerService.insertPowerRetId(parentpower)){
+				if (!powerService.insertPowerRetId(parentpower)) {
 					return false;
 				}
 				if (parentpower.getIntpowerid() == null) {
@@ -142,11 +145,12 @@ public class TypeOperateController {
 					tmpchild.setIntusertypeid(newtypeId);
 					tmpchild.setIntparentid(parentpower.getIntpowerid());
 				}
-				powerService.insertPowers(tmpchildren);
+				needinsertPowers.addAll(tmpchildren);
 			} else {
 				powerService.insertPower(parentpower);
 			}
 		}
+		powerService.insertPowers(needinsertPowers);
 
 		return true;
 	}
@@ -173,7 +177,7 @@ public class TypeOperateController {
 
 		// delete access control
 		powerService.deletePowerByUserType(id);
-		
+
 		return userTypeService.deleteUserType(id);
 	}
 
