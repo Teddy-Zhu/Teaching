@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-02-28 20:51:18
+Date: 2015-02-28 20:57:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -516,13 +516,13 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', '2015-02-28 15:34:22');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-28 20:44:02');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-28 20:44:52');
-INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '6', '4', '363464', 'AAAA', 'AAAA', '2015-02-28 20:44:57');
-INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '1', '6', '4', '34432453', 'aasf', 'aasf', '2015-02-28 15:34:22');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '1', '5', '4', '2342343', '1111178888', 'qqq@11.com', '2015-02-28 15:34:22');
-INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '1', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-28 15:34:22');
-INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '1', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-28 15:34:22');
-INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '1', '6', '4', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-28 15:34:22');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '1', '6', '4', '656564', '11111', '655', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', '2015-02-28 20:56:49');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', '2015-02-28 20:56:01');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '2342343', '1111178888', 'qqq@11.com', '2015-02-28 20:56:39');
+INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-28 20:57:00');
+INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', '2015-02-28 20:56:23');
 
 -- ----------------------------
 -- Table structure for userdepartment

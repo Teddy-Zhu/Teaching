@@ -170,6 +170,11 @@ public class TypeOperateController {
 			response.setStatus(3386);
 			return false;
 		}
+		// forbid deleting admin user group
+		if (id == 1) {
+			return false;
+		}
+		// if in use ,not allowed.
 		if (!userService.authUserType(id)) {
 			response.setStatus(3384);
 			return false;
