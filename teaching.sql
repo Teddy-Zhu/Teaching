@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-02 15:52:34
+Date: 2015-03-02 21:05:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -348,39 +348,39 @@ INSERT INTO `power` VALUES ('31', '6', '添加书籍类型', '1', 'addbooktype',
 INSERT INTO `power` VALUES ('32', '6', '编辑书记类型', '1', 'editbooktype', '1');
 INSERT INTO `power` VALUES ('33', '6', '删除书籍类型', '1', 'rmbooktype', '1');
 INSERT INTO `power` VALUES ('34', '6', '查询书籍类型', '1', 'querybooktype', '1');
-INSERT INTO `power` VALUES ('35', '1', '登录', '2', 'Login', '0');
+INSERT INTO `power` VALUES ('35', '1', '登录', '2', 'Login', '1');
 INSERT INTO `power` VALUES ('36', '1', '权限控管', '2', 'accesscontrol', '0');
-INSERT INTO `power` VALUES ('37', '1', '管理用户', '2', 'manageuser', '0');
-INSERT INTO `power` VALUES ('38', '37', '查询用户', '2', 'queryuser', '0');
+INSERT INTO `power` VALUES ('37', '1', '管理用户', '2', 'manageuser', '1');
+INSERT INTO `power` VALUES ('38', '37', '查询用户', '2', 'queryuser', '1');
 INSERT INTO `power` VALUES ('39', '37', '添加用户', '2', 'adduser', '0');
 INSERT INTO `power` VALUES ('40', '37', '编辑用户', '2', 'edituser', '0');
 INSERT INTO `power` VALUES ('41', '37', '删除用户', '2', 'rmuser', '0');
-INSERT INTO `power` VALUES ('42', '1', '管理用户类型', '2', 'manageusertype', '0');
-INSERT INTO `power` VALUES ('43', '42', '查询用户类型', '2', 'queryusertype', '0');
+INSERT INTO `power` VALUES ('42', '1', '管理用户类型', '2', 'manageusertype', '1');
+INSERT INTO `power` VALUES ('43', '42', '查询用户类型', '2', 'queryusertype', '1');
 INSERT INTO `power` VALUES ('44', '42', '添加用户类型', '2', 'addusertype', '0');
 INSERT INTO `power` VALUES ('45', '42', '编辑用户类型', '2', 'editusertype', '0');
 INSERT INTO `power` VALUES ('46', '42', '删除用户类型', '2', 'rmusertype', '0');
-INSERT INTO `power` VALUES ('47', '1', '管理书籍类型', '2', 'managebooktype', '0');
+INSERT INTO `power` VALUES ('47', '1', '管理书籍类型', '2', 'managebooktype', '1');
 INSERT INTO `power` VALUES ('48', '47', '添加书籍类型', '2', 'addbooktype', '0');
 INSERT INTO `power` VALUES ('49', '47', '编辑书记类型', '2', 'editbooktype', '0');
 INSERT INTO `power` VALUES ('50', '47', '删除书籍类型', '2', 'rmbooktype', '0');
-INSERT INTO `power` VALUES ('51', '47', '查询书籍类型', '2', 'querybooktype', '0');
-INSERT INTO `power` VALUES ('52', '1', '管理供应商', '2', 'managesupplier', '0');
-INSERT INTO `power` VALUES ('53', '52', '查询供应商', '2', 'querysupplier', '0');
+INSERT INTO `power` VALUES ('51', '47', '查询书籍类型', '2', 'querybooktype', '1');
+INSERT INTO `power` VALUES ('52', '1', '管理供应商', '2', 'managesupplier', '1');
+INSERT INTO `power` VALUES ('53', '52', '查询供应商', '2', 'querysupplier', '1');
 INSERT INTO `power` VALUES ('54', '52', '添加供应商', '2', 'addsupplier', '0');
 INSERT INTO `power` VALUES ('55', '52', '编辑供应商', '2', 'editsupplier', '0');
 INSERT INTO `power` VALUES ('56', '52', '删除供应商', '2', 'rmsupplier', '0');
-INSERT INTO `power` VALUES ('57', '1', '管理用户系部', '2', 'manageuserdepart', '0');
+INSERT INTO `power` VALUES ('57', '1', '管理用户系部', '2', 'manageuserdepart', '1');
 INSERT INTO `power` VALUES ('58', '57', '添加用户系部', '2', 'adduserdepart', '0');
 INSERT INTO `power` VALUES ('59', '57', '编辑用户系部', '2', 'edituserdepart', '0');
 INSERT INTO `power` VALUES ('60', '57', '删除用户系部', '2', 'rmuserdepart', '0');
-INSERT INTO `power` VALUES ('61', '57', '查询用户系部', '2', 'queryuserdepart', '0');
-INSERT INTO `power` VALUES ('62', '1', '管理书籍', '2', 'managebook', '0');
-INSERT INTO `power` VALUES ('63', '62', '查询书籍', '2', 'querybook', '0');
+INSERT INTO `power` VALUES ('61', '57', '查询用户系部', '2', 'queryuserdepart', '1');
+INSERT INTO `power` VALUES ('62', '1', '管理书籍', '2', 'managebook', '1');
+INSERT INTO `power` VALUES ('63', '62', '查询书籍', '2', 'querybook', '1');
 INSERT INTO `power` VALUES ('64', '62', '添加书籍', '2', 'addbook', '0');
 INSERT INTO `power` VALUES ('65', '62', '删除书籍', '2', 'rmbook', '0');
 INSERT INTO `power` VALUES ('66', '62', '编辑书籍', '2', 'editbook', '0');
-INSERT INTO `power` VALUES ('67', '1', '系统设置', '2', 'setting', '0');
+INSERT INTO `power` VALUES ('67', '1', '系统设置', '2', 'setting', '1');
 INSERT INTO `power` VALUES ('68', '1', '登录', '3', 'Login', '0');
 INSERT INTO `power` VALUES ('69', '1', '权限控管', '3', 'accesscontrol', '0');
 INSERT INTO `power` VALUES ('70', '1', '管理用户', '3', 'manageuser', '0');
@@ -602,7 +602,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -619,4 +619,5 @@ INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信�
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
 INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');
 INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库大小写敏感的BUG', '2015-02-12 20:57:56');
-INSERT INTO `versionlog` VALUES ('13', '0012', '00', '1', '加入权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');
+INSERT INTO `versionlog` VALUES ('13', '0012', '00', '1', '新增UI权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');
+INSERT INTO `versionlog` VALUES ('14', '0013', '00', '1', '新增/完善权限控管<br>[future] 教学书籍订购计划管理', '2015-03-02 21:03:45');

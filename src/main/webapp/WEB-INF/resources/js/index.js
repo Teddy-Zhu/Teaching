@@ -39,12 +39,26 @@ function returntimeer(domId) {
 		delShakeClass(domId);
 	};
 }
-
+function account(){
+	new PNotify({
+		title : 'Message',
+		text : '测试账号!<br>Admin==>Admin;a<br>BookManager==>Troevil;123456<br>Teacher==>TestUser;TestUser<br>Student==>AAAA;AAAAAAAA.<br>点击版本号查看版本细节!',
+		type : 'success',
+		animation: 'slide'
+	});
+}
 $(function() {
+	$.getScript("resources/plugins/pnotify/pnotify.custom.min.js", function() {
+		account();
+	});
+
 	NProgress.configure({
 		ease : 'ease',
 		speed : 700
-	})
+	});
+	$('body').css('cssText','background-color:#353535 ! important');
+	//random background image
+	//$('body').css('background-image', 'url(https://unsplash.it/' + $(this).width() + '/' + $(this).height() + '?random)')
 	$(document).ajaxStart(function() {
 		NProgress.start();
 	});
@@ -52,11 +66,7 @@ $(function() {
 		NProgress.done();
 	});
 	$('a.UserAccount').click(function() {
-		$.TeachDialog({
-			title : 'Message',
-			content : '<strong>测试账号!<strong><br>Admin==>UserName:Admin;Password:a<br>BookManager==>UserName:Troevil;Password:123456<br>Teacher==>UserName:TestUser;Password:TestUser<br>Student==>UserName:AAAA;Password:AAAAAAAA',
-			bootstrapModalOption : {}
-		});
+		account();
 	})
 	$('a.version').click(
 			function() {
@@ -85,15 +95,6 @@ $(function() {
 					async : true
 				});
 			})
-	$('a.version').tooltip({
-		delay : {
-			"show" : 1000,
-			"hide" : 3000
-		},
-		title : '<span style="color:red;">Click Me For Detail!<span>',
-		placement : 'right',
-		html : true
-	}).tooltip('show');
 	$('#loginButton').click(function() {
 		$(this).button('loading');
 		$('.preloader').fadeToggle("slow");

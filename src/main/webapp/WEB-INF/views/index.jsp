@@ -9,6 +9,7 @@
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/self.css" />
+<link rel="stylesheet" href="resources/plugins/pnotify/pnotify.custom.min.css" />
 <link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
 
 </head>
@@ -44,8 +45,12 @@ span.passwordc {
 .row div .input-group select {
 	width: 100% !important;
 }
+
+.ui-pnotify {
+	width: 23% !important;
+}
 </style>
-<body style="background-color: #353535 ! important;">
+<body>
 	<div class="container">
 		<div class="col-md-12" style="height: 170px;">
 			<div class="col-md-3"></div>
