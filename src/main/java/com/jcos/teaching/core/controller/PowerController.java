@@ -88,6 +88,16 @@ public class PowerController {
 			response.setStatus(3386);
 			return false;
 		}
+		if (powerstrue.size() > 0) {
+			if (!powerService.updatePowers(1, powerstrue)) {
+				return false;
+			}
+		}
+		if (powersfalse.size() > 0) {
+			if (!powerService.updatePowers(0, powersfalse)) {
+				return false;
+			}
+		}
 
 		// update db
 		return false;

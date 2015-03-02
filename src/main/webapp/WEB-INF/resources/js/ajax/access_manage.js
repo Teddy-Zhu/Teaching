@@ -43,7 +43,7 @@ function LoadAccessTree() {
 	})
 }
 $(function() {
-
+	console.log('123');
 	$.ajax({
 		url : 'Type/GetUserTypeAll',
 		dataType : 'json',
@@ -60,10 +60,10 @@ $(function() {
 	});
 	$('#Update').click(function() {
 		var postdata = {};
-		var powerId;
+		var powerId = new Array();
 		var changes = treeObj.getChangeCheckedNodes();
 		if (changes.length > 0) {
-			for (var i = 0; i < changes.lenght; i++) {
+			for (var i = 0; i < changes.length; i++) {
 				powerId.push(changes[i].intpowerid);
 				postdata["value" + changes[i].intpowerid] = changes[i].intauthvalue;
 			}
@@ -73,6 +73,11 @@ $(function() {
 				dataType : 'json',
 				type : 'post',
 				data : postdata,
+			}).success(function() {
+				$.TeachDialog({
+					title : 'Operation Message!',
+					content : 'Update ' + $('#usertype').find("option:selected").text() + ' access control success!',
+				});
 			})
 		} else {
 			$.TeachDialog({

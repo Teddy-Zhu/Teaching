@@ -86,7 +86,10 @@ public class PowerImpl implements PowerService {
 	@Override
 	public boolean updatePowers(Integer intauthvalue,List<Integer> list){
 		Integer i = powerDao.updatePowerListByAuthValue(intauthvalue,list);
-		logger.debug("update value:" + i );
-		return true;
+		if (i != list.size()) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

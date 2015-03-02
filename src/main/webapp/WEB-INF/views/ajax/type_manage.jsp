@@ -30,6 +30,10 @@
 .tab-content div .row input {
 	width: 63%;
 }
+
+.tab-pane {
+	padding-left: 2%;
+}
 </style>
 <link rel="stylesheet" href="resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css" />
 <link href="resources/plugins/icheck/skins/square/blue.css" rel="stylesheet">

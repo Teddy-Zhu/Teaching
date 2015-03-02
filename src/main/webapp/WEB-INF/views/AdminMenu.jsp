@@ -121,7 +121,7 @@
 								<c:if test="${manageuserdepart eq true}">
 									<li><a class="ajax-link" href="ajax/department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
 								</c:if>
-								<c:if test="${manageusertype eq true}">
+								<c:if test="${manageusertype eq true or managebooktype eq true}">
 									<li><a class="ajax-link" href="ajax/type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
 								</c:if>
 								<c:if test="${accesscontrol eq true}">

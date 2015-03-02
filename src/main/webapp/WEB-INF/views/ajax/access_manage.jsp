@@ -30,9 +30,12 @@
 .tab-content div .row input {
 	width: 63%;
 }
+
+.tab-pane {
+	padding-left: 2%;
+}
 </style>
 <link rel="stylesheet" href="resources/plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css" />
-<link href="resources/plugins/icheck/skins/square/blue.css" rel="stylesheet">
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
@@ -77,7 +80,7 @@
 								</div>
 							</div>
 						</div>
-						<div id="useroperate_menu" class="col-xs-8" style="height: 250px;">
+						<div id="useroperate_menu" class="col-xs-8" style="height: 150px;">
 							<div id="userPanel" role="tabpanel">
 
 								<!-- Nav tabs -->
@@ -101,6 +104,11 @@
 										</div>
 									</c:if>
 								</div>
+							</div>
+						</div>
+						<div id="notification" class="col-xs-8" style="height: 250px;">
+							<div class="alert alert-danger" role="alert">
+								<strong>Warning!</strong> <br>UserType,BookType,Department,Access control authorities under Setting.If you want enable any of them,you should set setting power first.
 							</div>
 						</div>
 					</div>
