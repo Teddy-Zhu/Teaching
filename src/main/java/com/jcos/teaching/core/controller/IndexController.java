@@ -136,7 +136,13 @@ public class IndexController {
 			break;
 		}
 		case "type_manage": {
-			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "queryusertype", "querybooktype", "addbooktype", "editbooktype", "rmbooktype", "managebooktype", "manageusertype" };
+			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "queryusertype", "querybooktype", "addbooktype", "editbooktype", "rmbooktype", "managebooktype",
+					"manageusertype" };
+			setModel(request, model, powers);
+			break;
+		}
+		case "access_manage": {
+			String[] powers = new String[] { "accesscontrol" };
 			setModel(request, model, powers);
 			break;
 		}

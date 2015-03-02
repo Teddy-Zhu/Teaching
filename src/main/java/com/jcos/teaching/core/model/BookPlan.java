@@ -5,7 +5,7 @@ import java.util.Date;
 public class BookPlan {
     private Integer intplanid;
 
-    private Integer intcourseid;
+    private String strcourseid;
 
     private String strclass;
 
@@ -23,7 +23,9 @@ public class BookPlan {
 
     private String strmark;
 
-    private Integer isallow;
+    private Integer intplanstatusid;
+
+    private Integer intyear;
 
     private Date dateaddtime;
 
@@ -35,12 +37,12 @@ public class BookPlan {
         this.intplanid = intplanid;
     }
 
-    public Integer getIntcourseid() {
-        return intcourseid;
+    public String getStrcourseid() {
+        return strcourseid;
     }
 
-    public void setIntcourseid(Integer intcourseid) {
-        this.intcourseid = intcourseid;
+    public void setStrcourseid(String strcourseid) {
+        this.strcourseid = strcourseid == null ? null : strcourseid.trim();
     }
 
     public String getStrclass() {
@@ -107,12 +109,20 @@ public class BookPlan {
         this.strmark = strmark == null ? null : strmark.trim();
     }
 
-    public Integer getIsallow() {
-        return isallow;
+    public Integer getIntplanstatusid() {
+        return intplanstatusid;
     }
 
-    public void setIsallow(Integer isallow) {
-        this.isallow = isallow;
+    public void setIntplanstatusid(Integer intplanstatusid) {
+        this.intplanstatusid = intplanstatusid;
+    }
+
+    public Integer getIntyear() {
+        return intyear;
+    }
+
+    public void setIntyear(Integer intyear) {
+        this.intyear = intyear;
     }
 
     public Date getDateaddtime() {

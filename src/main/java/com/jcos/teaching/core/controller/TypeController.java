@@ -105,7 +105,7 @@ public class TypeController {
 	public List<BookType> getBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
 		return bookTypeService.getAllBookType();
 	}
-	
+
 	/**
 	 * 
 	 * @param request
@@ -140,7 +140,7 @@ public class TypeController {
 		List<UserType> allowUserType = userTypeService.getUserType();
 		return allowUserType;
 	}
-	
+
 	@RequestMapping(value = "/GetUserTypeAllForType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {

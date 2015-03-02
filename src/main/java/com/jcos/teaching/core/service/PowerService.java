@@ -18,4 +18,6 @@ public interface PowerService {
 
 	boolean insertPowers(List<Power> powers);
 
+	List<Power> getPowerbyUserType(List<Integer> usertypeids);
+
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.PlanStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.PlanStatus" >
+    <id column="intPlanStatusId" property="intplanstatusid" jdbcType="INTEGER" />
+    <result column="strName" property="strname" jdbcType="VARCHAR" />
+    <result column="strMark" property="strmark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intPlanStatusId, strName, strMark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from planstatus
+    where intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from planstatus
+    where intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.PlanStatus" >
+    insert into planstatus (intPlanStatusId, strName, strMark
+      )
+    values (#{intplanstatusid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR}, #{strmark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.PlanStatus" >
+    insert into planstatus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intplanstatusid != null" >
+        intPlanStatusId,
+      </if>
+      <if test="strname != null" >
+        strName,
+      </if>
+      <if test="strmark != null" >
+        strMark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intplanstatusid != null" >
+        #{intplanstatusid,jdbcType=INTEGER},
+      </if>
+      <if test="strname != null" >
+        #{strname,jdbcType=VARCHAR},
+      </if>
+      <if test="strmark != null" >
+        #{strmark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.PlanStatus" >
+    update planstatus
+    <set >
+      <if test="strname != null" >
+        strName = #{strname,jdbcType=VARCHAR},
+      </if>
+      <if test="strmark != null" >
+        strMark = #{strmark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.PlanStatus" >
+    update planstatus
+    set strName = #{strname,jdbcType=VARCHAR},
+      strMark = #{strmark,jdbcType=VARCHAR}
+    where intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER}
+  </update>
+</mapper>

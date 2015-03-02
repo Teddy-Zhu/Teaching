@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-28 20:57:40
+Date: 2015-03-02 15:52:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,7 +97,7 @@ CREATE TABLE `bookout` (
 DROP TABLE IF EXISTS `bookplan`;
 CREATE TABLE `bookplan` (
   `intPlanId` int(11) NOT NULL AUTO_INCREMENT,
-  `intCourseId` int(11) NOT NULL,
+  `strCourseId` varchar(255) NOT NULL,
   `strClass` varchar(255) NOT NULL,
   `intCountAll` int(11) NOT NULL,
   `intStudCount` int(11) NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE `bookplan` (
   `intBookId` int(11) NOT NULL,
   `intUserId` int(11) NOT NULL COMMENT '申请人',
   `strMark` varchar(255) DEFAULT NULL,
-  `isAllow` int(11) NOT NULL DEFAULT '0' COMMENT '0 审核 1 通过 2 拒绝 3 作废',
+  `intPlanStatusId` int(11) NOT NULL DEFAULT '0' COMMENT '0 审核 1 通过 2 拒绝 3 作废',
   `intYear` int(11) NOT NULL,
   `dateaddtime` datetime NOT NULL,
   PRIMARY KEY (`intPlanId`)
@@ -281,6 +281,21 @@ CREATE TABLE `operation` (
 -- ----------------------------
 INSERT INTO `operation` VALUES ('1', '录入图书');
 INSERT INTO `operation` VALUES ('2', '登录');
+
+-- ----------------------------
+-- Table structure for planstatus
+-- ----------------------------
+DROP TABLE IF EXISTS `planstatus`;
+CREATE TABLE `planstatus` (
+  `intPlanStatusId` int(11) NOT NULL,
+  `strName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strMark` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`intPlanStatusId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of planstatus
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for power

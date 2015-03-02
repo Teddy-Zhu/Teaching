@@ -64,7 +64,7 @@
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="container-fluid" style="margin-top: 10px;">
 					<div id="usertypecontainer">
-						<div id="tree" class="col-xs-4" style="height: 250px">
+						<div id="tree" class="col-xs-4">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">
@@ -73,7 +73,7 @@
 
 								</div>
 								<div class="panel-body">
-									<div id="ul_tree_usertype" class="ztree"></div>
+									<div id="ul_tree" class="ztree"></div>
 								</div>
 							</div>
 						</div>
@@ -82,49 +82,21 @@
 
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">
-									<c:if test="${editusertype eq true}">
-										<li role="presentation" class="active"><a href="#parent_edit" aria-controls="parent_edit" role="tab" data-toggle="tab">Edit</a></li>
-									</c:if>
-									<c:if test="${addusertype eq true}">
-										<li role="presentation"><a href="#parent_insert" aria-controls="parent_insert" role="tab" data-toggle="tab">Insert</a></li>
-									</c:if>
-									<c:if test="${rmusertype eq true}">
-										<li role="presentation"><a href="#parent_delete" aria-controls="parent_delete" role="tab" data-toggle="tab">Delete</a></li>
+									<c:if test="${accesscontrol eq true}">
+										<li role="presentation" class="active"><a href="#controlpanel" aria-controls="controlpanel" role="tab" data-toggle="tab">Control Panel</a></li>
 									</c:if>
 								</ul>
 
 								<!-- Tab panes -->
 								<div class="tab-content">
-									<c:if test="${editusertype eq true}">
-										<div role="tabpanel" class="tab-pane active" id="parent_edit">
+									<c:if test="${accesscontrol eq true}">
+										<div role="tabpanel" class="tab-pane active" id="controlpanel">
 											<div class="row">
-												<label class="col-xs-4">Type Name</label><input class="form-control col-xs-8" id="user_editname" type="text" placeholder="Input Name" />
-											</div>
-											<div class="row">
-												<label for="regcheck" class="col-xs-4">Allow Register </label><input class="col-xs-8" id="regcheck" type="checkbox" checked>
+												<label class="col-xs-4">User Type</label><select class="form-control col-xs-8" id="usertype"></select>
 											</div>
 											<div class="row text-center">
-												<button class="btn btn-primary btn-xs center-block" id="user_edit">Submit</button>
-											</div>
-										</div>
-									</c:if>
-									<c:if test="${addusertype eq true}">
-										<div role="tabpanel" class="tab-pane" id="parent_insert">
-											<div class="row">
-												<label class="col-xs-4">Type Name</label><input class="form-control col-xs-8" id="user_insertname" type="text" placeholder="Input Name" />
-											</div>
-											<div class="row">
-												<label for="regcheck" class="col-xs-4">Allow Register </label><input class="col-xs-8" id="insertcheck" type="checkbox" checked>
-											</div>
-											<div class="row text-center">
-												<button class="btn btn-primary btn-xs center-block" id="user_insert">Submit</button>
-											</div>
-										</div>
-									</c:if>
-									<c:if test="${rmusertype eq true}">
-										<div role="tabpanel" class="tab-pane" id="parent_delete">
-											<div class="row text-center">
-												<button id="user_delete" class="btn btn-danger center-block">Delete</button>
+												<button class="btn btn-primary btn-xs center-block" id="Update">Update</button>
+												<button class="btn btn-primary btn-xs center-block" id="Reset">Reset</button>
 											</div>
 										</div>
 									</c:if>
@@ -141,7 +113,8 @@
 	$(function() {
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
 			<c:if test="${accesscontrol eq true}">
-			$.getScript("resources/js/ajax/access_control.js");
+			$.getScript("resources/plugins/ztree/js/jquery.ztree.excheck-3.5.min.js");
+			$.getScript("resources/js/ajax/access_manage.js");
 			</c:if>
 		});
 	})

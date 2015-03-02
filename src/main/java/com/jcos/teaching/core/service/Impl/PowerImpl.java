@@ -44,7 +44,7 @@ public class PowerImpl implements PowerService {
 
 	@Override
 	public boolean insertPowerRetId(Power record) {
-		Integer i =  powerDao.insertParentPower(record);
+		Integer i = powerDao.insertParentPower(record);
 		if (i != 1) {
 			return false;
 		} else {
@@ -70,5 +70,10 @@ public class PowerImpl implements PowerService {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public List<Power> getPowerbyUserType(List<Integer> usertypeids) {
+		return powerDao.selectPowerByUserType(usertypeids);
 	}
 }

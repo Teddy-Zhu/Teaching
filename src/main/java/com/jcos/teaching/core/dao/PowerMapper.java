@@ -28,4 +28,6 @@ public interface PowerMapper {
 	Integer deletePowerByUserType(Integer intusertypeid);
 
 	Integer insertPowerList(List<Power> powers);
+	
+	List<Power> selectPowerByUserType(List<Integer> usertypeids); 
 }
