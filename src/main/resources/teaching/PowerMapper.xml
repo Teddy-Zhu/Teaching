@@ -153,11 +153,10 @@
 		</foreach>
 	</select>
 
-	<update id="updateByPrimaryKey" parameterType="java.util.List">
-		update power set intAuthValue = 
-		<foreach collection="list" item="item" index="index" open="(" close=")" separator=";">
-
+	<update id="updatePowerListByAuthValue">
+		update power set intAuthValue = #{intauthvalue,jdbcType=INTEGER} where intPowerId in
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+			#{item,jdbcType=INTEGER}
 		</foreach>
-
 	</update>
 </mapper>

@@ -20,4 +20,6 @@ public interface PowerService {
 
 	List<Power> getPowerbyUserType(List<Integer> usertypeids);
 
+	boolean updatePowers(Integer intauthvalue, List<Integer> list);
+
 }

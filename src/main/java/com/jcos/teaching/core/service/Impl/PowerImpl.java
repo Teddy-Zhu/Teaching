@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.service.Impl;
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +14,10 @@ import com.jcos.teaching.core.service.PowerService;
 
 @Service
 public class PowerImpl implements PowerService {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(PowerImpl.class);
 
 	@Inject
 	private PowerMapper powerDao;
@@ -75,5 +81,12 @@ public class PowerImpl implements PowerService {
 	@Override
 	public List<Power> getPowerbyUserType(List<Integer> usertypeids) {
 		return powerDao.selectPowerByUserType(usertypeids);
+	}
+	
+	@Override
+	public boolean updatePowers(Integer intauthvalue,List<Integer> list){
+		Integer i = powerDao.updatePowerListByAuthValue(intauthvalue,list);
+		logger.debug("update value:" + i );
+		return true;
 	}
 }
