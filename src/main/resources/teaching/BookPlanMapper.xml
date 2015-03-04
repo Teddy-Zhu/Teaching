@@ -3,22 +3,24 @@
 <mapper namespace="com.jcos.teaching.core.dao.BookPlanMapper">
 	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.BookPlan">
 		<id column="intPlanId" property="intplanid" jdbcType="INTEGER" />
-		<result column="strCourseId" property="strcourseid" jdbcType="VARCHAR" />
+		<result column="strCourseName" property="strcoursename" jdbcType="VARCHAR" />
+		<result column="intCourseTypeId" property="intcoursetypeid" jdbcType="INTEGER" />
 		<result column="strClass" property="strclass" jdbcType="VARCHAR" />
-		<result column="intCountAll" property="intcountall" jdbcType="INTEGER" />
 		<result column="intStudCount" property="intstudcount" jdbcType="INTEGER" />
 		<result column="intTeacCount" property="intteaccount" jdbcType="INTEGER" />
-		<result column="intOrderAllCount" property="intorderallcount" jdbcType="INTEGER" />
 		<result column="intBookId" property="intbookid" jdbcType="INTEGER" />
 		<result column="intUserId" property="intuserid" jdbcType="INTEGER" />
-		<result column="strMark" property="strmark" jdbcType="VARCHAR" />
 		<result column="intPlanStatusId" property="intplanstatusid" jdbcType="INTEGER" />
-		<result column="intYear" property="intyear" jdbcType="INTEGER" />
-		<result column="dateaddtime" property="dateaddtime" jdbcType="TIMESTAMP" />
+		<result column="intFromYear" property="intfromyear" jdbcType="INTEGER" />
+		<result column="intToYear" property="inttoyear" jdbcType="INTEGER" />
+		<result column="intTerm" property="intterm" jdbcType="INTEGER" />
+		<result column="dateCreateTime" property="datecreatetime" jdbcType="TIMESTAMP" />
+		<result column="strMark" property="strmark" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		intPlanId, strCourseId, strClass, intCountAll, intStudCount, intTeacCount, intOrderAllCount,
-		intBookId, intUserId, strMark, intPlanStatusId, intYear, dateaddtime
+		intPlanId, strCourseName, intCourseTypeId, strClass, intStudCount, intTeacCount,
+		intBookId, intUserId, intPlanStatusId, intFromYear, intToYear, intTerm, dateCreateTime,
+		strMark
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
@@ -31,16 +33,16 @@
 		where intPlanId = #{intplanid,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.BookPlan">
-		insert into bookplan (intPlanId, strCourseId, strClass,
-		intCountAll, intStudCount, intTeacCount,
-		intOrderAllCount, intBookId, intUserId,
-		strMark, intPlanStatusId, intYear,
-		dateaddtime)
-		values (#{intplanid,jdbcType=INTEGER}, #{strcourseid,jdbcType=VARCHAR}, #{strclass,jdbcType=VARCHAR},
-		#{intcountall,jdbcType=INTEGER}, #{intstudcount,jdbcType=INTEGER}, #{intteaccount,jdbcType=INTEGER},
-		#{intorderallcount,jdbcType=INTEGER}, #{intbookid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER},
-		#{strmark,jdbcType=VARCHAR}, #{intplanstatusid,jdbcType=INTEGER}, #{intyear,jdbcType=INTEGER},
-		#{dateaddtime,jdbcType=TIMESTAMP})
+		insert into bookplan (intPlanId, strCourseName, intCourseTypeId,
+		strClass, intStudCount, intTeacCount,
+		intBookId, intUserId, intPlanStatusId,
+		intFromYear, intToYear, intTerm,
+		dateCreateTime, strMark)
+		values (#{intplanid,jdbcType=INTEGER}, #{strcoursename,jdbcType=VARCHAR}, #{intcoursetypeid,jdbcType=INTEGER},
+		#{strclass,jdbcType=VARCHAR}, #{intstudcount,jdbcType=INTEGER}, #{intteaccount,jdbcType=INTEGER},
+		#{intbookid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intplanstatusid,jdbcType=INTEGER},
+		#{intfromyear,jdbcType=INTEGER}, #{inttoyear,jdbcType=INTEGER}, #{intterm,jdbcType=INTEGER},
+		#{datecreatetime,jdbcType=TIMESTAMP}, #{strmark,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlan">
 		insert into bookplan
@@ -48,14 +50,14 @@
 			<if test="intplanid != null">
 				intPlanId,
 			</if>
-			<if test="strcourseid != null">
-				strCourseId,
+			<if test="strcoursename != null">
+				strCourseName,
+			</if>
+			<if test="intcoursetypeid != null">
+				intCourseTypeId,
 			</if>
 			<if test="strclass != null">
 				strClass,
-			</if>
-			<if test="intcountall != null">
-				intCountAll,
 			</if>
 			<if test="intstudcount != null">
 				intStudCount,
@@ -63,40 +65,43 @@
 			<if test="intteaccount != null">
 				intTeacCount,
 			</if>
-			<if test="intorderallcount != null">
-				intOrderAllCount,
-			</if>
 			<if test="intbookid != null">
 				intBookId,
 			</if>
 			<if test="intuserid != null">
 				intUserId,
 			</if>
-			<if test="strmark != null">
-				strMark,
-			</if>
 			<if test="intplanstatusid != null">
 				intPlanStatusId,
 			</if>
-			<if test="intyear != null">
-				intYear,
+			<if test="intfromyear != null">
+				intFromYear,
 			</if>
-			<if test="dateaddtime != null">
-				dateaddtime,
+			<if test="inttoyear != null">
+				intToYear,
+			</if>
+			<if test="intterm != null">
+				intTerm,
+			</if>
+			<if test="datecreatetime != null">
+				dateCreateTime,
+			</if>
+			<if test="strmark != null">
+				strMark,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="intplanid != null">
 				#{intplanid,jdbcType=INTEGER},
 			</if>
-			<if test="strcourseid != null">
-				#{strcourseid,jdbcType=VARCHAR},
+			<if test="strcoursename != null">
+				#{strcoursename,jdbcType=VARCHAR},
+			</if>
+			<if test="intcoursetypeid != null">
+				#{intcoursetypeid,jdbcType=INTEGER},
 			</if>
 			<if test="strclass != null">
 				#{strclass,jdbcType=VARCHAR},
-			</if>
-			<if test="intcountall != null">
-				#{intcountall,jdbcType=INTEGER},
 			</if>
 			<if test="intstudcount != null">
 				#{intstudcount,jdbcType=INTEGER},
@@ -104,40 +109,43 @@
 			<if test="intteaccount != null">
 				#{intteaccount,jdbcType=INTEGER},
 			</if>
-			<if test="intorderallcount != null">
-				#{intorderallcount,jdbcType=INTEGER},
-			</if>
 			<if test="intbookid != null">
 				#{intbookid,jdbcType=INTEGER},
 			</if>
 			<if test="intuserid != null">
 				#{intuserid,jdbcType=INTEGER},
 			</if>
-			<if test="strmark != null">
-				#{strmark,jdbcType=VARCHAR},
-			</if>
 			<if test="intplanstatusid != null">
 				#{intplanstatusid,jdbcType=INTEGER},
 			</if>
-			<if test="intyear != null">
-				#{intyear,jdbcType=INTEGER},
+			<if test="intfromyear != null">
+				#{intfromyear,jdbcType=INTEGER},
 			</if>
-			<if test="dateaddtime != null">
-				#{dateaddtime,jdbcType=TIMESTAMP},
+			<if test="inttoyear != null">
+				#{inttoyear,jdbcType=INTEGER},
+			</if>
+			<if test="intterm != null">
+				#{intterm,jdbcType=INTEGER},
+			</if>
+			<if test="datecreatetime != null">
+				#{datecreatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="strmark != null">
+				#{strmark,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookPlan">
 		update bookplan
 		<set>
-			<if test="strcourseid != null">
-				strCourseId = #{strcourseid,jdbcType=VARCHAR},
+			<if test="strcoursename != null">
+				strCourseName = #{strcoursename,jdbcType=VARCHAR},
+			</if>
+			<if test="intcoursetypeid != null">
+				intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER},
 			</if>
 			<if test="strclass != null">
 				strClass = #{strclass,jdbcType=VARCHAR},
-			</if>
-			<if test="intcountall != null">
-				intCountAll = #{intcountall,jdbcType=INTEGER},
 			</if>
 			<if test="intstudcount != null">
 				intStudCount = #{intstudcount,jdbcType=INTEGER},
@@ -145,44 +153,48 @@
 			<if test="intteaccount != null">
 				intTeacCount = #{intteaccount,jdbcType=INTEGER},
 			</if>
-			<if test="intorderallcount != null">
-				intOrderAllCount = #{intorderallcount,jdbcType=INTEGER},
-			</if>
 			<if test="intbookid != null">
 				intBookId = #{intbookid,jdbcType=INTEGER},
 			</if>
 			<if test="intuserid != null">
 				intUserId = #{intuserid,jdbcType=INTEGER},
 			</if>
-			<if test="strmark != null">
-				strMark = #{strmark,jdbcType=VARCHAR},
-			</if>
 			<if test="intplanstatusid != null">
 				intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER},
 			</if>
-			<if test="intyear != null">
-				intYear = #{intyear,jdbcType=INTEGER},
+			<if test="intfromyear != null">
+				intFromYear = #{intfromyear,jdbcType=INTEGER},
 			</if>
-			<if test="dateaddtime != null">
-				dateaddtime = #{dateaddtime,jdbcType=TIMESTAMP},
+			<if test="inttoyear != null">
+				intToYear = #{inttoyear,jdbcType=INTEGER},
+			</if>
+			<if test="intterm != null">
+				intTerm = #{intterm,jdbcType=INTEGER},
+			</if>
+			<if test="datecreatetime != null">
+				dateCreateTime = #{datecreatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="strmark != null">
+				strMark = #{strmark,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where intPlanId = #{intplanid,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookPlan">
 		update bookplan
-		set strCourseId = #{strcourseid,jdbcType=VARCHAR},
+		set strCourseName = #{strcoursename,jdbcType=VARCHAR},
+		intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER},
 		strClass = #{strclass,jdbcType=VARCHAR},
-		intCountAll = #{intcountall,jdbcType=INTEGER},
 		intStudCount = #{intstudcount,jdbcType=INTEGER},
 		intTeacCount = #{intteaccount,jdbcType=INTEGER},
-		intOrderAllCount = #{intorderallcount,jdbcType=INTEGER},
 		intBookId = #{intbookid,jdbcType=INTEGER},
 		intUserId = #{intuserid,jdbcType=INTEGER},
-		strMark = #{strmark,jdbcType=VARCHAR},
 		intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER},
-		intYear = #{intyear,jdbcType=INTEGER},
-		dateaddtime = #{dateaddtime,jdbcType=TIMESTAMP}
+		intFromYear = #{intfromyear,jdbcType=INTEGER},
+		intToYear = #{inttoyear,jdbcType=INTEGER},
+		intTerm = #{intterm,jdbcType=INTEGER},
+		dateCreateTime = #{datecreatetime,jdbcType=TIMESTAMP},
+		strMark = #{strmark,jdbcType=VARCHAR}
 		where intPlanId = #{intplanid,jdbcType=INTEGER}
 	</update>
 	<select id="authBookIds" resultType="java.lang.Integer" parameterType="java.lang.Integer">

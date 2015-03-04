@@ -404,10 +404,11 @@ public class UserController {
 			return false;
 		}
 		User recordauth = new User();
+		recordauth.setIntid(userId);
 		recordauth.setUsername(userName);
 		recordauth.setPassword(oldPassword);
 
-		User loginUser = userService.authLoginUser(recordauth);
+		User loginUser = userService.authLoginUserForUpdateInfo(recordauth);
 		if (loginUser == null) {
 			response.setStatus(3385);
 			return false;
@@ -420,7 +421,7 @@ public class UserController {
 
 		User record = new User();
 		record.setIntid(userId);
-		record.setUsername(userName);
+		record.setUsername(null);  // modify username disable
 		record.setInttypeid(userTypeId);
 		record.setPassword(passWord);
 		record.setStrmail(email);

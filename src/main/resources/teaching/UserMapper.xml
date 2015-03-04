@@ -238,9 +238,15 @@
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+		where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR} 
 	</select>
-
+		<select id="authUserByIdUserNamePass" resultMap="UserTypeExtendMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+	from user
+	where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR} and intId = #{userid,jdbcType=INTEGER}
+	</select>
+	
 	<select id="selectUserById" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />

@@ -5,29 +5,31 @@ import java.util.Date;
 public class BookPlan {
     private Integer intplanid;
 
-    private String strcourseid;
+    private String strcoursename;
+
+    private Integer intcoursetypeid;
 
     private String strclass;
-
-    private Integer intcountall;
 
     private Integer intstudcount;
 
     private Integer intteaccount;
 
-    private Integer intorderallcount;
-
     private Integer intbookid;
 
     private Integer intuserid;
 
-    private String strmark;
-
     private Integer intplanstatusid;
 
-    private Integer intyear;
+    private Integer intfromyear;
 
-    private Date dateaddtime;
+    private Integer inttoyear;
+
+    private Integer intterm;
+
+    private Date datecreatetime;
+
+    private String strmark;
 
     public Integer getIntplanid() {
         return intplanid;
@@ -37,12 +39,20 @@ public class BookPlan {
         this.intplanid = intplanid;
     }
 
-    public String getStrcourseid() {
-        return strcourseid;
+    public String getStrcoursename() {
+        return strcoursename;
     }
 
-    public void setStrcourseid(String strcourseid) {
-        this.strcourseid = strcourseid == null ? null : strcourseid.trim();
+    public void setStrcoursename(String strcoursename) {
+        this.strcoursename = strcoursename == null ? null : strcoursename.trim();
+    }
+
+    public Integer getIntcoursetypeid() {
+        return intcoursetypeid;
+    }
+
+    public void setIntcoursetypeid(Integer intcoursetypeid) {
+        this.intcoursetypeid = intcoursetypeid;
     }
 
     public String getStrclass() {
@@ -51,14 +61,6 @@ public class BookPlan {
 
     public void setStrclass(String strclass) {
         this.strclass = strclass == null ? null : strclass.trim();
-    }
-
-    public Integer getIntcountall() {
-        return intcountall;
-    }
-
-    public void setIntcountall(Integer intcountall) {
-        this.intcountall = intcountall;
     }
 
     public Integer getIntstudcount() {
@@ -77,14 +79,6 @@ public class BookPlan {
         this.intteaccount = intteaccount;
     }
 
-    public Integer getIntorderallcount() {
-        return intorderallcount;
-    }
-
-    public void setIntorderallcount(Integer intorderallcount) {
-        this.intorderallcount = intorderallcount;
-    }
-
     public Integer getIntbookid() {
         return intbookid;
     }
@@ -101,14 +95,6 @@ public class BookPlan {
         this.intuserid = intuserid;
     }
 
-    public String getStrmark() {
-        return strmark;
-    }
-
-    public void setStrmark(String strmark) {
-        this.strmark = strmark == null ? null : strmark.trim();
-    }
-
     public Integer getIntplanstatusid() {
         return intplanstatusid;
     }
@@ -117,19 +103,43 @@ public class BookPlan {
         this.intplanstatusid = intplanstatusid;
     }
 
-    public Integer getIntyear() {
-        return intyear;
+    public Integer getIntfromyear() {
+        return intfromyear;
     }
 
-    public void setIntyear(Integer intyear) {
-        this.intyear = intyear;
+    public void setIntfromyear(Integer intfromyear) {
+        this.intfromyear = intfromyear;
     }
 
-    public Date getDateaddtime() {
-        return dateaddtime;
+    public Integer getInttoyear() {
+        return inttoyear;
     }
 
-    public void setDateaddtime(Date dateaddtime) {
-        this.dateaddtime = dateaddtime;
+    public void setInttoyear(Integer inttoyear) {
+        this.inttoyear = inttoyear;
+    }
+
+    public Integer getIntterm() {
+        return intterm;
+    }
+
+    public void setIntterm(Integer intterm) {
+        this.intterm = intterm;
+    }
+
+    public Date getDatecreatetime() {
+        return datecreatetime;
+    }
+
+    public void setDatecreatetime(Date datecreatetime) {
+        this.datecreatetime = datecreatetime;
+    }
+
+    public String getStrmark() {
+        return strmark;
+    }
+
+    public void setStrmark(String strmark) {
+        this.strmark = strmark == null ? null : strmark.trim();
     }
 }

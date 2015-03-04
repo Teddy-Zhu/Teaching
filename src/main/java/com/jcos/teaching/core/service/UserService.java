@@ -31,4 +31,6 @@ public interface UserService {
 	boolean authUserDepartMent(int id);
 
 	boolean authUserType(int id);
+
+	User authLoginUserForUpdateInfo(User record);
 }

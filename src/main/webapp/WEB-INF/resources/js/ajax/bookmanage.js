@@ -75,8 +75,9 @@ $(function() {
 					setVal(id, rows[i]);
 				}
 				$('#bookEditTable a:first').tab('show')
-				$('#operationpanel').slideToggle();
-				$('#editbookcontainer').slideToggle();
+				$('#editbookcontainer').slideDown();
+				$('#operationpanel').slideUp();
+
 			})
 	$('button.submitAdd').click(function() {
 		// auth form
@@ -135,10 +136,10 @@ $(function() {
 
 	$('button.cancelAdd').click(function() {
 		$('.newform').val('');
-		$('#addnewbook').slideUp();
 		$('#operationpanel').slideDown();
-		
+		$('#addnewbook').slideUp();
 	})
+
 	$('button.addbook').click(function() {
 		$('.newform').val('');
 		initBookType('newBookType');
@@ -146,13 +147,14 @@ $(function() {
 		$('#adderrormsg').html("");
 		$('#operationpanel').slideUp();
 		$('#addnewbook').slideDown();
+
 	});
 
 	$('button.cancelEdit').click(function() {
-		$('#bookEditTable').html("");
-		$('#editbookcontainer .tab-content').html("");
 		$('#operationpanel').slideDown();
 		$('#editbookcontainer').slideUp();
+		$('#bookEditTable').html("");
+		$('#editbookcontainer .tab-content').html("");
 	})
 
 	$('button.submitEdit').click(function() {

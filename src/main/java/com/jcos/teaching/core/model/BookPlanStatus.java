@@ -1,6 +1,6 @@
 package com.jcos.teaching.core.model;
 
-public class PlanStatus {
+public class BookPlanStatus {
     private Integer intplanstatusid;
 
     private String strname;

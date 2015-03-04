@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="resources/css/self.css" />
 <link rel="stylesheet" href="resources/plugins/pnotify/pnotify.custom.min.css" />
 <link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
-
+<link href="resources/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
 </head>
 <style>
 span.passwordc {
@@ -49,8 +49,14 @@ span.passwordc {
 .ui-pnotify {
 	width: 23% !important;
 }
+
+.panel.panel-default {
+	-webkit-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
+	-moz-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
+	box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
+}
 </style>
-<body>
+<body style="background-color: #353535 ! important">
 	<div class="container">
 		<div class="col-md-12" style="height: 170px;">
 			<div class="col-md-3"></div>
@@ -206,6 +212,10 @@ span.passwordc {
 					<strong>Copy Right©2014-${year} JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
 							Version :${version}</strong></a>
 				</h5>
+				<div style="text-align: center;">
+					<div style="color: white; display: inline-block;">Pic</div>
+					<input id="toggleBackGround" type="checkbox" />
+				</div>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -213,6 +223,7 @@ span.passwordc {
 	<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>
 	<script src="resources/plugins/nprogress/nprogress.js"></script>
+	<script type="text/javascript" src="resources/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
 	<script type="text/javascript" src="resources/js/TeachDialog.js"></script>
 	<script type="text/javascript" src="resources/js/index.js"></script>
 </body>

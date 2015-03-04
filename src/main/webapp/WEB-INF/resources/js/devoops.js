@@ -98,6 +98,13 @@ function sessionout() {
 	});
 }
 
+function MessagesMenuWidth(){
+	var W = window.innerWidth;
+	var W_menu = $('#sidebar-left').outerWidth();
+	var w_messages = (W-W_menu)*16.666666666666664/100;
+	$('#messages-menu').width(w_messages);
+}
+
 function LoadFancyboxScript(callback) {
 	if (!$.fn.fancybox) {
 		$.getScript('resources/plugins/fancybox/jquery.fancybox.js', callback);
@@ -497,7 +504,7 @@ $(function() {
 	NProgress.configure({
 		parent : '#headernavbar',
 		ease : 'ease',
-		speed : 700
+		speed : 800
 	})
 	$(document).ajaxStart(function() {
 		NProgress.start();

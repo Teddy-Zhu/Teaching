@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.BookPlanLogMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.BookPlanLog" >
+    <id column="intPlanLogId" property="intplanlogid" jdbcType="INTEGER" />
+    <result column="intPlanId" property="intplanid" jdbcType="INTEGER" />
+    <result column="intOperateId" property="intoperateid" jdbcType="INTEGER" />
+    <result column="intUserId" property="intuserid" jdbcType="INTEGER" />
+    <result column="dateCreateTime" property="datecreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intPlanLogId, intPlanId, intOperateId, intUserId, dateCreateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bookplanlog
+    where intPlanLogId = #{intplanlogid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bookplanlog
+    where intPlanLogId = #{intplanlogid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.BookPlanLog" >
+    insert into bookplanlog (intPlanLogId, intPlanId, intOperateId, 
+      intUserId, dateCreateTime)
+    values (#{intplanlogid,jdbcType=INTEGER}, #{intplanid,jdbcType=INTEGER}, #{intoperateid,jdbcType=INTEGER}, 
+      #{intuserid,jdbcType=INTEGER}, #{datecreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlanLog" >
+    insert into bookplanlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intplanlogid != null" >
+        intPlanLogId,
+      </if>
+      <if test="intplanid != null" >
+        intPlanId,
+      </if>
+      <if test="intoperateid != null" >
+        intOperateId,
+      </if>
+      <if test="intuserid != null" >
+        intUserId,
+      </if>
+      <if test="datecreatetime != null" >
+        dateCreateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intplanlogid != null" >
+        #{intplanlogid,jdbcType=INTEGER},
+      </if>
+      <if test="intplanid != null" >
+        #{intplanid,jdbcType=INTEGER},
+      </if>
+      <if test="intoperateid != null" >
+        #{intoperateid,jdbcType=INTEGER},
+      </if>
+      <if test="intuserid != null" >
+        #{intuserid,jdbcType=INTEGER},
+      </if>
+      <if test="datecreatetime != null" >
+        #{datecreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookPlanLog" >
+    update bookplanlog
+    <set >
+      <if test="intplanid != null" >
+        intPlanId = #{intplanid,jdbcType=INTEGER},
+      </if>
+      <if test="intoperateid != null" >
+        intOperateId = #{intoperateid,jdbcType=INTEGER},
+      </if>
+      <if test="intuserid != null" >
+        intUserId = #{intuserid,jdbcType=INTEGER},
+      </if>
+      <if test="datecreatetime != null" >
+        dateCreateTime = #{datecreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where intPlanLogId = #{intplanlogid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookPlanLog" >
+    update bookplanlog
+    set intPlanId = #{intplanid,jdbcType=INTEGER},
+      intOperateId = #{intoperateid,jdbcType=INTEGER},
+      intUserId = #{intuserid,jdbcType=INTEGER},
+      dateCreateTime = #{datecreatetime,jdbcType=TIMESTAMP}
+    where intPlanLogId = #{intplanlogid,jdbcType=INTEGER}
+  </update>
+</mapper>

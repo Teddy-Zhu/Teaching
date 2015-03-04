@@ -39,13 +39,24 @@ function returntimeer(domId) {
 		delShakeClass(domId);
 	};
 }
-function account(){
+function account() {
 	new PNotify({
 		title : 'Message',
 		text : '测试账号!<br>Admin==>Admin;a<br>BookManager==>Troevil;123456<br>Teacher==>TestUser;TestUser<br>Student==>AAAA;AAAAAAAA.<br>点击版本号查看版本细节!',
 		type : 'success',
-		animation: 'slide'
+		animation : 'slide'
 	});
+}
+
+function backgroundToggle(flag) {
+	if (!flag) {
+		$('body').css('cssText', 'background-color:#353535 ! important');
+	} else {
+		$('body').css(
+				'cssText',
+				'background-image:url(https://unsplash.it/' + $(this).width() + '/' + $(this).height()
+						+ '?random) ; background-repeat: no-repeat; background-attachment: fixed; background-position: center 0; background-size: cover;');
+	}
 }
 $(function() {
 	$.getScript("resources/plugins/pnotify/pnotify.custom.min.js", function() {
@@ -54,11 +65,9 @@ $(function() {
 
 	NProgress.configure({
 		ease : 'ease',
-		speed : 700
+		speed : 1000
 	});
-	$('body').css('cssText','background-color:#353535 ! important');
-	//random background image
-	//$('body').css('background-image', 'url(https://unsplash.it/' + $(this).width() + '/' + $(this).height() + '?random)')
+
 	$(document).ajaxStart(function() {
 		NProgress.start();
 	});
@@ -68,6 +77,11 @@ $(function() {
 	$('a.UserAccount').click(function() {
 		account();
 	})
+	$('#toggleBackGround').bootstrapSwitch("size", "mini");
+
+	$('#toggleBackGround').bootstrapSwitch('onSwitchChange', function(e, data) {
+		backgroundToggle(data);
+	});
 	$('a.version').click(
 			function() {
 				$.TeachDialog({
@@ -86,8 +100,9 @@ $(function() {
 					success : function(data) {
 						for (var i = 0; i < data.length; i++) {
 							$('#versioninfo').append(
-									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion + '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime)
-											+ '</div></div><div class="panel-body">' + data[i].strupdatecomment + '</div></div>');
+									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion
+											+ '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime) + '</div></div><div class="panel-body">'
+											+ data[i].strupdatecomment + '</div></div>');
 						}
 					},
 					error : function(data) {

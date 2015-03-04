@@ -3,10 +3,10 @@
 <mapper namespace="com.jcos.teaching.core.dao.CourseTypeMapper" >
   <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.CourseType" >
     <id column="intCourseTypeId" property="intcoursetypeid" jdbcType="INTEGER" />
-    <result column="strCourseTypeName" property="strcoursetypename" jdbcType="VARCHAR" />
+    <result column="strCourseName" property="strcoursename" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    intCourseTypeId, strCourseTypeName
+    intCourseTypeId, strCourseName
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -19,10 +19,8 @@
     where intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jcos.teaching.core.model.CourseType" >
-    insert into coursetype (intCourseTypeId, strCourseTypeName
-      )
-    values (#{intcoursetypeid,jdbcType=INTEGER}, #{strcoursetypename,jdbcType=VARCHAR}
-      )
+    insert into coursetype (intCourseTypeId, strCourseName)
+    values (#{intcoursetypeid,jdbcType=INTEGER}, #{strcoursename,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.CourseType" >
     insert into coursetype
@@ -30,31 +28,31 @@
       <if test="intcoursetypeid != null" >
         intCourseTypeId,
       </if>
-      <if test="strcoursetypename != null" >
-        strCourseTypeName,
+      <if test="strcoursename != null" >
+        strCourseName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="intcoursetypeid != null" >
         #{intcoursetypeid,jdbcType=INTEGER},
       </if>
-      <if test="strcoursetypename != null" >
-        #{strcoursetypename,jdbcType=VARCHAR},
+      <if test="strcoursename != null" >
+        #{strcoursename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.CourseType" >
     update coursetype
     <set >
-      <if test="strcoursetypename != null" >
-        strCourseTypeName = #{strcoursetypename,jdbcType=VARCHAR},
+      <if test="strcoursename != null" >
+        strCourseName = #{strcoursename,jdbcType=VARCHAR},
       </if>
     </set>
     where intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.CourseType" >
     update coursetype
-    set strCourseTypeName = #{strcoursetypename,jdbcType=VARCHAR}
+    set strCourseName = #{strcoursename,jdbcType=VARCHAR}
     where intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -108,7 +108,9 @@
 						</div>
 						<div id="notification" class="col-xs-8" style="height: 250px;">
 							<div class="alert alert-danger" role="alert">
-								<strong>Warning!</strong> <br>UserType,BookType,Department,Access control authorities under Setting.If you want enable any of them,you should set setting power first.
+								<strong>Something Specially!</strong> 
+								<br>UserType,BookType,Department,Access control authorities under Setting.If you want enable any of them,you should set setting power first.
+								<br>Plan Submit authority need QueryBook authority.
 							</div>
 						</div>
 					</div>

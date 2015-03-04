@@ -3,7 +3,7 @@ package com.jcos.teaching.core.model;
 public class CourseType {
     private Integer intcoursetypeid;
 
-    private String strcoursetypename;
+    private String strcoursename;
 
     public Integer getIntcoursetypeid() {
         return intcoursetypeid;
@@ -13,11 +13,11 @@ public class CourseType {
         this.intcoursetypeid = intcoursetypeid;
     }
 
-    public String getStrcoursetypename() {
-        return strcoursetypename;
+    public String getStrcoursename() {
+        return strcoursename;
     }
 
-    public void setStrcoursetypename(String strcoursetypename) {
-        this.strcoursetypename = strcoursetypename == null ? null : strcoursetypename.trim();
+    public void setStrcoursename(String strcoursename) {
+        this.strcoursename = strcoursename == null ? null : strcoursename.trim();
     }
 }

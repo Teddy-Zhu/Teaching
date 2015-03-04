@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
+.datagrid, .combo-p {
+	border: solid 1px #D4D4D4;
+}
+
+.datagrid * {
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
 .inlineblock {
 	margin-top: 10px;
 	margin-bottom: 15px;
@@ -28,6 +38,10 @@
 	width: 57% !important;
 }
 
+.inlineblock div textarea {
+	width: 57% !important;
+}
+
 .input-lg-self {
 	height: 30px;
 }
@@ -38,8 +52,8 @@
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="index.html">Dashboard</a></li>
-			<li><a href="#">Personal Detail</a></li>
-			<li><a href="#">Info Manage</a></li>
+			<li><a href="#">Plans</a></li>
+			<li><a href="#"> Plan Submit</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -64,70 +78,73 @@
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="page-header">
 					<h1>
-						Personal Information <small>detail for edit</small>
+						Plan Submit Panel <small>please fill the form carefully</small>
 					</h1>
 				</div>
-				<div class="inlineblock" id="inlineblock">
+				<div class="inlineblock">
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">UserName:</label><input id="UserName" class="form-control col-xs-7 input-lg-self" type="text" value="${user.username}" disabled />
+						<label class="col-xs-5">Course Name:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text"  placeholder="Input Course Name" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Password:</label><input id="OldPassword" class="perinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Password" />
+						<label class="col-xs-5">Course Type</label><select id="CourseType" class="perinfo form-control col-xs-7 input-lg-self"></select>
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">New Password:</label><input id="Password" class="perinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input New Password" />
+						<label class="col-xs-5">Class Id:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Class Id" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Re Password:</label><input id="RePassword" class="perinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input New Password Again" />
+						<label class="col-xs-5">Student Count:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Student Book Count" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">User Group:</label><select class="form-control col-xs-7 input-lg-self" disabled><option value="0">${user.userType.strname}</option></select>
+						<label class="col-xs-5">Teacher Count:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Teacher Book Count" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">DepartMent:</label><select id="DepartMent" data-curValue="${user.intuserdepartment}" class="perinfo form-control col-xs-7 input-lg-self"></select>
+						<label class="col-xs-5">Book:</label>
+						<div class="input-group col-md-7">
+							<input type="text" class="form-control" style="width: 71% !important" placeholder="Select From Books"> <span class="input-group-btn">
+								<button class="btn btn-default form-control" style="width: 93%" type="button">Select</button>
+							</span>
+						</div>
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Major:</label><select id="Major" data-curValue="${user.intusermajor}" class="perinfo form-control col-xs-7 input-lg-self"></select>
+						<label class="col-xs-5">Plan Time:</label> <label class="col-xs-1" style="margin-left: -3.5%;">From</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="password" placeholder="From Year" /><label
+							class="col-xs-1" style="margin-left: -3.5%;">To</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="password" placeholder="ToYear" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">RealName:</label><input id="RealName" class="perinfo form-control col-xs-7 input-lg-self" type="text" value="${user.strname}" />
+						<label class="col-xs-5"> Term:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self" ><option value="0">上半学年</option><option value="1">下半学年</option></select>
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Id Card:</label><input id="Number" class="perinfo form-control col-xs-7 input-lg-self" type="text" value="${user.strstunum}" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Phone:</label><input id="Phone" class="perinfo form-control col-xs-7 input-lg-self" type="text" value="${user.strphone}" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Email:</label><input id="Email" class="perinfo form-control col-xs-7 input-lg-self" type="text" value="${user.strmail}" />
+						<label class="col-xs-5">Mark:</label>
+						<textarea id="Mark" class="perinfo form-control col-xs-7" type="text" /></textarea>
 					</div>
 					<div class="col-xs-6"></div>
 
 				</div>
+				<div class="col-xs-12" style="height: 30px;"></div>
 				<div class="col-xs-5 col-xs-offset-1">
-					<button id="savechange" data-toggle="button" type="button" class="btn btn-primary">Save Changes</button>
+					<button id="submitform" data-toggle="button" type="button" class="btn btn-primary">Submit Plan</button>
 					<button id="reset" data-toggle="button" type="button" class="btn btn-default">Reset</button>
 				</div>
 				<div class="col-xs-6" style="height: 50px;"></div>
 				<div class="panel-footer row" style="margin-top: 10px;">
-					<h5>If you lost your password,please contact administrator.</h5>
+					<h5>After you submit the form,admin will aduit it.Any Questions ,please contact administrator.</h5>
 				</div>
+
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+	<c:if test="${submitplan eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/personalinfo.js");
+		$.getScript("resources/js/ajax/plan_submit.js");
 	})
+	</c:if>
 </script>

@@ -76,7 +76,8 @@ public class IndexController {
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
-			String[] powers = new String[] { "managebook", "managebooktype", "managesupplier", "setting", "manageusertype", "manageuserdepart", "manageuser", "accesscontrol" };
+			String[] powers = new String[] { "queryplan", "manageplan", "submitplan", "managebook", "managebooktype", "managesupplier", "setting", "manageusertype", "manageuserdepart", "manageuser",
+					"accesscontrol" };
 			setModel(request, model, powers);
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
 		} else {
@@ -136,12 +137,18 @@ public class IndexController {
 			break;
 		}
 		case "type_manage": {
-			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "queryusertype", "querybooktype", "addbooktype", "editbooktype", "rmbooktype", "managebooktype", "manageusertype" };
+			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "queryusertype", "querybooktype", "addbooktype", "editbooktype", "rmbooktype", "managebooktype",
+					"manageusertype" };
 			setModel(request, model, powers);
 			break;
 		}
 		case "access_manage": {
 			String[] powers = new String[] { "accesscontrol" };
+			setModel(request, model, powers);
+			break;
+		}
+		case "plan_submit": {
+			String[] powers = new String[] { "submitplan" };
 			setModel(request, model, powers);
 			break;
 		}

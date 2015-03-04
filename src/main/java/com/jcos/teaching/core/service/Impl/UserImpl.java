@@ -53,6 +53,15 @@ public class UserImpl implements UserService {
 	}
 
 	@Override
+	public User authLoginUserForUpdateInfo(User record) {
+		if (record.getIntid() == 0 || record.getUsername() == null || record.getUsername().equals("") || record.getPassword() == null || record.getPassword().equals("")) {
+			return null;
+		} else {
+			return userDao.authUserByIdUserNamePass(record.getIntid(), record.getUsername(), record.getPassword());
+		}
+	}
+
+	@Override
 	public User authLoginUser(User record) {
 		if (record.getUsername() == null || record.getUsername().equals("") || record.getPassword() == null || record.getPassword().equals("")) {
 			return null;

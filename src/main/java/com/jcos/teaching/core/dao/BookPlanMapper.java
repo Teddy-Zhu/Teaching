@@ -18,4 +18,5 @@ public interface BookPlanMapper {
 	Integer authUserIds(Integer intuserid);
 
 	Integer authBookIds(Integer intbookid);
+
 }

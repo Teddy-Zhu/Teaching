@@ -27,6 +27,8 @@ public interface UserMapper {
 
 	User authLoginUser(@Param(value = "username") String userName, @Param(value = "password") String passWord);
 
+	User authUserByIdUserNamePass(@Param(value = "userid") Integer userid, @Param(value = "username") String userName, @Param(value = "password") String passWord);
+
 	List<User> GetAllUser(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
 	Integer queryUserTotal();

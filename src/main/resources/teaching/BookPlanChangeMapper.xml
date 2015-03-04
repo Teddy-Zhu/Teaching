@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.BookPlanChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.BookPlanChange" >
+    <id column="intBookChangeId" property="intbookchangeid" jdbcType="INTEGER" />
+    <result column="intPlanId" property="intplanid" jdbcType="INTEGER" />
+    <result column="intIncreaseStudent" property="intincreasestudent" jdbcType="INTEGER" />
+    <result column="intDecreaseStudent" property="intdecreasestudent" jdbcType="INTEGER" />
+    <result column="intIncreaseTeacher" property="intincreaseteacher" jdbcType="INTEGER" />
+    <result column="intDecreaseTeacher" property="intdecreaseteacher" jdbcType="INTEGER" />
+    <result column="strChangeReason" property="strchangereason" jdbcType="VARCHAR" />
+    <result column="dateChangeTime" property="datechangetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intBookChangeId, intPlanId, intIncreaseStudent, intDecreaseStudent, intIncreaseTeacher, 
+    intDecreaseTeacher, strChangeReason, dateChangeTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bookplanchange
+    where intBookChangeId = #{intbookchangeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bookplanchange
+    where intBookChangeId = #{intbookchangeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jcos.teaching.core.model.BookPlanChange" >
+    insert into bookplanchange (intBookChangeId, intPlanId, intIncreaseStudent, 
+      intDecreaseStudent, intIncreaseTeacher, 
+      intDecreaseTeacher, strChangeReason, dateChangeTime
+      )
+    values (#{intbookchangeid,jdbcType=INTEGER}, #{intplanid,jdbcType=INTEGER}, #{intincreasestudent,jdbcType=INTEGER}, 
+      #{intdecreasestudent,jdbcType=INTEGER}, #{intincreaseteacher,jdbcType=INTEGER}, 
+      #{intdecreaseteacher,jdbcType=INTEGER}, #{strchangereason,jdbcType=VARCHAR}, #{datechangetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlanChange" >
+    insert into bookplanchange
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intbookchangeid != null" >
+        intBookChangeId,
+      </if>
+      <if test="intplanid != null" >
+        intPlanId,
+      </if>
+      <if test="intincreasestudent != null" >
+        intIncreaseStudent,
+      </if>
+      <if test="intdecreasestudent != null" >
+        intDecreaseStudent,
+      </if>
+      <if test="intincreaseteacher != null" >
+        intIncreaseTeacher,
+      </if>
+      <if test="intdecreaseteacher != null" >
+        intDecreaseTeacher,
+      </if>
+      <if test="strchangereason != null" >
+        strChangeReason,
+      </if>
+      <if test="datechangetime != null" >
+        dateChangeTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intbookchangeid != null" >
+        #{intbookchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="intplanid != null" >
+        #{intplanid,jdbcType=INTEGER},
+      </if>
+      <if test="intincreasestudent != null" >
+        #{intincreasestudent,jdbcType=INTEGER},
+      </if>
+      <if test="intdecreasestudent != null" >
+        #{intdecreasestudent,jdbcType=INTEGER},
+      </if>
+      <if test="intincreaseteacher != null" >
+        #{intincreaseteacher,jdbcType=INTEGER},
+      </if>
+      <if test="intdecreaseteacher != null" >
+        #{intdecreaseteacher,jdbcType=INTEGER},
+      </if>
+      <if test="strchangereason != null" >
+        #{strchangereason,jdbcType=VARCHAR},
+      </if>
+      <if test="datechangetime != null" >
+        #{datechangetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.BookPlanChange" >
+    update bookplanchange
+    <set >
+      <if test="intplanid != null" >
+        intPlanId = #{intplanid,jdbcType=INTEGER},
+      </if>
+      <if test="intincreasestudent != null" >
+        intIncreaseStudent = #{intincreasestudent,jdbcType=INTEGER},
+      </if>
+      <if test="intdecreasestudent != null" >
+        intDecreaseStudent = #{intdecreasestudent,jdbcType=INTEGER},
+      </if>
+      <if test="intincreaseteacher != null" >
+        intIncreaseTeacher = #{intincreaseteacher,jdbcType=INTEGER},
+      </if>
+      <if test="intdecreaseteacher != null" >
+        intDecreaseTeacher = #{intdecreaseteacher,jdbcType=INTEGER},
+      </if>
+      <if test="strchangereason != null" >
+        strChangeReason = #{strchangereason,jdbcType=VARCHAR},
+      </if>
+      <if test="datechangetime != null" >
+        dateChangeTime = #{datechangetime,jdbcType=DATE},
+      </if>
+    </set>
+    where intBookChangeId = #{intbookchangeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.BookPlanChange" >
+    update bookplanchange
+    set intPlanId = #{intplanid,jdbcType=INTEGER},
+      intIncreaseStudent = #{intincreasestudent,jdbcType=INTEGER},
+      intDecreaseStudent = #{intdecreasestudent,jdbcType=INTEGER},
+      intIncreaseTeacher = #{intincreaseteacher,jdbcType=INTEGER},
+      intDecreaseTeacher = #{intdecreaseteacher,jdbcType=INTEGER},
+      strChangeReason = #{strchangereason,jdbcType=VARCHAR},
+      dateChangeTime = #{datechangetime,jdbcType=DATE}
+    where intBookChangeId = #{intbookchangeid,jdbcType=INTEGER}
+  </update>
+</mapper>
