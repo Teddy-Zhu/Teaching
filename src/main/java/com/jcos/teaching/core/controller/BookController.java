@@ -74,15 +74,29 @@ public class BookController {
 			return ret;
 		}
 		Integer rows = 10, page = 1;
+		String code = "", name = "", sn = "", press = "", author = "";
+		Double price = 0.0, discount = 0.0;
+		Integer type = -1, supplier = -1;
 		try {
 			rows = Integer.valueOf(request.getParameter("rows"));
 			page = Integer.valueOf(request.getParameter("page"));
+			code = request.getParameter("SearchCode").equals("") ? null : request.getParameter("SearchCode");
+			name = request.getParameter("SearchName").equals("") ? null : request.getParameter("SearchName");
+			sn = request.getParameter("SearchSN").equals("") ? null : request.getParameter("SearchSN");
+			type = Integer.valueOf(request.getParameter("SearchType")) == -1 ? null : Integer.valueOf(request.getParameter("SearchType"));
+			press = request.getParameter("SearchPress").equals("") ? null : request.getParameter("SearchPress");
+			author = request.getParameter("SearchAuthor").equals("") ? null : request.getParameter("SearchAuthor");
+			supplier = Integer.valueOf(request.getParameter("SearchSupplier")) == -1 ? null : Integer.valueOf(request.getParameter("SearchSupplier"));
+			price = request.getParameter("SearchPrice").equals("") ? null : Double.valueOf(request.getParameter("SearchPrice"));
+			discount = request.getParameter("SearchDiscount").equals("") ? null : Double.valueOf(request.getParameter("SearchDiscount"));
 		} catch (Exception e) {
-			response.setStatus(3387);
+			response.setStatus(3386);
 			return null;
 		}
-		ret.put("total", bookService.getBookTotal());
-		List<Book> books = bookService.getAllBooks(page, rows);
+
+		Book record = new Book(null, name, code, sn, type, price, press, author, discount, supplier, null);
+		ret.put("total", bookService.getBookTotal(record));
+		List<Book> books = bookService.getAllBooks(record, page, rows);
 		ret.put("rows", books);
 		return ret;
 	}
@@ -115,6 +129,7 @@ public class BookController {
 			price = Double.valueOf(request.getParameter("newPrice").toString());
 			discount = Double.valueOf(request.getParameter("newDisCount").toString());
 		} catch (Exception ex) {
+			response.setStatus(3386);
 			return false;
 		}
 		// auth type
@@ -190,6 +205,7 @@ public class BookController {
 					Book book = new Book(i, name, code, sn, booktype, price, press, author, discount, suppliertype, new Date());
 					record.add(book);
 				} catch (Exception ex) {
+					response.setStatus(3386);
 					return false;
 				}
 			}

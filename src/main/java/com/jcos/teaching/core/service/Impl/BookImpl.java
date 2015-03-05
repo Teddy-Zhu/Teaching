@@ -17,8 +17,8 @@ public class BookImpl implements BookService {
 	private BookMapper bookDao;
 
 	@Override
-	public List<Book> getAllBooks(Integer page, Integer rows) {
-		return bookDao.queryBooks(rows * (page - 1), rows);
+	public List<Book> getAllBooks(Book record, Integer page, Integer rows) {
+		return bookDao.queryBooks(record, rows * (page - 1), rows);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class BookImpl implements BookService {
 	}
 
 	@Override
-	public int getBookTotal() {
-		return bookDao.queryBookTotal();
+	public int getBookTotal(Book record) {
+		return bookDao.queryBookTotal(record);
 	}
 
 	@Override

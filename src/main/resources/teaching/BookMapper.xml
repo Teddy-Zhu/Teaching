@@ -170,17 +170,73 @@
 		<association property="supplier" column="intSupplierId" select="com.jcos.teaching.core.dao.SupplierMapper.selectByPrimaryKey" />
 	</resultMap>
 	<select id="queryBooks" resultMap="BookTypeExtendMap" parameterType="java.lang.Integer">
-		select intBookId,
-		strBookName, strBookCoding, strBookSN, intBookTypeId, strPrice, strPress,
-		strAuthor, intPriceDiscount,
-		intSupplierId, dateAddTime
+		select
+		<include refid="Base_Column_List" />
 		from book
+		<trim prefix="WHERE" suffix="" suffixOverrides="AND">
+			<if test="record.strbookname != null">
+				strBookName like CONCAT('%',#{record.strbookname,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strbookcoding != null">
+				strBookCoding like CONCAT('%',#{record.strbookcoding,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strbooksn != null">
+				strBookSN like CONCAT('%',#{record.strbooksn,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.intbooktypeid != null">
+				intBookTypeId = #{record.intbooktypeid,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.strprice != null">
+				strPrice like CONCAT('%',#{record.strprice,jdbcType=DOUBLE},'%') AND
+			</if>
+			<if test="record.strpress != null">
+				strPress like CONCAT('%',#{record.strpress,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strauthor != null">
+				strAuthor like CONCAT('%',#{record.strauthor,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.intpricediscount != null">
+				intPriceDiscount like CONCAT('%',#{record.intpricediscount,jdbcType=DOUBLE},'%') AND
+			</if>
+			<if test="record.intsupplierid != null">
+				intSupplierId = #{record.intsupplierid,jdbcType=INTEGER}
+			</if>
+		</trim>
 		order by intBookId asc
 		limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
 
 	</select>
 	<select id="queryBookTotal" resultType="java.lang.Integer">
 		select count(*) from book
+		<trim prefix="WHERE" suffix="" suffixOverrides="AND">
+			<if test="strbookname != null">
+				strBookName like CONCAT('%',#{strbookname,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strbookcoding != null">
+				strBookCoding like CONCAT('%',#{strbookcoding,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strbooksn != null">
+				strBookSN like CONCAT('%',#{strbooksn,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="intbooktypeid != null">
+				intBookTypeId = #{intbooktypeid,jdbcType=INTEGER} AND
+			</if>
+			<if test="strprice != null">
+				strPrice like CONCAT('%',#{strprice,jdbcType=DOUBLE},'%') AND
+			</if>
+			<if test="strpress != null">
+				strPress like CONCAT('%',#{strpress,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strauthor != null">
+				strAuthor like CONCAT('%',#{strauthor,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="intpricediscount != null">
+				intPriceDiscount like CONCAT('%',#{intpricediscount,jdbcType=DOUBLE},'%') AND
+			</if>
+			<if test="intsupplierid != null">
+				intSupplierId = #{intsupplierid,jdbcType=INTEGER}
+			</if>
+		</trim>
 	</select>
 
 	<select id="authSupplierById" resultType="java.lang.Integer" parameterType="java.lang.Integer">

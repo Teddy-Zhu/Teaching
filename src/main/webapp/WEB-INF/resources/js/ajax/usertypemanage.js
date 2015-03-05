@@ -55,8 +55,9 @@ $(function() {
 	})
 	$('.icheckbox_square-blue').css('margin-top', '5px');
 
-	loadUserType();
-
+	if ($("#ul_tree_usertype").length > 0) {
+		loadUserType();
+	}
 	$('.usertype').click(function() {
 		loadUserType();
 	})

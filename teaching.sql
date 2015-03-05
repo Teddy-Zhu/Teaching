@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-02-04 18:04:44
+Date: 2015-03-05 16:44:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,15 +38,15 @@ CREATE TABLE `book` (
 -- Records of book
 -- ----------------------------
 INSERT INTO `book` VALUES ('4', '电子商务与物流管理第2版', 'B122', '45145', '1', '101.000', '纷纭出版社', 'SSDFF', '4.000', '1', '2015-02-02 17:37:54');
-INSERT INTO `book` VALUES ('5', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '1', '2015-03-04 12:59:51');
+INSERT INTO `book` VALUES ('5', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '4', '2015-03-05 15:39:43');
 INSERT INTO `book` VALUES ('13', 'SQL Server 2008 商业智能完美解决方案', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '1', '2015-02-02 16:01:37');
-INSERT INTO `book` VALUES ('15', '英语口语短句大王', 'B1230', '45', '1', '458.400', '45', '4545', '6.000', '1', '2015-03-04 16:52:59');
-INSERT INTO `book` VALUES ('16', '跟毛泽东学思维', 'B1230', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-10 11:29:20');
+INSERT INTO `book` VALUES ('15', '英语口语短句大王', 'B1230', '45', '4', '458.400', '45', '4545', '6.000', '3', '2015-03-05 16:39:40');
+INSERT INTO `book` VALUES ('16', '跟毛泽东学思维', 'B1230', '45', '1', '458.400', '45', '4545', '7.000', '5', '2015-03-05 15:32:15');
 INSERT INTO `book` VALUES ('17', '图书汉字的故事', 'B1230ss', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-02 16:06:25');
-INSERT INTO `book` VALUES ('18', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '1', '199.000', '45454', 'ssss', '10.000', '1', '2015-03-04 16:52:59');
-INSERT INTO `book` VALUES ('19', '公务员电子政务技 术实用指南', 'A25554', '45AS3', '1', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-02-02 16:07:46');
-INSERT INTO `book` VALUES ('20', '母亲杨沫', 'A25554', '45AS3', '1', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-02-02 16:07:33');
-INSERT INTO `book` VALUES ('21', '国家电网公司电力安全工作规程', 'B22206', '9787508391311', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '1', '2015-02-10 14:28:13');
+INSERT INTO `book` VALUES ('18', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '1', '199.000', '45454', 'ssss', '10.000', '4', '2015-03-05 15:39:43');
+INSERT INTO `book` VALUES ('19', '公务员电子政务技 术实用指南', 'A25554', '45AS3', '4', '222.000', '猜猜猜', 'none', '5.000', '6', '2015-03-05 16:30:09');
+INSERT INTO `book` VALUES ('20', '母亲杨沫', 'A25554', '45AS3', '4', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-03-05 16:30:25');
+INSERT INTO `book` VALUES ('21', '国家电网公司电力安全工作规程', 'B22206', '9787508391311', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-03-05 16:39:48');
 INSERT INTO `book` VALUES ('22', '电力安全监督管理工作手册', 'B22205', '9787512348660', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-02-10 14:28:40');
 INSERT INTO `book` VALUES ('23', '谁动了我的奶酪', 'Z4005', '44545', '1', '17.400', 'none', '斯宾塞.约翰逊', '10.000', '3', '2015-02-10 14:29:51');
 
@@ -182,6 +182,8 @@ CREATE TABLE `coursetype` (
 -- ----------------------------
 -- Records of coursetype
 -- ----------------------------
+INSERT INTO `coursetype` VALUES ('1', '必修');
+INSERT INTO `coursetype` VALUES ('2', '系定选修');
 
 -- ----------------------------
 -- Table structure for logs
@@ -420,7 +422,7 @@ CREATE TABLE `supplier` (
   `strContactPersonName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strContactPersonPhone` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intSupplierId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of supplier
@@ -429,6 +431,7 @@ INSERT INTO `supplier` VALUES ('1', 'S11050', '测试供应商1', '2aaaa', '111'
 INSERT INTO `supplier` VALUES ('3', 'S88212', '才是实现信息', 'AAA', '0223030', '111', '20302', '12ass', '2223050');
 INSERT INTO `supplier` VALUES ('4', 'SSSS', '阿瑟斯', '阿阿水的', '1894111', '房改房1', '房改房1', '斯蒂芬森', '454545');
 INSERT INTO `supplier` VALUES ('5', 'S102556', '供应商2', '不知道', '111111', '无人', '1116880', '爱学习', '18994160911');
+INSERT INTO `supplier` VALUES ('6', 'None', '自编', 'None', '0', 'None', '0', 'None', '0');
 
 -- ----------------------------
 -- Table structure for user
@@ -526,7 +529,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -543,5 +546,6 @@ INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信�
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
 INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');
 INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库大小写敏感的BUG', '2015-02-12 20:57:56');
-INSERT INTO `versionlog` VALUES ('13', '0012', '00', '1', '新增UI权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');
+INSERT INTO `versionlog` VALUES ('13', '0012', '01', '1', '新增UI权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');
 INSERT INTO `versionlog` VALUES ('14', '0013', '00', '1', '新增/完善权限控管<br>[future] 教学书籍订购计划管理', '2015-03-02 21:03:45');
+INSERT INTO `versionlog` VALUES ('15', '0014', '04', '1', '新增书籍条件查询<br>修复UI等错位<br>修复编辑书籍类型，供应商类型丢失bug<br>修复删除用户是自身删除bug<br>修复权限控管部分失效bug<br>[feture]继续完善教学计划提交Plan Submit', '2015-03-05 16:42:26');

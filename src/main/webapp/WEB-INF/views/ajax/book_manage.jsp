@@ -32,13 +32,34 @@
 	top: 5px;
 }
 
-.inlineblock div input {
+.newform {
 	width: 70%;
 }
 
-.inlineblock div select {
+.editform {
 	width: 70%;
 }
+
+.searchClass {
+	margin-left: 5%;
+	margin-top: 1%;
+}
+
+.searchClass label {
+	width: 7%;
+}
+
+#Search {
+	margin-right: 8%;
+	width: 14.8%;
+}
+
+.SearchForm {
+	display: inline-block;
+	width: 15%;
+	margin-right: 10px;
+}
+
 </style>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
@@ -182,7 +203,21 @@
 							</h4>
 						</div>
 						<div id="collapseForBookTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
+							<div class="panel-body" style="overflow-x: hidden;">
+								<div class="searchClass row">
+									<div class="col-xs-12">
+										<label>Code</label><input class="SearchForm form-control" type="text" id="SearchCode" /> <label>Name</label><input class="SearchForm form-control" type="text" id="SearchName" /> <label>SN</label><input class="SearchForm form-control" type="text" id="SearchSN" /> <label>Type</label><select
+											class="SearchForm form-control" id="SearchType"><option value="-1">All Type</option></select>
+									</div>
+									<div class="col-xs-12">
+										<label>Press</label><input class="SearchForm form-control" type="text" id="SearchPress" /> <label>Author</label><input class="SearchForm form-control" type="text" id="SearchAuthor" /> <label>Supplier</label><select class="SearchForm form-control" id="SearchSupplier"><option
+												value="-1">All Supplier</option></select> <label>Price</label><input class="SearchForm form-control" type="text" id="SearchPrice" />
+									</div>
+									<div class="col-xs-12">
+										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" />
+										<button id="Search" class="btn btn-default btn-xs pull-right">Search</button>
+									</div>
+								</div>
 								<table id="datatable_bookinfo">
 								</table>
 							</div>

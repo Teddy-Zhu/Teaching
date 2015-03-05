@@ -6,19 +6,19 @@ import com.jcos.teaching.core.model.Book;
 
 public interface BookService {
 
-	public List<Book> getAllBooks(Integer page, Integer rows);
-
 	public boolean addnewbook(Book record);
-
-	public int getBookTotal();
 
 	public boolean deletebookbyId(Integer[] bookIds);
 
-	//public boolean updatebookById(Book record);
+	// public boolean updatebookById(Book record);
 
 	boolean updatebookByIds(List<Book> record);
 
 	Integer authExistSupplierInUse(Integer[] supplierId);
 
 	boolean authBookType(int id);
+
+	List<Book> getAllBooks(Book record, Integer page, Integer rows);
+
+	int getBookTotal(Book record);
 }

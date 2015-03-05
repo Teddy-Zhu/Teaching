@@ -45,6 +45,26 @@
 .input-lg-self {
 	height: 30px;
 }
+
+.searchClass {
+	margin-left: 1%;
+	margin-top: 1%;
+}
+
+.searchClass label {
+	width: 8%;
+}
+
+#Search {
+	margin-right: 3.2%;
+	width: 14.8%;
+}
+
+.SearchForm {
+	display: inline-block;
+	width: 15%;
+	margin-right: 10px;
+}
 </style>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
@@ -83,7 +103,7 @@
 				</div>
 				<div class="inlineblock">
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Course Name:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text"  placeholder="Input Course Name" />
+						<label class="col-xs-5">Course Name:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Course Name" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
@@ -105,8 +125,8 @@
 					<div class="col-xs-5 col-xs-offset-1">
 						<label class="col-xs-5">Book:</label>
 						<div class="input-group col-md-7">
-							<input type="text" class="form-control" style="width: 71% !important" placeholder="Select From Books"> <span class="input-group-btn">
-								<button class="btn btn-default form-control" style="width: 93%" type="button">Select</button>
+							<select id="BookId" class="planinfo form-control" style="width: 71% !important"></select> <span class="input-group-btn">
+								<button id="bookselect" class="btn btn-default form-control" style="width: 93%" type="button">Select</button>
 							</span>
 						</div>
 					</div>
@@ -117,12 +137,13 @@
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5"> Term:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self" ><option value="0">上半学年</option><option value="1">下半学年</option></select>
+						<label class="col-xs-5"> Term:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self"><option value="0">上半学年</option>
+							<option value="1">下半学年</option></select>
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
 						<label class="col-xs-5">Mark:</label>
-						<textarea id="Mark" class="perinfo form-control col-xs-7" type="text" /></textarea>
+						<textarea id="Mark" class="perinfo form-control col-xs-7" /></textarea>
 					</div>
 					<div class="col-xs-6"></div>
 
@@ -130,7 +151,7 @@
 				<div class="col-xs-12" style="height: 30px;"></div>
 				<div class="col-xs-5 col-xs-offset-1">
 					<button id="submitform" data-toggle="button" type="button" class="btn btn-primary">Submit Plan</button>
-					<button id="reset" data-toggle="button" type="button" class="btn btn-default">Reset</button>
+					<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">Reset</button>
 				</div>
 				<div class="col-xs-6" style="height: 50px;"></div>
 				<div class="panel-footer row" style="margin-top: 10px;">

@@ -23,6 +23,15 @@ function LoadLeafletScript(callback) {
 	}
 }
 
+function unix2human(unixtime) {
+	var dateObj = new Date(unixtime);
+	var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':' + p(dateObj.getSeconds());
+	return UnixTimeToDate;
+}
+function p(s) {
+	return s < 10 ? '0' + s : s;
+}
+
 function LoadBootstrapValidatorScript(callback) {
 	if (!$.fn.bootstrapValidator) {
 		$.getScript('resources/plugins/bootstrapvalidator/bootstrapValidator.min.js', callback);
@@ -98,10 +107,10 @@ function sessionout() {
 	});
 }
 
-function MessagesMenuWidth(){
+function MessagesMenuWidth() {
 	var W = window.innerWidth;
 	var W_menu = $('#sidebar-left').outerWidth();
-	var w_messages = (W-W_menu)*16.666666666666664/100;
+	var w_messages = (W - W_menu) * 16.666666666666664 / 100;
 	$('#messages-menu').width(w_messages);
 }
 

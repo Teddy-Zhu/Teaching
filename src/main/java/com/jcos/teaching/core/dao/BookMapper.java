@@ -19,9 +19,9 @@ public interface BookMapper {
 
 	int updateByPrimaryKey(Book record);
 
-	List<Book> queryBooks(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
+	List<Book> queryBooks(@Param(value = "record") Book record, @Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
-	int queryBookTotal();
+	int queryBookTotal(Book record);
 
 	Integer authSupplierById(Integer intsupplierid);
 

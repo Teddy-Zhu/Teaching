@@ -1,12 +1,4 @@
 var htmltmp = $('#newformRange').html();
-function unix2human(unixtime) {
-	var dateObj = new Date(unixtime);
-	var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':' + p(dateObj.getSeconds());
-	return UnixTimeToDate;
-}
-function p(s) {
-	return s < 10 ? '0' + s : s;
-}
 function setVal(id, obj) {
 	$('#editCode' + id).val(obj.strbookcoding);
 	$('#editName' + id).val(obj.strbookname);
@@ -15,36 +7,76 @@ function setVal(id, obj) {
 	$('#editAuthor' + id).val(obj.strauthor);
 	$('#editPrice' + id).val(obj.strprice);
 	$('#editDisCount' + id).val(obj.intpricediscount);
-	$('#editBookType' + id).val(obj.bookType.intbooktypeid);
-	$('#editSupplierType' + id).val(obj.supplier.intsupplierid);
+
+	var dtdtype = $.Deferred();
+	$.when(initBookType('editBookType' + id, dtdtype)).done(function() {
+		$('#editBookType' + id).val(obj.bookType.intbooktypeid);
+	})
+	var dtd = $.Deferred();
+	$.when(initSupplierType('editSupplierType' + id, dtd)).done(function() {
+		$('#editSupplierType' + id).val(obj.supplier.intsupplierid);
+	})
 }
 
-function initBookType(id) {
+function initBookType(id, dtd, addition) {
 	$.ajax({
 		url : 'Type/GetBookType',
 		dataType : 'json',
 		type : 'post',
 		success : function(data) {
 			$('#' + id).empty();
+			if (addition != undefined) {
+				$('#' + id).append('<option value="-1">All Type</option>');
+			}
 			for ( var i in data) {
 				$('#' + id).append('<option value="' + data[i].intbooktypeid + '">' + data[i].strbooktypename + '</option>');
 			}
-		}
+			if (dtd != undefined) {
+				dtd.resolve();
+			}
+		},
+		async : true
 	})
+	if (dtd != undefined) {
+		return dtd.promise();
+	}
 }
 
-function initSupplierType(id) {
+function initSupplierType(id, dtd, addition) {
 	$.ajax({
 		url : 'Type/GetSupplierType',
 		dataType : 'json',
 		type : 'post',
 		success : function(data) {
 			$('#' + id).empty();
+			if (addition != undefined) {
+				$('#' + id).append('<option value="-1">All Supplier</option>');
+			}
 			for ( var i in data) {
 				$('#' + id).append('<option value="' + data[i].intsupplierid + '">' + data[i].strname + '</option>');
 			}
+			if (dtd != undefined) {
+				dtd.resolve();
+			}
 		}
 	})
+	if (dtd != undefined) {
+		return dtd.promise();
+	}
+}
+
+function getSearchParams(params) {
+	var searchParams = new Object();
+	if (params != undefined) {
+		searchParams = params;
+	}
+	$('.SearchForm').each(function() {
+		var param = $(this).val().trim();
+		if (param == undefined)
+			param = '';
+		searchParams[$(this).attr('id')] = param;
+	});
+	return searchParams;
 }
 
 $(function() {
@@ -67,11 +99,8 @@ $(function() {
 					$('#bookEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strbookname + '</a></li>')
 					$('#editbookcontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
-							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookType', 'editBookType' + id).replace(
-									'newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id).replace('newDisCount', 'editDisCount' + id).replace(
-									'newSupplierType', 'editSupplierType' + id).replace(new RegExp('newform', "gm"), 'editform'));
-					initBookType('editBookType' + id);
-					initSupplierType('editSupplierType' + id);
+							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newSN', 'editSN' + id).replace('newBookType', 'editBookType' + id).replace('newPress', 'editPress' + id).replace('newAuthor', 'editAuthor' + id).replace('newPrice', 'editPrice' + id)
+									.replace('newDisCount', 'editDisCount' + id).replace('newSupplierType', 'editSupplierType' + id).replace(new RegExp('newform', "gm"), 'editform'));
 					setVal(id, rows[i]);
 				}
 				$('#bookEditTable a:first').tab('show')
@@ -260,6 +289,9 @@ $(function() {
 			async : true
 		})
 	})
+
+	initBookType('SearchType', undefined, "type");
+	initSupplierType('SearchSupplier', undefined, "type")
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
 	$('#datatable_bookinfo').datagrid({
 		striped : true,
@@ -340,8 +372,15 @@ $(function() {
 			formatter : function(value) {
 				return unix2human(value);
 			}
-		} ] ]
+		} ] ],
+		onBeforeLoad : function(param) {
+			param = getSearchParams(param);
+		},
 	});
+
+	$('#Search').click(function() {
+		$('#datatable_bookinfo').datagrid('reload');
+	})
 	// Add Drag-n-Drop
 	WinMove();
 });

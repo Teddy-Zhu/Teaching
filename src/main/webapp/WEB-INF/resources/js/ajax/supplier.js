@@ -1,12 +1,4 @@
 var htmltmp = $('#newformRange').html();
-function unix2human(unixtime) {
-	var dateObj = new Date(unixtime);
-	var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':' + p(dateObj.getSeconds());
-	return UnixTimeToDate;
-}
-function p(s) {
-	return s < 10 ? '0' + s : s;
-}
 
 function setVal(id, obj) {
 	$('#editCode' + id).val(obj.intcoding);

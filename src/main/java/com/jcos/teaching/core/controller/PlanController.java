@@ -1,8 +1,6 @@
 package com.jcos.teaching.core.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.exmodel.LoginSession;
-import com.jcos.teaching.core.model.Book;
+import com.jcos.teaching.core.model.CourseType;
 import com.jcos.teaching.core.service.BookPlanService;
+import com.jcos.teaching.core.service.CourseTypeService;
 import com.jcos.teaching.core.service.PowerService;
 
 @Controller
@@ -28,6 +27,9 @@ public class PlanController {
 
 	@Inject
 	private BookPlanService bookPlanService;
+
+	@Inject
+	private CourseTypeService courseTypeService;
 
 	/**
 	 * 
@@ -51,5 +53,12 @@ public class PlanController {
 		}
 
 		return false;
+	}
+
+	@RequestMapping(value = "/GetCourseType", method = RequestMethod.POST)
+	@ResponseBody
+	public List<CourseType> getcoursetype(HttpServletRequest request, Model model, HttpServletResponse response) {
+
+		return courseTypeService.getAllCourseType();
 	}
 }

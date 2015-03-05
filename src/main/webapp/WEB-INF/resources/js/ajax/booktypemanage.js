@@ -42,7 +42,9 @@ function loadBookType() {
 
 $(function() {
 	// initial icheck
-	loadBookType();
+	if ($("#ul_tree_booktype").length > 0) {
+		loadBookType();
+	}
 	$('.booktype').click(function() {
 		loadBookType();
 	})

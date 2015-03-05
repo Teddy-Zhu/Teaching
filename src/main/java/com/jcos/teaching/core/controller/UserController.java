@@ -1,6 +1,7 @@
 package com.jcos.teaching.core.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -367,6 +368,10 @@ public class UserController {
 			response.setStatus(3388);
 			return false;
 		}
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (Arrays.asList(userId).contains(loginSession.getLoginUser().getIntid())) {
+			return false;
+		}
 		if (userId != null && userId.length != 0) {
 			Integer ret = bookPlanService.authExistBookInUse(userId);
 			if (ret != 0) {
@@ -421,7 +426,7 @@ public class UserController {
 
 		User record = new User();
 		record.setIntid(userId);
-		record.setUsername(null);  // modify username disable
+		record.setUsername(null); // modify username disable
 		record.setInttypeid(userTypeId);
 		record.setPassword(passWord);
 		record.setStrmail(email);

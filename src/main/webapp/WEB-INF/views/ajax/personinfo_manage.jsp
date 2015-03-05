@@ -116,7 +116,7 @@
 				</div>
 				<div class="col-xs-5 col-xs-offset-1">
 					<button id="savechange" data-toggle="button" type="button" class="btn btn-primary">Save Changes</button>
-					<button id="reset" data-toggle="button" type="button" class="btn btn-default">Reset</button>
+					<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">Reset</button>
 				</div>
 				<div class="col-xs-6" style="height: 50px;"></div>
 				<div class="panel-footer row" style="margin-top: 10px;">
