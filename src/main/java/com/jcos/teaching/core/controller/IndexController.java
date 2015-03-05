@@ -76,8 +76,8 @@ public class IndexController {
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
-			String[] powers = new String[] { "queryplan", "manageplan", "submitplan", "managebook", "managebooktype", "managesupplier", "setting", "manageusertype", "manageuserdepart", "manageuser",
-					"accesscontrol" };
+			String[] powers = new String[] { "planui", "queryplan", "manageplan", "submitplan", "managebook", "managebooktype", "managesupplier", "setting", "manageusertype", "manageuserdepart",
+					"manageuser", "accesscontrol" };
 			setModel(request, model, powers);
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
 		} else {

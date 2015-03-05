@@ -102,19 +102,21 @@
 								<li><a class="ajax-link" href="ajax/supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
 							</c:if>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Plans</span>
-					</a>
-						<ul class="dropdown-menu">
-							<c:if test="${submitplan eq true}">
-								<li><a class="ajax-link" href="ajax/plan_submit"><i class="fa fa-paper-plane-o"></i> Plan Submit</a></li>
-							</c:if>
-							<c:if test="${queryplan eq true}">
-								<li><a class="ajax-link" href="ajax/plan_query"><i class="fa fa-file-archive-o"></i> Plan Query</a></li>
-							</c:if>
-							<c:if test="${manageplan eq true}">
-								<li><a class="ajax-link" href="ajax/plan_manage"><i class="fa fa-paper-plane"></i> Plan Manage</a></li>
-							</c:if>
-						</ul></li>
+					<c:if test="${planui eq true}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Plans</span>
+						</a>
+							<ul class="dropdown-menu">
+								<c:if test="${submitplan eq true}">
+									<li><a class="ajax-link" href="ajax/plan_submit"><i class="fa fa-paper-plane-o"></i> Plan Submit</a></li>
+								</c:if>
+								<c:if test="${queryplan eq true}">
+									<li><a class="ajax-link" href="ajax/plan_query"><i class="fa fa-file-archive-o"></i> Plan Query</a></li>
+								</c:if>
+								<c:if test="${manageplan eq true}">
+									<li><a class="ajax-link" href="ajax/plan_manage"><i class="fa fa-paper-plane"></i> Plan Manage</a></li>
+								</c:if>
+							</ul></li>
+					</c:if>
 					<c:if test="${manageuser eq true}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
 						</a>
