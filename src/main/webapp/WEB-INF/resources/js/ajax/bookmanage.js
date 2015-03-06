@@ -28,7 +28,7 @@ function initBookType(id, dtd, addition) {
 			if (addition != undefined) {
 				$('#' + id).append('<option value="-1">All Type</option>');
 			}
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intbooktypeid + '">' + data[i].strbooktypename + '</option>');
 			}
 			if (dtd != undefined) {
@@ -52,7 +52,7 @@ function initSupplierType(id, dtd, addition) {
 			if (addition != undefined) {
 				$('#' + id).append('<option value="-1">All Supplier</option>');
 			}
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intsupplierid + '">' + data[i].strname + '</option>');
 			}
 			if (dtd != undefined) {

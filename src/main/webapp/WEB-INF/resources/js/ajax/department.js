@@ -193,7 +193,7 @@ $(function() {
 		});
 
 	});
-	
+
 	WinMove();
 })
 
@@ -218,7 +218,7 @@ function initUserDepartMent(id, type, dtd) {
 		},
 		success : function(data) {
 			$('#' + id).empty();
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 			}
 			if (dtd != undefined) {

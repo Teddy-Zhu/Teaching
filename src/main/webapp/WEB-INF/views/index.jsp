@@ -45,11 +45,6 @@ span.passwordc {
 .row div .input-group select {
 	width: 100% !important;
 }
-
-.ui-pnotify {
-	width: 23% !important;
-}
-
 .panel.panel-default {
 	-webkit-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
 	-moz-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);

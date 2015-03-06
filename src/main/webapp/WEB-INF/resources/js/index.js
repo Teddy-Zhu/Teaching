@@ -52,10 +52,7 @@ function backgroundToggle(flag) {
 	if (!flag) {
 		$('body').css('cssText', 'background-color:#353535 ! important');
 	} else {
-		$('body').css(
-				'cssText',
-				'background-image:url(https://unsplash.it/' + $(this).width() + '/' + $(this).height()
-						+ '?random) ; background-repeat: no-repeat; background-attachment: fixed; background-position: center 0; background-size: cover;');
+		$('body').css('cssText', 'background-image:url(https://unsplash.it/' + $(this).width() + '/' + $(this).height() + '?random) ; background-repeat: no-repeat; background-attachment: fixed; background-position: center 0; background-size: cover;');
 	}
 }
 $(function() {
@@ -100,9 +97,8 @@ $(function() {
 					success : function(data) {
 						for (var i = 0; i < data.length; i++) {
 							$('#versioninfo').append(
-									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion
-											+ '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime) + '</div></div><div class="panel-body">'
-											+ data[i].strupdatecomment + '</div></div>');
+									'<div class="panel panel-default" style="margin-top:3px;margin-bottom:0px;"><div class="panel-heading">版本号:' + data[i].strversion + '.' + data[i].strfunversion + '.' + data[i].strbuildversion + '<div style="float:right">' + unix2human(data[i].dateupdatetime)
+											+ '</div></div><div class="panel-body">' + data[i].strupdatecomment + '</div></div>');
 						}
 					},
 					error : function(data) {
@@ -206,7 +202,7 @@ $(function() {
 				success : function(data) {
 					if (data != null) {
 						$('#UserType').empty();
-						for ( var i in data) {
+						for (var i = 0; len = data.length, i < len; i++) {
 							var option = '<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>';
 							$('#UserType').append(option);
 						}
@@ -234,7 +230,7 @@ $(function() {
 				success : function(data) {
 					if (data != null) {
 						$('#DepartMent').empty();
-						for ( var i in data) {
+						for (var i = 0; len = data.length, i < len; i++) {
 							$('#DepartMent').append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 						}
 						selectchange();
@@ -469,7 +465,7 @@ function selectchange() {
 		success : function(data) {
 			if (data != null) {
 				$('#Majors').empty();
-				for ( var i in data) {
+				for (var i = 0; len = data.length, i < len; i++) {
 					$('#Majors').append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 				}
 			} else {

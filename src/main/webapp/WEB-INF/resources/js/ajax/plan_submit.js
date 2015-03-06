@@ -21,7 +21,7 @@ function initBookType(id, addition) {
 			if (addition != undefined) {
 				$('#' + id).append('<option value="-1">All Type</option>');
 			}
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intbooktypeid + '">' + data[i].strbooktypename + '</option>');
 			}
 		},
@@ -39,7 +39,7 @@ function initSupplierType(id, addition) {
 			if (addition != undefined) {
 				$('#' + id).append('<option value="-1">All Supplier</option>');
 			}
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intsupplierid + '">' + data[i].strname + '</option>');
 			}
 		}
@@ -61,7 +61,7 @@ $(function() {
 		dataType : 'json',
 		type : 'post',
 	}).success(function(data) {
-		for ( var i in data) {
+		for (var i = 0; len = data.length, i < len; i++) {
 			$('#CourseType').append('<option value="' + data[i].intcoursetypeid + '">' + data[i].strcoursename + '</option>')
 		}
 	})

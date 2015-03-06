@@ -30,7 +30,7 @@ function initUserType(id, dtd) {
 		type : 'post',
 		success : function(data) {
 			$('#' + id).empty();
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
 			}
 			if (dtd != undefined) {
@@ -53,7 +53,7 @@ function initUserDepartMent(id, type, dtd) {
 		},
 		success : function(data) {
 			$('#' + id).empty();
-			for ( var i in data) {
+			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 			}
 			if (dtd != undefined) {
@@ -246,9 +246,8 @@ $(function() {
 					$('#userEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].username + '</a></li>')
 					$('#editusercontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
-							htmltmp.replace('newUserName', 'editUserName' + id).replace('newPassword', 'editPassword' + id).replace('newRealName', 'editRealName' + id).replace('newType',
-									'editType' + id).replace('newNumber', 'editNumber' + id).replace('newEmail', 'editEmail' + id).replace('newPhone', 'editPhone' + id).replace('newDepartMent',
-									'editDepartMent' + id).replace('newMajor', 'editMajor' + id).replace(new RegExp('newform', "gm"), 'editform'));
+							htmltmp.replace('newUserName', 'editUserName' + id).replace('newPassword', 'editPassword' + id).replace('newRealName', 'editRealName' + id).replace('newType', 'editType' + id).replace('newNumber', 'editNumber' + id).replace('newEmail', 'editEmail' + id).replace(
+									'newPhone', 'editPhone' + id).replace('newDepartMent', 'editDepartMent' + id).replace('newMajor', 'editMajor' + id).replace(new RegExp('newform', "gm"), 'editform'));
 					setVal(id, rows[i]);
 				}
 				$('#userEditTable a:first').tab('show')

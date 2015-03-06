@@ -50,7 +50,7 @@ $(function() {
 		type : 'post',
 	}).success(function(data) {
 		$('#usertype').empty();
-		for ( var i in data) {
+		for (var i = 0; len = data.length, i < len; i++) {
 			$('#usertype').append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
 		}
 		LoadAccessTree();
