@@ -405,6 +405,7 @@ public class UserController {
 			DepartId = Integer.valueOf(request.getParameter("DepartMent").trim());
 			MajorId = Integer.valueOf(request.getParameter("Major").trim());
 		} catch (Exception e) {
+			logger.debug(e.getMessage());
 			response.setStatus(3386);
 			return false;
 		}

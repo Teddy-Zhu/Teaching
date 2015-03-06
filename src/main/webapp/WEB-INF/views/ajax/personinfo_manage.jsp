@@ -69,7 +69,7 @@
 				</div>
 				<div class="inlineblock" id="inlineblock">
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">UserName:</label><input id="UserName" class="form-control col-xs-7 input-lg-self" type="text" value="${user.username}" disabled />
+						<label class="col-xs-5">UserName:</label><input id="UserName" class="perinfo form-control col-xs-7 input-lg-self" type="text" value="${user.username}" disabled />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">

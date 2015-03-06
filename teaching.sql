@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-05 17:04:42
+Date: 2015-03-06 13:14:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -554,7 +554,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -574,3 +574,4 @@ INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个
 INSERT INTO `versionlog` VALUES ('13', '0012', '01', '1', '新增UI权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');
 INSERT INTO `versionlog` VALUES ('14', '0013', '00', '1', '新增/完善权限控管<br>[future] 教学书籍订购计划管理', '2015-03-02 21:03:45');
 INSERT INTO `versionlog` VALUES ('15', '0014', '04', '1', '新增书籍条件查询<br>修复UI等错位<br>修复编辑书籍类型，供应商类型丢失bug<br>修复删除用户是自身删除bug<br>修复权限控管部分失效bug<br>[feture]继续完善教学计划提交Plan Submit', '2015-03-05 16:42:26');
+INSERT INTO `versionlog` VALUES ('16', '0014', '05', '1', '修复编辑用户个人信息参数错误bug', '2015-03-06 13:14:36');
