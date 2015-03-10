@@ -187,7 +187,56 @@ $(function() {
 								});
 
 					})
-	$("#reset").click(function() {
+	$('#reset').click(function() {
 		LoadAjaxContent("ajax/plan_submit");
+	})
+	$('#submitform').click(function() {
+		$(this).button('loading');
+		$('.alert.alert-danger').slideUp();
+		$('.alert.alert-danger').remove();
+		var postdata = {};
+		var error = '<div class="alert alert-danger" role="alert" style="display:none;line-height: 0px;width: 80%;height: 1px;">{errormsg}</div>'
+		var check = true;
+		$('.planinfo').each(function() {
+			var curId = $(this).attr('id');
+			var curval = $(this).val();
+			if (!curval || curval.trim() === '') {
+				if ($(this).prev().html() === undefined) {
+					$(this).parent().parent().next().html(error.replace(/{errormsg}/g, 'The ' + $(this).parent().prev().html().trimEnd(':') + ' can not be empty!'));
+				} else {
+					$(this).parent().next().html(error.replace(/{errormsg}/g, 'The ' + $(this).prev().html().trimEnd(':') + ' can not be empty!'));
+				}
+				check = false;
+				return false;
+			} else {
+				postdata[curId] = curval.trim();
+			}
+		});
+		if (!check) {
+			$('.alert.alert-danger').slideDown();
+			$(this).button('reset');
+			return;
+		}
+		$.ajax({
+			url : 'Plan/Submit',
+			dataType : 'json',
+			type : 'post',
+			async : true,
+			data : postdata,
+		}).success(function(response) {
+			if (response) {
+				$.TeachDialog({
+					title : 'Operation Message!',
+					content : 'Update Successfully!',
+				});
+			} else {
+				$.TeachDialog({
+					title : 'Operation Message!',
+					content : 'Update failed!',
+				});
+			}
+
+		});
+		$(this).button('reset');
 	})
 })

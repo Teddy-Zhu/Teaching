@@ -26,4 +26,5 @@ public interface BookMapper {
 	Integer authSupplierById(Integer intsupplierid);
 
 	Integer authBookType(Integer id);
+
 }

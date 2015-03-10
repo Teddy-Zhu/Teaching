@@ -22,7 +22,19 @@ function LoadLeafletScript(callback) {
 		}
 	}
 }
-
+String.prototype.trimEnd = function(trimStr) {
+	if (!trimStr) {
+		return this;
+	}
+	var temp = this;
+	while (true) {
+		if (temp.substr(temp.length - trimStr.length, trimStr.length) != trimStr) {
+			break;
+		}
+		temp = temp.substr(0, temp.length - trimStr.length);
+	}
+	return temp;
+};
 function unix2human(unixtime) {
 	var dateObj = new Date(unixtime);
 	var UnixTimeToDate = dateObj.getFullYear() + '-' + (dateObj.getMonth() + 1) + '-' + dateObj.getDate() + ' ' + p(dateObj.getHours()) + ':' + p(dateObj.getMinutes()) + ':' + p(dateObj.getSeconds());

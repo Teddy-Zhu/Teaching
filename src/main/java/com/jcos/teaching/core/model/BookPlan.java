@@ -3,143 +3,179 @@ package com.jcos.teaching.core.model;
 import java.util.Date;
 
 public class BookPlan {
-    private Integer intplanid;
+	private Integer intplanid;
 
-    private String strcoursename;
+	private String strcoursename;
 
-    private Integer intcoursetypeid;
+	private Integer intcoursetypeid;
 
-    private String strclass;
+	private String strclass;
 
-    private Integer intstudcount;
+	private Integer intstudcount;
 
-    private Integer intteaccount;
+	private Integer intteaccount;
 
-    private Integer intbookid;
+	private Integer intbookid;
 
-    private Integer intuserid;
+	private Integer intuserid;
 
-    private Integer intplanstatusid;
+	private Integer intplanstatusid;
 
-    private Integer intfromyear;
+	private Integer intfromyear;
 
-    private Integer inttoyear;
+	private Integer inttoyear;
 
-    private Integer intterm;
+	private Integer intterm;
 
-    private Date datecreatetime;
+	private Date datecreatetime;
 
-    private String strmark;
+	private String strmark;
 
-    public Integer getIntplanid() {
-        return intplanid;
-    }
+	public BookPlan() {
+		this.intplanid = -1;
+		this.strcoursename = "";
+		this.intcoursetypeid = -1;
+		this.strclass = "";
+		this.intstudcount = -1;
+		this.intteaccount = -1;
+		this.intbookid = -1;
+		this.intuserid = -1;
+		this.intplanstatusid = -1;
+		this.intfromyear = -1;
+		this.inttoyear = -1;
+		this.intterm = -1;
+		this.datecreatetime = new Date();
+		this.strmark = "none";
+	}
 
-    public void setIntplanid(Integer intplanid) {
-        this.intplanid = intplanid;
-    }
+	public BookPlan(Integer intplanid, String strcoursename, Integer intcoursetypeid, String strclass, Integer intstudcount, Integer intteaccount, Integer intbookid, Integer intuserid,
+			Integer intplanstatusid, Integer intfromyear, Integer inttoyear, Integer intterm, Date datecreatetime, String strmark) {
+		super();
+		this.intplanid = intplanid;
+		this.strcoursename = strcoursename;
+		this.intcoursetypeid = intcoursetypeid;
+		this.strclass = strclass;
+		this.intstudcount = intstudcount;
+		this.intteaccount = intteaccount;
+		this.intbookid = intbookid;
+		this.intuserid = intuserid;
+		this.intplanstatusid = intplanstatusid;
+		this.intfromyear = intfromyear;
+		this.inttoyear = inttoyear;
+		this.intterm = intterm;
+		this.datecreatetime = datecreatetime;
+		this.strmark = strmark;
+	}
 
-    public String getStrcoursename() {
-        return strcoursename;
-    }
+	public Integer getIntplanid() {
+		return intplanid;
+	}
 
-    public void setStrcoursename(String strcoursename) {
-        this.strcoursename = strcoursename == null ? null : strcoursename.trim();
-    }
+	public void setIntplanid(Integer intplanid) {
+		this.intplanid = intplanid;
+	}
 
-    public Integer getIntcoursetypeid() {
-        return intcoursetypeid;
-    }
+	public String getStrcoursename() {
+		return strcoursename;
+	}
 
-    public void setIntcoursetypeid(Integer intcoursetypeid) {
-        this.intcoursetypeid = intcoursetypeid;
-    }
+	public void setStrcoursename(String strcoursename) {
+		this.strcoursename = strcoursename == null ? null : strcoursename.trim();
+	}
 
-    public String getStrclass() {
-        return strclass;
-    }
+	public Integer getIntcoursetypeid() {
+		return intcoursetypeid;
+	}
 
-    public void setStrclass(String strclass) {
-        this.strclass = strclass == null ? null : strclass.trim();
-    }
+	public void setIntcoursetypeid(Integer intcoursetypeid) {
+		this.intcoursetypeid = intcoursetypeid;
+	}
 
-    public Integer getIntstudcount() {
-        return intstudcount;
-    }
+	public String getStrclass() {
+		return strclass;
+	}
 
-    public void setIntstudcount(Integer intstudcount) {
-        this.intstudcount = intstudcount;
-    }
+	public void setStrclass(String strclass) {
+		this.strclass = strclass == null ? null : strclass.trim();
+	}
 
-    public Integer getIntteaccount() {
-        return intteaccount;
-    }
+	public Integer getIntstudcount() {
+		return intstudcount;
+	}
 
-    public void setIntteaccount(Integer intteaccount) {
-        this.intteaccount = intteaccount;
-    }
+	public void setIntstudcount(Integer intstudcount) {
+		this.intstudcount = intstudcount;
+	}
 
-    public Integer getIntbookid() {
-        return intbookid;
-    }
+	public Integer getIntteaccount() {
+		return intteaccount;
+	}
 
-    public void setIntbookid(Integer intbookid) {
-        this.intbookid = intbookid;
-    }
+	public void setIntteaccount(Integer intteaccount) {
+		this.intteaccount = intteaccount;
+	}
 
-    public Integer getIntuserid() {
-        return intuserid;
-    }
+	public Integer getIntbookid() {
+		return intbookid;
+	}
 
-    public void setIntuserid(Integer intuserid) {
-        this.intuserid = intuserid;
-    }
+	public void setIntbookid(Integer intbookid) {
+		this.intbookid = intbookid;
+	}
 
-    public Integer getIntplanstatusid() {
-        return intplanstatusid;
-    }
+	public Integer getIntuserid() {
+		return intuserid;
+	}
 
-    public void setIntplanstatusid(Integer intplanstatusid) {
-        this.intplanstatusid = intplanstatusid;
-    }
+	public void setIntuserid(Integer intuserid) {
+		this.intuserid = intuserid;
+	}
 
-    public Integer getIntfromyear() {
-        return intfromyear;
-    }
+	public Integer getIntplanstatusid() {
+		return intplanstatusid;
+	}
 
-    public void setIntfromyear(Integer intfromyear) {
-        this.intfromyear = intfromyear;
-    }
+	public void setIntplanstatusid(Integer intplanstatusid) {
+		this.intplanstatusid = intplanstatusid;
+	}
 
-    public Integer getInttoyear() {
-        return inttoyear;
-    }
+	public Integer getIntfromyear() {
+		return intfromyear;
+	}
 
-    public void setInttoyear(Integer inttoyear) {
-        this.inttoyear = inttoyear;
-    }
+	public void setIntfromyear(Integer intfromyear) {
+		this.intfromyear = intfromyear;
+	}
 
-    public Integer getIntterm() {
-        return intterm;
-    }
+	public Integer getInttoyear() {
+		return inttoyear;
+	}
 
-    public void setIntterm(Integer intterm) {
-        this.intterm = intterm;
-    }
+	public void setInttoyear(Integer inttoyear) {
+		this.inttoyear = inttoyear;
+	}
 
-    public Date getDatecreatetime() {
-        return datecreatetime;
-    }
+	public Integer getIntterm() {
+		return intterm;
+	}
 
-    public void setDatecreatetime(Date datecreatetime) {
-        this.datecreatetime = datecreatetime;
-    }
+	public void setIntterm(Integer intterm) {
+		this.intterm = intterm;
+	}
 
-    public String getStrmark() {
-        return strmark;
-    }
+	public Date getDatecreatetime() {
+		return datecreatetime;
+	}
 
-    public void setStrmark(String strmark) {
-        this.strmark = strmark == null ? null : strmark.trim();
-    }
+	public void setDatecreatetime(Date datecreatetime) {
+		this.datecreatetime = datecreatetime;
+	}
+
+	public String getStrmark() {
+		return strmark;
+	}
+
+	public void setStrmark(String strmark) {
+		this.strmark = strmark == null ? null : strmark.trim();
+	}
 }

@@ -8,4 +8,6 @@ public interface CourseTypeService {
 
 	List<CourseType> getAllCourseType();
 
+	Boolean authCourseType(int typeid);
+
 }

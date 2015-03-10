@@ -111,15 +111,15 @@
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Class Id:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Class Id" />
+						<label class="col-xs-5">Class Id:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Class Id" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Student Count:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Student Book Count" />
+						<label class="col-xs-5">Student Count:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Student Book Count" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Teacher Count:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="password" placeholder="Input Teacher Book Count" />
+						<label class="col-xs-5">Teacher Count:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Teacher Book Count" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
@@ -132,8 +132,8 @@
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Plan Time:</label> <label class="col-xs-1" style="margin-left: -3.5%;">From</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="password" placeholder="From Year" /><label
-							class="col-xs-1" style="margin-left: -3.5%;">To</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="password" placeholder="ToYear" />
+						<label class="col-xs-5">Plan Time:</label> <label class="col-xs-1" style="margin-left: -3.5%;">From</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="text" placeholder="From Year" /><label class="col-xs-1"
+							style="margin-left: -3.5%;">To</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="text" placeholder="ToYear" />
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
@@ -143,7 +143,7 @@
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
 						<label class="col-xs-5">Mark:</label>
-						<textarea id="Mark" class="perinfo form-control col-xs-7" /></textarea>
+						<textarea id="Mark" class="planinfo form-control col-xs-7">none</textarea>
 					</div>
 					<div class="col-xs-6"></div>
 

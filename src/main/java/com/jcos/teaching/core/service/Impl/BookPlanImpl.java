@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.BookPlanMapper;
+import com.jcos.teaching.core.model.BookPlan;
 import com.jcos.teaching.core.service.BookPlanService;
 
 @Service
@@ -33,4 +34,13 @@ public class BookPlanImpl implements BookPlanService {
 		return 0;
 	}
 
+	@Override
+	public boolean insertPlan(BookPlan record) {
+		Integer i = bookPlanDao.insertSelective(record);
+		if (i == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

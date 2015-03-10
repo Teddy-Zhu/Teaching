@@ -21,4 +21,6 @@ public interface BookService {
 	List<Book> getAllBooks(Book record, Integer page, Integer rows);
 
 	int getBookTotal(Book record);
+
+	boolean authBook(int id);
 }

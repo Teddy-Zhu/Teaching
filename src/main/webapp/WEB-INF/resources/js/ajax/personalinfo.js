@@ -1,16 +1,4 @@
-String.prototype.trimEnd = function(trimStr) {
-	if (!trimStr) {
-		return this;
-	}
-	var temp = this;
-	while (true) {
-		if (temp.substr(temp.length - trimStr.length, trimStr.length) != trimStr) {
-			break;
-		}
-		temp = temp.substr(0, temp.length - trimStr.length);
-	}
-	return temp;
-};
+
 function initUserDepartMent(id, type, dtd) {
 	$.ajax({
 		url : 'Type/GetDepartMent',

@@ -74,4 +74,14 @@ public class BookImpl implements BookService {
 		}
 	}
 
+	@Override
+	public boolean authBook(int id) {
+		Book book = bookDao.selectByPrimaryKey(id);
+		if (book == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

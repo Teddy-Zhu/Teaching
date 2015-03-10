@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.CourseTypeMapper;
+import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.CourseType;
 import com.jcos.teaching.core.service.CourseTypeService;
 
@@ -15,9 +16,19 @@ public class CourseTypeImpl implements CourseTypeService {
 
 	@Inject
 	private CourseTypeMapper courseTypeDao;
-	
+
 	@Override
-	public List<CourseType> getAllCourseType(){
+	public List<CourseType> getAllCourseType() {
 		return courseTypeDao.selectAllCourseType();
+	}
+
+	@Override
+	public Boolean authCourseType(int typeid) {
+		CourseType coursetype = courseTypeDao.selectByPrimaryKey(typeid);
+		if (coursetype == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
