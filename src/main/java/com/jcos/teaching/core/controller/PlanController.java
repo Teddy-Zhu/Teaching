@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,6 @@ import com.jcos.teaching.core.model.CourseType;
 import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
-import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
@@ -97,8 +97,31 @@ public class PlanController {
 
 	@RequestMapping(value = "/GetCourseType", method = RequestMethod.POST)
 	@ResponseBody
-	public List<CourseType> getcoursetype(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public List<CourseType> getCourseType(HttpServletRequest request, Model model, HttpServletResponse response) {
 
 		return courseTypeService.getAllCourseType();
+	}
+
+	@RequestMapping(value = "/GetPerPlan", method = RequestMethod.POST)
+	@ResponseBody
+	public List<BookPlan> getPersonalPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!pwTool.authUserTypePower(request, "queryplan")) {
+			response.setStatus(3388);
+			return new ArrayList<BookPlan>();
+		}
+		String CourseName = "", ClassId = "", BookName = "";
+		Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1, Term = -1;
+		Date date = null;
+		try {
+			CourseName = request.getParameter("CourseName").trim().equals("") ? null : request.getParameter("CourseName");
+			ClassId= request.getParameter("ClassId").trim().equals("") ? null : request.getParameter("ClassId");
+			
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return new ArrayList<BookPlan>();
+		}
+
+		return null;
 	}
 }

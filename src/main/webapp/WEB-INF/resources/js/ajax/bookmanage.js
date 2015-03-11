@@ -290,6 +290,15 @@ $(function() {
 		})
 	})
 
+	$('#Date').datepicker({
+		format : "yyyy-mm-dd",
+		todayBtn : "linked",
+		forceParse : false,
+		autoclose : true,
+		todayHighlight : true,
+		clearBtn : true
+	});
+
 	initBookType('SearchType', undefined, "type");
 	initSupplierType('SearchSupplier', undefined, "type")
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
@@ -377,7 +386,7 @@ $(function() {
 			param = getSearchParams(param);
 		},
 	});
-	
+
 	$('#Search').click(function() {
 		$('#datatable_bookinfo').datagrid('reload');
 	})

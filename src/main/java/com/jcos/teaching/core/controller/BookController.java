@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
-import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.util.PowerTool;
 
@@ -39,7 +39,7 @@ public class BookController {
 
 	@Inject
 	private BookPlanService bookPlanService;
-	
+
 	@Inject
 	private PowerTool pwTool;
 
@@ -64,6 +64,7 @@ public class BookController {
 		String code = "", name = "", sn = "", press = "", author = "";
 		Double price = 0.0, discount = 0.0;
 		Integer type = -1, supplier = -1;
+		Date date = null;
 		try {
 			rows = Integer.valueOf(request.getParameter("rows"));
 			page = Integer.valueOf(request.getParameter("page"));
@@ -76,12 +77,13 @@ public class BookController {
 			supplier = Integer.valueOf(request.getParameter("SearchSupplier")) == -1 ? null : Integer.valueOf(request.getParameter("SearchSupplier"));
 			price = request.getParameter("SearchPrice").equals("") ? null : Double.valueOf(request.getParameter("SearchPrice"));
 			discount = request.getParameter("SearchDiscount").equals("") ? null : Double.valueOf(request.getParameter("SearchDiscount"));
+			date = request.getParameter("Date").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Date"));
 		} catch (Exception e) {
 			response.setStatus(3386);
 			return null;
 		}
 
-		Book record = new Book(null, name, code, sn, type, price, press, author, discount, supplier, null);
+		Book record = new Book(null, name, code, sn, type, price, press, author, discount, supplier, date);
 		ret.put("total", bookService.getBookTotal(record));
 		List<Book> books = bookService.getAllBooks(record, page, rows);
 		ret.put("rows", books);

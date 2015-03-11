@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="resources/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <style>
 .datagrid, .combo-p {
 	border: solid 1px #D4D4D4;
@@ -56,8 +57,9 @@
 }
 
 #Search {
+	float: right;
 	margin-right: 3.2%;
-	width: 14.8%;
+	width: 14.9%;
 }
 
 .SearchForm {
@@ -165,7 +167,9 @@
 <script type="text/javascript">
 	<c:if test="${submitplan eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/plan_submit.js");
+		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
+			$.getScript("resources/js/ajax/plan_submit.js");
+		})
 	})
 	</c:if>
 </script>

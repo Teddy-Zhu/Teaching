@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-11 13:01:16
+Date: 2015-03-11 15:03:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -160,7 +160,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -168,6 +168,51 @@ CREATE TABLE `config` (
 INSERT INTO `config` VALUES ('1', 'version', '1');
 INSERT INTO `config` VALUES ('2', 'funcversion', '0003');
 INSERT INTO `config` VALUES ('3', 'buildversion', '03');
+INSERT INTO `config` VALUES ('4', 'AdminMenu', 'planui');
+INSERT INTO `config` VALUES ('5', 'AdminMenu', 'queryplan');
+INSERT INTO `config` VALUES ('6', 'AdminMenu', 'manageplan');
+INSERT INTO `config` VALUES ('7', 'AdminMenu', 'submitplan');
+INSERT INTO `config` VALUES ('8', 'AdminMenu', 'managebook');
+INSERT INTO `config` VALUES ('9', 'AdminMenu', 'managebooktype');
+INSERT INTO `config` VALUES ('10', 'AdminMenu', 'managesupplier');
+INSERT INTO `config` VALUES ('11', 'AdminMenu', 'setting');
+INSERT INTO `config` VALUES ('12', 'AdminMenu', 'manageusertype');
+INSERT INTO `config` VALUES ('13', 'AdminMenu', 'manageuserdepart');
+INSERT INTO `config` VALUES ('14', 'AdminMenu', 'manageuser');
+INSERT INTO `config` VALUES ('15', 'AdminMenu', 'accesscontrol');
+INSERT INTO `config` VALUES ('16', 'book_manage', 'addbook');
+INSERT INTO `config` VALUES ('17', 'book_manage', 'editbook');
+INSERT INTO `config` VALUES ('18', 'book_manage', 'rmbook');
+INSERT INTO `config` VALUES ('19', 'book_manage', 'querybook');
+INSERT INTO `config` VALUES ('20', 'book_manage', 'managebook');
+INSERT INTO `config` VALUES ('21', 'userinfo_manage', 'adduser');
+INSERT INTO `config` VALUES ('22', 'userinfo_manage', 'edituser');
+INSERT INTO `config` VALUES ('23', 'userinfo_manage', 'rmuser');
+INSERT INTO `config` VALUES ('24', 'userinfo_manage', 'queryuser');
+INSERT INTO `config` VALUES ('25', 'userinfo_manage', 'manageuser');
+INSERT INTO `config` VALUES ('26', 'supplier_manage', 'addsupplier');
+INSERT INTO `config` VALUES ('27', 'supplier_manage', 'editsupplier');
+INSERT INTO `config` VALUES ('28', 'supplier_manage', 'rmsupplier');
+INSERT INTO `config` VALUES ('29', 'supplier_manage', 'querysupplier');
+INSERT INTO `config` VALUES ('30', 'supplier_manage', 'managesupplier');
+INSERT INTO `config` VALUES ('31', 'department_manage', 'adduserdepart');
+INSERT INTO `config` VALUES ('32', 'department_manage', 'edituserdepart');
+INSERT INTO `config` VALUES ('33', 'department_manage', 'rmuserdepart');
+INSERT INTO `config` VALUES ('34', 'department_manage', 'queryuserdepart');
+INSERT INTO `config` VALUES ('35', 'department_manage', 'manageuserdepart');
+INSERT INTO `config` VALUES ('36', 'type_manage', 'addusertype');
+INSERT INTO `config` VALUES ('37', 'type_manage', 'editusertype');
+INSERT INTO `config` VALUES ('38', 'type_manage', 'rmusertype');
+INSERT INTO `config` VALUES ('39', 'type_manage', 'queryusertype');
+INSERT INTO `config` VALUES ('40', 'type_manage', 'querybooktype');
+INSERT INTO `config` VALUES ('41', 'type_manage', 'addbooktype');
+INSERT INTO `config` VALUES ('42', 'type_manage', 'editbooktype');
+INSERT INTO `config` VALUES ('43', 'type_manage', 'rmbooktype');
+INSERT INTO `config` VALUES ('44', 'type_manage', 'managebooktype');
+INSERT INTO `config` VALUES ('45', 'type_manage', 'manageusertype');
+INSERT INTO `config` VALUES ('46', 'access_manage', 'accesscontrol');
+INSERT INTO `config` VALUES ('47', 'plan_submit', 'submitplan');
+INSERT INTO `config` VALUES ('48', 'plan_query', 'queryplan');
 
 -- ----------------------------
 -- Table structure for coursetype

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="resources/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <style>
 .datagrid, .combo-p {
 	border: solid 1px #D4D4D4;
@@ -50,8 +51,9 @@
 }
 
 #Search {
-	margin-right: 3.2%;
-	width: 14.8%;
+	float: right;
+	margin-right: 4%;
+	width: 14.9%;
 }
 
 .SearchForm {
@@ -101,19 +103,21 @@
 							<div class="panel-body" style="overflow-x: hidden; width: 100%">
 								<div class="searchClass row">
 									<div class="col-xs-12">
-										<label>Code</label><input class="SearchForm form-control" type="text" id="SearchCode" /> <label>Name</label><input class="SearchForm form-control" type="text" id="SearchName" /> <label>SN</label><input class="SearchForm form-control" type="text" id="SearchSN" /> <label>Type</label><select
-											class="SearchForm form-control" id="SearchType"><option value="-1">All Type</option></select>
+										<label>CourseName</label><input class="SearchForm form-control" type="text" id="CourseName" /> <label>CourseType</label><select class="SearchForm form-control" id="CourseType"><option value="-1">All Type</option></select> <label>Class</label><input class="SearchForm form-control"
+											type="text" id="ClassId" /> <label>BookName</label><input class="SearchForm form-control" type="text" id="BookName" />
 									</div>
 									<div class="col-xs-12">
-										<label>Press</label><input class="SearchForm form-control" type="text" id="SearchPress" /> <label>Author</label><input class="SearchForm form-control" type="text" id="SearchAuthor" /> <label>Supplier</label><select class="SearchForm form-control" id="SearchSupplier"><option
-												value="-1">All Supplier</option></select> <label>Price</label><input class="SearchForm form-control" type="text" id="SearchPrice" />
+										<label>Plan Status</label><select class="SearchForm form-control" id="PlanStatus"><option value="-1">All Status</option></select> <label>From</label><input class="SearchForm form-control" type="text" id="FromYear" /> <label>To</label><input class="SearchForm form-control" type="text"
+											id="ToYear" /> <label>Term</label><select class="SearchForm form-control" id="Term"><option value="-1">All Term</option>
+											<option value="0">上半学年</option>
+											<option value="1">下半学年</option></select>
 									</div>
 									<div class="col-xs-12">
-										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" />
-										<button id="Search" class="btn btn-default btn-xs pull-right">Search</button>
+										<label>Date</label><input class="SearchForm form-control" type="text" id="Date" ReadOnly />
+										<button id="Search" class="btn btn-default btn-xs">Search</button>
 									</div>
 								</div>
-								<table id="datatable_supplierinfo" style="width: 100%">
+								<table id="datatable_perplaninfo" style="width: 100%">
 								</table>
 							</div>
 						</div>
@@ -126,7 +130,9 @@
 <script type="text/javascript">
 	<c:if test="${queryplan eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/plan_query.js");
+		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
+			$.getScript("resources/js/ajax/plan_query.js");
+		})
 	})
 	</c:if>
 </script>

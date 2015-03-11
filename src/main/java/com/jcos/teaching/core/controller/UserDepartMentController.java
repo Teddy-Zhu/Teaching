@@ -30,8 +30,6 @@ public class UserDepartMentController {
 	private static final Logger logger = Logger.getLogger(UserDepartMentController.class);
 
 	@Inject
-	private PowerService powerService;
-	@Inject
 	private UserService userService;
 	
 	@Inject

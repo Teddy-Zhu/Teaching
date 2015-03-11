@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="resources/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <style>
 .panel-header, .panel-body {
 	border-width: 0px;
@@ -44,6 +45,7 @@
 }
 
 #Search {
+	float: right;
 	margin-right: 8%;
 	width: 14.8%;
 }
@@ -207,8 +209,8 @@
 												value="-1">All Supplier</option></select> <label>Price</label><input class="SearchForm form-control" type="text" id="SearchPrice" />
 									</div>
 									<div class="col-xs-12">
-										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" />
-										<button id="Search" class="btn btn-default btn-xs pull-right">Search</button>
+										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="Date" ReadOnly />
+										<button id="Search" class="btn btn-default btn-xs">Search</button>
 									</div>
 								</div>
 							</div>
@@ -224,7 +226,9 @@
 <script type="text/javascript">
 	<c:if test="${managebook eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/bookmanage.js");
+		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
+			$.getScript("resources/js/ajax/bookmanage.js");
+		})
 	})
 	</c:if>
 </script>

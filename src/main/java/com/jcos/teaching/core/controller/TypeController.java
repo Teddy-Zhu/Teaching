@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -78,8 +79,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetUserType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserTypeForReg(HttpServletRequest request, Model model) {
-		List<UserType> allowUserType = userTypeService.getUserTypeForReg();
-		return allowUserType;
+		return userTypeService.getUserTypeForReg();
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class TypeController {
 	public List<BookType> getBookTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
 		if (!pwTool.authUserTypePower(request, "querybooktype")) {
 			response.setStatus(3388);
-			return null;
+			return new ArrayList<BookType>();
 		}
 		return bookTypeService.getAllBookType();
 	}
@@ -134,9 +134,8 @@ public class TypeController {
 	public List<UserType> getUserTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
 		if (!pwTool.authUserTypePower(request, "queryusertype")) {
 			response.setStatus(3388);
-			return null;
+			return new ArrayList<UserType>();
 		}
-		List<UserType> allowUserType = userTypeService.getUserType();
-		return allowUserType;
+		return userTypeService.getUserType();
 	}
 }
