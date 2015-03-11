@@ -107,14 +107,21 @@
 		where intPowerId = #{intpowerid,jdbcType=INTEGER}
 	</update>
 
-	<select id="queryPowerByName" resultMap="BaseResultMap">
+	<select id="queryPowerByNameList" resultMap="BaseResultMap">
 		select strAuthName,intAuthValue from power
 		where intUserTypeId = (select intTypeId from user where intId =
-		#{intId,jdbcType=INTEGER}) and strAuthName in
-		<foreach collection="list" item="item" open="(" close=")" separator=",">
-			#{item,jdbcType=VARCHAR}
-		</foreach>
+		#{intId,jdbcType=INTEGER}) and strAuthName
+		in
+		(select strValue from config where strName = #{name,jdbcType=INTEGER} )
 	</select>
+
+	<select id="queryPowerByName" resultType="java.lang.Integer">
+		select intAuthValue from power
+		where intUserTypeId = (select intTypeId from user where intId =
+		#{intId,jdbcType=INTEGER}) and strAuthName =
+		#{name,jdbcType=VARCHAR}
+	</select>
+
 
 	<select id="selectManagePower" resultType="com.jcos.teaching.core.model.Power">
 		select intPowerId,intParentId,strName,strAuthName from power

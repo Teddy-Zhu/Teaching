@@ -23,6 +23,5 @@ public interface PowerService {
 
 	boolean queryPowerByName(String name, Integer userId);
 
-	Map<String, Boolean> queryPowerByName(List<String> list, Integer userId);
-
+	Map<String, Boolean> queryPowerByNameList(String name, Integer userId);
 }

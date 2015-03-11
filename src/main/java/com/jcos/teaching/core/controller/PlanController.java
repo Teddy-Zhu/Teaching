@@ -21,6 +21,7 @@ import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
 import com.jcos.teaching.core.service.PowerService;
+import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
 @RequestMapping(value = "/Plan")
@@ -31,9 +32,6 @@ public class PlanController {
 	private static final Logger logger = Logger.getLogger(PlanController.class);
 
 	@Inject
-	private PowerService powerService;
-
-	@Inject
 	private BookPlanService bookPlanService;
 
 	@Inject
@@ -42,23 +40,13 @@ public class PlanController {
 	@Inject
 	private BookService bookService;
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	@Inject
+	private PowerTool pwTool;
 
 	@RequestMapping(value = "/Submit", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean getbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "submitplan")) {
+		if (!pwTool.authUserTypePower(request, "submitplan")) {
 			response.setStatus(3388);
 			return false;
 		}

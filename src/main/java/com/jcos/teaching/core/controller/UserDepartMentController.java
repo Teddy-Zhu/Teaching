@@ -19,6 +19,7 @@ import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
+import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
 @RequestMapping(value = "/DepartMent")
@@ -32,22 +33,18 @@ public class UserDepartMentController {
 	private PowerService powerService;
 	@Inject
 	private UserService userService;
+	
+	@Inject
+	private PowerTool pwTool;
 
 	@Inject
 	private UserDepartMentService userDepartMentService;
 
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
 
 	@RequestMapping(value = "/GetAllDepartMent", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserDepartMent> getAlldepartMent(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "queryuserdepart")) {
+		if (!pwTool.authUserTypePower(request, "queryuserdepart")) {
 			response.setStatus(3388);
 			return null;
 		}
@@ -57,7 +54,7 @@ public class UserDepartMentController {
 	@RequestMapping(value = "/Update", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updateDepartMent(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "edituserdepart")) {
+		if (!pwTool.authUserTypePower(request, "edituserdepart")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -96,7 +93,7 @@ public class UserDepartMentController {
 	@RequestMapping(value = "/Insert", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean insertDepartMent(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "adduserdepart")) {
+		if (!pwTool.authUserTypePower(request, "adduserdepart")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -125,7 +122,7 @@ public class UserDepartMentController {
 	@RequestMapping(value = "/Delete", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean deleteDepartMent(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "rmuserdepart")) {
+		if (!pwTool.authUserTypePower(request, "rmuserdepart")) {
 			response.setStatus(3388);
 			return false;
 		}

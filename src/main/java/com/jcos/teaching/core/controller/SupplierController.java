@@ -21,6 +21,7 @@ import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
+import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
 @RequestMapping(value = "/Supplier")
@@ -31,26 +32,13 @@ public class SupplierController {
 	private static final Logger logger = Logger.getLogger(SupplierController.class);
 
 	@Inject
-	private PowerService powerService;
-
-	@Inject
 	private SupplierService supplierService;
 
 	@Inject
 	private BookService bookService;
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	@Inject
+	private PowerTool pwTool;
 
 	/**
 	 * 
@@ -62,7 +50,7 @@ public class SupplierController {
 	@RequestMapping(value = "/GetAllSuppliers", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Supplier> getAllSuppliers(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "querysupplier")) {
+		if (!pwTool.authUserTypePower(request, "querysupplier")) {
 			response.setStatus(3388);
 			return null;
 		}
@@ -78,7 +66,7 @@ public class SupplierController {
 	@RequestMapping(value = "/AddNewSupplier", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean addNewSupplier(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "addsupplier")) {
+		if (!pwTool.authUserTypePower(request, "addsupplier")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -116,7 +104,7 @@ public class SupplierController {
 	@RequestMapping(value = "/UpdateSuppliers", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean editSuppliers(@RequestParam(value = "supplierId[]") Integer[] supplierId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "editsupplier")) {
+		if (!pwTool.authUserTypePower(request, "editsupplier")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -157,7 +145,7 @@ public class SupplierController {
 	@RequestMapping(value = "/RemoveSupplier", method = RequestMethod.POST)
 	@ResponseBody
 	public Object removebook(@RequestParam(value = "supplierId[]") Integer[] supplierId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "rmsupplier")) {
+		if (!pwTool.authUserTypePower(request, "rmsupplier")) {
 			response.setStatus(3388);
 			return false;
 		}

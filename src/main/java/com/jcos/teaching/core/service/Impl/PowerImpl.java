@@ -25,8 +25,8 @@ public class PowerImpl implements PowerService {
 	private PowerMapper powerDao;
 
 	@Override
-	public Map<String, Boolean> queryPowerByName(List<String> list, Integer userId) {
-		List<Power> pwlist = powerDao.queryPowerByName(list, userId);
+	public Map<String, Boolean> queryPowerByNameList(String name, Integer userId) {
+		List<Power> pwlist = powerDao.queryPowerByNameList(name, userId);
 		Map<String, Boolean> pwMap = new HashMap<String, Boolean>();
 		int len = pwlist.size();
 		for (int i = 0; i < len; i++) {
@@ -37,13 +37,12 @@ public class PowerImpl implements PowerService {
 
 	@Override
 	public boolean queryPowerByName(String name, Integer userId) {
-		List<String> list = new ArrayList<String>();
-		list.add(name);
-		List<Power> pwlist = powerDao.queryPowerByName(list, userId);
-		if (pwlist.get(0).getIntauthvalue() == 1)
-			return true;
-		else
+		Integer i = powerDao.queryPowerByName(name, userId);
+		if (i != 1) {
 			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override

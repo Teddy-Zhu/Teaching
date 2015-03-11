@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
+import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
 @RequestMapping(value = "/Book")
@@ -38,23 +38,10 @@ public class BookController {
 	private SupplierService supplierService;
 
 	@Inject
-	private PowerService powerService;
-
-	@Inject
 	private BookPlanService bookPlanService;
-
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	
+	@Inject
+	private PowerTool pwTool;
 
 	/**
 	 * 
@@ -69,7 +56,7 @@ public class BookController {
 	@ResponseBody
 	public Map<String, Object> getbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
 		Map<String, Object> ret = new HashMap<String, Object>();
-		if (!authUserTypePower(request, "querybook")) {
+		if (!pwTool.authUserTypePower(request, "querybook")) {
 			response.setStatus(3388);
 			return ret;
 		}
@@ -111,7 +98,7 @@ public class BookController {
 	@RequestMapping(value = "/AddBook", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean addbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "addbook")) {
+		if (!pwTool.authUserTypePower(request, "addbook")) {
 			response.setStatus(3388);
 			return true;
 		}
@@ -155,7 +142,7 @@ public class BookController {
 	@RequestMapping(value = "/RemoveBook", method = RequestMethod.POST)
 	@ResponseBody
 	public Object removebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "rmbook")) {
+		if (!pwTool.authUserTypePower(request, "rmbook")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -174,7 +161,7 @@ public class BookController {
 	@RequestMapping(value = "/EditBook", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updatebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "editbook")) {
+		if (!pwTool.authUserTypePower(request, "editbook")) {
 			response.setStatus(3388);
 			return true;
 		}

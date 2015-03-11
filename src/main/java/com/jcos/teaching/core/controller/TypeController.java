@@ -20,11 +20,11 @@ import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
-import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
+import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
 @RequestMapping(value = "/Type")
@@ -46,21 +46,9 @@ public class TypeController {
 	private BookService bookService;
 	@Inject
 	private UserService userService;
-	@Inject
-	private PowerService powerService;
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	@Inject
+	private PowerTool pwTool;
 
 	/**
 	 * 
@@ -115,7 +103,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetBookTypeForType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<BookType> getBookTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "querybooktype")) {
+		if (!pwTool.authUserTypePower(request, "querybooktype")) {
 			response.setStatus(3388);
 			return null;
 		}
@@ -144,7 +132,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetUserTypeAllForType", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserType> getUserTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "queryusertype")) {
+		if (!pwTool.authUserTypePower(request, "queryusertype")) {
 			response.setStatus(3388);
 			return null;
 		}

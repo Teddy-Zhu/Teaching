@@ -26,6 +26,7 @@ import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
+import com.jcos.teaching.core.util.PowerTool;
 import com.jcos.teaching.core.util.StringUtil;
 
 @Controller
@@ -53,18 +54,8 @@ public class UserController {
 
 	private StringUtil tools = new StringUtil();
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	@Inject
+	private PowerTool pwTool;
 
 	/**
 	 * 
@@ -141,11 +132,17 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/AuthUserName", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean authUserName(HttpServletRequest request, Model model) {
+	public boolean authUserName(HttpServletRequest request, Model model, HttpServletResponse response) {
 		String userName = "";
-		if (!tools.isNull(request, "UserName")) {
+		try {
 			userName = request.getParameter("UserName");
-		} else {
+		} catch (Exception e) {
+			response.setStatus(3386);
+			logger.debug(e.getMessage());
+			return false;
+		}
+		if (userName.trim().equals("")) {
+			response.setStatus(3386);
 			return false;
 		}
 		int i = userService.selectUserByUserName(userName);
@@ -195,7 +192,7 @@ public class UserController {
 			loginSession.setLoginUser(loginUser);
 			// set global session
 			request.getSession().setAttribute("loginSession", loginSession);
-			if (!authUserTypePower(request, "Login")) {
+			if (!pwTool.authUserTypePower(request, "Login")) {
 				response.setStatus(3388);
 				request.getSession().setAttribute("loginSession", null);
 				return false;
@@ -210,7 +207,7 @@ public class UserController {
 	@RequestMapping(value = "/GetAllUser", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getAllUser(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "queryuser")) {
+		if (!pwTool.authUserTypePower(request, "queryuser")) {
 			response.setStatus(3388);
 			return null;
 		}
@@ -239,7 +236,7 @@ public class UserController {
 	@RequestMapping(value = "/AuthRegisterAdmin", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean registerForAdmin(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "adduser")) {
+		if (!pwTool.authUserTypePower(request, "adduser")) {
 			response.setStatus(3389);
 			return false;
 		}
@@ -307,7 +304,7 @@ public class UserController {
 	@RequestMapping(value = "/UpdateUserInfoAdmin", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean UpdateUserForAdmin(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "edituser")) {
+		if (!pwTool.authUserTypePower(request, "edituser")) {
 			response.setStatus(3389);
 			return false;
 		}
@@ -364,7 +361,7 @@ public class UserController {
 	@RequestMapping(value = "/RemoveUser", method = RequestMethod.POST)
 	@ResponseBody
 	public Object removeuser(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "rmuser")) {
+		if (!pwTool.authUserTypePower(request, "rmuser")) {
 			response.setStatus(3388);
 			return false;
 		}

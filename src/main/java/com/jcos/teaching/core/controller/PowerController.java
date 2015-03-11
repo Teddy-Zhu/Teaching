@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.Power;
 import com.jcos.teaching.core.service.PowerService;
+import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
 @RequestMapping(value = "/Power")
@@ -32,23 +33,13 @@ public class PowerController {
 	@Inject
 	private PowerService powerService;
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	@Inject
+	private PowerTool pwTool;
 
 	@RequestMapping(value = "/GetUserTypePower", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Power> getPower(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "accesscontrol")) {
+		if (!pwTool.authUserTypePower(request, "accesscontrol")) {
 			response.setStatus(3388);
 			return null;
 		}
@@ -66,7 +57,7 @@ public class PowerController {
 	@RequestMapping(value = "/UpdateUserTypePower", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updatePower(@RequestParam(value = "powerId[]") Integer[] powerId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "accesscontrol")) {
+		if (!pwTool.authUserTypePower(request, "accesscontrol")) {
 			response.setStatus(3388);
 			return false;
 		}

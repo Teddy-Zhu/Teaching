@@ -22,7 +22,6 @@ import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
-import com.jcos.teaching.core.util.PropertiesTool;
 
 @Controller
 public class IndexController {
@@ -34,21 +33,6 @@ public class IndexController {
 	private PowerService powerService;
 	@Inject
 	private UserService userService;
-
-	private PropertiesTool pwTool = new PropertiesTool("loadPower");
-
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
 
 	/**
 	 * 
@@ -76,7 +60,7 @@ public class IndexController {
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
-			setModel(request, model, pwTool.getPowerList("AdminMenu"));
+			setModel(request, model, "AdminMenu");
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
 		} else {
 			request.getSession().setAttribute("loginSession", null);
@@ -123,7 +107,7 @@ public class IndexController {
 		case "plan_submit":
 		case "plan_query":
 		default: {
-			setModel(request, model, pwTool.getPowerList(html));
+			setModel(request, model, html);
 			break;
 		}
 		}
@@ -137,13 +121,13 @@ public class IndexController {
 		return verions;
 	}
 
-	public boolean setModel(HttpServletRequest request, Model model, List<String> powers) {
+	public boolean setModel(HttpServletRequest request, Model model, String name) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession == null) {
 			return false;
 		}
 		Integer userId = loginSession.getLoginUser().getIntid();
-		Map<String, Boolean> pwMap = powerService.queryPowerByName(powers, userId);
+		Map<String, Boolean> pwMap = powerService.queryPowerByNameList(name, userId);
 		for (Map.Entry<String, Boolean> entry : pwMap.entrySet()) {
 			model.addAttribute(entry.getKey(), entry.getValue());
 		}

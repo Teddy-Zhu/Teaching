@@ -24,6 +24,7 @@ import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
+import com.jcos.teaching.core.util.PowerTool;
 import com.mysql.fabric.xmlrpc.base.Array;
 
 @Controller
@@ -46,23 +47,14 @@ public class TypeOperateController {
 	@Inject
 	private PowerService powerService;
 
-	/**
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public boolean authUserTypePower(HttpServletRequest request, String name) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			return false;
-		}
-		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
-	}
+	@Inject
+	private PowerTool pwTool;
+
 
 	@RequestMapping(value = "/UpdateUserType", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updateUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "editusertype")) {
+		if (!pwTool.authUserTypePower(request, "editusertype")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -90,7 +82,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/InsertUserType", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean insertUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "addusertype")) {
+		if (!pwTool.authUserTypePower(request, "addusertype")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -158,7 +150,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/DeleteUserType", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean deleteUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "rmusertype")) {
+		if (!pwTool.authUserTypePower(request, "rmusertype")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -189,7 +181,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/UpdateBookType", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updateBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "editbooktype")) {
+		if (!pwTool.authUserTypePower(request, "editbooktype")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -215,7 +207,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/InsertBookType", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean insertBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "addbooktype")) {
+		if (!pwTool.authUserTypePower(request, "addbooktype")) {
 			response.setStatus(3388);
 			return false;
 		}
@@ -239,7 +231,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/DeleteBookType", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean deleteBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!authUserTypePower(request, "rmbooktype")) {
+		if (!pwTool.authUserTypePower(request, "rmbooktype")) {
 			response.setStatus(3388);
 			return false;
 		}
