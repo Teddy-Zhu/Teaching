@@ -196,7 +196,7 @@
 							</h4>
 						</div>
 						<div id="collapseForBookTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body" style="overflow-x: hidden; width: 100%">
+							<div class="panel-body" style="overflow-x: hidden;">
 								<div class="searchClass row">
 									<div class="col-xs-12">
 										<label>Code</label><input class="SearchForm form-control" type="text" id="SearchCode" /> <label>Name</label><input class="SearchForm form-control" type="text" id="SearchName" /> <label>SN</label><input class="SearchForm form-control" type="text" id="SearchSN" /> <label>Type</label><select
@@ -211,9 +211,9 @@
 										<button id="Search" class="btn btn-default btn-xs pull-right">Search</button>
 									</div>
 								</div>
-								<table id="datatable_bookinfo" style="width: 100%">
-								</table>
 							</div>
+							<table id="datatable_bookinfo" style="width: 100%">
+							</table>
 						</div>
 					</div>
 				</c:if>

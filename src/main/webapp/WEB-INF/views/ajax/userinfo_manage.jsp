@@ -169,10 +169,9 @@
 							</h4>
 						</div>
 						<div id="collapseForUserTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body" style="overflow-x: hidden; width: 100%">
-								<table id="datatable_userinfo" style="width: 100%">
-								</table>
-							</div>
+							<div class="panel-body" style="overflow-x: hidden;"></div>
+							<table id="datatable_userinfo" style="width: 100%">
+							</table>
 						</div>
 					</div>
 				</c:if>
