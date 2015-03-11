@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" style="min-width: 1000px;">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Teaching ManageMent System</title>
+<meta charset="utf-8">
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="resources/css/self.css" />
@@ -44,6 +44,7 @@ span.passwordc {
 .row div .input-group select {
 	width: 100% !important;
 }
+
 .panel.panel-default {
 	-webkit-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
 	-moz-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
