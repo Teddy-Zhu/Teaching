@@ -13,12 +13,6 @@
 	border: solid 1px #D4D4D4;
 }
 
-.datagrid * {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
-}
-
 .inlineblock {
 	margin-top: 10px;
 }
@@ -172,12 +166,12 @@
 					<div class="panel panel-default" style="border: 1px solid #CCC;">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForsupplierTable">
-								Basic supplier Info<span class="fa fa-chevron-down" style="float: right"></span>
+								Basic Supplier Info<span class="fa fa-chevron-down" style="float: right"></span>
 							</h4>
 						</div>
 						<div id="collapseForsupplierTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
-								<table id="datatable_supplierinfo">
+							<div class="panel-body" style="overflow-x: hidden; width: 100%">
+								<table id="datatable_supplierinfo" style="width: 100%">
 								</table>
 							</div>
 						</div>

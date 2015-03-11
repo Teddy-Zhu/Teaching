@@ -377,7 +377,7 @@ $(function() {
 			param = getSearchParams(param);
 		},
 	});
-
+	
 	$('#Search').click(function() {
 		$('#datatable_bookinfo').datagrid('reload');
 	})

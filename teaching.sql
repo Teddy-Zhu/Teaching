@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-06 13:14:58
+Date: 2015-03-11 13:01:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,23 +32,23 @@ CREATE TABLE `book` (
   `intSupplierId` int(11) NOT NULL COMMENT '供应商',
   `dateAddTime` datetime NOT NULL,
   PRIMARY KEY (`intBookId`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('4', '电子商务与物流管理第2版', 'B122', '45145', '1', '101.000', '纷纭出版社', 'SSDFF', '4.000', '1', '2015-02-02 17:37:54');
-INSERT INTO `book` VALUES ('5', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '4', '2015-03-05 15:39:43');
-INSERT INTO `book` VALUES ('13', 'SQL Server 2008 商业智能完美解决方案', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '1', '2015-02-02 16:01:37');
-INSERT INTO `book` VALUES ('15', '英语口语短句大王', 'B1230', '45', '4', '458.400', '45', '4545', '6.000', '3', '2015-03-05 16:39:40');
-INSERT INTO `book` VALUES ('16', '跟毛泽东学思维', 'B1230', '45', '1', '458.400', '45', '4545', '7.000', '5', '2015-03-05 15:32:15');
-INSERT INTO `book` VALUES ('17', '图书汉字的故事', 'B1230ss', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-02 16:06:25');
-INSERT INTO `book` VALUES ('18', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '1', '199.000', '45454', 'ssss', '10.000', '4', '2015-03-05 15:39:43');
-INSERT INTO `book` VALUES ('19', '公务员电子政务技 术实用指南', 'A25554', '45AS3', '4', '222.000', '猜猜猜', 'none', '5.000', '6', '2015-03-05 16:30:09');
-INSERT INTO `book` VALUES ('20', '母亲杨沫', 'A25554', '45AS3', '4', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-03-05 16:30:25');
-INSERT INTO `book` VALUES ('21', '国家电网公司电力安全工作规程', 'B22206', '9787508391311', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-03-05 16:39:48');
-INSERT INTO `book` VALUES ('22', '电力安全监督管理工作手册', 'B22205', '9787512348660', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-02-10 14:28:40');
-INSERT INTO `book` VALUES ('23', '谁动了我的奶酪', 'Z4005', '44545', '1', '17.400', 'none', '斯宾塞.约翰逊', '10.000', '3', '2015-02-10 14:29:51');
+INSERT INTO `book` VALUES ('1', '电子商务与物流管理第2版', 'B122', '45145', '1', '101.000', '纷纭出版社', 'SSDFF', '4.000', '1', '2015-02-02 17:37:54');
+INSERT INTO `book` VALUES ('2', '一分钟探案高手', 'B1212', '2222', '1', '120.000', '2222', '1111', '6.000', '4', '2015-03-05 15:39:43');
+INSERT INTO `book` VALUES ('3', 'SQL Server 2008 商业智能完美解决方案', 'B12022', '221323', '1', '100.300', '爱思考思考', '可可豆', '9.300', '1', '2015-02-02 16:01:37');
+INSERT INTO `book` VALUES ('4', '英语口语短句大王', 'B1230', '45', '4', '458.400', '45', '4545', '6.000', '3', '2015-03-05 16:39:40');
+INSERT INTO `book` VALUES ('5', '跟毛泽东学思维', 'B1230', '45', '1', '458.400', '45', '4545', '7.000', '5', '2015-03-05 15:32:15');
+INSERT INTO `book` VALUES ('6', '图书汉字的故事', 'B1230ss', '45', '1', '458.400', '45', '4545', '7.000', '1', '2015-02-02 16:06:25');
+INSERT INTO `book` VALUES ('7', 'CSS HTML ·XHTML语法与范例辞典', 'B2015256', 'aaa', '1', '199.000', '45454', 'ssss', '10.000', '4', '2015-03-05 15:39:43');
+INSERT INTO `book` VALUES ('8', '公务员电子政务技 术实用指南', 'A25554', '45AS3', '4', '222.000', '猜猜猜', 'none', '5.000', '6', '2015-03-05 16:30:09');
+INSERT INTO `book` VALUES ('9', '母亲杨沫', 'A25554', '45AS3', '4', '222.000', '猜猜猜', 'none', '5.000', '1', '2015-03-05 16:30:25');
+INSERT INTO `book` VALUES ('10', '国家电网公司电力安全工作规程', 'B22206', '9787508391311', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-03-05 16:39:48');
+INSERT INTO `book` VALUES ('11', '电力安全监督管理工作手册', 'B22205', '9787512348660', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-02-10 14:28:40');
+INSERT INTO `book` VALUES ('12', '谁动了我的奶酪', 'Z4005', '44545', '1', '17.400', 'none', '斯宾塞.约翰逊', '10.000', '3', '2015-02-10 14:29:51');
 
 -- ----------------------------
 -- Table structure for bookplan
@@ -75,14 +75,14 @@ CREATE TABLE `bookplan` (
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '2011023217', '0', '软件工程', '12', '12', '4', '0', '0', '0', '0', '0', '2015-02-10 14:03:34', null);
+INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '15', '1', '1', '2014', '2015', '0', '2015-03-11 09:32:02', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
 -- ----------------------------
 DROP TABLE IF EXISTS `bookplanchange`;
 CREATE TABLE `bookplanchange` (
-  `intBookChangeId` int(11) NOT NULL,
+  `intBookChangeId` int(11) NOT NULL AUTO_INCREMENT,
   `intPlanId` int(11) NOT NULL,
   `intIncreaseStudent` int(11) NOT NULL,
   `intDecreaseStudent` int(11) NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `bookplanchange` (
 -- ----------------------------
 DROP TABLE IF EXISTS `bookplanlog`;
 CREATE TABLE `bookplanlog` (
-  `intPlanLogId` int(11) NOT NULL,
+  `intPlanLogId` int(11) NOT NULL AUTO_INCREMENT,
   `intPlanId` int(11) NOT NULL,
   `intOperateId` int(11) NOT NULL,
   `intUserId` int(11) NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE `bookplanstatus` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strMark` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`intPlanStatusId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanstatus
@@ -174,10 +174,10 @@ INSERT INTO `config` VALUES ('3', 'buildversion', '03');
 -- ----------------------------
 DROP TABLE IF EXISTS `coursetype`;
 CREATE TABLE `coursetype` (
-  `intCourseTypeId` int(11) NOT NULL,
+  `intCourseTypeId` int(11) NOT NULL AUTO_INCREMENT,
   `strCourseName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intCourseTypeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of coursetype
@@ -209,7 +209,7 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
@@ -480,7 +480,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', '2015-02-28 15:34:22');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', '2015-03-06 14:52:27');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-28 20:44:02');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-28 20:44:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', '2015-02-28 20:56:49');
@@ -554,7 +554,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -575,3 +575,4 @@ INSERT INTO `versionlog` VALUES ('13', '0012', '01', '1', '新增UI权限控制<
 INSERT INTO `versionlog` VALUES ('14', '0013', '00', '1', '新增/完善权限控管<br>[future] 教学书籍订购计划管理', '2015-03-02 21:03:45');
 INSERT INTO `versionlog` VALUES ('15', '0014', '04', '1', '新增书籍条件查询<br>修复UI等错位<br>修复编辑书籍类型，供应商类型丢失bug<br>修复删除用户是自身删除bug<br>修复权限控管部分失效bug<br>[feture]继续完善教学计划提交Plan Submit', '2015-03-05 16:42:26');
 INSERT INTO `versionlog` VALUES ('16', '0014', '05', '1', '修复编辑用户个人信息参数错误bug', '2015-03-06 13:14:36');
+INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提交<br>改善权限控制机制,优化读取逻辑<br>[feture]教学计划查询与更变', '2015-03-11 13:05:16');

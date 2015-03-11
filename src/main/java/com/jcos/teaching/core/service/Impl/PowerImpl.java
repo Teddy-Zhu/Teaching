@@ -1,11 +1,13 @@
 package com.jcos.teaching.core.service.Impl;
 
-import org.apache.log4j.Logger;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.PowerMapper;
@@ -23,11 +25,22 @@ public class PowerImpl implements PowerService {
 	private PowerMapper powerDao;
 
 	@Override
+	public Map<String, Boolean> queryPowerByName(List<String> list, Integer userId) {
+		List<Power> pwlist = powerDao.queryPowerByName(list, userId);
+		Map<String, Boolean> pwMap = new HashMap<String, Boolean>();
+		int len = pwlist.size();
+		for (int i = 0; i < len; i++) {
+			pwMap.put(pwlist.get(i).getStrauthname(), pwlist.get(i).getIntauthvalue() == 0 ? false : true);
+		}
+		return pwMap;
+	}
+
+	@Override
 	public boolean queryPowerByName(String name, Integer userId) {
-		Integer i = powerDao.queryPowerByName(name, userId);
-		if (i == null)
-			i = 0;
-		if (i == 1)
+		List<String> list = new ArrayList<String>();
+		list.add(name);
+		List<Power> pwlist = powerDao.queryPowerByName(list, userId);
+		if (pwlist.get(0).getIntauthvalue() == 1)
 			return true;
 		else
 			return false;
@@ -82,10 +95,10 @@ public class PowerImpl implements PowerService {
 	public List<Power> getPowerbyUserType(List<Integer> usertypeids) {
 		return powerDao.selectPowerByUserType(usertypeids);
 	}
-	
+
 	@Override
-	public boolean updatePowers(Integer intauthvalue,List<Integer> list){
-		Integer i = powerDao.updatePowerListByAuthValue(intauthvalue,list);
+	public boolean updatePowers(Integer intauthvalue, List<Integer> list) {
+		Integer i = powerDao.updatePowerListByAuthValue(intauthvalue, list);
 		if (i != list.size()) {
 			return false;
 		} else {

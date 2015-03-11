@@ -9,12 +9,6 @@
 	border: solid 1px #D4D4D4;
 }
 
-.datagrid * {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
-}
-
 .inlineblock {
 	margin-top: 10px;
 }
@@ -175,8 +169,8 @@
 							</h4>
 						</div>
 						<div id="collapseForUserTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body">
-								<table id="datatable_userinfo">
+							<div class="panel-body" style="overflow-x: hidden; width: 100%">
+								<table id="datatable_userinfo" style="width: 100%">
 								</table>
 							</div>
 						</div>

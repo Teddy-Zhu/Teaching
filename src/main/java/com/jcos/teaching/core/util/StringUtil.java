@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.util.common;
+package com.jcos.teaching.core.util;
 
 import javax.servlet.http.HttpServletRequest;
 

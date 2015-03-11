@@ -73,7 +73,7 @@
 		<ol class="breadcrumb pull-left">
 			<li><a href="index.html">Dashboard</a></li>
 			<li><a href="#">Plans</a></li>
-			<li><a href="#"> Plan Submit</a></li>
+			<li><a href="#">Plan Submit</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -107,7 +107,7 @@
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Course Type</label><select id="CourseType" class="perinfo form-control col-xs-7 input-lg-self"></select>
+						<label class="col-xs-5">Course Type</label><select id="CourseType" class="planinfo form-control col-xs-7 input-lg-self"></select>
 					</div>
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">

@@ -19,7 +19,7 @@ public interface PowerMapper {
 
 	int updateByPrimaryKey(Power record);
 
-	Integer queryPowerByName(@Param(value = "name") String name, @Param(value = "intId") Integer IntId);
+	List<Power> queryPowerByName(@Param(value = "list") List<String> list, @Param(value = "intId") Integer IntId);
 
 	List<Power> selectManagePower(@Param(value = "intparentid") int intparentid, @Param(value = "intusertypeid") int intusertypeid);
 

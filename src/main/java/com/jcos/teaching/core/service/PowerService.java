@@ -1,12 +1,11 @@
 package com.jcos.teaching.core.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jcos.teaching.core.model.Power;
 
 public interface PowerService {
-
-	boolean queryPowerByName(String name, Integer userType);
 
 	boolean insertPower(Power record);
 
@@ -21,5 +20,9 @@ public interface PowerService {
 	List<Power> getPowerbyUserType(List<Integer> usertypeids);
 
 	boolean updatePowers(Integer intauthvalue, List<Integer> list);
+
+	boolean queryPowerByName(String name, Integer userId);
+
+	Map<String, Boolean> queryPowerByName(List<String> list, Integer userId);
 
 }

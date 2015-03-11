@@ -3,9 +3,7 @@
 	<groupId>com.jcos</groupId>
 	<artifactId>teaching</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>teaching Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<url>http://www.lc4e.com</url>
 	<properties>
 		<org.springframework.version>4.1.3.RELEASE</org.springframework.version>
 		<org.aspectj.version>1.8.4</org.aspectj.version>
@@ -146,4 +144,7 @@
 		</plugins>
 		<finalName>teaching</finalName>
 	</build>
+	<name>Teach ManageMent System</name>
+	<description>for zhuxi's  graduation design</description>
+	<version>1.0</version>
 </project>

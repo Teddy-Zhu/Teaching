@@ -26,7 +26,7 @@ import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
-import com.jcos.teaching.core.util.common.StringUtil;
+import com.jcos.teaching.core.util.StringUtil;
 
 @Controller
 @RequestMapping(value = "/User")

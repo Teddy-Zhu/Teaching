@@ -2,7 +2,6 @@ package com.jcos.teaching.core.controller;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,13 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.exmodel.LoginSession;
-import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.VersionLog;
-import com.jcos.teaching.core.service.ConfigService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
+import com.jcos.teaching.core.util.PropertiesTool;
 
 @Controller
 public class IndexController {
@@ -36,6 +34,8 @@ public class IndexController {
 	private PowerService powerService;
 	@Inject
 	private UserService userService;
+
+	private PropertiesTool pwTool = new PropertiesTool("loadPower");
 
 	/**
 	 * 
@@ -76,9 +76,7 @@ public class IndexController {
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
-			String[] powers = new String[] { "planui", "queryplan", "manageplan", "submitplan", "managebook", "managebooktype", "managesupplier", "setting", "manageusertype", "manageuserdepart",
-					"manageuser", "accesscontrol" };
-			setModel(request, model, powers);
+			setModel(request, model, pwTool.getPowerList("AdminMenu"));
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
 		} else {
 			request.getSession().setAttribute("loginSession", null);
@@ -108,16 +106,6 @@ public class IndexController {
 			model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
 			break;
 		}
-		case "book_manage": {
-			String[] powers = new String[] { "addbook", "editbook", "rmbook", "querybook", "managebook" };
-			setModel(request, model, powers);
-			break;
-		}
-		case "userinfo_manage": {
-			String[] powers = new String[] { "adduser", "edituser", "rmuser", "queryuser", "manageuser" };
-			setModel(request, model, powers);
-			break;
-		}
 		case "personinfo_manage": {
 			User loginUser = loginSession.getLoginUser();
 			User user = userService.selectUserById(loginUser.getIntid());
@@ -126,30 +114,16 @@ public class IndexController {
 			model.addAttribute("user", user);
 			break;
 		}
-		case "supplier_manage": {
-			String[] powers = new String[] { "addsupplier", "editsupplier", "rmsupplier", "querysupplier", "managesupplier" };
-			setModel(request, model, powers);
-			break;
-		}
-		case "department_manage": {
-			String[] powers = new String[] { "adduserdepart", "edituserdepart", "rmuserdepart", "queryuserdepart", "manageuserdepart" };
-			setModel(request, model, powers);
-			break;
-		}
-		case "type_manage": {
-			String[] powers = new String[] { "addusertype", "editusertype", "rmusertype", "queryusertype", "querybooktype", "addbooktype", "editbooktype", "rmbooktype", "managebooktype",
-					"manageusertype" };
-			setModel(request, model, powers);
-			break;
-		}
-		case "access_manage": {
-			String[] powers = new String[] { "accesscontrol" };
-			setModel(request, model, powers);
-			break;
-		}
-		case "plan_submit": {
-			String[] powers = new String[] { "submitplan" };
-			setModel(request, model, powers);
+		case "book_manage":
+		case "userinfo_manage":
+		case "supplier_manage":
+		case "department_manage":
+		case "type_manage":
+		case "access_manage":
+		case "plan_submit":
+		case "plan_query":
+		default: {
+			setModel(request, model, pwTool.getPowerList(html));
 			break;
 		}
 		}
@@ -163,13 +137,15 @@ public class IndexController {
 		return verions;
 	}
 
-	public boolean setModel(HttpServletRequest request, Model model, String[] powers) {
-		for (String pw : powers) {
-			if (authUserTypePower(request, pw)) {
-				model.addAttribute(pw, true);
-			} else {
-				model.addAttribute(pw, false);
-			}
+	public boolean setModel(HttpServletRequest request, Model model, List<String> powers) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (loginSession == null) {
+			return false;
+		}
+		Integer userId = loginSession.getLoginUser().getIntid();
+		Map<String, Boolean> pwMap = powerService.queryPowerByName(powers, userId);
+		for (Map.Entry<String, Boolean> entry : pwMap.entrySet()) {
+			model.addAttribute(entry.getKey(), entry.getValue());
 		}
 		return true;
 	}
