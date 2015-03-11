@@ -77,7 +77,7 @@ public class BookController {
 			supplier = Integer.valueOf(request.getParameter("SearchSupplier")) == -1 ? null : Integer.valueOf(request.getParameter("SearchSupplier"));
 			price = request.getParameter("SearchPrice").equals("") ? null : Double.valueOf(request.getParameter("SearchPrice"));
 			discount = request.getParameter("SearchDiscount").equals("") ? null : Double.valueOf(request.getParameter("SearchDiscount"));
-			date = request.getParameter("Date").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Date"));
+			date = request.getParameter("SearchDate").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
 		} catch (Exception e) {
 			response.setStatus(3386);
 			return null;

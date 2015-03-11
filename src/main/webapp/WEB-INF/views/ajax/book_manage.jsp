@@ -209,7 +209,7 @@
 												value="-1">All Supplier</option></select> <label>Price</label><input class="SearchForm form-control" type="text" id="SearchPrice" />
 									</div>
 									<div class="col-xs-12">
-										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="Date" ReadOnly />
+										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
 										<button id="Search" class="btn btn-default btn-xs">Search</button>
 									</div>
 								</div>
@@ -226,7 +226,7 @@
 <script type="text/javascript">
 	<c:if test="${managebook eq true}">
 	$(function() {
-		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
+		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.js", function() {
 			$.getScript("resources/js/ajax/bookmanage.js");
 		})
 	})

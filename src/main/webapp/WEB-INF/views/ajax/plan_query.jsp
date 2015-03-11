@@ -113,7 +113,7 @@
 											<option value="1">下半学年</option></select>
 									</div>
 									<div class="col-xs-12">
-										<label>Date</label><input class="SearchForm form-control" type="text" id="Date" ReadOnly />
+										<label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
 										<button id="Search" class="btn btn-default btn-xs">Search</button>
 									</div>
 								</div>

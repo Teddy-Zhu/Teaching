@@ -290,10 +290,9 @@ $(function() {
 		})
 	})
 
-	$('#Date').datepicker({
+	$('#SearchDate').datepicker({
 		format : "yyyy-mm-dd",
 		todayBtn : "linked",
-		forceParse : false,
 		autoclose : true,
 		todayHighlight : true,
 		clearBtn : true

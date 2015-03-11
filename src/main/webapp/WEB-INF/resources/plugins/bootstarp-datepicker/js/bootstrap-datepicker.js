@@ -234,6 +234,9 @@
 			plc = $.grep(plc, function(word){
 				return /^auto|left|right|top|bottom$/.test(word);
 			});
+			console.log(o);
+			console.log(plc);
+			console.log(_plc);
 			o.orientation = {x: 'auto', y: 'auto'};
 			if (!_plc || _plc === 'auto')
 				; // no action

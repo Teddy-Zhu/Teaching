@@ -199,7 +199,7 @@
 				intPriceDiscount like CONCAT('%',#{record.intpricediscount,jdbcType=DOUBLE},'%') AND
 			</if>
 			<if test="record.intsupplierid != null">
-				intSupplierId = #{record.intsupplierid,jdbcType=INTEGER}
+				intSupplierId = #{record.intsupplierid,jdbcType=INTEGER} AND
 			</if>
 			<if test="record.dateaddtime != null">
 				date_format(dateAddTime,'%y-%m-%d') = date_format(#{record.dateaddtime,jdbcType=TIMESTAMP},'%y-%m-%d')
@@ -236,7 +236,7 @@
 				intPriceDiscount like CONCAT('%',#{intpricediscount,jdbcType=DOUBLE},'%') AND
 			</if>
 			<if test="intsupplierid != null">
-				intSupplierId = #{intsupplierid,jdbcType=INTEGER}
+				intSupplierId = #{intsupplierid,jdbcType=INTEGER} AND
 			</if>
 			<if test="dateaddtime != null">
 				date_format(dateAddTime,'%y-%m-%d') = date_format(#{dateaddtime,jdbcType=TIMESTAMP},'%y-%m-%d')
