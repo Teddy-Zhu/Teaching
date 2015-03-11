@@ -187,7 +187,7 @@
 				intBookTypeId = #{record.intbooktypeid,jdbcType=INTEGER} AND
 			</if>
 			<if test="record.strprice != null">
-				strPrice like CONCAT('%',#{record.strprice,jdbcType=DOUBLE},'%') AND
+				strPrice = #{record.strprice,jdbcType=DOUBLE} AND
 			</if>
 			<if test="record.strpress != null">
 				strPress like CONCAT('%',#{record.strpress,jdbcType=VARCHAR},'%') AND
@@ -196,7 +196,7 @@
 				strAuthor like CONCAT('%',#{record.strauthor,jdbcType=VARCHAR},'%') AND
 			</if>
 			<if test="record.intpricediscount != null">
-				intPriceDiscount like CONCAT('%',#{record.intpricediscount,jdbcType=DOUBLE},'%') AND
+				intPriceDiscount = #{record.intpricediscount,jdbcType=DOUBLE} AND
 			</if>
 			<if test="record.intsupplierid != null">
 				intSupplierId = #{record.intsupplierid,jdbcType=INTEGER} AND
@@ -224,7 +224,7 @@
 				intBookTypeId = #{intbooktypeid,jdbcType=INTEGER} AND
 			</if>
 			<if test="strprice != null">
-				strPrice like CONCAT('%',#{strprice,jdbcType=DOUBLE},'%') AND
+				strPrice = #{strprice,jdbcType=DOUBLE} AND
 			</if>
 			<if test="strpress != null">
 				strPress like CONCAT('%',#{strpress,jdbcType=VARCHAR},'%') AND
@@ -233,7 +233,7 @@
 				strAuthor like CONCAT('%',#{strauthor,jdbcType=VARCHAR},'%') AND
 			</if>
 			<if test="intpricediscount != null">
-				intPriceDiscount like CONCAT('%',#{intpricediscount,jdbcType=DOUBLE},'%') AND
+				intPriceDiscount = #{intpricediscount,jdbcType=DOUBLE} AND
 			</if>
 			<if test="intsupplierid != null">
 				intSupplierId = #{intsupplierid,jdbcType=INTEGER} AND
