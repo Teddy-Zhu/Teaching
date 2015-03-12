@@ -10,14 +10,11 @@
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
-<link href="resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="resources/plugins/easyui/themes/color.css" rel="stylesheet">
-<link href="resources/plugins/easyui/themes/icon.css" rel="stylesheet">
 <link href="resources/css/self.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
 <link href="resources/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
-
+<link href="resources/plugins/font-awesome/css/font-awesome.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
