@@ -320,8 +320,9 @@ $(function() {
 			userIdArray.push(parseInt(rows[i].intid));
 			namesArray.push(rows[i].username);
 		}
-		var dtd = $.Deferred();
-		var suredialog = function() {
+
+		var sureDialog = function() {
+			var dtd = $.Deferred();
 			$.TeachDialog({
 				title : 'Warnning Message!',
 				content : 'Are you sure remove this users :' + namesArray + ' ?',
@@ -339,7 +340,7 @@ $(function() {
 			});
 			return dtd.promise();
 		};
-		suredialog().done(function() {
+		sureDialog().done(function() {
 			$.ajax({
 				url : 'User/RemoveUser',
 				type : 'post',

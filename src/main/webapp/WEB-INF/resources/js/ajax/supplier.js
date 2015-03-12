@@ -156,9 +156,8 @@ $(function() {
 					$('#supplierEditTable').append('<li role="presentation"><a href="#editpanel' + id + '" role="tab" data-toggle="tab">' + rows[i].strname + '</a></li>')
 					$('#editsuppliercontainer .tab-content').append('<div role="tabpanel" class="tab-pane fade" id="editpanel' + id + '"></div>');
 					$('#editpanel' + id).html(
-							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newAddress', 'editAddress' + id).replace('newCompanyPhone',
-									'editCompanyPhone' + id).replace('newHandlePerson', 'editHandlePerson' + id).replace('newHandlePhone', 'editHandlePhone' + id).replace('newContactPerson',
-									'editContactPerson' + id).replace('newContactPhone', 'editContactPhone' + id).replace(new RegExp('newform', "gm"), 'editform'));
+							htmltmp.replace('newCode', 'editCode' + id).replace('newName', 'editName' + id).replace('newAddress', 'editAddress' + id).replace('newCompanyPhone', 'editCompanyPhone' + id).replace('newHandlePerson', 'editHandlePerson' + id).replace('newHandlePhone',
+									'editHandlePhone' + id).replace('newContactPerson', 'editContactPerson' + id).replace('newContactPhone', 'editContactPhone' + id).replace(new RegExp('newform', "gm"), 'editform'));
 					setVal(id, rows[i]);
 				}
 				$('#supplierEditTable a:first').tab('show')
@@ -237,41 +236,61 @@ $(function() {
 			supplierIdArray.push(parseInt(rows[i].intsupplierid));
 			namesArray.push(rows[i].strname);
 		}
-		$.ajax({
-			url : 'Supplier/RemoveSupplier',
-			type : 'post',
-			dataType : 'json',
-			data : {
-				supplierId : supplierIdArray
-			},
-			success : function(response) {
-				if (response === true) {
-					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Remove suppliers successfully!',
-					});
-					$('#datatable_supplierinfo').datagrid('reload');
-				} else {
-					if (!isNaN(response)) {
-						var suppliername = "";
-						for (var i = 0; i < rows.length; i++) {
-							if (parseInt(rows[i].intsupplierid) == parseInt(response)) {
-								suppliername = rows[i].strname;
-								break;
-							}
-						}
-						$.TeachDialog({
-							content : 'Remove suppliers failed! Supplier:' + suppliername + ' in use.',
-						});
-					} else {
-						$.TeachDialog({
-							content : 'Remove suppliers failed!',
-						});
+		var sureDialog = function() {
+			var dtd = $.Deferred();
+			$.TeachDialog({
+				title : 'Warnning Message!',
+				content : 'Are you sure remove this suppliers :' + namesArray + ' ?',
+				showCloseButtonName : 'No',
+				otherButtons : [ 'Yes' ],
+				CloseButtonAddFunc : function() {
+					dtd.reject();
+				},
+				clickButton : function(sender, modal, index) {
+					if (index == 0) {
+						dtd.resolve();
 					}
+					modal.modal('hide');
 				}
-			},
-			async : true
+			});
+			return dtd.promise();
+		};
+		sureDialog().done(function() {
+			$.ajax({
+				url : 'Supplier/RemoveSupplier',
+				type : 'post',
+				dataType : 'json',
+				data : {
+					supplierId : supplierIdArray
+				},
+				success : function(response) {
+					if (response === true) {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Remove suppliers successfully!',
+						});
+						$('#datatable_supplierinfo').datagrid('reload');
+					} else {
+						if (!isNaN(response)) {
+							var suppliername = "";
+							for (var i = 0; i < rows.length; i++) {
+								if (parseInt(rows[i].intsupplierid) == parseInt(response)) {
+									suppliername = rows[i].strname;
+									break;
+								}
+							}
+							$.TeachDialog({
+								content : 'Remove suppliers failed! Supplier:' + suppliername + ' in use.',
+							});
+						} else {
+							$.TeachDialog({
+								content : 'Remove suppliers failed!',
+							});
+						}
+					}
+				},
+				async : true
+			})
 		})
-		
 	});
 })

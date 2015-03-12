@@ -240,44 +240,66 @@ $(function() {
 			});
 			return;
 		}
-		var bookIdArray = new Array();
+		var bookIdArray = new Array(), bookNameArray = new Array();
 		for (var i = 0; i < rows.length; i++) {
 			bookIdArray.push(parseInt(rows[i].intbookid));
+			bookNameArray.push(rows[i].strbookname);
 		}
-		$.ajax({
-			url : 'Book/RemoveBook',
-			type : 'post',
-			dataType : 'json',
-			data : {
-				bookId : bookIdArray
-			},
-			success : function(response) {
-				if (response === true) {
-					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Remove books successfully!',
-					})
-					$('#datatable_bookinfo').datagrid('reload');
-				} else {
-					if (!isNaN(response)) {
-						var bookname = "";
-						for (var i = 0; i < rows.length; i++) {
-							if (parseInt(rows[i].intbookid) == parseInt(response)) {
-								bookname = rows[i].strbookname;
-								break;
-							}
-						}
-						$.TeachDialog({
-							content : 'Remove books failed! Book:' + bookname + " exist in use.",
-						})
-					} else {
-						$.TeachDialog({
-							content : 'Remove books failed!',
-						})
+		var sureDialog = function() {
+			var dtd = $.Deferred();
+			$.TeachDialog({
+				title : 'Warnning Message!',
+				content : 'Are you sure remove this books :' + bookNameArray + ' ?',
+				showCloseButtonName : 'No',
+				otherButtons : [ 'Yes' ],
+				CloseButtonAddFunc : function() {
+					dtd.reject();
+				},
+				clickButton : function(sender, modal, index) {
+					if (index == 0) {
+						dtd.resolve();
 					}
+					modal.modal('hide');
 				}
-			},
-			async : true
+			});
+			return dtd.promise();
+		};
+		sureDialog().done(function() {
+			$.ajax({
+				url : 'Book/RemoveBook',
+				type : 'post',
+				dataType : 'json',
+				data : {
+					bookId : bookIdArray
+				},
+				success : function(response) {
+					if (response === true) {
+						$.TeachDialog({
+							title : 'Operation Message!',
+							content : 'Remove books successfully!',
+						})
+						$('#datatable_bookinfo').datagrid('reload');
+					} else {
+						if (!isNaN(response)) {
+							var bookname = "";
+							for (var i = 0; i < rows.length; i++) {
+								if (parseInt(rows[i].intbookid) == parseInt(response)) {
+									bookname = rows[i].strbookname;
+									break;
+								}
+							}
+							$.TeachDialog({
+								content : 'Remove books failed! Book:' + bookname + " exist in use.",
+							})
+						} else {
+							$.TeachDialog({
+								content : 'Remove books failed!',
+							})
+						}
+					}
+				},
+				async : true
+			})
 		})
 	})
 
