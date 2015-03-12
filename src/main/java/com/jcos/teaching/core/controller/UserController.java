@@ -370,7 +370,7 @@ public class UserController {
 			return false;
 		}
 		if (userId != null && userId.length != 0) {
-			Integer ret = bookPlanService.authExistBookInUse(userId);
+			Integer ret = bookPlanService.authExistUserInUse(userId);
 			if (ret != 0) {
 				return ret;
 			}
