@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-12 19:28:32
+Date: 2015-03-12 22:48:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -266,6 +266,23 @@ INSERT INTO `operation` VALUES ('3', '提交教学计划审核');
 INSERT INTO `operation` VALUES ('4', '再次教学计划提交审核');
 INSERT INTO `operation` VALUES ('5', '驳回教学计划申请');
 INSERT INTO `operation` VALUES ('6', '更改教学计划');
+
+-- ----------------------------
+-- Table structure for personalconfig
+-- ----------------------------
+DROP TABLE IF EXISTS `personalconfig`;
+CREATE TABLE `personalconfig` (
+  `intPersonConfigId` int(11) NOT NULL AUTO_INCREMENT,
+  `intUserId` int(11) NOT NULL,
+  `strConfigName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `intConfigValue` int(11) NOT NULL,
+  PRIMARY KEY (`intPersonConfigId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of personalconfig
+-- ----------------------------
+INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
 
 -- ----------------------------
 -- Table structure for power
@@ -626,3 +643,23 @@ INSERT INTO `versionlog` VALUES ('15', '0014', '04', '1', '新增书籍条件查
 INSERT INTO `versionlog` VALUES ('16', '0014', '05', '1', '修复编辑用户个人信息参数错误bug', '2015-03-06 13:14:36');
 INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提交<br>改善权限控制机制,优化读取逻辑<br>[feture]教学计划查询与更变', '2015-03-11 13:05:16');
 INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查询<br>修复多出数据处理BUG<br>改善后台逻辑,优化web性能<br>优化js,css,移除不必要的css', '2015-03-12 16:59:31');
+
+-- ----------------------------
+-- Procedure structure for AddOrUpdatePersonalConfig
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `AddOrUpdatePersonalConfig`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(8),IN `configValue` int(8))
+BEGIN
+	DECLARE i int(11);
+	SET i = -1;
+	SELECT intPersonConfigId INTO i FROM personalconfig WHERE strConfigName = configName AND intUserId = userId ;
+	IF i <> -1 THEN
+		UPDATE personalconfig SET intConfigValue = configValue WHERE intPersonConfigId = i ;
+	ELSE
+		INSERT personalconfig (strConfigName,intUserId,intConfigValue) VALUES(configName,userId,configValue);
+	END IF;
+	SELECT ROW_COUNT() AS returnValue;
+END
+;;
+DELIMITER ;

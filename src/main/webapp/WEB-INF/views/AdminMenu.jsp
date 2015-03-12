@@ -126,13 +126,13 @@
 								<li><a class="ajax-link" href="ajax/userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
 							</ul></li>
 					</c:if>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">Person Detail</span>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-user"></i> <span class="hidden-xs">Person Setting</span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
 						</ul></li>
 					<c:if test="${setting eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-folder"></i> <span class="hidden-xs">System Settings</span>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-cog"></i> <span class="hidden-xs">System Settings</span>
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${manageuserdepart eq true}">

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.PersonalConfigMapper">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.PersonalConfig">
+		<id column="intPersonConfigId" property="intpersonconfigid" jdbcType="INTEGER" />
+		<result column="intUserId" property="intuserid" jdbcType="INTEGER" />
+		<result column="strConfigName" property="strconfigname" jdbcType="VARCHAR" />
+		<result column="intConfigValue" property="intconfigvalue" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		intPersonConfigId, intUserId, strConfigName, intConfigValue
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from personalconfig
+		where intPersonConfigId = #{intpersonconfigid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from personalconfig
+		where intPersonConfigId = #{intpersonconfigid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.PersonalConfig">
+		insert into personalconfig (intPersonConfigId, intUserId, strConfigName,
+		intConfigValue)
+		values (#{intpersonconfigid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{strconfigname,jdbcType=VARCHAR},
+		#{intconfigvalue,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.PersonalConfig">
+		insert into personalconfig
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="intpersonconfigid != null">
+				intPersonConfigId,
+			</if>
+			<if test="intuserid != null">
+				intUserId,
+			</if>
+			<if test="strconfigname != null">
+				strConfigName,
+			</if>
+			<if test="intconfigvalue != null">
+				intConfigValue,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="intpersonconfigid != null">
+				#{intpersonconfigid,jdbcType=INTEGER},
+			</if>
+			<if test="intuserid != null">
+				#{intuserid,jdbcType=INTEGER},
+			</if>
+			<if test="strconfigname != null">
+				#{strconfigname,jdbcType=VARCHAR},
+			</if>
+			<if test="intconfigvalue != null">
+				#{intconfigvalue,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.PersonalConfig">
+		update personalconfig
+		<set>
+			<if test="intuserid != null">
+				intUserId = #{intuserid,jdbcType=INTEGER},
+			</if>
+			<if test="strconfigname != null">
+				strConfigName = #{strconfigname,jdbcType=VARCHAR},
+			</if>
+			<if test="intconfigvalue != null">
+				intConfigValue = #{intconfigvalue,jdbcType=INTEGER},
+			</if>
+		</set>
+		where intPersonConfigId = #{intpersonconfigid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.PersonalConfig">
+		update personalconfig
+		set intUserId = #{intuserid,jdbcType=INTEGER},
+		strConfigName = #{strconfigname,jdbcType=VARCHAR},
+		intConfigValue = #{intconfigvalue,jdbcType=INTEGER}
+		where intPersonConfigId = #{intpersonconfigid,jdbcType=INTEGER}
+	</update>
+	<update id="AddOrUpdatePersonalConfig" parameterMap="BaseResultMap" statementType="CALLABLE">
+		call AddOrUpdatePersonalConfig(#{strconfigname,jdbcType=VARCHAR},#{intuserid,jdbcType=INTEGER},#{intconfigvalue,jdbcType=INTEGER})
+	</update>
+</mapper>
