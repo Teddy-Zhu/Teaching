@@ -80,19 +80,19 @@
 									<div class="alert alert-danger" role="alert">
 										<strong>Warning,Hold your action!</strong> <br>[1]Before delete or edit, you should select <br>[2]If you want clear selected row quickly,you can refresh the grid.<br>[3]Or you have no power and you can browser suppliers below.
 									</div>
-									<div class="col-xs-10  col-xs-offset-3">
+									<div class="col-xs-12 btn-menu-top-minus">
 										<c:if test="${addsupplier eq true}">
-											<button class="btn btn-default btn-xs addsupplier">
+											<button class="btn btn-primary btn-sm addsupplier">
 												<i class="fa fa-file-o"></i> Add A New Supplier
 											</button>
 										</c:if>
 										<c:if test="${editsupplier eq true}">
-											<button class="btn btn-default btn-xs editsupplier">
+											<button class="btn btn-primary btn-sm editsupplier">
 												<i class="fa fa-file-text"></i> Edit A Supplier
 											</button>
 										</c:if>
 										<c:if test="${rmsupplier eq true}">
-											<button class="btn btn-danger btn-xs removesupplier">
+											<button class="btn btn-danger btn-sm removesupplier">
 												<i class="fa fa-trash-o"></i> Remove A Supplier
 											</button>
 										</c:if>
@@ -130,15 +130,13 @@
 												<div class="col-xs-4">
 													<label class="col-xs-6">Contact Phone</label><input class="newform form-control col-xs-6" id="newContactPhone" placeholder="Input Contact Phone" />
 												</div>
-												<div class="col-xs-4">
-													<strong><label style="color: red;" id="adderrormsg"></label></strong>
-												</div>
 											</div>
 										</div>
 										<div class="col-xs-12 inlineblock">
-											<div class="col-xs-6 controls col-xs-offset-4">
-												<button class="btn btn-default btn-xs submitAdd" style="width: 100px">Add</button>
-												<button class="btn btn-default btn-xs cancelAdd" style="width: 100px">Cancel</button>
+											<div class="col-xs-12 btn-menu">
+												<button class="btn btn-primary btn-sm submitAdd" style="width: 100px">Add</button>
+												<button class="btn btn-default btn-sm cancelAdd" style="width: 100px">Cancel</button>
+												<strong><label style="color: red;" id="adderrormsg"></label></strong>
 											</div>
 										</div>
 									</div>
@@ -150,9 +148,9 @@
 											</ul>
 											<div class="tab-content"></div>
 										</div>
-										<div class="col-xs-12 col-xs-offset-5" style="margin-top: 10px">
-											<button class="btn btn-default btn-xs submitEdit">Submit To Modify</button>
-											<button class="btn btn-default btn-xs cancelEdit">Cancel</button>
+										<div class="col-xs-12 btn-menu-top-plus">
+											<button class="btn btn-primary btn-sm submitEdit">Submit To Modify</button>
+											<button class="btn btn-default btn-sm cancelEdit">Cancel</button>
 											<strong><label style="color: red;" id="editerrormsg"></label></strong>
 										</div>
 									</div>

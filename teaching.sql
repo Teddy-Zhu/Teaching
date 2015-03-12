@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-11 15:03:18
+Date: 2015-03-12 18:05:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -75,7 +75,7 @@ CREATE TABLE `bookplan` (
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '15', '1', '1', '2014', '2015', '0', '2015-03-11 09:32:02', 'none');
+INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '1', '2014', '2015', '0', '2015-03-11 09:32:02', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -254,14 +254,16 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
 -- ----------------------------
 INSERT INTO `operation` VALUES ('1', '录入图书');
 INSERT INTO `operation` VALUES ('2', '登录');
-INSERT INTO `operation` VALUES ('3', '提交教学计划审核');
+INSERT INTO `operation` VALUES ('3', '提交教学计划');
+INSERT INTO `operation` VALUES ('4', '再次提交教学计划');
+INSERT INTO `operation` VALUES ('5', '教学计划更变');
 
 -- ----------------------------
 -- Table structure for power
@@ -534,7 +536,6 @@ INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '234234
 INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-28 20:57:00');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', '2015-02-28 20:56:23');
 
 -- ----------------------------
 -- Table structure for userdepartment

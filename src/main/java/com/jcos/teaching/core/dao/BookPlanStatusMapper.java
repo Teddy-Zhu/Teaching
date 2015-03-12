@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.dao;
 
+import java.util.List;
+
 import com.jcos.teaching.core.model.BookPlanStatus;
 
 public interface BookPlanStatusMapper {
@@ -14,4 +16,6 @@ public interface BookPlanStatusMapper {
     int updateByPrimaryKeySelective(BookPlanStatus record);
 
     int updateByPrimaryKey(BookPlanStatus record);
+    
+    List<BookPlanStatus> getAllPlanStatus();	
 }

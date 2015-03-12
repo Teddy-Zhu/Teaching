@@ -12,7 +12,25 @@ function LoadOpenLayersScript(callback) {
 		}
 	}
 }
+function loadJs(url) {
+	var dtd = $.Deferred();
+	$.getScript(url, function() {
+		dtd.resolve();
+	})
+	return dtd.promise();
+}
 
+function LoadJsFile(urls) {
+	if (!$.isArray(urls)) {
+		return loadJs(urls);
+	}
+	var ret = [];
+	for (var i = 0, len = urls.length; i < len; i++) {
+
+		ret[i] = loadJs(urls[i]);
+	}
+	return $.when.apply($, ret);
+}
 function LoadLeafletScript(callback) {
 	if (!$.fn.L) {
 		$.getScript('resources/plugins/leaflet/leaflet.js', callback);
@@ -585,6 +603,14 @@ $(function() {
 				$.TeachDialog({
 					title : 'Warnning!',
 					content : 'the type is in use!',
+					showCloseButton : true,
+				});
+				break;
+			}
+			case 3383: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'Save Logs ERROR!',
 					showCloseButton : true,
 				});
 				break;

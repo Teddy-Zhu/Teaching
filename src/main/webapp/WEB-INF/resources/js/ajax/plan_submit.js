@@ -64,7 +64,7 @@ $(function() {
 						$
 								.TeachDialog({
 									title : 'Select Books From Table',
-									content : '<div class="searchClass row"><div class="col-xs-12"><label>Code</label><input class="SearchForm form-control" type="text" id="SearchCode" /> <label>Name</label><input class="SearchForm form-control" type="text" id="SearchName" /> <label>SN</label><input class="SearchForm form-control" type="text" id="SearchSN" /> <label>Type</label><select class="SearchForm form-control" id="SearchType"><option value="-1">All Type</option></select></div><div class="col-xs-12"><label>Press</label><input class="SearchForm form-control" type="text" id="SearchPress" /> <label>Author</label><input class="SearchForm form-control" type="text" id="SearchAuthor" /> <label>Supplier</label><select class="SearchForm form-control" id="SearchSupplier"><option value="-1">All Supplier</option></select> <label>Price</label><input class="SearchForm form-control" type="text" id="SearchPrice" /></div><div class="col-xs-12"><label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly /><button id="Search" class="btn btn-default btn-xs">Search</button></div></div><table id="datatable_bookinfo" style="margin-top:10px;"></table>',
+									content : '<div class="searchClass row"><div class="col-xs-12"><label>Code</label><input class="SearchForm form-control" type="text" id="SearchCode" /> <label>Name</label><input class="SearchForm form-control" type="text" id="SearchName" /> <label>SN</label><input class="SearchForm form-control" type="text" id="SearchSN" /> <label>Type</label><select class="SearchForm form-control" id="SearchType"><option value="-1">All Type</option></select></div><div class="col-xs-12"><label>Press</label><input class="SearchForm form-control" type="text" id="SearchPress" /> <label>Author</label><input class="SearchForm form-control" type="text" id="SearchAuthor" /> <label>Supplier</label><select class="SearchForm form-control" id="SearchSupplier"><option value="-1">All Supplier</option></select> <label>Price</label><input class="SearchForm form-control" type="text" id="SearchPrice" /></div><div class="col-xs-12"><label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly /><button id="Search" class="btn btn-primary btn-xs">Search</button></div></div><table id="datatable_bookinfo" style="margin-top:10px;"></table>',
 									largeSize : true,
 									otherButtons : [ 'Select' ],
 									clickButton : function(sender, modal, index) {
@@ -83,6 +83,9 @@ $(function() {
 											modal.modal('hide');
 										}
 									},
+									dialogHide : function() {
+										$('#Search').off('click');
+									},
 									dialogShown : function() {
 										$('#SearchDate').datepicker({
 											format : "yyyy-mm-dd",
@@ -94,7 +97,8 @@ $(function() {
 										initBookType('SearchType', "type");
 										initSupplierType('SearchSupplier', "type")
 										cellwidth = ($(".modal-body").width() - 55) / 11;
-										$('#datatable_bookinfo').datagrid({
+										var $mydategrid = $('#datatable_bookinfo');
+										$mydategrid.datagrid({
 											striped : true,
 											remoteSort : false,
 											collapsible : true,
@@ -180,7 +184,7 @@ $(function() {
 											},
 										});
 										$('#Search').click(function() {
-											$('#datatable_bookinfo').datagrid('reload');
+											$mydategrid.datagrid('reload');
 										})
 									}
 								});
@@ -228,6 +232,7 @@ $(function() {
 					title : 'Operation Message!',
 					content : 'Update Successfully!',
 				});
+				LoadAjaxContent("ajax/plan_submit");
 			} else {
 				$.TeachDialog({
 					title : 'Operation Message!',

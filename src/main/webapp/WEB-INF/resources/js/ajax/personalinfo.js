@@ -1,5 +1,5 @@
-
-function initUserDepartMent(id, type, dtd) {
+function initUserDepartMent(id, type) {
+	var dtd = $.Deferred();
 	$.ajax({
 		url : 'Type/GetDepartMent',
 		type : 'post',
@@ -12,27 +12,22 @@ function initUserDepartMent(id, type, dtd) {
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 			}
-			if (dtd != undefined) {
-				dtd.resolve();
-			}
+			dtd.resolve();
 		},
 		async : true
 	})
-	if (dtd != undefined) {
-		return dtd.promise();
-	}
+	return dtd.promise();
+
 }
 
 $(function() {
 	console.debug('aaa');
-	var dtd = $.Deferred();
-	$.when(initUserDepartMent('DepartMent', 1, dtd)).done(function() {
+	initUserDepartMent('DepartMent', 1).done(function() {
 		$("#DepartMent").change(function() {
 			initUserDepartMent('Major', $('#DepartMent').val());
 		})
 		$("#DepartMent").val($("#DepartMent").attr("data-curValue"));
-		var dtdin = $.Deferred();
-		$.when(initUserDepartMent('Major', $('#DepartMent').val(), dtdin)).done(function() {
+		initUserDepartMent('Major', $('#DepartMent').val()).done(function() {
 			$("#Major").val($("#Major").attr("data-curValue"));
 		});
 	})

@@ -109,7 +109,7 @@
 													<label for="regcheck" class="col-xs-4">Allow Register </label><input class="col-xs-8" id="regcheck" type="checkbox" checked>
 												</div>
 												<div class="row text-center">
-													<button class="btn btn-primary btn-xs center-block" id="user_edit">Submit</button>
+													<button class="btn btn-primary btn-sm center-block" id="user_edit">Submit</button>
 												</div>
 											</div>
 										</c:if>
@@ -122,7 +122,7 @@
 													<label for="regcheck" class="col-xs-4">Allow Register </label><input class="col-xs-8" id="insertcheck" type="checkbox" checked>
 												</div>
 												<div class="row text-center">
-													<button class="btn btn-primary btn-xs center-block" id="user_insert">Submit</button>
+													<button class="btn btn-primary btn-sm center-block" id="user_insert">Submit</button>
 												</div>
 											</div>
 										</c:if>
@@ -177,7 +177,7 @@
 													<label class="col-xs-4">Type Name</label><input class="form-control col-xs-8" id="book_editname" type="text" placeholder="Input Name" />
 												</div>
 												<div class="row text-center">
-													<button class="btn btn-primary btn-xs center-block" id="book_edit">Submit</button>
+													<button class="btn btn-primary btn-sm center-block" id="book_edit">Submit</button>
 												</div>
 											</div>
 										</c:if>
@@ -187,14 +187,14 @@
 													<label class="col-xs-4">Type Name</label><input class="form-control col-xs-8" id="book_insertname" type="text" placeholder="Input Name" />
 												</div>
 												<div class="row text-center">
-													<button class="btn btn-primary btn-xs center-block" id="book_insert">Submit</button>
+													<button class="btn btn-primary btn-sm center-block" id="book_insert">Submit</button>
 												</div>
 											</div>
 										</c:if>
 										<c:if test="${rmbooktype eq true}">
 											<div role="tabpanel" class="tab-pane" id="parent_delete_b">
 												<div class="row text-center">
-													<button id="book_delete" class="btn btn-danger center-block">Delete</button>
+													<button id="book_delete" class="btn btn-danger btn-sm center-block">Delete</button>
 												</div>
 											</div>
 										</c:if>

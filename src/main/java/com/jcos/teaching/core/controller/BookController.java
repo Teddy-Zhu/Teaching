@@ -85,8 +85,7 @@ public class BookController {
 
 		Book record = new Book(null, name, code, sn, type, price, press, author, discount, supplier, date);
 		ret.put("total", bookService.getBookTotal(record));
-		List<Book> books = bookService.getAllBooks(record, page, rows);
-		ret.put("rows", books);
+		ret.put("rows", bookService.getAllBooks(record, page, rows));
 		return ret;
 	}
 

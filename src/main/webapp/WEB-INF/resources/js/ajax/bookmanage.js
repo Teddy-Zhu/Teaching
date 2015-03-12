@@ -7,18 +7,16 @@ function setVal(id, obj) {
 	$('#editAuthor' + id).val(obj.strauthor);
 	$('#editPrice' + id).val(obj.strprice);
 	$('#editDisCount' + id).val(obj.intpricediscount);
-
-	var dtdtype = $.Deferred();
-	$.when(initBookType('editBookType' + id, dtdtype)).done(function() {
+	initBookType('editBookType' + id, undefined).done(function() {
 		$('#editBookType' + id).val(obj.bookType.intbooktypeid);
-	})
-	var dtd = $.Deferred();
-	$.when(initSupplierType('editSupplierType' + id, dtd)).done(function() {
+	});
+	initSupplierType('editSupplierType' + id, undefined).done(function() {
 		$('#editSupplierType' + id).val(obj.supplier.intsupplierid);
-	})
+	});
 }
 
-function initBookType(id, dtd, addition) {
+function initBookType(id, addition) {
+	var dtd = $.Deferred();
 	$.ajax({
 		url : 'Type/GetBookType',
 		dataType : 'json',
@@ -31,18 +29,15 @@ function initBookType(id, dtd, addition) {
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intbooktypeid + '">' + data[i].strbooktypename + '</option>');
 			}
-			if (dtd != undefined) {
-				dtd.resolve();
-			}
+			dtd.resolve();
 		},
 		async : true
 	})
-	if (dtd != undefined) {
-		return dtd.promise();
-	}
+	return dtd.promise();
 }
 
-function initSupplierType(id, dtd, addition) {
+function initSupplierType(id, addition) {
+	var dtd = $.Deferred();
 	$.ajax({
 		url : 'Type/GetSupplierType',
 		dataType : 'json',
@@ -55,14 +50,10 @@ function initSupplierType(id, dtd, addition) {
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intsupplierid + '">' + data[i].strname + '</option>');
 			}
-			if (dtd != undefined) {
-				dtd.resolve();
-			}
+			dtd.resolve();
 		}
 	})
-	if (dtd != undefined) {
-		return dtd.promise();
-	}
+	return dtd.promise();
 }
 
 function getSearchParams(params) {
@@ -171,8 +162,8 @@ $(function() {
 
 	$('button.addbook').click(function() {
 		$('.newform').val('');
-		initBookType('newBookType');
-		initSupplierType('newSupplierType');
+		initBookType('newBookType', undefined);
+		initSupplierType('newSupplierType', undefined);
 		$('#adderrormsg').html("");
 		$('#operationpanel').slideUp();
 		$('#addnewbook').slideDown();
@@ -298,8 +289,8 @@ $(function() {
 		clearBtn : true
 	});
 
-	initBookType('SearchType', undefined, "type");
-	initSupplierType('SearchSupplier', undefined, "type")
+	initBookType('SearchType', "type");
+	initSupplierType('SearchSupplier', "type")
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
 	$('#datatable_bookinfo').datagrid({
 		striped : true,

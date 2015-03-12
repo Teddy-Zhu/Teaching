@@ -1,10 +1,13 @@
 package com.jcos.teaching.core.service.Impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.BookPlanMapper;
+import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.BookPlan;
 import com.jcos.teaching.core.service.BookPlanService;
 
@@ -42,5 +45,15 @@ public class BookPlanImpl implements BookPlanService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows) {
+		return bookPlanDao.selectPersonal(record, rows * (page - 1), rows);
+	}
+
+	@Override
+	public Integer getPersonalBookPlanTotal(BookPlan record) {
+		return bookPlanDao.selectPersonalTotalCount(record);
 	}
 }

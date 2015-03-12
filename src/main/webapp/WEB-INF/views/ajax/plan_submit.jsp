@@ -61,12 +61,6 @@
 	margin-right: 3.2%;
 	width: 14.9%;
 }
-
-.SearchForm {
-	display: inline-block;
-	width: 15%;
-	margin-right: 10px;
-}
 </style>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
@@ -126,10 +120,9 @@
 					<div class="col-xs-6"></div>
 					<div class="col-xs-5 col-xs-offset-1">
 						<label class="col-xs-5">Book:</label>
-						<div class="input-group col-md-7">
-							<select id="BookId" class="planinfo form-control" style="width: 71% !important"></select> <span class="input-group-btn">
-								<button id="bookselect" class="btn btn-default form-control" style="width: 93%" type="button">Select</button>
-							</span>
+						<div class="input-group col-xs-7">
+							<select id="BookId" class="planinfo form-control" style="width: 71% !important"></select>
+							<button id="bookselect" class="btn btn-info form-control" style="width: 26%" type="button">Select</button>
 						</div>
 					</div>
 					<div class="col-xs-6"></div>

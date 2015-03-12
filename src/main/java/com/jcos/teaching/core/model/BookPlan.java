@@ -31,6 +31,36 @@ public class BookPlan {
 
 	private String strmark;
 
+	private CourseType courseType;
+
+	private BookPlanStatus bookPlanStatus;
+	
+	private Book book;
+	
+	public CourseType getCourseType() {
+		return courseType;
+	}
+
+	public void setCourseType(CourseType courseType) {
+		this.courseType = courseType;
+	}
+
+	public BookPlanStatus getBookPlanStatus() {
+		return bookPlanStatus;
+	}
+
+	public void setBookPlanStatus(BookPlanStatus bookPlanStatus) {
+		this.bookPlanStatus = bookPlanStatus;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
 	public BookPlan() {
 		this.intplanid = -1;
 		this.strcoursename = "";
@@ -65,6 +95,29 @@ public class BookPlan {
 		this.intterm = intterm;
 		this.datecreatetime = datecreatetime;
 		this.strmark = strmark;
+	}
+
+
+	public BookPlan(Integer intplanid, String strcoursename, Integer intcoursetypeid, String strclass, Integer intstudcount, Integer intteaccount, Integer intbookid, Integer intuserid,
+			Integer intplanstatusid, Integer intfromyear, Integer inttoyear, Integer intterm, Date datecreatetime, String strmark, CourseType courseType, BookPlanStatus bookPlanStatus, Book book) {
+		super();
+		this.intplanid = intplanid;
+		this.strcoursename = strcoursename;
+		this.intcoursetypeid = intcoursetypeid;
+		this.strclass = strclass;
+		this.intstudcount = intstudcount;
+		this.intteaccount = intteaccount;
+		this.intbookid = intbookid;
+		this.intuserid = intuserid;
+		this.intplanstatusid = intplanstatusid;
+		this.intfromyear = intfromyear;
+		this.inttoyear = inttoyear;
+		this.intterm = intterm;
+		this.datecreatetime = datecreatetime;
+		this.strmark = strmark;
+		this.courseType = courseType;
+		this.bookPlanStatus = bookPlanStatus;
+		this.book = book;
 	}
 
 	public Integer getIntplanid() {

@@ -111,7 +111,7 @@
 											<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_edit_name" type="text" placeholder="Input Name" />
 										</div>
 										<div class="row text-center">
-											<button class="btn btn-primary btn-xs center-block" id="edit">Submit</button>
+											<button class="btn btn-primary btn-sm center-block" id="edit">Submit</button>
 										</div>
 									</div>
 								</c:if>
@@ -124,14 +124,14 @@
 											<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_insert_name" type="text" placeholder="Input Name" />
 										</div>
 										<div class="row text-center">
-											<button class="btn btn-primary btn-xs center-block" id="insert">Submit</button>
+											<button class="btn btn-primary btn-sm center-block" id="insert">Submit</button>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${rmuserdepart eq true}">
 									<div role="tabpanel" class="tab-pane" id="parent_delete">
 										<div class="row text-center">
-											<button id="delete" class="btn btn-danger center-block">Delete</button>
+											<button id="delete" class="btn btn-danger btn-sm center-block">Delete</button>
 										</div>
 									</div>
 								</c:if>

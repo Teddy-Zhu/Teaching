@@ -98,8 +98,8 @@
 												<label class="col-xs-4">User Type</label><select class="form-control col-xs-8" id="usertype"></select>
 											</div>
 											<div class="row text-center">
-												<button class="btn btn-primary btn-xs center-block" id="Update">Update</button>
-												<button class="btn btn-primary btn-xs center-block" id="Reset">Reset</button>
+												<button class="btn btn-primary center-block" id="Update">Update</button>
+												<button class="btn btn-primary center-block" id="Reset">Reset</button>
 											</div>
 										</div>
 									</c:if>
@@ -108,9 +108,7 @@
 						</div>
 						<div id="notification" class="col-xs-8" style="height: 250px;">
 							<div class="alert alert-danger" role="alert">
-								<strong>Something Specially!</strong> 
-								<br>UserType,BookType,Department,Access control authorities under Setting.If you want enable any of them,you should set setting power first.
-								<br>Plan Submit authority need QueryBook authority.
+								<strong>Something Specially!</strong> <br>UserType,BookType,Department,Access control authorities under Setting.If you want enable any of them,you should set setting power first. <br>Plan Submit authority need QueryBook authority.
 							</div>
 						</div>
 					</div>
@@ -121,11 +119,10 @@
 </div>
 <script type="text/javascript">
 	$(function() {
+		<c:if test="${accesscontrol eq true}">
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
-			<c:if test="${accesscontrol eq true}">
-			$.getScript("resources/plugins/ztree/js/jquery.ztree.excheck-3.5.min.js");
-			$.getScript("resources/js/ajax/access_manage.js");
-			</c:if>
+			LoadJsFile([ "resources/plugins/ztree/js/jquery.ztree.excheck-3.5.min.js", "resources/js/ajax/access_manage.js" ])
 		});
+		</c:if>
 	})
 </script>

@@ -36,15 +36,18 @@
 		insert into bookplan (intPlanId, strCourseName, intCourseTypeId,
 		strClass, intStudCount, intTeacCount,
 		intBookId, intUserId, intPlanStatusId,
-		intFromYear, intToYear, intTerm,
+		intFromYear,
+		intToYear, intTerm,
 		dateCreateTime, strMark)
 		values (#{intplanid,jdbcType=INTEGER}, #{strcoursename,jdbcType=VARCHAR}, #{intcoursetypeid,jdbcType=INTEGER},
-		#{strclass,jdbcType=VARCHAR}, #{intstudcount,jdbcType=INTEGER}, #{intteaccount,jdbcType=INTEGER},
+		#{strclass,jdbcType=VARCHAR},
+		#{intstudcount,jdbcType=INTEGER}, #{intteaccount,jdbcType=INTEGER},
 		#{intbookid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intplanstatusid,jdbcType=INTEGER},
-		#{intfromyear,jdbcType=INTEGER}, #{inttoyear,jdbcType=INTEGER}, #{intterm,jdbcType=INTEGER},
+		#{intfromyear,jdbcType=INTEGER},
+		#{inttoyear,jdbcType=INTEGER}, #{intterm,jdbcType=INTEGER},
 		#{datecreatetime,jdbcType=TIMESTAMP}, #{strmark,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlan">
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlan" useGeneratedKeys="true" keyProperty="intplanid">
 		insert into bookplan
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intplanid != null">
@@ -184,15 +187,18 @@
 		update bookplan
 		set strCourseName = #{strcoursename,jdbcType=VARCHAR},
 		intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER},
-		strClass = #{strclass,jdbcType=VARCHAR},
+		strClass =
+		#{strclass,jdbcType=VARCHAR},
 		intStudCount = #{intstudcount,jdbcType=INTEGER},
 		intTeacCount = #{intteaccount,jdbcType=INTEGER},
 		intBookId = #{intbookid,jdbcType=INTEGER},
-		intUserId = #{intuserid,jdbcType=INTEGER},
+		intUserId =
+		#{intuserid,jdbcType=INTEGER},
 		intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER},
 		intFromYear = #{intfromyear,jdbcType=INTEGER},
 		intToYear = #{inttoyear,jdbcType=INTEGER},
-		intTerm = #{intterm,jdbcType=INTEGER},
+		intTerm =
+		#{intterm,jdbcType=INTEGER},
 		dateCreateTime = #{datecreatetime,jdbcType=TIMESTAMP},
 		strMark = #{strmark,jdbcType=VARCHAR}
 		where intPlanId = #{intplanid,jdbcType=INTEGER}
@@ -204,5 +210,99 @@
 	<select id="authUserIds" resultType="java.lang.Integer" parameterType="java.lang.Integer">
 		select count(intPlanId) from bookplan
 		where intUserId = #{intuserid,jdbcType=INTEGER}
+	</select>
+
+	<resultMap id="BookPlanTypeExtendMap" type="BookPlan" extends="BaseResultMap">
+		<association property="courseType" column="intCourseTypeId" select="com.jcos.teaching.core.dao.CourseTypeMapper.selectByPrimaryKey" />
+		<association property="book" column="intBookId" select="com.jcos.teaching.core.dao.BookMapper.selectByPrimaryKey" />
+		<association property="bookPlanStatus" column="intPlanStatusId" select="com.jcos.teaching.core.dao.BookPlanStatusMapper.selectByPrimaryKey" />
+	</resultMap>
+
+	<select id="selectPersonalTotalCount" resultType="java.lang.Integer">
+		select
+		count(x.intPlanId)
+		from bookplan x LEFT JOIN book y on x.intBookId=y.intBookId
+		where x.intUserId = #{intuserid,jdbcType=INTEGER}
+		<trim prefix="AND" suffix="" suffixOverrides="AND">
+			<if test="strcoursename != null">
+				x.strCourseName like CONCAT('%',#{strcoursename,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strclass != null">
+				x.strClass like CONCAT('%',#{strclass,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="intcoursetypeid != null">
+				x.intCourseTypeId like CONCAT('%',#{intcoursetypeid,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="intstudcount != null">
+				x.intStudCount = #{intstudcount,jdbcType=INTEGER} AND
+			</if>
+			<if test="intteaccount != null">
+				x.intTeacCount = #{intteaccount,jdbcType=INTEGER} AND
+			</if>
+			<if test="book != null and book.strbookname != null">
+				y.strBookName like CONCAT('%',#{book.strbookname,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="intplanstatusid !=null">
+				x.intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER} AND
+			</if>
+			<if test="intfromyear !=null">
+				x.intFromYear = #{intfromyear,jdbcType=INTEGER} AND
+			</if>
+			<if test="inttoyear !=null">
+				x.intToYear = #{inttoyear,jdbcType=INTEGER} AND
+			</if>
+			<if test="intterm !=null">
+				x.intTerm = #{intterm,jdbcType=INTEGER} AND
+			</if>
+			<if test="datecreatetime != null">
+				date_format(x.dateCreateTime,'%y-%m-%d') = date_format(#{datecreatetime,jdbcType=TIMESTAMP},'%y-%m-%d')
+			</if>
+		</trim>
+	</select>
+	<select id="selectPersonal" resultMap="BookPlanTypeExtendMap">
+		select
+		x.intPlanId, x.strCourseName, x.intCourseTypeId, x.strClass, x.intStudCount, x.intTeacCount,
+		x.intBookId, x.intPlanStatusId, x.intFromYear, x.intToYear, x.intTerm,
+		x.dateCreateTime,x.strMark
+		from bookplan
+		x LEFT JOIN book y on x.intBookId=y.intBookId
+		where x.intUserId = #{record.intuserid,jdbcType=INTEGER}
+		<trim prefix="AND" suffix="" suffixOverrides="AND">
+			<if test="record.strcoursename != null">
+				x.strCourseName like CONCAT('%',#{record.strcoursename,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strclass != null">
+				x.strClass like CONCAT('%',#{record.strclass,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.intcoursetypeid != null">
+				x.intCourseTypeId like CONCAT('%',#{record.intcoursetypeid,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.intstudcount != null">
+				x.intStudCount = #{record.intstudcount,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.intteaccount != null">
+				x.intTeacCount = #{record.intteaccount,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.book !=null and record.book.strbookname != null">
+				y.strBookName like CONCAT('%',#{record.book.strbookname,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.intplanstatusid !=null">
+				x.intPlanStatusId = #{record.intplanstatusid,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.intfromyear !=null">
+				x.intFromYear = #{record.intfromyear,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.inttoyear !=null">
+				x.intToYear = #{record.inttoyear,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.intterm !=null">
+				x.intTerm = #{record.intterm,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.datecreatetime != null">
+				date_format(x.dateCreateTime,'%y-%m-%d') = date_format(#{record.datecreatetime,jdbcType=TIMESTAMP},'%y-%m-%d')
+			</if>
+		</trim>
+		order by intBookId asc
+		limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
 	</select>
 </mapper>

@@ -76,6 +76,22 @@ public class Book {
 		this.dateaddtime = dateaddtime;
 	}
 
+	public Book(String Name) {
+		this.intbookid = null;
+		this.strbookname = Name;
+		this.strbookcoding = null;
+		this.strbooksn = null;
+		this.intbooktypeid = null;
+		this.strprice = null;
+		this.strpress = null;
+		this.strauthor = null;
+		this.intpricediscount = null;
+		this.intsupplierid = null;
+		this.dateaddtime = new Date();
+		this.bookType = new BookType();
+		this.supplier = new Supplier();
+	}
+
 	public BookType getBookType() {
 		return bookType;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="resources/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<link href="resources/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
 <style>
 .datagrid, .combo-p {
 	border: solid 1px #D4D4D4;
@@ -56,10 +57,16 @@
 	width: 14.9%;
 }
 
-.SearchForm {
-	display: inline-block;
-	width: 15%;
-	margin-right: 10px;
+.bootstrap-touchspin {
+	margin-bottom: 3%;
+}
+
+.bootstrap-touchspin  input {
+	height: 34px;
+}
+
+.modal-body div label {
+	margin-top: 1.5%;
 }
 </style>
 <div class="row">
@@ -100,7 +107,7 @@
 							</h4>
 						</div>
 						<div id="collapseForsupplierTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body" style="overflow-x: hidden; width: 100%">
+							<div class="panel-body" style="overflow-x: hidden; overflow-y: hidden; width: 100%">
 								<div class="searchClass row">
 									<div class="col-xs-12">
 										<label>CourseName</label><input class="SearchForm form-control" type="text" id="CourseName" /> <label>CourseType</label><select class="SearchForm form-control" id="CourseType"><option value="-1">All Type</option></select> <label>Class</label><input class="SearchForm form-control"
@@ -113,13 +120,13 @@
 											<option value="1">下半学年</option></select>
 									</div>
 									<div class="col-xs-12">
-										<label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
-										<button id="Search" class="btn btn-default btn-xs">Search</button>
+										<label>StudentCount</label><input class="SearchForm form-control" type="text" id="StuCount" /> <label>TeacherCount</label><input class="SearchForm form-control" type="text" id="TeaCount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
+										<button id="Search" class="btn btn-primary btn-xs">Search</button>
 									</div>
 								</div>
-								<table id="datatable_perplaninfo" style="width: 100%">
-								</table>
 							</div>
+							<table id="datatable_perplaninfo" style="width: 100%">
+							</table>
 						</div>
 					</div>
 				</c:if>
@@ -130,7 +137,7 @@
 <script type="text/javascript">
 	<c:if test="${queryplan eq true}">
 	$(function() {
-		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
+		LoadJsFile([ "resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", "resources/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js" ]).done(function() {
 			$.getScript("resources/js/ajax/plan_query.js");
 		})
 	})

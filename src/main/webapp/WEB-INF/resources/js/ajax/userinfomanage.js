@@ -7,23 +7,23 @@ function setVal(id, obj) {
 	$('#editNumber' + id).val(obj.strstunum);
 	$('#editEmail' + id).val(obj.strmail);
 	$('#editPhone' + id).val(obj.strphone);
-	var dtdtype = $.Deferred();
-	$.when(initUserType('editType' + id, dtdtype)).done(function() {
+
+	initUserType('editType' + id).done(function() {
 		$('#editType' + id).val(obj.userType.intidentityid);
 	})
-	var dtd = $.Deferred();
-	$.when(initUserDepartMent('editDepartMent' + id, 1, dtd)).done(function() {
+
+	initUserDepartMent('editDepartMent' + id, 1).done(function() {
 		$("#editDepartMent" + id).change(function() {
 			initUserDepartMent('editMajor' + id, $('#editDepartMent' + id).val());
 		})
 		$("#editDepartMent" + id).val(obj.userDepartMent.intid);
-		var dtdin = $.Deferred();
-		$.when(initUserDepartMent('editMajor' + id, $('#editDepartMent' + id).val(), dtdin)).done(function() {
+		initUserDepartMent('editMajor' + id, $('#editDepartMent' + id).val()).done(function() {
 			$("#editMajor" + id).val(obj.userMajor.intid);
 		});
 	})
 }
-function initUserType(id, dtd) {
+function initUserType(id) {
+	var dtd = $.Deferred();
 	$.ajax({
 		url : 'Type/GetUserTypeAll',
 		dataType : 'json',
@@ -33,17 +33,14 @@ function initUserType(id, dtd) {
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
 			}
-			if (dtd != undefined) {
-				dtd.resolve();
-			}
+			dtd.resolve();
 		},
 		async : true
 	})
-	if (dtd != undefined) {
-		return dtd.promise();
-	}
+	return dtd.promise();
 }
-function initUserDepartMent(id, type, dtd) {
+function initUserDepartMent(id, type) {
+	var dtd = $.Deferred();
 	$.ajax({
 		url : 'Type/GetDepartMent',
 		type : 'post',
@@ -56,15 +53,11 @@ function initUserDepartMent(id, type, dtd) {
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
 			}
-			if (dtd != undefined) {
-				dtd.resolve();
-			}
+			dtd.resolve();
 		},
 		async : true
 	})
-	if (dtd != undefined) {
-		return dtd.promise();
-	}
+	return dtd.promise();
 }
 
 $('#newDepartMent').change(function() {
@@ -157,8 +150,7 @@ $(function() {
 	// for add user
 	$('button.adduser').click(function() {
 		initUserType('newType');
-		var dtd = $.Deferred();
-		$.when(initUserDepartMent('newDepartMent', 1, dtd)).done(function() {
+		initUserDepartMent('newDepartMent', 1).done(function() {
 			initUserDepartMent('newMajor', $('#newDepartMent').val());
 		})
 		$('.newform').val('');
@@ -329,7 +321,7 @@ $(function() {
 			namesArray.push(rows[i].username);
 		}
 		var dtd = $.Deferred();
-		var suredialog = function(dtd) {
+		var suredialog = function() {
 			$.TeachDialog({
 				title : 'Warnning Message!',
 				content : 'Are you sure remove this users :' + namesArray + ' ?',
@@ -345,9 +337,9 @@ $(function() {
 					modal.modal('hide');
 				}
 			});
-			return dtd;
+			return dtd.promise();
 		};
-		$.when(suredialog(dtd)).done(function() {
+		suredialog().done(function() {
 			$.ajax({
 				url : 'User/RemoveUser',
 				type : 'post',

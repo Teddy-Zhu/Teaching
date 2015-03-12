@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="Book" type="com.jcos.teaching.core.model.Book" />
 		<typeAlias alias="BookType" type="com.jcos.teaching.core.model.BookType" />
 		<typeAlias alias="Supplier" type="com.jcos.teaching.core.model.Supplier" />
+		<typeAlias alias="BookPlan" type="com.jcos.teaching.core.model.BookPlan" />
 	</typeAliases>
 
 </configuration>

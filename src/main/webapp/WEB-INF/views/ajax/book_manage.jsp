@@ -49,12 +49,6 @@
 	margin-right: 8%;
 	width: 14.8%;
 }
-
-.SearchForm {
-	display: inline-block;
-	width: 15%;
-	margin-right: 10px;
-}
 </style>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
@@ -102,19 +96,19 @@
 									<div class="alert alert-danger" role="alert">
 										<strong>Warning!</strong> <br>[1]Before delete or edit, you should select one at least.<br>[2]If you want clear selected row quickly,you can refresh the grid.<br>[3]Or you have no power and you can browser books below.
 									</div>
-									<div class="col-xs-10  col-xs-offset-3">
+									<div class="col-xs-12 btn-menu-top-minus">
 										<c:if test="${addbook eq true}">
-											<button class="btn btn-default btn-xs addbook">
+											<button class="btn btn-primary btn-sm addbook">
 												<i class="fa fa-file-o"></i> Add A New Book
 											</button>
 										</c:if>
 										<c:if test="${editbook eq true}">
-											<button class="btn btn-default btn-xs editbook">
+											<button class="btn btn-primary btn-sm editbook">
 												<i class="fa fa-file-text"></i> Edit A Book
 											</button>
 										</c:if>
 										<c:if test="${rmbook eq true}">
-											<button class="btn btn-danger btn-xs removebook">
+											<button class="btn btn-danger btn-sm removebook">
 												<i class="fa fa-trash-o"></i> Remove A Book
 											</button>
 										</c:if>
@@ -161,11 +155,9 @@
 											</div>
 										</div>
 										<div class="col-xs-12 inlineblock">
-											<div class="col-xs-5 controls col-xs-offset-5">
-												<button class="btn btn-default btn-xs submitAdd" style="width: 100px">Add</button>
-												<button class="btn btn-default btn-xs cancelAdd" style="width: 100px">Cancel</button>
-											</div>
-											<div class="col-xs-6">
+											<div class="col-xs-12 btn-menu">
+												<button class="btn btn-primary btn-sm submitAdd" style="width: 100px">Add</button>
+												<button class="btn btn-default btn-sm cancelAdd" style="width: 100px">Cancel</button>
 												<strong><label style="color: red;" id="adderrormsg"></label></strong>
 											</div>
 										</div>
@@ -179,9 +171,9 @@
 											</ul>
 											<div class="tab-content"></div>
 										</div>
-										<div class="col-xs-12 col-xs-offset-5" style="margin-top: 10px">
-											<button class="btn btn-default btn-xs submitEdit">Submit To Modify</button>
-											<button class="btn btn-default btn-xs cancelEdit">Cancel</button>
+										<div class="col-xs-12 btn-menu-top-plus">
+											<button class="btn btn-primary btn-sm submitEdit">Submit To Modify</button>
+											<button class="btn btn-default btn-sm cancelEdit">Cancel</button>
 											<strong><label style="color: red;" id="editerrormsg"></label></strong>
 										</div>
 									</div>
@@ -210,7 +202,7 @@
 									</div>
 									<div class="col-xs-12">
 										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
-										<button id="Search" class="btn btn-default btn-xs">Search</button>
+										<button id="Search" class="btn btn-primary btn-xs">Search</button>
 									</div>
 								</div>
 							</div>
