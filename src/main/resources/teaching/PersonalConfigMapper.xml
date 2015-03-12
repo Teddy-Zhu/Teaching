@@ -79,7 +79,7 @@
 		intConfigValue = #{intconfigvalue,jdbcType=INTEGER}
 		where intPersonConfigId = #{intpersonconfigid,jdbcType=INTEGER}
 	</update>
-	<update id="AddOrUpdatePersonalConfig" parameterMap="BaseResultMap" statementType="CALLABLE">
+	<update id="AddOrUpdatePersonalConfig" parameterType="com.jcos.teaching.core.model.PersonalConfig" statementType="CALLABLE">
 		call AddOrUpdatePersonalConfig(#{strconfigname,jdbcType=VARCHAR},#{intuserid,jdbcType=INTEGER},#{intconfigvalue,jdbcType=INTEGER})
 	</update>
 </mapper>
