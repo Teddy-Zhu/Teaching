@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-12 19:04:03
+Date: 2015-03-12 19:28:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -75,7 +75,7 @@ CREATE TABLE `bookplan` (
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '15', '1', '1', '2014', '2015', '0', '2015-03-11 09:32:02', 'none');
+INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '1', '2014', '2015', '0', '2015-03-11 09:32:02', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -587,9 +587,9 @@ CREATE TABLE `usertype` (
 -- ----------------------------
 INSERT INTO `usertype` VALUES ('1', 'Admin', '0');
 INSERT INTO `usertype` VALUES ('2', 'BookManager', '0');
-INSERT INTO `usertype` VALUES ('3', 'Teacher', '0');
-INSERT INTO `usertype` VALUES ('4', 'Student', '0');
-INSERT INTO `usertype` VALUES ('5', 'TestUser', '0');
+INSERT INTO `usertype` VALUES ('3', 'Teacher', '1');
+INSERT INTO `usertype` VALUES ('4', 'Student', '1');
+INSERT INTO `usertype` VALUES ('5', 'TestUser', '1');
 
 -- ----------------------------
 -- Table structure for versionlog

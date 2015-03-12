@@ -129,7 +129,7 @@
 										<c:if test="${rmusertype eq true}">
 											<div role="tabpanel" class="tab-pane" id="parent_delete">
 												<div class="row text-center">
-													<button id="user_delete" class="btn btn-danger center-block">Delete</button>
+													<button id="user_delete" class="btn btn-danger btn-sm center-block">Delete</button>
 												</div>
 											</div>
 										</c:if>
