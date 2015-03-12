@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+
 <html lang="zh-CN" style="min-width: 1000px;">
 <head>
 <meta charset="utf-8">
@@ -12,10 +13,11 @@
 <link href="resources/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/color.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/icon.css" rel="stylesheet">
+<link href="resources/css/self.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
-
 <link href="resources/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
+
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
@@ -43,7 +45,7 @@
 			<div class="devoops-modal-bottom"></div>
 		</div>
 	</div>
-	<header id="headernavbar" class="navbar">
+	<header id="headernavbar" class="navbar am-animation-slide-top">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
@@ -87,7 +89,7 @@
 	<!--Start Container-->
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<div id="sidebar-left" class="col-xs-2 col-sm-2">
+			<div id="sidebar-left" class="col-xs-2 col-sm-2 am-animation-slide-left">
 				<ul class="nav main-menu">
 					<li><a href="ajax/dashboard.html" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
 					</a></li>
@@ -153,10 +155,10 @@
 				<div id="about">
 					<div class="about-inner"></div>
 				</div>
-				<div class="preloader">
+				<div id="preloader" class="preloader">
 					<img src="resources/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
 				</div>
-				<div id="ajax-content"></div>
+				<div id="ajax-content" class="am-animation-slide-right"></div>
 			</div>
 			<!--End Content-->
 		</div>
