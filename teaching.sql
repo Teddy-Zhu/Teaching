@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-13 16:21:56
+Date: 2015-03-13 18:26:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,7 +89,7 @@ CREATE TABLE `bookplanchange` (
   `strChangeReason` varchar(255) COLLATE utf8_bin NOT NULL,
   `dateChangeTime` datetime NOT NULL,
   PRIMARY KEY (`intBookChangeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanchange
@@ -97,6 +97,8 @@ CREATE TABLE `bookplanchange` (
 INSERT INTO `bookplanchange` VALUES ('1', '1', '3', '5', 'aaaasd', '2015-03-13 00:00:00');
 INSERT INTO `bookplanchange` VALUES ('6', '1', '0', '10', 'none', '2015-03-13 16:10:17');
 INSERT INTO `bookplanchange` VALUES ('7', '1', '-5', '0', 'none', '2015-03-13 16:14:12');
+INSERT INTO `bookplanchange` VALUES ('8', '1', '0', '4', 'none', '2015-03-13 17:28:28');
+INSERT INTO `bookplanchange` VALUES ('9', '1', '0', '2', 'none', '2015-03-13 17:46:05');
 
 -- ----------------------------
 -- Table structure for bookplanlog
@@ -109,7 +111,7 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
@@ -119,6 +121,8 @@ INSERT INTO `bookplanlog` VALUES ('2', '1', '6', '1', '2015-03-13 15:54:46');
 INSERT INTO `bookplanlog` VALUES ('3', '1', '6', '1', '2015-03-13 15:57:25');
 INSERT INTO `bookplanlog` VALUES ('4', '1', '6', '1', '2015-03-13 16:10:17');
 INSERT INTO `bookplanlog` VALUES ('5', '1', '6', '1', '2015-03-13 16:14:12');
+INSERT INTO `bookplanlog` VALUES ('6', '1', '6', '1', '2015-03-13 17:28:28');
+INSERT INTO `bookplanlog` VALUES ('7', '1', '6', '1', '2015-03-13 17:46:05');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -294,8 +298,8 @@ CREATE TABLE `personalconfig` (
 INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
 INSERT INTO `personalconfig` VALUES ('2', '1', 'openAnimation', '1');
 INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '14');
-INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '14');
-INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '15');
+INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '12');
+INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '16');
 INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '15');
 
 -- ----------------------------

@@ -12,8 +12,28 @@ public class BookPlanLog {
     private Integer intuserid;
 
     private Date datecreatetime;
+    
+    private BookPlan bookPlan;
+    
+    private Operation operation;
+    
+    public BookPlan getBookPlan() {
+		return bookPlan;
+	}
 
-    public Integer getIntplanlogid() {
+	public void setBookPlan(BookPlan bookPlan) {
+		this.bookPlan = bookPlan;
+	}
+
+	public Operation getOperation() {
+		return operation;
+	}
+
+	public void setOperation(Operation operation) {
+		this.operation = operation;
+	}
+
+	public Integer getIntplanlogid() {
         return intplanlogid;
     }
 

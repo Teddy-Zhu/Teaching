@@ -53,7 +53,8 @@ public class PlanController {
 	private PowerTool pwTool;
 	@Inject
 	private BookPlanChangeService bookPlanChangeService;
-
+	@Inject
+	private BookPlanLogService bookPlanLogService;
 	@Inject
 	private BookPlanLogTool bplTool;
 
@@ -145,6 +146,21 @@ public class PlanController {
 	public List<BookPlanStatus> getBookPlanStatus(HttpServletRequest request, Model model, HttpServletResponse response) {
 
 		return bookPlanStatusService.getAllBookPlanStatus();
+	}
+
+	@RequestMapping(value = "/GetPerPlanHistory", method = RequestMethod.POST)
+	@ResponseBody
+	public List<BookPlanLog> getPerPlanHistory(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!pwTool.authUserTypePower(request, "queryplan")) {
+			response.setStatus(3388);
+			return null;
+		}
+
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+
+		Integer userId = loginSession.getLoginUser().getIntid();
+		
+		return bookPlanLogService.getBookPlanLogByUserId(userId);
 	}
 
 	@RequestMapping(value = "/GetPerPlan", method = RequestMethod.POST)

@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.service.Impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +23,10 @@ public class BookPlanLogImpl implements BookPlanLogService {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public List<BookPlanLog> getBookPlanLogByUserId(Integer userId) {
+		return bookPlanLogDao.selectBookPlanLogByuserId(userId);
 	}
 }

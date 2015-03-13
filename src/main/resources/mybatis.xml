@@ -11,5 +11,4 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias alias="Supplier" type="com.jcos.teaching.core.model.Supplier" />
 		<typeAlias alias="BookPlan" type="com.jcos.teaching.core.model.BookPlan" />
 	</typeAliases>
-
 </configuration>

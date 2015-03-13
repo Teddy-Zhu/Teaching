@@ -81,7 +81,22 @@ function toolBarClick(type) {
 		break;
 	}
 	case 4: {
-		
+		$.TeachDialog({
+			title : 'The Plan History',
+			content : '<div id="historytable" class="table-responsive"><table class="table"><caption>Plan Histroy Changes</caption></table></div>',
+			dialogShow : function() {
+				$.ajax({
+					url : 'Plan/GetPerPlanHistory',
+					dataType : 'json',
+					type : 'post',
+				}).success(function(data) {
+					$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Operation Time</th></tr></thead><tbody></tbody>');
+					for (var i = 0, len = data.length; i < len; i++) {
+						$('#historytable table tbody').append('<tr><td>' + i + '</td><td>' + data[i].operation.stroperationname + '</td><td>' + unix2human(data[i].datecreatetime) + '</td></tr>');
+					}
+				});
+			},
+		})
 		break;
 	}
 	}
