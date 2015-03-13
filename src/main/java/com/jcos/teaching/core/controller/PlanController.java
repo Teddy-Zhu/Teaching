@@ -20,14 +20,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.BookPlan;
+import com.jcos.teaching.core.model.BookPlanChange;
 import com.jcos.teaching.core.model.BookPlanLog;
 import com.jcos.teaching.core.model.BookPlanStatus;
 import com.jcos.teaching.core.model.CourseType;
+import com.jcos.teaching.core.service.BookPlanChangeService;
 import com.jcos.teaching.core.service.BookPlanLogService;
 import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookPlanStatusService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
+import com.jcos.teaching.core.util.BookPlanLogTool;
 import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
@@ -49,7 +52,10 @@ public class PlanController {
 	@Inject
 	private PowerTool pwTool;
 	@Inject
-	private BookPlanLogService bookPlanLogService;
+	private BookPlanChangeService bookPlanChangeService;
+
+	@Inject
+	private BookPlanLogTool bplTool;
 
 	@RequestMapping(value = "/Submit", method = RequestMethod.POST)
 	@ResponseBody
@@ -110,12 +116,7 @@ public class PlanController {
 		}
 
 		// for insert log
-		BookPlanLog log = new BookPlanLog();
-		log.setDatecreatetime(new Date());
-		log.setIntoperateid(3); // 3 提交教学计划
-		log.setIntuserid(loginSession.getLoginUser().getIntid());
-		log.setIntplanid(record.getIntplanid());
-		if (!bookPlanLogService.addNewLog(log)) {
+		if (!bplTool.AddBookPlanLog(request, record.getIntplanid(), 3)) {
 			response.setStatus(3383);
 			return false;
 		}
@@ -188,4 +189,51 @@ public class PlanController {
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
 		return ret;
 	}
+
+	@RequestMapping(value = "/ChangePlan", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean changePlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (!pwTool.authUserTypePower(request, "queryplan")) {
+			response.setStatus(3388);
+			return false;
+		}
+		Integer StudentCount = 0, TeacherCount = 0, planId = -1;
+		String reason = "";
+		try {
+			planId = Integer.valueOf(request.getParameter("PlanId"));
+			StudentCount = Integer.valueOf(request.getParameter("StuChange"));
+			TeacherCount = Integer.valueOf(request.getParameter("TeaChange"));
+			reason = request.getParameter("ChangeReason");
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return false;
+		}
+
+		if (planId == -1 || (StudentCount == 0 && TeacherCount == 0)) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// auth planId exist for the user
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (!bookPlanService.authPlanByUserIdAndPlanId(planId, loginSession.getLoginUser().getIntid())) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// add record
+		BookPlanChange record = new BookPlanChange(null, planId, StudentCount, TeacherCount, reason, new Date());
+		if (!bookPlanChangeService.insertBookPlanChange(record)) {
+			return false;
+		}
+
+		// for insert log
+		if (!bplTool.AddBookPlanLog(request, planId, 6)) {
+			response.setStatus(3383);
+			return false;
+		}
+		return true;
+	}
+
 }

@@ -24,6 +24,10 @@
 .inlineblock div label {
 	margin-top: 1.5%;
 }
+
+.alert {
+	margin-bottom: 0px;
+}
 </style>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
@@ -65,30 +69,30 @@
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
 							<label class="col-xs-5">Books DataGrid Size:</label><input id="BookGridSize" class="settingForm form-control col-xs-7" value="${bookgridsize}" />
 						</div>
-						<div class="col-xs-3"></div>
+						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${queryuser eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
 							<label class="col-xs-5">Users DataGrid Size:</label><input id="UserGridSize" class="settingForm form-control col-xs-7" value="${usergridsize}" />
 						</div>
-						<div class="col-xs-3"></div>
+						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${querysupplier eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
 							<label class="col-xs-5">Suppliers DataGrid Size:</label><input id="SupplierGridSize" class="settingForm form-control col-xs-7" value="${suppliergridsize}" />
 						</div>
-						<div class="col-xs-3"></div>
+						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${queryplan eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
 							<label class="col-xs-5">Plans DataGrid Size:</label><input id="PlanGridSize" class="settingForm form-control col-xs-7" value="${plangridsize}" />
 						</div>
-						<div class="col-xs-3"></div>
+						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
 						<label class="col-xs-5">Animation Effect:</label><input id="AnimationToggle" class="settingForm" type="checkbox" data-open="${openAnimation}" />
 					</div>
-					<div class="col-xs-3"></div>
+					<div class="col-xs-3 div-mtop"></div>
 				</div>
 				<div class="col-xs-7 col-xs-offset-1 div-mtop">
 					<button id="savechange" data-toggle="button" type="button" class="btn btn-primary">Save Settings</button>

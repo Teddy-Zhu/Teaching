@@ -17,4 +17,6 @@ public interface BookPlanService {
 
 	Integer getPersonalBookPlanTotal(BookPlan record);
 
+	boolean authPlanByUserIdAndPlanId(Integer planId, Integer userId);
+
 }

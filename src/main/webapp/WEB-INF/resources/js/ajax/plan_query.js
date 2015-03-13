@@ -21,7 +21,8 @@ function toolBarClick(type) {
 		});
 		return;
 	}
-	if (type = 1) {
+	switch (type) {
+	case 1: {
 		if (rows[0].bookPlanStatus.intplanstatusid > 2) {
 			$.TeachDialog({
 				content : 'The Plan can not be changed because it\'s status is ' + rows[0].bookPlanStatus.strmark + '!',
@@ -29,11 +30,13 @@ function toolBarClick(type) {
 			});
 			return;
 		}
+		var planId = rows[0].intplanid;
 		$
 				.TeachDialog({
 					title : 'Change The Plan',
-					content : '<div class="col-xs-offset-1 row" style="width:80%"><label class="col-xs-4">Student Change:</label><input id="StuChange" type="text" value="0" class="col-xs-8 form-control" /><label class="col-xs-4">Teacher Change:</label><input id="TeaChange" type="text" value="0" class="col-md-5 form-control" /></div>',
-					otherButtons : [ 'Select' ],
+					content : '<div class="col-xs-offset-1 row" style="width: 80%;"><label class="col-xs-4">Student Change:</label><input id="StuChange" type="text" value="0" class="col-xs-8 form-control" /><label class="col-xs-4">Teacher Change:</label><input id="TeaChange" type="text" value="0" class="col-md-5 form-control" /> <label class="col-xs-4">ChangeReason:</label><textarea id="ChangeReason" type="text" style="width:66.3%" class="col-md-5 form-control">none</textarea></div>',
+					otherButtons : [ 'Submit' ],
+					otherButtonStyles : [ 'btn btn-primary' ],
 					dialogShow : function() {
 						$("#StuChange,#TeaChange").TouchSpin({
 							min : -100,
@@ -43,11 +46,44 @@ function toolBarClick(type) {
 					},
 					clickButton : function(sender, modal, index) {
 						if (index == 0) {
-							if (x)
-								modal.modal('hide');
+							if (($('#StuChange').val() == '0' && $('#TeaChange').val() == '0') || $('#StuChange').val().trim() == "" || $('#TeaChange').val().trim() == "") {
+								$.TeachDialog({
+									content : 'Parameters are not correct!',
+								})
+								return;
+							}
+							$.ajax({
+								url : 'Plan/ChangePlan',
+								dataType : 'json',
+								type : 'post',
+								data : {
+									StuChange : $('#StuChange').val(),
+									TeaChange : $('#TeaChange').val(),
+									ChangeReason : $('#ChangeReason').val(),
+									PlanId : planId
+								}
+							}).success(function(data) {
+								if (data) {
+									$.TeachDialog({
+										content : 'Changes Saved!',
+									})
+									modal.modal('hide');
+									$('#datatable_perplaninfo').datagrid('reload');
+								} else {
+									$.TeachDialog({
+										content : 'Changes failed!',
+									})
+								}
+							})
 						}
 					},
 				})
+		break;
+	}
+	case 4: {
+		
+		break;
+	}
 	}
 }
 
@@ -211,10 +247,10 @@ $(function() {
 				alert('delete');
 			}
 		}, '-', {
-			text : "Query History",
+			text : "Query History Changes",
 			iconCls : 'fa fa-search',
 			handler : function() {
-				alert('delete');
+				toolBarClick(4);
 			}
 		} ]
 	});

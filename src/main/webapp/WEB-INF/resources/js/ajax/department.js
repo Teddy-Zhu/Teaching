@@ -91,12 +91,10 @@ $(function() {
 		}).success(function() {
 			initial();
 			$.TeachDialog({
-				title : 'Operation Message!',
 				content : 'Insert successfully!',
 			});
 		}).fail(function() {
 			$.TeachDialog({
-				title : 'Operation Message!',
 				content : 'Update DepartMent Failed!',
 			});
 		});

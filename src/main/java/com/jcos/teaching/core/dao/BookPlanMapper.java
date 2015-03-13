@@ -27,4 +27,6 @@ public interface BookPlanMapper {
 
 	Integer selectPersonalTotalCount(BookPlan record);
 
+	Integer authPlanByUserIdAndPlanId(@Param(value = "userId") Integer userId, @Param(value = "planId") Integer planId);
+
 }

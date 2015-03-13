@@ -13,6 +13,7 @@
 				backdrop : 'static'
 			},
 			largeSize : false,
+			smallSize : false,
 			dialogShow : function() {
 			},
 			dialogShown : function() {
@@ -33,9 +34,8 @@
 
 		function getModalID() {
 			return "TeachDialog-"
-					+ [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Q', 'q', 'W', 'w', 'E', 'e', 'R', 'r', 'T', 't', 'Y', 'y', 'U', 'u', 'I', 'i', 'O', 'o', 'P', 'p', 'A', 'a', 'S', 's', 'D',
-							'd', 'F', 'f', 'G', 'g', 'H', 'h', 'J', 'j', 'K', 'k', 'L', 'l', 'Z', 'z', 'X', 'x', 'C', 'c', 'V', 'v', 'B', 'b', 'N', 'n', 'M', 'm' ].sort(random).join('').substring(5,
-							20);
+					+ [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Q', 'q', 'W', 'w', 'E', 'e', 'R', 'r', 'T', 't', 'Y', 'y', 'U', 'u', 'I', 'i', 'O', 'o', 'P', 'p', 'A', 'a', 'S', 's', 'D', 'd', 'F', 'f', 'G', 'g', 'H', 'h', 'J', 'j', 'K', 'k', 'L', 'l', 'Z', 'z', 'X', 'x', 'C', 'c', 'V',
+							'v', 'B', 'b', 'N', 'n', 'M', 'm' ].sort(random).join('').substring(5, 20);
 		}
 
 		$.fn.extend({
@@ -55,16 +55,21 @@
 					if (!options.showCloseButton && options.otherButtons.length > 0) {
 						buttonHtml = '';
 					}
-					var large = "modal-lg";
-					if (!options.largeSize) {
-						large = "";
+					var size = "";
+					if (options.largeSize) {
+						size = "modal-lg";
+					}
+					if (options.smallSize) {
+						size = "modal-sm";
+					}
+					if (options.largeSize && options.smallSize) {
+						size = "";
 					}
 					var btnClass = 'cls-' + modalID;
 					for (var i = 0; i < options.otherButtons.length; i++) {
 						buttonHtml += '<button buttonIndex="' + i + '" class="' + btnClass + ' btn ' + options.otherButtonStyles[i] + '">' + options.otherButtons[i] + '</button>';
 					}
-					tmpHtml = tmpHtml.replace(/{LargeModal}/g, large).replace(/{ID}/g, modalID).replace(/{title}/g, options.title).replace(/{body}/g, options.content).replace(/{button}/g, buttonHtml)
-							.replace(/{CloseName}/g, options.showCloseButtonName);
+					tmpHtml = tmpHtml.replace(/{LargeModal}/g, size).replace(/{ID}/g, modalID).replace(/{title}/g, options.title).replace(/{body}/g, options.content).replace(/{button}/g, buttonHtml).replace(/{CloseName}/g, options.showCloseButtonName);
 					obj.append(tmpHtml);
 
 					var modalObj = $('#' + modalID);

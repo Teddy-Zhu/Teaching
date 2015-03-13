@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-13 13:42:05
+Date: 2015-03-13 16:21:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -84,18 +84,19 @@ DROP TABLE IF EXISTS `bookplanchange`;
 CREATE TABLE `bookplanchange` (
   `intBookChangeId` int(11) NOT NULL AUTO_INCREMENT,
   `intPlanId` int(11) NOT NULL,
-  `intIncreaseStudent` int(11) NOT NULL,
-  `intDecreaseStudent` int(11) NOT NULL,
-  `intIncreaseTeacher` int(11) NOT NULL,
-  `intDecreaseTeacher` int(11) NOT NULL,
+  `intStudent` int(11) NOT NULL,
+  `intTeacher` int(11) NOT NULL,
   `strChangeReason` varchar(255) COLLATE utf8_bin NOT NULL,
-  `dateChangeTime` date NOT NULL,
+  `dateChangeTime` datetime NOT NULL,
   PRIMARY KEY (`intBookChangeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanchange
 -- ----------------------------
+INSERT INTO `bookplanchange` VALUES ('1', '1', '3', '5', 'aaaasd', '2015-03-13 00:00:00');
+INSERT INTO `bookplanchange` VALUES ('6', '1', '0', '10', 'none', '2015-03-13 16:10:17');
+INSERT INTO `bookplanchange` VALUES ('7', '1', '-5', '0', 'none', '2015-03-13 16:14:12');
 
 -- ----------------------------
 -- Table structure for bookplanlog
@@ -108,12 +109,16 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
 -- ----------------------------
 INSERT INTO `bookplanlog` VALUES ('1', '1', '3', '1', '2015-03-11 19:01:13');
+INSERT INTO `bookplanlog` VALUES ('2', '1', '6', '1', '2015-03-13 15:54:46');
+INSERT INTO `bookplanlog` VALUES ('3', '1', '6', '1', '2015-03-13 15:57:25');
+INSERT INTO `bookplanlog` VALUES ('4', '1', '6', '1', '2015-03-13 16:10:17');
+INSERT INTO `bookplanlog` VALUES ('5', '1', '6', '1', '2015-03-13 16:14:12');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -290,8 +295,8 @@ INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
 INSERT INTO `personalconfig` VALUES ('2', '1', 'openAnimation', '1');
 INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '14');
 INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '14');
-INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '13');
-INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '17');
+INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '15');
+INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '15');
 
 -- ----------------------------
 -- Table structure for power
@@ -629,7 +634,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -653,6 +658,7 @@ INSERT INTO `versionlog` VALUES ('16', '0014', '05', '1', '修复编辑用户个
 INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提交<br>改善权限控制机制,优化读取逻辑<br>[feture]教学计划查询与更变', '2015-03-11 13:05:16');
 INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查询<br>修复多出数据处理BUG<br>改善后台逻辑,优化web性能<br>优化js,css,移除不必要的css', '2015-03-12 16:59:31');
 INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', '2015-03-13 13:41:45');
+INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变更', '2015-03-13 16:21:35');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig

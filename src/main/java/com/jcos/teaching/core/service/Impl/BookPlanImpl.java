@@ -56,4 +56,14 @@ public class BookPlanImpl implements BookPlanService {
 	public Integer getPersonalBookPlanTotal(BookPlan record) {
 		return bookPlanDao.selectPersonalTotalCount(record);
 	}
+
+	@Override
+	public boolean authPlanByUserIdAndPlanId(Integer planId, Integer userId) {
+		Integer i = bookPlanDao.authPlanByUserIdAndPlanId(userId, planId);
+		if (i == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
