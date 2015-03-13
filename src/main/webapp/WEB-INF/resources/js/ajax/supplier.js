@@ -13,6 +13,10 @@ function setVal(id, obj) {
 $(function() {
 	console.debug('aaa');
 	// initial tablegrid
+	var psval = $('#datatable_supplierinfo').attr('data-size');
+	if (psval == undefined || psval == "") {
+		psval = 10;
+	}
 	var cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
 	$('#datatable_supplierinfo').datagrid({
 		striped : true,
@@ -24,6 +28,8 @@ $(function() {
 		pagination : true,
 		rownumbers : true,
 		fitColumns : true,
+		pageSize : psval,
+		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'intcoding',
 			title : 'Code',

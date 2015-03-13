@@ -22,7 +22,9 @@ import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
+import com.jcos.teaching.core.service.PersonalConfigService;
 import com.jcos.teaching.core.service.SupplierService;
+import com.jcos.teaching.core.util.PersonalConfigTool;
 import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
@@ -42,6 +44,9 @@ public class BookController {
 
 	@Inject
 	private PowerTool pwTool;
+
+	@Inject
+	private PersonalConfigTool pcTool;
 
 	/**
 	 * 

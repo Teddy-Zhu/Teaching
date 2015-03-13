@@ -69,6 +69,14 @@
 	margin-top: 1.5%;
 }
 </style>
+<!--[if gte IE 8]>
+//fix font awesome icon for ie 
+<style>
+.l-btn-icon {
+font-size:inherit;
+}
+</style>
+<![endif]-->
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
@@ -125,7 +133,7 @@
 									</div>
 								</div>
 							</div>
-							<table id="datatable_perplaninfo" style="width: 100%">
+							<table id="datatable_perplaninfo" data-size="${plangridsize}" style="width: 100%">
 							</table>
 						</div>
 					</div>

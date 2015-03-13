@@ -19,7 +19,7 @@
 <!--[if lt IE 9]>
 				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
 				<script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
-		<![endif]-->
+<![endif]-->
 </head>
 <body>
 	<!--Start Header-->
@@ -42,7 +42,8 @@
 			<div class="devoops-modal-bottom"></div>
 		</div>
 	</div>
-	<header id="headernavbar" class="navbar am-animation-slide-top">
+	<div id="animation" data-open="${openAnimation}"></div>
+	<header id="headernavbar" class="navbar<c:if test="${openAnimation eq 1}"> am-animation-slide-top</c:if>">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
@@ -86,7 +87,7 @@
 	<!--Start Container-->
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<div id="sidebar-left" class="col-xs-2 col-sm-2 am-animation-slide-left">
+			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> am-animation-slide-left</c:if>">
 				<ul class="nav main-menu">
 					<li><a href="ajax/dashboard.html" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
 					</a></li>
@@ -127,6 +128,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="ajax/personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
+							<li><a class="ajax-link" href="ajax/personal_setting"><i class="fa fa-clipboard"></i> Setting Manage</a></li>
 						</ul></li>
 					<c:if test="${setting eq true}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-cog"></i> <span class="hidden-xs">System Settings</span>
@@ -155,7 +157,7 @@
 				<div id="preloader" class="preloader">
 					<img src="resources/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
 				</div>
-				<div id="ajax-content" class="am-animation-slide-right"></div>
+				<div id="ajax-content" class="<c:if test="${openAnimation eq 1}">am-animation-slide-right</c:if>"></div>
 			</div>
 			<!--End Content-->
 		</div>

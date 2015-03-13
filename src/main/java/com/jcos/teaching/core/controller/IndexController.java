@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.controller;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
+import com.jcos.teaching.core.util.PersonalConfigTool;
 
 @Controller
 public class IndexController {
@@ -33,6 +35,8 @@ public class IndexController {
 	private PowerService powerService;
 	@Inject
 	private UserService userService;
+	@Inject
+	private PersonalConfigTool pcTool;
 
 	/**
 	 * 
@@ -60,6 +64,7 @@ public class IndexController {
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
+			pcTool.setModelPConfig(request, model, Arrays.asList("openAnimation"));
 			setModel(request, model, "AdminMenu");
 			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
 		} else {
@@ -98,19 +103,41 @@ public class IndexController {
 			model.addAttribute("user", user);
 			break;
 		}
-		case "book_manage":
-		case "userinfo_manage":
-		case "supplier_manage":
-		case "department_manage":
-		case "type_manage":
-		case "access_manage":
-		case "plan_submit":
-		case "plan_query":
+		case "book_manage": {
+			pcTool.setModelPConfig(request, model, Arrays.asList("bookgridsize"));
+		}
+		case "userinfo_manage": {
+			pcTool.setModelPConfig(request, model, Arrays.asList("usergridsize"));
+			break;
+		}
+		case "supplier_manage": {
+			pcTool.setModelPConfig(request, model, Arrays.asList("suppliergridsize"));
+			break;
+		}
+		case "department_manage": {
+			break;
+		}
+		case "type_manage": {
+			break;
+		}
+		case "access_manage": {
+			break;
+		}
+		case "plan_submit": {
+			break;
+		}
+		case "plan_query": {
+			pcTool.setModelPConfig(request, model, Arrays.asList("plangridsize"));
+			break;
+		}
+		case "personal_setting": {
+			pcTool.setModelPConfig(request, model, Arrays.asList("openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize"));
+		}
 		default: {
-			setModel(request, model, html);
 			break;
 		}
 		}
+		setModel(request, model, html);
 		return "ajax/" + html;
 	}
 

@@ -82,7 +82,10 @@ $(function() {
 			$('#PlanStatus').append('<option value="' + data[i].intplanstatusid + '">' + data[i].strmark + '</option>')
 		}
 	})
-
+	var psval = $('#datatable_perplaninfo').attr('data-size');
+	if (psval == undefined || psval == "") {
+		psval = 10;
+	}
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
 	var $mydatagrid = $('#datatable_perplaninfo');
 	$mydatagrid.datagrid({
@@ -95,6 +98,8 @@ $(function() {
 		rownumbers : true,
 		singleSelect : true,
 		fitColumns : true,
+		pageSize : psval,
+		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'strcoursename',
 			title : 'CourseName',

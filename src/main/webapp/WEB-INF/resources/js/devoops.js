@@ -164,8 +164,10 @@ function LoadAjaxContent(url) {
 		success : function(data) {
 			$('.preloader').hide();
 			$('#ajax-content').html(data);
-			$('#ajax-content').addClass('am-animation-slide-right');
-			setTimeout('removeAnmaClass()', 1000);
+			if (parseInt($('#animation').attr('data-open')) == 1) {
+				$('#ajax-content').addClass('am-animation-slide-right');
+				setTimeout('removeAnmaClass()', 1000);
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 		},
@@ -428,11 +430,13 @@ function removeAnmaClass() {
 // ////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////
 $(function() {
-	setTimeout(function() {
-		removeAnmaClass();
-		$('#sidebar-left').removeClass('am-animation-slide-left');
-		$('#headernavbar').removeClass('am-animation-slide-top');
-	}, 1000);
+	if (parseInt($('#animation').attr('data-open')) == 1) {
+		setTimeout(function() {
+			removeAnmaClass();
+			$('#sidebar-left').removeClass('am-animation-slide-left');
+			$('#headernavbar').removeClass('am-animation-slide-top');
+		}, 1000);
+	}
 	$('body').on('click', '.show-sidebar', function(e) {
 		e.preventDefault();
 		$('div#main').toggleClass('sidebar-show');

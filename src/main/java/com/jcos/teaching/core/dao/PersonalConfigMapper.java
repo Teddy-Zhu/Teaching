@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.dao;
 
+import java.util.Map;
+
 import com.jcos.teaching.core.model.PersonalConfig;
 
 public interface PersonalConfigMapper {
@@ -15,5 +17,7 @@ public interface PersonalConfigMapper {
 
 	int updateByPrimaryKey(PersonalConfig record);
 
-	Integer AddOrUpdatePersonalConfig(PersonalConfig record);
+	PersonalConfig AddOrUpdatePersonalConfig(PersonalConfig record);
+
+	Integer getPersonalConfig(PersonalConfig record);
 }

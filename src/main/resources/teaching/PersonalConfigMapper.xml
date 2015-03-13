@@ -23,7 +23,8 @@
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.PersonalConfig">
 		insert into personalconfig (intPersonConfigId, intUserId, strConfigName,
 		intConfigValue)
-		values (#{intpersonconfigid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{strconfigname,jdbcType=VARCHAR},
+		values (#{intpersonconfigid,jdbcType=INTEGER},
+		#{intuserid,jdbcType=INTEGER}, #{strconfigname,jdbcType=VARCHAR},
 		#{intconfigvalue,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.PersonalConfig">
@@ -76,10 +77,16 @@
 		update personalconfig
 		set intUserId = #{intuserid,jdbcType=INTEGER},
 		strConfigName = #{strconfigname,jdbcType=VARCHAR},
-		intConfigValue = #{intconfigvalue,jdbcType=INTEGER}
+		intConfigValue =
+		#{intconfigvalue,jdbcType=INTEGER}
 		where intPersonConfigId = #{intpersonconfigid,jdbcType=INTEGER}
 	</update>
-	<update id="AddOrUpdatePersonalConfig" parameterType="com.jcos.teaching.core.model.PersonalConfig" statementType="CALLABLE">
-		call AddOrUpdatePersonalConfig(#{strconfigname,jdbcType=VARCHAR},#{intuserid,jdbcType=INTEGER},#{intconfigvalue,jdbcType=INTEGER})
-	</update>
+	<select id="AddOrUpdatePersonalConfig" resultMap="BaseResultMap" parameterType="com.jcos.teaching.core.model.PersonalConfig" statementType="CALLABLE">
+		{call
+		AddOrUpdatePersonalConfig(#{strconfigname,jdbcType=VARCHAR},#{intuserid,jdbcType=INTEGER},#{intconfigvalue,jdbcType=INTEGER})}
+	</select>
+	<select id="getPersonalConfig" parameterType="com.jcos.teaching.core.model.PersonalConfig" resultType="java.lang.Integer">
+		select intConfigValue from personalconfig where intUserId = #{intuserid,jdbcType=INTEGER}
+		and strConfigName = #{strconfigname,jdbcType=VARCHAR}
+	</select>
 </mapper>

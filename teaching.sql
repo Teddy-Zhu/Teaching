@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-12 22:48:35
+Date: 2015-03-13 13:42:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -161,7 +161,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -214,6 +214,10 @@ INSERT INTO `config` VALUES ('45', 'type_manage', 'manageusertype');
 INSERT INTO `config` VALUES ('46', 'access_manage', 'accesscontrol');
 INSERT INTO `config` VALUES ('47', 'plan_submit', 'submitplan');
 INSERT INTO `config` VALUES ('48', 'plan_query', 'queryplan');
+INSERT INTO `config` VALUES ('49', 'personal_setting', 'querybook');
+INSERT INTO `config` VALUES ('50', 'personal_setting', 'queryplan');
+INSERT INTO `config` VALUES ('51', 'personal_setting', 'querysupplier');
+INSERT INTO `config` VALUES ('52', 'personal_setting', 'queryuser');
 
 -- ----------------------------
 -- Table structure for coursetype
@@ -277,12 +281,17 @@ CREATE TABLE `personalconfig` (
   `strConfigName` varchar(255) COLLATE utf8_bin NOT NULL,
   `intConfigValue` int(11) NOT NULL,
   PRIMARY KEY (`intPersonConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of personalconfig
 -- ----------------------------
 INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
+INSERT INTO `personalconfig` VALUES ('2', '1', 'openAnimation', '1');
+INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '14');
+INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '14');
+INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '13');
+INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '17');
 
 -- ----------------------------
 -- Table structure for power
@@ -620,7 +629,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -643,6 +652,7 @@ INSERT INTO `versionlog` VALUES ('15', '0014', '04', '1', '新增书籍条件查
 INSERT INTO `versionlog` VALUES ('16', '0014', '05', '1', '修复编辑用户个人信息参数错误bug', '2015-03-06 13:14:36');
 INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提交<br>改善权限控制机制,优化读取逻辑<br>[feture]教学计划查询与更变', '2015-03-11 13:05:16');
 INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查询<br>修复多出数据处理BUG<br>改善后台逻辑,优化web性能<br>优化js,css,移除不必要的css', '2015-03-12 16:59:31');
+INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', '2015-03-13 13:41:45');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
@@ -657,9 +667,10 @@ BEGIN
 	IF i <> -1 THEN
 		UPDATE personalconfig SET intConfigValue = configValue WHERE intPersonConfigId = i ;
 	ELSE
-		INSERT personalconfig (strConfigName,intUserId,intConfigValue) VALUES(configName,userId,configValue);
-	END IF;
-	SELECT ROW_COUNT() AS returnValue;
+		INSERT INTO personalconfig (strConfigName,intUserId,intConfigValue) VALUES(configName,userId,configValue);
+		SET i = LAST_INSERT_ID();
+END IF;
+	SELECT * FROM personalconfig WHERE intPersonConfigId = i ;
 END
 ;;
 DELIMITER ;

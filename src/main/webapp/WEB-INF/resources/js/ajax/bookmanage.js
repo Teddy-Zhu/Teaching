@@ -310,7 +310,10 @@ $(function() {
 		todayHighlight : true,
 		clearBtn : true
 	});
-
+	var psval = $('#datatable_bookinfo').attr('data-size');
+	if (psval == undefined || psval == "") {
+		psval = 10;
+	}
 	initBookType('SearchType', "type");
 	initSupplierType('SearchSupplier', "type")
 	cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
@@ -324,6 +327,8 @@ $(function() {
 		pagination : true,
 		rownumbers : true,
 		fitColumns : true,
+		pageSize : psval,
+		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'strbookcoding',
 			title : 'Code',

@@ -168,7 +168,7 @@
 						</div>
 						<div id="collapseForUserTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 							<div class="panel-body" style="overflow-x: hidden;"></div>
-							<table id="datatable_userinfo" style="width: 100%">
+							<table id="datatable_userinfo"  data-size="${usergridsize}" style="width: 100%">
 							</table>
 						</div>
 					</div>

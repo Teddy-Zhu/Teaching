@@ -206,7 +206,7 @@
 									</div>
 								</div>
 							</div>
-							<table id="datatable_bookinfo" style="width: 100%">
+							<table id="datatable_bookinfo" data-size="${bookgridsize}" style="width: 100%">
 							</table>
 						</div>
 					</div>
