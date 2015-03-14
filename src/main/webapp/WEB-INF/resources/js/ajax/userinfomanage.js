@@ -24,39 +24,56 @@ function setVal(id, obj) {
 }
 function initUserType(id) {
 	var dtd = $.Deferred();
-	$.ajax({
-		url : 'Type/GetUserTypeAll',
-		dataType : 'json',
-		type : 'post',
-		success : function(data) {
-			$('#' + id).empty();
-			for (var i = 0; len = data.length, i < len; i++) {
-				$('#' + id).append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
-			}
-			dtd.resolve();
-		},
-		async : true
-	})
+	var fillDom = function(domData) {
+		$('#' + id).empty();
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intidentityid + '">' + domData[i].strname + '</option>');
+		}
+		dtd.resolve();
+	}
+	if ($('#operationpanel').data('usertype') != undefined) {
+		fillDom($('#operationpanel').data('usertype'));
+	} else {
+		$.ajax({
+			url : 'Type/GetUserTypeAll',
+			dataType : 'json',
+			type : 'post',
+			success : function(data) {
+				$('#operationpanel').data('usertype', data);
+				fillDom(data);
+			},
+			async : true
+		})
+	}
 	return dtd.promise();
 }
 function initUserDepartMent(id, type) {
 	var dtd = $.Deferred();
-	$.ajax({
-		url : 'Type/GetDepartMent',
-		type : 'post',
-		dataType : 'json',
-		data : {
-			id : type,
-		},
-		success : function(data) {
-			$('#' + id).empty();
-			for (var i = 0; len = data.length, i < len; i++) {
-				$('#' + id).append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
-			}
-			dtd.resolve();
-		},
-		async : true
-	})
+	var filldom = function(domData) {
+		$('#' + id).empty();
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intid + '">' + domData[i].strname + '</option>');
+		}
+		dtd.resolve();
+	}
+	if ($('#operationpanel').data('userdepartment' + type) != undefined) {
+		filldom($('#operationpanel').data('userdepartment' + type));
+	} else {
+		$.ajax({
+			url : 'Type/GetDepartMent',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				id : type,
+			},
+			success : function(data) {
+				$('#operationpanel').data('userdepartment' + type, data);
+				filldom(data);
+			},
+			async : true
+		})
+	}
+
 	return dtd.promise();
 }
 
@@ -159,7 +176,7 @@ $(function() {
 		initUserDepartMent('newDepartMent', 1).done(function() {
 			initUserDepartMent('newMajor', $('#newDepartMent').val());
 		})
-		$('.newform').val('');
+		$('input.newform').val('');
 		$('#adderrormsg').html("");
 		$('#operationpanel').slideUp();
 		$('#addnewuser').slideDown();
