@@ -17,42 +17,57 @@ function setVal(id, obj) {
 
 function initBookType(id, addition) {
 	var dtd = $.Deferred();
-	$.ajax({
-		url : 'Type/GetBookType',
-		dataType : 'json',
-		type : 'post',
-		success : function(data) {
-			$('#' + id).empty();
-			if (addition != undefined) {
-				$('#' + id).append('<option value="-1">All Type</option>');
-			}
-			for (var i = 0; len = data.length, i < len; i++) {
-				$('#' + id).append('<option value="' + data[i].intbooktypeid + '">' + data[i].strbooktypename + '</option>');
-			}
-			dtd.resolve();
-		},
-		async : true
-	})
+	var fillDom = function(domData) {
+		$('#' + id).empty();
+		if (addition != undefined) {
+			$('#' + id).append('<option value="-1">All Type</option>');
+		}
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intbooktypeid + '">' + domData[i].strbooktypename + '</option>');
+		}
+		dtd.resolve();
+	}
+	if ($('#operationpanel').data('booktype') != undefined) {
+		fillDom($('#operationpanel').data('booktype'));
+	} else {
+		$.ajax({
+			url : 'Type/GetBookType',
+			dataType : 'json',
+			type : 'post',
+			async : true
+		}).success(function(data) {
+			$('#operationpanel').data('booktype', data);
+			fillDom(data);
+		})
+	}
 	return dtd.promise();
 }
 
 function initSupplierType(id, addition) {
 	var dtd = $.Deferred();
-	$.ajax({
-		url : 'Type/GetSupplierType',
-		dataType : 'json',
-		type : 'post',
-		success : function(data) {
-			$('#' + id).empty();
-			if (addition != undefined) {
-				$('#' + id).append('<option value="-1">All Supplier</option>');
-			}
-			for (var i = 0; len = data.length, i < len; i++) {
-				$('#' + id).append('<option value="' + data[i].intsupplierid + '">' + data[i].strname + '</option>');
-			}
-			dtd.resolve();
+	var fillDom = function(domData) {
+		$('#' + id).empty();
+		if (addition != undefined) {
+			$('#' + id).append('<option value="-1">All Supplier</option>');
 		}
-	})
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intsupplierid + '">' + domData[i].strname + '</option>');
+		}
+		dtd.resolve();
+	}
+	if ($('#operationpanel').data('suppliertype') != undefined) {
+		fillDom($('#operationpanel').data('suppliertype'));
+	} else {
+		$.ajax({
+			url : 'Type/GetSupplierType',
+			dataType : 'json',
+			type : 'post',
+			success : function(data) {
+				$('#operationpanel').data('suppliertype', data);
+				fillDom(data);
+			}
+		})
+	}
 	return dtd.promise();
 }
 
