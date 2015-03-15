@@ -661,7 +661,7 @@ INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `AddOrUpdatePersonalConfig`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(11),IN `configValue` int(11))
+CREATE PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(11),IN `configValue` int(11))
 BEGIN
 	DECLARE i int(11);
 	SET i = -1;
