@@ -3,31 +3,36 @@ package com.jcos.teaching.core.model;
 import java.util.Date;
 
 public class BookPlanChange {
-	private Integer intbookchangeid;
+    private Integer intbookchangeid;
 
-	private Integer intplanid;
+    private Integer intplanid;
 
-	private Integer intstudent;
+    private Integer intbookplanlogid;
 
-	private Integer intteacher;
+    private Integer intstudent;
 
-	private String strchangereason;
+    private Integer intteacher;
 
-	private Date datechangetime;
+    private String strchangereason;
 
-	public BookPlanChange() {
-		this.intbookchangeid = null;
-		this.intplanid = null;
-		this.intstudent = null;
-		this.intteacher = null;
-		this.strchangereason = null;
+    private Date datechangetime;
+
+    
+    public BookPlanChange() {
+		this.intbookchangeid = -1;
+		this.intplanid = -1;
+		this.intbookplanlogid = -1;
+		this.intstudent = 0;
+		this.intteacher = 0;
+		this.strchangereason = "";
 		this.datechangetime = null;
 	}
 
-	public BookPlanChange(Integer intbookchangeid, Integer intplanid, Integer intstudent, Integer intteacher, String strchangereason, Date datechangetime) {
+	public BookPlanChange(Integer intbookchangeid, Integer intplanid, Integer intbookplanlogid, Integer intstudent, Integer intteacher, String strchangereason, Date datechangetime) {
 		super();
 		this.intbookchangeid = intbookchangeid;
 		this.intplanid = intplanid;
+		this.intbookplanlogid = intbookplanlogid;
 		this.intstudent = intstudent;
 		this.intteacher = intteacher;
 		this.strchangereason = strchangereason;
@@ -35,50 +40,58 @@ public class BookPlanChange {
 	}
 
 	public Integer getIntbookchangeid() {
-		return intbookchangeid;
-	}
+        return intbookchangeid;
+    }
 
-	public void setIntbookchangeid(Integer intbookchangeid) {
-		this.intbookchangeid = intbookchangeid;
-	}
+    public void setIntbookchangeid(Integer intbookchangeid) {
+        this.intbookchangeid = intbookchangeid;
+    }
 
-	public Integer getIntplanid() {
-		return intplanid;
-	}
+    public Integer getIntplanid() {
+        return intplanid;
+    }
 
-	public void setIntplanid(Integer intplanid) {
-		this.intplanid = intplanid;
-	}
+    public void setIntplanid(Integer intplanid) {
+        this.intplanid = intplanid;
+    }
 
-	public Integer getIntstudent() {
-		return intstudent;
-	}
+    public Integer getIntbookplanlogid() {
+        return intbookplanlogid;
+    }
 
-	public void setIntstudent(Integer intstudent) {
-		this.intstudent = intstudent;
-	}
+    public void setIntbookplanlogid(Integer intbookplanlogid) {
+        this.intbookplanlogid = intbookplanlogid;
+    }
 
-	public Integer getIntteacher() {
-		return intteacher;
-	}
+    public Integer getIntstudent() {
+        return intstudent;
+    }
 
-	public void setIntteacher(Integer intteacher) {
-		this.intteacher = intteacher;
-	}
+    public void setIntstudent(Integer intstudent) {
+        this.intstudent = intstudent;
+    }
 
-	public String getStrchangereason() {
-		return strchangereason;
-	}
+    public Integer getIntteacher() {
+        return intteacher;
+    }
 
-	public void setStrchangereason(String strchangereason) {
-		this.strchangereason = strchangereason == null ? null : strchangereason.trim();
-	}
+    public void setIntteacher(Integer intteacher) {
+        this.intteacher = intteacher;
+    }
 
-	public Date getDatechangetime() {
-		return datechangetime;
-	}
+    public String getStrchangereason() {
+        return strchangereason;
+    }
 
-	public void setDatechangetime(Date datechangetime) {
-		this.datechangetime = datechangetime;
-	}
+    public void setStrchangereason(String strchangereason) {
+        this.strchangereason = strchangereason == null ? null : strchangereason.trim();
+    }
+
+    public Date getDatechangetime() {
+        return datechangetime;
+    }
+
+    public void setDatechangetime(Date datechangetime) {
+        this.datechangetime = datechangetime;
+    }
 }

@@ -90,9 +90,22 @@ function toolBarClick(type) {
 					dataType : 'json',
 					type : 'post',
 				}).success(function(data) {
-					$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Operation Time</th></tr></thead><tbody></tbody>');
+					$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Changes</th><th>Operation Time</th></tr></thead><tbody></tbody>');
 					for (var i = 0, len = data.length; i < len; i++) {
-						$('#historytable table tbody').append('<tr><td>' + i + '</td><td>' + data[i].operation.stroperationname + '</td><td>' + unix2human(data[i].datecreatetime) + '</td></tr>');
+						var changeString = '';
+						if (data[i].bookPlanChange && data[i].bookPlanChange.intbookchangeid != -1) {
+							var stcount = data[i].bookPlanChange.intstudent;
+							var teacount = data[i].bookPlanChange.intteacher;
+							if (stcount != 0) {
+								changeString += (stcount > 0 ? 'Increase' : 'Decrease') + ' Student Number :' + Math.abs(stcount) + '<br>';
+							}
+							if (teacount != 0) {
+								changeString += (teacount > 0 ? 'Increase' : 'Decrease') + ' Teacher Number :' + Math.abs(teacount) + '<br>';
+							}
+						} else {
+							changeString = 'none';
+						}
+						$('#historytable table tbody').append('<tr><td>' + (i + 1) + '</td><td>' + data[i].operation.stroperationname + '</td><td>' + changeString.trimEnd('<br>') + '</td><td>' + unix2human(data[i].datecreatetime) + '</td></tr>');
 					}
 				});
 			},

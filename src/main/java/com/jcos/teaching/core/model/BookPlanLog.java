@@ -17,7 +17,17 @@ public class BookPlanLog {
     
     private Operation operation;
     
-    public BookPlan getBookPlan() {
+    private BookPlanChange bookPlanChange;
+    
+    public BookPlanChange getBookPlanChange() {
+		return bookPlanChange;
+	}
+
+	public void setBookPlanChange(BookPlanChange bookPlanChange) {
+		this.bookPlanChange = bookPlanChange;
+	}
+
+	public BookPlan getBookPlan() {
 		return bookPlan;
 	}
 

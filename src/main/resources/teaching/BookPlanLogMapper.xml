@@ -26,9 +26,10 @@
 		intUserId, dateCreateTime)
 		values (#{intplanlogid,jdbcType=INTEGER},
 		#{intplanid,jdbcType=INTEGER}, #{intoperateid,jdbcType=INTEGER},
-		#{intuserid,jdbcType=INTEGER}, #{datecreatetime,jdbcType=TIMESTAMP})
+		#{intuserid,jdbcType=INTEGER},
+		#{datecreatetime,jdbcType=TIMESTAMP})
 	</insert>
-	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlanLog">
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlanLog" useGeneratedKeys="true" keyProperty="intplanlogid">
 		insert into bookplanlog
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intplanlogid != null">
@@ -90,13 +91,15 @@
 		intUserId =
 		#{intuserid,jdbcType=INTEGER},
 		dateCreateTime = #{datecreatetime,jdbcType=TIMESTAMP}
-		where intPlanLogId = #{intplanlogid,jdbcType=INTEGER}
+		where intPlanLogId =
+		#{intplanlogid,jdbcType=INTEGER}
 	</update>
 
 	<resultMap id="BookPlanExtendMap" type="com.jcos.teaching.core.model.BookPlanLog" extends="BaseResultMap">
 		<association property="operation" column="intOperateId" select="com.jcos.teaching.core.dao.OperationMapper.selectByPrimaryKey" />
+		<association property="bookPlanChange" column="intPlanLogId" select="com.jcos.teaching.core.dao.BookPlanChangeMapper.selectByPlanLogId" />
 	</resultMap>
-	
+
 	<select id="selectBookPlanLogByuserId" resultMap="BookPlanExtendMap">
 		select
 		<include refid="Base_Column_List" />

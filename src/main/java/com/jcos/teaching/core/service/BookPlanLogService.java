@@ -10,4 +10,6 @@ public interface BookPlanLogService {
 
 	List<BookPlanLog> getBookPlanLogByUserId(Integer userId);
 
+	boolean removeLogById(Integer logId);
+
 }

@@ -30,7 +30,6 @@ import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookPlanStatusService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
-import com.jcos.teaching.core.util.BookPlanLogTool;
 import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
@@ -55,8 +54,6 @@ public class PlanController {
 	private BookPlanChangeService bookPlanChangeService;
 	@Inject
 	private BookPlanLogService bookPlanLogService;
-	@Inject
-	private BookPlanLogTool bplTool;
 
 	@RequestMapping(value = "/Submit", method = RequestMethod.POST)
 	@ResponseBody
@@ -67,7 +64,6 @@ public class PlanController {
 		}
 		String name = "", classid = "", mark = "";
 		int stucount = -1, teacount = -1, bookid = -1, from = -1, to = -1, term = -1, type = -1;
-
 		try {
 			name = request.getParameter("CourseName");
 			type = Integer.valueOf(request.getParameter("CourseType"));
@@ -117,7 +113,12 @@ public class PlanController {
 		}
 
 		// for insert log
-		if (!bplTool.AddBookPlanLog(request, record.getIntplanid(), 3)) {
+		BookPlanLog log = new BookPlanLog();
+		log.setDatecreatetime(new Date());
+		log.setIntoperateid(3);
+		log.setIntuserid(loginSession.getLoginUser().getIntid());
+		log.setIntplanid(record.getIntplanid());
+		if (!bookPlanLogService.addNewLog(log)) {
 			response.setStatus(3383);
 			return false;
 		}
@@ -159,7 +160,7 @@ public class PlanController {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 
 		Integer userId = loginSession.getLoginUser().getIntid();
-		
+
 		return bookPlanLogService.getBookPlanLogByUserId(userId);
 	}
 
@@ -198,8 +199,7 @@ public class PlanController {
 			return null;
 		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
-				null, new Book(BookName));
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
@@ -238,17 +238,33 @@ public class PlanController {
 			return false;
 		}
 
-		// add record
-		BookPlanChange record = new BookPlanChange(null, planId, StudentCount, TeacherCount, reason, new Date());
-		if (!bookPlanChangeService.insertBookPlanChange(record)) {
+		// auth plan status
+		// pending
+		if (!bookPlanService.authPlanStatusForChange(planId)) {
+			response.setStatus(3386);
 			return false;
 		}
 
+		// for insert log first
 		// for insert log
-		if (!bplTool.AddBookPlanLog(request, planId, 6)) {
+		BookPlanLog log = new BookPlanLog();
+		log.setDatecreatetime(new Date());
+		log.setIntoperateid(6);
+		log.setIntuserid(loginSession.getLoginUser().getIntid());
+		log.setIntplanid(planId);
+		if (!bookPlanLogService.addNewLog(log)) {
 			response.setStatus(3383);
 			return false;
 		}
+
+		// add record
+		BookPlanChange record = new BookPlanChange(null, planId, log.getIntplanlogid(), StudentCount, TeacherCount, reason, new Date());
+		if (!bookPlanChangeService.insertBookPlanChange(record)) {
+			// remove log if failed ;
+			bookPlanLogService.removeLogById(log.getIntplanlogid());
+			return false;
+		}
+
 		return true;
 	}
 

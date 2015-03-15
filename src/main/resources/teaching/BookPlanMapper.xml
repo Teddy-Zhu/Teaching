@@ -39,7 +39,8 @@
 		intFromYear,
 		intToYear, intTerm,
 		dateCreateTime, strMark)
-		values (#{intplanid,jdbcType=INTEGER}, #{strcoursename,jdbcType=VARCHAR}, #{intcoursetypeid,jdbcType=INTEGER},
+		values (#{intplanid,jdbcType=INTEGER},
+		#{strcoursename,jdbcType=VARCHAR}, #{intcoursetypeid,jdbcType=INTEGER},
 		#{strclass,jdbcType=VARCHAR},
 		#{intstudcount,jdbcType=INTEGER}, #{intteaccount,jdbcType=INTEGER},
 		#{intbookid,jdbcType=INTEGER}, #{intuserid,jdbcType=INTEGER}, #{intplanstatusid,jdbcType=INTEGER},
@@ -190,7 +191,8 @@
 		strClass =
 		#{strclass,jdbcType=VARCHAR},
 		intStudCount = #{intstudcount,jdbcType=INTEGER},
-		intTeacCount = #{intteaccount,jdbcType=INTEGER},
+		intTeacCount =
+		#{intteaccount,jdbcType=INTEGER},
 		intBookId = #{intbookid,jdbcType=INTEGER},
 		intUserId =
 		#{intuserid,jdbcType=INTEGER},
@@ -233,7 +235,7 @@
 				x.strClass like CONCAT('%',#{strclass,jdbcType=VARCHAR},'%') AND
 			</if>
 			<if test="intcoursetypeid != null">
-				x.intCourseTypeId like CONCAT('%',#{intcoursetypeid,jdbcType=VARCHAR},'%') AND
+				x.intCourseTypeId = #{intcoursetypeid,jdbcType=INTEGER} AND
 			</if>
 			<if test="intstudcount != null">
 				x.intStudCount = #{intstudcount,jdbcType=INTEGER} AND
@@ -263,15 +265,16 @@
 	</select>
 	<select id="selectPersonal" resultMap="BookPlanTypeExtendMap">
 		select
-		x.intPlanId, x.strCourseName, x.intCourseTypeId, x.strClass, (x.intStudCount + SUM(z.intStudent)) as intStudCount, (x.intTeacCount + SUM(z.intTeacher)) as intTeacCount,
+		x.intPlanId, x.strCourseName, x.intCourseTypeId, x.strClass, (x.intStudCount + COALESCE(SUM(z.intStudent),0)) as intStudCount, (x.intTeacCount + COALESCE(SUM(z.intTeacher),0)) as intTeacCount,
 		x.intBookId,
 		x.intPlanStatusId, x.intFromYear, x.intToYear, x.intTerm,
 		x.dateCreateTime,x.strMark
 		from bookplan
-		x LEFT JOIN book y on x.intBookId=y.intBookId LEFT JOIN bookplanchange z ON x.intPlanId = z.intPlanId
+		x LEFT JOIN book
+		y on x.intBookId=y.intBookId LEFT JOIN bookplanchange z ON x.intPlanId = z.intPlanId
 		<trim prefix="where" suffix="" suffixOverrides="AND">
 			<if test="record.intuserid != null">
-				x.intUserId = #{record.intuserid,jdbcType=INTEGER} AND 
+				x.intUserId = #{record.intuserid,jdbcType=INTEGER} AND
 			</if>
 			<if test="record.strcoursename != null">
 				x.strCourseName like CONCAT('%',#{record.strcoursename,jdbcType=VARCHAR},'%') AND
@@ -280,7 +283,7 @@
 				x.strClass like CONCAT('%',#{record.strclass,jdbcType=VARCHAR},'%') AND
 			</if>
 			<if test="record.intcoursetypeid != null">
-				x.intCourseTypeId like CONCAT('%',#{record.intcoursetypeid,jdbcType=VARCHAR},'%') AND
+				x.intCourseTypeId = #{record.intcoursetypeid,jdbcType=INTEGER} AND
 			</if>
 			<if test="record.intstudcount != null">
 				x.intStudCount = #{record.intstudcount,jdbcType=INTEGER} AND
@@ -313,5 +316,9 @@
 
 	<select id="authPlanByUserIdAndPlanId" resultType="java.lang.Integer">
 		select count(intPlanId) from bookplan where intPlanId = #{planId,jdbcType=INTEGER} and intUserId = #{userId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectPlanStatusForChange" resultType="java.lang.Integer">
+		select intPlanStatusId from bookplan where intPlanId = #{planId,jdbcType=INTEGER}
 	</select>
 </mapper>

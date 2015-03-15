@@ -19,4 +19,6 @@ public interface BookPlanService {
 
 	boolean authPlanByUserIdAndPlanId(Integer planId, Integer userId);
 
+	boolean authPlanStatusForChange(Integer planId);
+
 }

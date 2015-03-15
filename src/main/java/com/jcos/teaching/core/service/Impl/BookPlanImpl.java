@@ -1,5 +1,6 @@
 package com.jcos.teaching.core.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,7 +50,12 @@ public class BookPlanImpl implements BookPlanService {
 
 	@Override
 	public List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows) {
-		return bookPlanDao.selectPersonal(record, rows * (page - 1), rows);
+		List<BookPlan> list = bookPlanDao.selectPersonal(record, rows * (page - 1), rows);
+		if (list == null || list.get(0) == null) {
+			return new ArrayList<BookPlan>();
+		} else {
+			return list;
+		}
 	}
 
 	@Override
@@ -64,6 +70,16 @@ public class BookPlanImpl implements BookPlanService {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	@Override
+	public boolean authPlanStatusForChange(Integer planId) {
+		Integer i = bookPlanDao.selectPlanStatusForChange(planId);
+		if (i > 2) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }
