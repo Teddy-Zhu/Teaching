@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.BookPlanMapper;
-import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.BookPlan;
 import com.jcos.teaching.core.service.BookPlanService;
 
