@@ -1,5 +1,9 @@
 package com.jcos.teaching.core.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,7 +14,9 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +36,7 @@ import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookPlanStatusService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
+import com.jcos.teaching.core.util.ExcelTool;
 import com.jcos.teaching.core.util.PowerTool;
 
 @Controller
@@ -164,6 +171,89 @@ public class PlanController {
 		return bookPlanLogService.getBookPlanLogByUserId(userId);
 	}
 
+	@RequestMapping(value = "/ImportPerPlan", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<byte[]> importPersonalPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+		// if (!pwTool.authUserTypePower(request, "queryplan")) {
+		// response.setStatus(3388);
+		// return null;
+		// }
+		// int rows = 10, page = 1;
+		// String CourseName = "", ClassId = "", BookName = "";
+		// Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1,
+		// Term = -1, StuCount = -1, TeaCount = -1;
+		// Date date = null;
+		// try {
+		// rows = Integer.valueOf(request.getParameter("rows"));
+		// page = Integer.valueOf(request.getParameter("page"));
+		// CourseName = request.getParameter("CourseName").trim().equals("") ?
+		// null : request.getParameter("CourseName");
+		// ClassId = request.getParameter("ClassId").trim().equals("") ? null :
+		// request.getParameter("ClassId");
+		// BookName = request.getParameter("BookName").trim().equals("") ? null
+		// : request.getParameter("BookName");
+		// StuCount = request.getParameter("StuCount").trim().equals("") ? null
+		// : Integer.valueOf(request.getParameter("StuCount"));
+		// TeaCount = request.getParameter("TeaCount").trim().equals("") ? null
+		// : Integer.valueOf(request.getParameter("TeaCount"));
+		// CourseType = Integer.valueOf(request.getParameter("CourseType")) ==
+		// -1 ? null : Integer.valueOf(request.getParameter("CourseType"));
+		// PlanStatus = Integer.valueOf(request.getParameter("PlanStatus")) ==
+		// -1 ? null : Integer.valueOf(request.getParameter("PlanStatus"));
+		// FromYear = request.getParameter("FromYear").trim().equals("") ? null
+		// : Integer.valueOf(request.getParameter("FromYear"));
+		// ToYear = request.getParameter("ToYear").trim().equals("") ? null :
+		// Integer.valueOf(request.getParameter("ToYear"));
+		// Term = Integer.valueOf(request.getParameter("Term")) == -1 ? null :
+		// Integer.valueOf(request.getParameter("Term"));
+		// date = request.getParameter("SearchDate").equals("") ? null : new
+		// SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
+		// } catch (Exception e) {
+		// logger.debug(e.getMessage());
+		// response.setStatus(3386);
+		// return null;
+		// }
+		// if (FromYear != null && ToYear != null && FromYear > ToYear) {
+		// response.setStatus(3387);
+		// return null;
+		// }
+		// LoginSession loginSession = (LoginSession)
+		// request.getSession().getAttribute("loginSession");
+		// BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId,
+		// StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(),
+		// PlanStatus, FromYear, ToYear, Term, date, null, null, null, new
+		// Book(BookName));
+		// Map<String, Object> ret = new HashMap<String, Object>();
+		// ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
+		// ret.put("rows", bookPlanService.getPersonalBookPlan(record, page,
+		// rows));
+
+		ExcelTool excel = null;
+		try {
+			excel = new ExcelTool(request);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		ByteArrayOutputStream output = excel.getXlsStream();
+		OutputStream os;
+		try {
+			os = response.getOutputStream();
+			response.reset();
+			response.setHeader("Content-Disposition", "attachment; filename=dict.xls");
+			response.setContentType("application/octet-stream; charset=utf-8");
+			os.write(output.toByteArray());
+			os.flush();
+			os.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return null;
+
+	}
+
 	@RequestMapping(value = "/GetPerPlan", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getPersonalPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
@@ -203,6 +293,7 @@ public class PlanController {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
+
 		return ret;
 	}
 

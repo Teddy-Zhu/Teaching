@@ -21,8 +21,8 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- jackson for json -->
 
+		<!-- jackson for json -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>

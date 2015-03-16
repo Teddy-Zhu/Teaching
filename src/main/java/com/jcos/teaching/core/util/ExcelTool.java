@@ -1,9 +1,12 @@
 package com.jcos.teaching.core.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,7 +29,7 @@ public class ExcelTool {
 	private HSSFSheet workSheet;
 
 	public ExcelTool(HttpServletRequest request) throws IOException {
-		this.TemplateOne = request.getSession().getServletContext().getRealPath("/") + "/resources/excel/teacher.xls";
+		this.TemplateOne = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/teacher.xls";
 		workBook = new HSSFWorkbook(new FileInputStream(new File(this.TemplateOne)));
 	}
 
@@ -65,8 +68,8 @@ public class ExcelTool {
 		}
 	}
 
-	public FileOutputStream getXlsStream() {
-		FileOutputStream output = null;
+	public ByteArrayOutputStream getXlsStream() {
+		ByteArrayOutputStream output = new ByteArrayOutputStream() ;
 		try {
 			workBook.write(output);
 		} catch (IOException e) {
