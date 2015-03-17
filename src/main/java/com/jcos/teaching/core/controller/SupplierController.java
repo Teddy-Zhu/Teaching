@@ -1,7 +1,5 @@
 package com.jcos.teaching.core.controller;
 
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.service.BookService;
-import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.SupplierService;
-import com.jcos.teaching.core.util.PowerTool;
+import com.jcos.teaching.core.util.auth.AuthPower;
 
 @Controller
 @RequestMapping(value = "/Supplier")
@@ -37,8 +34,6 @@ public class SupplierController {
 	@Inject
 	private BookService bookService;
 
-	@Inject
-	private PowerTool pwTool;
 
 	/**
 	 * 
@@ -49,11 +44,8 @@ public class SupplierController {
 	 */
 	@RequestMapping(value = "/GetAllSuppliers", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "querysupplier")
 	public List<Supplier> getAllSuppliers(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "querysupplier")) {
-			response.setStatus(3388);
-			return null;
-		}
 		return supplierService.getAllSuppliersForadmin();
 	}
 
@@ -65,11 +57,8 @@ public class SupplierController {
 	 */
 	@RequestMapping(value = "/AddNewSupplier", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "addsupplier")
 	public boolean addNewSupplier(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "addsupplier")) {
-			response.setStatus(3388);
-			return false;
-		}
 		String code = "", name = "", address = "", companyphone = "", handleperson = "", handlephone = "", contactperson = "", contactphone = "";
 		try {
 
@@ -103,11 +92,8 @@ public class SupplierController {
 
 	@RequestMapping(value = "/UpdateSuppliers", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "editsupplier")
 	public boolean editSuppliers(@RequestParam(value = "supplierId[]") Integer[] supplierId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "editsupplier")) {
-			response.setStatus(3388);
-			return false;
-		}
 		String code = "", name = "", address = "", companyphone = "", handleperson = "", handlephone = "", contactperson = "", contactphone = "";
 		List<Supplier> record = new ArrayList<Supplier>();
 		try {
@@ -144,11 +130,8 @@ public class SupplierController {
 
 	@RequestMapping(value = "/RemoveSupplier", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "rmsupplier")
 	public Object removebook(@RequestParam(value = "supplierId[]") Integer[] supplierId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "rmsupplier")) {
-			response.setStatus(3388);
-			return false;
-		}
 		if (supplierId != null && supplierId.length != 0) {
 			Integer ret = bookService.authExistSupplierInUse(supplierId);
 			if (ret != 0) {

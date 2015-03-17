@@ -1,6 +1,5 @@
 package com.jcos.teaching.core.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,18 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.BookType;
 import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.model.UserType;
-import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.service.UserDepartMentService;
-import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
-import com.jcos.teaching.core.util.PowerTool;
+import com.jcos.teaching.core.util.auth.AuthPower;
 
 @Controller
 @RequestMapping(value = "/Type")
@@ -43,13 +39,6 @@ public class TypeController {
 	private SupplierService supplierService;
 	@Inject
 	private UserDepartMentService userDepartMentService;
-	@Inject
-	private BookService bookService;
-	@Inject
-	private UserService userService;
-
-	@Inject
-	private PowerTool pwTool;
 
 	/**
 	 * 
@@ -61,6 +50,7 @@ public class TypeController {
 	@RequestMapping(value = "/GetDepartMent", method = RequestMethod.POST)
 	@ResponseBody
 	public List<UserDepartMent> getDepartMent(int id, HttpServletRequest request, Model model) {
+		logger.debug("GetDepartMent");
 		return userDepartMentService.getAllDepartMent(id);
 	}
 
@@ -102,11 +92,8 @@ public class TypeController {
 	 */
 	@RequestMapping(value = "/GetBookTypeForType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "querybooktype")
 	public List<BookType> getBookTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "querybooktype")) {
-			response.setStatus(3388);
-			return new ArrayList<BookType>();
-		}
 		return bookTypeService.getAllBookType();
 	}
 
@@ -131,11 +118,8 @@ public class TypeController {
 
 	@RequestMapping(value = "/GetUserTypeAllForType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "queryusertype")
 	public List<UserType> getUserTypeFortype(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "queryusertype")) {
-			response.setStatus(3388);
-			return new ArrayList<UserType>();
-		}
 		return userTypeService.getUserType();
 	}
 }

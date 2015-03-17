@@ -22,10 +22,8 @@ import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.BookTypeService;
-import com.jcos.teaching.core.service.PersonalConfigService;
 import com.jcos.teaching.core.service.SupplierService;
-import com.jcos.teaching.core.util.PersonalConfigTool;
-import com.jcos.teaching.core.util.PowerTool;
+import com.jcos.teaching.core.util.auth.AuthPower;
 
 @Controller
 @RequestMapping(value = "/Book")
@@ -42,12 +40,6 @@ public class BookController {
 	@Inject
 	private BookPlanService bookPlanService;
 
-	@Inject
-	private PowerTool pwTool;
-
-	@Inject
-	private PersonalConfigTool pcTool;
-
 	/**
 	 * 
 	 * @param rows
@@ -59,12 +51,9 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "querybook")
 	public Map<String, Object> getbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
 		Map<String, Object> ret = new HashMap<String, Object>();
-		if (!pwTool.authUserTypePower(request, "querybook")) {
-			response.setStatus(3388);
-			return ret;
-		}
 		Integer rows = 10, page = 1;
 		String code = "", name = "", sn = "", press = "", author = "";
 		Double price = 0.0, discount = 0.0;
@@ -103,11 +92,8 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/AddBook", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "addbook")
 	public boolean addbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "addbook")) {
-			response.setStatus(3388);
-			return true;
-		}
 		String code = "", name = "", sn = "", press = "", author = "";
 		int booktype = 0, suppliertype = 0;
 		Double price = 0.0, discount = 0.0;
@@ -147,11 +133,8 @@ public class BookController {
 	 */
 	@RequestMapping(value = "/RemoveBook", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "rmbook")
 	public Object removebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "rmbook")) {
-			response.setStatus(3388);
-			return false;
-		}
 		if (bookId != null && bookId.length != 0) {
 			Integer ret = bookPlanService.authExistBookInUse(bookId);
 			if (ret != 0) {
@@ -166,11 +149,8 @@ public class BookController {
 
 	@RequestMapping(value = "/EditBook", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "editbook")
 	public boolean updatebook(@RequestParam(value = "bookId[]") Integer[] bookId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "editbook")) {
-			response.setStatus(3388);
-			return true;
-		}
 		String code = "", name = "", sn = "", press = "", author = "";
 		int booktype = 0, suppliertype = 0;
 		Double price = 0.0, discount = 0.0;

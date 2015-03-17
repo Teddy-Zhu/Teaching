@@ -1,13 +1,10 @@
 package com.jcos.teaching.core.service.Impl;
 
-import org.apache.log4j.Logger;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.PersonalConfigMapper;
@@ -33,6 +30,7 @@ public class PersonalConfigImpl implements PersonalConfigService {
 				return false;
 			}
 		}
+		logger.debug("add or update personal configs");
 		return true;
 	}
 

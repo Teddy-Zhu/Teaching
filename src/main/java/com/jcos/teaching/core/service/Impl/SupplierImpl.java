@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.SupplierMapper;
 import com.jcos.teaching.core.model.Supplier;
-import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.service.SupplierService;
 
 @Service

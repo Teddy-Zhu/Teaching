@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jcos.teaching.core.exmodel.LoginSession;
@@ -23,7 +22,7 @@ public class PersonalConfigTool {
 		}
 		Integer userId = loginSession.getLoginUser().getIntid();
 		PersonalConfig record = new PersonalConfig();
-		record.setIntuserid(loginSession.getLoginUser().getIntid());
+		record.setIntuserid(userId);
 		Integer defaultValue = 10;
 		for (int i = 0, len = name.length; i < len; i++) {
 			record.setStrconfigname(name[i]);
@@ -35,6 +34,6 @@ public class PersonalConfigTool {
 			Integer ret = personalConfigService.getPersonalConfig(record);
 			model.addObject(name[i], ret == null ? defaultValue : ret);
 		}
-		return true;	
+		return true;
 	}
 }

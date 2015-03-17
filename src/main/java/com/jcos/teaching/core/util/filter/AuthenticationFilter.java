@@ -1,19 +1,13 @@
 package com.jcos.teaching.core.util.filter;
 
-import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.ui.Model;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.util.PersonalConfigTool;
 import com.jcos.teaching.core.util.PowerTool;
 import com.jcos.teaching.core.util.auth.AuthPower;
@@ -66,23 +60,21 @@ public class AuthenticationFilter implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		// if (handler.getClass().isAssignableFrom(HandlerMethod.class)) {
-		// AuthPower auth = ((HandlerMethod)
-		// handler).getMethodAnnotation(AuthPower.class);
-		// if (auth == null) {
-		// return true;
-		// } else {
-		// String value = auth.value();
-		// if (!pwTool.authUserTypePower(request, "querybook")) {
-		// response.setStatus(3388);
-		// return false;
-		// } else {
-		// return true;
-		// }
-		// }
-		// } else {
-		// return true;
-		// }
-		return true;
+		if (handler.getClass().isAssignableFrom(HandlerMethod.class)) {
+			AuthPower auth = ((HandlerMethod) handler).getMethodAnnotation(AuthPower.class);
+			if (auth == null) {
+				return true;
+			} else {
+				String value = auth.value();
+				if (!pwTool.authUserTypePower(request, value)) {
+					response.setStatus(3388);
+					return false;
+				} else {
+					return true;
+				}
+			}
+		} else {
+			return true;
+		}
 	}
 }

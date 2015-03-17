@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jcos.teaching.core.exmodel.LoginSession;

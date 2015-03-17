@@ -1,6 +1,5 @@
 package com.jcos.teaching.core.service.Impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,7 @@ public class PowerImpl implements PowerService {
 		for (int i = 0; i < len; i++) {
 			pwMap.put(pwlist.get(i).getStrauthname(), pwlist.get(i).getIntauthvalue() == 0 ? false : true);
 		}
+		logger.debug("query pwoers");
 		return pwMap;
 	}
 

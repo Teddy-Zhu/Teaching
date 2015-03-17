@@ -1,7 +1,6 @@
 package com.jcos.teaching.core.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.BookType;
 import com.jcos.teaching.core.model.Power;
 import com.jcos.teaching.core.model.UserType;
@@ -24,8 +22,7 @@ import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
-import com.jcos.teaching.core.util.PowerTool;
-import com.mysql.fabric.xmlrpc.base.Array;
+import com.jcos.teaching.core.util.auth.AuthPower;
 
 @Controller
 @RequestMapping(value = "/TypeOperate")
@@ -47,17 +44,10 @@ public class TypeOperateController {
 	@Inject
 	private PowerService powerService;
 
-	@Inject
-	private PowerTool pwTool;
-
-
 	@RequestMapping(value = "/UpdateUserType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "editusertype")
 	public boolean updateUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "editusertype")) {
-			response.setStatus(3388);
-			return false;
-		}
 		int id = 0, check = 0;
 		String name = "";
 		try {
@@ -81,11 +71,8 @@ public class TypeOperateController {
 
 	@RequestMapping(value = "/InsertUserType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "addusertype")
 	public boolean insertUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "addusertype")) {
-			response.setStatus(3388);
-			return false;
-		}
 		int check = 0;
 		String name = "";
 		try {
@@ -149,11 +136,8 @@ public class TypeOperateController {
 
 	@RequestMapping(value = "/DeleteUserType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "rmusertype")
 	public boolean deleteUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "rmusertype")) {
-			response.setStatus(3388);
-			return false;
-		}
 		int id = 0;
 		try {
 			id = Integer.valueOf(request.getParameter("id"));
@@ -180,11 +164,8 @@ public class TypeOperateController {
 
 	@RequestMapping(value = "/UpdateBookType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "editbooktype")
 	public boolean updateBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "editbooktype")) {
-			response.setStatus(3388);
-			return false;
-		}
 		int id = 0;
 		String name = "";
 		try {
@@ -206,11 +187,8 @@ public class TypeOperateController {
 
 	@RequestMapping(value = "/InsertBookType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "addbooktype")
 	public boolean insertBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "addbooktype")) {
-			response.setStatus(3388);
-			return false;
-		}
 		String name = "";
 		try {
 			name = request.getParameter("name").trim();
@@ -230,11 +208,8 @@ public class TypeOperateController {
 
 	@RequestMapping(value = "/DeleteBookType", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "rmbooktype")
 	public boolean deleteBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "rmbooktype")) {
-			response.setStatus(3388);
-			return false;
-		}
 		int id = 0;
 		try {
 			id = Integer.valueOf(request.getParameter("id"));

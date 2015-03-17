@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.jcos.teaching.core.dao.CourseTypeMapper;
-import com.jcos.teaching.core.model.Book;
 import com.jcos.teaching.core.model.CourseType;
 import com.jcos.teaching.core.service.CourseTypeService;
 

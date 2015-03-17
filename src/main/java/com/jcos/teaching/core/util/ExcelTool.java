@@ -3,10 +3,7 @@ package com.jcos.teaching.core.util;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,15 +19,16 @@ public class ExcelTool {
 	 */
 	private static final Logger logger = Logger.getLogger(ExcelTool.class);
 
-	private static String TemplateOne = "";
+	private String TemplateOne = "";
 
 	private HSSFWorkbook workBook;
 
 	private HSSFSheet workSheet;
 
 	public ExcelTool(HttpServletRequest request) throws IOException {
-		this.TemplateOne = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/teacher.xls";
-		workBook = new HSSFWorkbook(new FileInputStream(new File(this.TemplateOne)));
+		TemplateOne = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/teacher.xls";
+		workBook = new HSSFWorkbook(new FileInputStream(new File(TemplateOne)));
+		logger.debug("initial excel tool");
 	}
 
 	public void setCellText(int row, int column, String value) {
@@ -69,7 +67,7 @@ public class ExcelTool {
 	}
 
 	public ByteArrayOutputStream getXlsStream() {
-		ByteArrayOutputStream output = new ByteArrayOutputStream() ;
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		try {
 			workBook.write(output);
 		} catch (IOException e) {

@@ -22,12 +22,12 @@ import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
 import com.jcos.teaching.core.service.BookPlanService;
-import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
 import com.jcos.teaching.core.util.PowerTool;
 import com.jcos.teaching.core.util.StringUtil;
+import com.jcos.teaching.core.util.auth.AuthPower;
 
 @Controller
 @RequestMapping(value = "/User")
@@ -41,9 +41,6 @@ public class UserController {
 	private UserService userService;
 
 	@Inject
-	private PowerService powerService;
-
-	@Inject
 	private UserTypeService userTypeService;
 
 	@Inject
@@ -51,8 +48,8 @@ public class UserController {
 
 	@Inject
 	private BookPlanService bookPlanService;
-
-	private StringUtil tools = new StringUtil();
+	@Inject
+	private StringUtil tools;
 
 	@Inject
 	private PowerTool pwTool;
@@ -206,11 +203,8 @@ public class UserController {
 
 	@RequestMapping(value = "/GetAllUser", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "queryuser")
 	public Map<String, Object> getAllUser(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "queryuser")) {
-			response.setStatus(3388);
-			return null;
-		}
 		Integer rows = 10, page = 1;
 		try {
 			rows = Integer.valueOf(request.getParameter("rows"));
@@ -235,11 +229,8 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/AuthRegisterAdmin", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "adduser")
 	public boolean registerForAdmin(HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "adduser")) {
-			response.setStatus(3389);
-			return false;
-		}
 		String userName = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
 		int DepartId = 0, MajorId = 0, userTypeId = 0;
 		try {
@@ -303,11 +294,8 @@ public class UserController {
 
 	@RequestMapping(value = "/UpdateUserInfoAdmin", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "edituser")
 	public boolean UpdateUserForAdmin(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "edituser")) {
-			response.setStatus(3389);
-			return false;
-		}
 		String userName = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
 		int DepartId = 0, MajorId = 0, userTypeId = 0;
 		List<User> users = new ArrayList<User>();
@@ -360,11 +348,8 @@ public class UserController {
 
 	@RequestMapping(value = "/RemoveUser", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "rmuser")
 	public Object removeuser(@RequestParam(value = "userId[]") Integer[] userId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (!pwTool.authUserTypePower(request, "rmuser")) {
-			response.setStatus(3388);
-			return false;
-		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (Arrays.asList(userId).contains(loginSession.getLoginUser().getIntid())) {
 			return false;
