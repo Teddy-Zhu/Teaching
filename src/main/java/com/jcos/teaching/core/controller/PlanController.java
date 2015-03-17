@@ -36,6 +36,7 @@ import com.jcos.teaching.core.service.BookPlanService;
 import com.jcos.teaching.core.service.BookPlanStatusService;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
+import com.jcos.teaching.core.util.DownloadTool;
 import com.jcos.teaching.core.util.ExcelTool;
 import com.jcos.teaching.core.util.PowerTool;
 
@@ -61,6 +62,8 @@ public class PlanController {
 	private BookPlanChangeService bookPlanChangeService;
 	@Inject
 	private BookPlanLogService bookPlanLogService;
+	@Inject
+	private DownloadTool dlTool;
 
 	@RequestMapping(value = "/Submit", method = RequestMethod.POST)
 	@ResponseBody
@@ -173,7 +176,7 @@ public class PlanController {
 
 	@RequestMapping(value = "/ImportPerPlan", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<byte[]> importPersonalPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public boolean importPersonalPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
 		// if (!pwTool.authUserTypePower(request, "queryplan")) {
 		// response.setStatus(3388);
 		// return null;
@@ -237,20 +240,8 @@ public class PlanController {
 		}
 
 		ByteArrayOutputStream output = excel.getXlsStream();
-		OutputStream os;
-		try {
-			os = response.getOutputStream();
-			response.reset();
-			response.setHeader("Content-Disposition", "attachment; filename=dict.xls");
-			response.setContentType("application/octet-stream; charset=utf-8");
-			os.write(output.toByteArray());
-			os.flush();
-			os.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return null;
+
+		return dlTool.pushOutputStream(response, output, System.currentTimeMillis() + ".xls");
 
 	}
 

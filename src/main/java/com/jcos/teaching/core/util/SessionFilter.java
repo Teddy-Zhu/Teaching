@@ -1,57 +1,15 @@
 package com.jcos.teaching.core.util;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class SessionFilter implements Filter {
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
-	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession session = httpRequest.getSession();
-
-		String loginUrl = httpRequest.getContextPath() + "/";
-		String url = httpRequest.getRequestURI();
-		String[] allowliste = new String[] { "/", "index" };
-		String[] allowlistc = new String[] { "logout", "/resources/", "/Type/", "/action/", "User/AuthLogout", "/User/AuthUserName", "/User/AuthLogin", "/User/AuthRegister", "AdminMenu" };
-
-		if (session.getAttribute("loginSession") == null) {
-			if (isEqualsStr(url, allowliste) || isContainStr(url, allowlistc)) {
-				chain.doFilter(request, response);
-			} else {
-				if (httpRequest.getHeader("x-requested-with") != null && httpRequest.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
-					httpResponse.setStatus(3389);
-				} else {
-					String str = "<script language='javascript'>sessionout();</script>";
-					response.setContentType("text/html;charset=UTF-8");
-					try {
-						PrintWriter writer = response.getWriter();
-						writer.write(str);
-						writer.flush();
-						writer.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		} else {
-			chain.doFilter(request, response);
-		}
-	}
+public class SessionFilter  implements HandlerInterceptor {
 
 	public boolean isEqualsStr(String origin, String[] allowlist) {
 		for (String list : allowlist) {
@@ -72,8 +30,48 @@ public class SessionFilter implements Filter {
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3) throws Exception {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
+		HttpSession session = request.getSession();
+		String url = request.getRequestURI();
+		String[] allowliste = new String[] { "/", "index" };
+		String[] allowlistc = new String[] { "logout", "/resources/", "/Type/", "/action/", "User/AuthLogout", "/User/AuthUserName", "/User/AuthLogin", "/User/AuthRegister", "AdminMenu" };
+
+		if (session.getAttribute("loginSession") == null) {
+			if (isEqualsStr(url, allowliste) || isContainStr(url, allowlistc)) {
+				return true;
+			} else {
+				if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
+					response.setStatus(3389);
+					return false;
+				} else {
+					String str = "<script language='javascript'>sessionout();</script>";
+					response.setContentType("text/html;charset=UTF-8");
+					try {
+						PrintWriter writer = response.getWriter();
+						writer.write(str);
+						writer.flush();
+						writer.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return false;
+				}
+			}
+		} else {
+			return true;
+		}
 	}
 
 }
