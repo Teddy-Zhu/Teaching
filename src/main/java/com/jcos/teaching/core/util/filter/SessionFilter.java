@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.util;
+package com.jcos.teaching.core.util.filter;
 
 import java.io.PrintWriter;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class SessionFilter  implements HandlerInterceptor {
+public class SessionFilter implements HandlerInterceptor {
 
 	public boolean isEqualsStr(String origin, String[] allowlist) {
 		for (String list : allowlist) {
@@ -32,13 +32,13 @@ public class SessionFilter  implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

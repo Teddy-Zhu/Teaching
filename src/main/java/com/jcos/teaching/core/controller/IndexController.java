@@ -24,6 +24,9 @@ import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
 import com.jcos.teaching.core.util.PersonalConfigTool;
+import com.jcos.teaching.core.util.auth.AuthPower;
+import com.jcos.teaching.core.util.auth.SetPower;
+import com.jcos.teaching.core.util.auth.SetSettings;
 
 @Controller
 public class IndexController {
@@ -35,8 +38,6 @@ public class IndexController {
 	private PowerService powerService;
 	@Inject
 	private UserService userService;
-	@Inject
-	private PersonalConfigTool pcTool;
 
 	/**
 	 * 
@@ -61,15 +62,9 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
+	@SetSettings(value = { "openAnimation" })
+	@SetPower(value = "AdminMenu")
 	public String adminmenu(HttpServletRequest request, Model model) {
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession != null && !loginSession.getLoginUser().getUsername().trim().equals("")) {
-			pcTool.setModelPConfig(request, model, Arrays.asList("openAnimation"));
-			setModel(request, model, "AdminMenu");
-			request.getSession().setAttribute("loginUser", loginSession.getLoginUser().getUsername());
-		} else {
-			request.getSession().setAttribute("loginSession", null);
-		}
 		return "AdminMenu";
 	}
 
@@ -80,65 +75,87 @@ public class IndexController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/ajax/{html}", method = RequestMethod.GET)
-	public String adminmenu(@PathVariable String html, HttpServletRequest request, Model model, HttpServletResponse response) {
+	@RequestMapping(value = "/ajax/dashboard", method = RequestMethod.GET)
+	@SetPower(value = "dashboard")
+	public String menu1(HttpServletRequest request, Model model, HttpServletResponse response) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		if (loginSession == null) {
-			response.setStatus(3389);
-			return "ajax/index";
-		}
-		switch (html) {
-		case "dashboard": {
-			model.addAttribute("userEmail", loginSession.getLoginUser().getStrmail());
-			model.addAttribute("userPhone", loginSession.getLoginUser().getStrphone());
-			model.addAttribute("userRegTime", loginSession.getLoginUser().getDateregtime().toString());
-			model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
-			break;
-		}
-		case "personinfo_manage": {
-			User loginUser = loginSession.getLoginUser();
-			User user = userService.selectUserById(loginUser.getIntid());
-			loginSession.setLoginUser(user);
-			request.getSession().setAttribute("loginSession", loginSession);
-			model.addAttribute("user", user);
-			break;
-		}
-		case "book_manage": {
-			pcTool.setModelPConfig(request, model, Arrays.asList("bookgridsize"));
-		}
-		case "userinfo_manage": {
-			pcTool.setModelPConfig(request, model, Arrays.asList("usergridsize"));
-			break;
-		}
-		case "supplier_manage": {
-			pcTool.setModelPConfig(request, model, Arrays.asList("suppliergridsize"));
-			break;
-		}
-		case "department_manage": {
-			break;
-		}
-		case "type_manage": {
-			break;
-		}
-		case "access_manage": {
-			break;
-		}
-		case "plan_submit": {
-			break;
-		}
-		case "plan_query": {
-			pcTool.setModelPConfig(request, model, Arrays.asList("plangridsize"));
-			break;
-		}
-		case "personal_setting": {
-			pcTool.setModelPConfig(request, model, Arrays.asList("openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize"));
-		}
-		default: {
-			break;
-		}
-		}
-		setModel(request, model, html);
-		return "ajax/" + html;
+		model.addAttribute("loginUser", loginSession.getLoginUser().getUsername());
+		model.addAttribute("userEmail", loginSession.getLoginUser().getStrmail());
+		model.addAttribute("userPhone", loginSession.getLoginUser().getStrphone());
+		model.addAttribute("userRegTime", loginSession.getLoginUser().getDateregtime().toString());
+		model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
+		return "ajax/dashboard";
+	}
+
+	@RequestMapping(value = "/ajax/personinfo_manage", method = RequestMethod.GET)
+	@SetPower(value = "personinfo_manage")
+	public String menu2(HttpServletRequest request, Model model, HttpServletResponse response) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		User loginUser = loginSession.getLoginUser();
+		User user = userService.selectUserById(loginUser.getIntid());
+		loginSession.setLoginUser(user);
+		request.getSession().setAttribute("loginSession", loginSession);
+		model.addAttribute("user", user);
+		return "/ajax/personinfo_manage";
+	}
+
+	@RequestMapping(value = "/ajax/book_manage", method = RequestMethod.GET)
+	@SetSettings(value = { "bookgridsize" })
+	@SetPower(value = "book_manage")
+	public String menu3(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/book_manage";
+	}
+
+	@RequestMapping(value = "/ajax/userinfo_manage", method = RequestMethod.GET)
+	@SetSettings(value = { "usergridsize" })
+	@SetPower(value = "userinfo_manage")
+	public String menu4(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/userinfo_manage";
+	}
+
+	@RequestMapping(value = "/ajax/supplier_manage", method = RequestMethod.GET)
+	@SetSettings(value = { "suppliergridsize" })
+	@SetPower(value = "supplier_manage")
+	public String menu5(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/supplier_manage";
+	}
+
+	@RequestMapping(value = "/ajax/department_manage", method = RequestMethod.GET)
+	@SetPower(value = "department_manage")
+	public String menu6(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/department_manage";
+	}
+
+	@RequestMapping(value = "/ajax/type_manage", method = RequestMethod.GET)
+	@SetPower(value = "type_manage")
+	public String menu7(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/type_manage";
+	}
+
+	@RequestMapping(value = "/ajax/access_manage", method = RequestMethod.GET)
+	@SetPower(value = "access_manage")
+	public String menu8(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/access_manage";
+	}
+
+	@RequestMapping(value = "/ajax/plan_submit", method = RequestMethod.GET)
+	@SetPower(value = "plan_submit")
+	public String menu9(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/plan_submit";
+	}
+
+	@RequestMapping(value = "/ajax/plan_query", method = RequestMethod.GET)
+	@SetSettings(value = { "plangridsize" })
+	@SetPower(value = "plan_query")
+	public String menu10(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/plan_query";
+	}
+
+	@RequestMapping(value = "/ajax/personal_setting", method = RequestMethod.GET)
+	@SetSettings(value = { "openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize" })
+	@SetPower(value = "personal_setting")
+	public String menu11(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/personal_setting";
 	}
 
 	@RequestMapping(value = "/action/GetVersions", method = RequestMethod.POST)

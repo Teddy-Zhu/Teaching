@@ -49,13 +49,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 			<value>4096</value>
 		</property>
 	</bean>
-
 	<mvc:interceptors>
-
-		<mvc:interceptor>
-			<mvc:mapping path="/*" />
-			<bean class="com.jcos.teaching.core.util.SessionFilter"></bean>
-		</mvc:interceptor>
+		<bean class="com.jcos.teaching.core.util.filter.SessionFilter" />
+		<bean class="com.jcos.teaching.core.util.filter.AuthenticationFilter"></bean>
 	</mvc:interceptors>
-
 </beans>
