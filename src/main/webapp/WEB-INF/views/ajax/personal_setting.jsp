@@ -9,6 +9,10 @@
 	margin-bottom: 15px;
 }
 
+.input-group.bootstrap-touchspin {
+	width: 40%;
+}
+
 .panel-title {
 	cursor: pointer
 }
@@ -21,8 +25,17 @@
 	margin-top: 1%;
 }
 
+.col-xs-3.div-mtop {
+	height: 30px;
+}
+
 .inlineblock div label {
+	text-align: center;
 	margin-top: 1.5%;
+}
+
+.inlineblock div input {
+	width: 40%;
 }
 
 .alert {
@@ -64,33 +77,33 @@
 						Personal Settings <small>detail for setting</small>
 					</h1>
 				</div>
-				<div class="inlineblock" id="inlineblock">
+				<div class="inlineblock col-xs-12" id="inlineblock">
 					<c:if test="${querybook eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-5">Books DataGrid Size:</label><input id="BookGridSize" class="settingForm form-control col-xs-7" value="${bookgridsize}" />
+							<label class="col-xs-4">Books DataGrid Size:</label><input id="BookGridSize" class="settingForm form-control col-xs-7" value="${bookgridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${queryuser eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-5">Users DataGrid Size:</label><input id="UserGridSize" class="settingForm form-control col-xs-7" value="${usergridsize}" />
+							<label class="col-xs-4">Users DataGrid Size:</label><input id="UserGridSize" class="settingForm form-control col-xs-7" value="${usergridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${querysupplier eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-5">Suppliers DataGrid Size:</label><input id="SupplierGridSize" class="settingForm form-control col-xs-7" value="${suppliergridsize}" />
+							<label class="col-xs-4">Suppliers DataGrid Size:</label><input id="SupplierGridSize" class="settingForm form-control col-xs-7" value="${suppliergridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${queryplan eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-5">Plans DataGrid Size:</label><input id="PlanGridSize" class="settingForm form-control col-xs-7" value="${plangridsize}" />
+							<label class="col-xs-4">Plans DataGrid Size:</label><input id="PlanGridSize" class="settingForm form-control col-xs-7" value="${plangridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
-						<label class="col-xs-5">Animation Effect:</label><input id="AnimationToggle" class="settingForm" type="checkbox" data-open="${openAnimation}" />
+						<label class="col-xs-4">Animation Effect:</label><input id="AnimationToggle" class="settingForm" type="checkbox" data-open="${openAnimation}" />
 					</div>
 					<div class="col-xs-3 div-mtop"></div>
 				</div>
@@ -99,7 +112,7 @@
 					<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">Reset</button>
 				</div>
 				<div class="col-xs-4" style="height: 50px;"></div>
-				<div class="panel-footer" style="margin-top: 10px; width: 103.2%; margin-left: -1.6%;">
+				<div class="panel-footer row">
 					<h5>Change your personal settings.</h5>
 				</div>
 			</div>
