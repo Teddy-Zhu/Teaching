@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.util.auth;
+package com.jcos.teaching.core.util.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Inherited
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SetPower {
+public @interface AuthPower {
 	String value() default "";
 }

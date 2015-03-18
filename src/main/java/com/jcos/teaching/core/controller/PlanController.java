@@ -34,7 +34,7 @@ import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
 import com.jcos.teaching.core.util.DownloadTool;
 import com.jcos.teaching.core.util.ExcelTool;
-import com.jcos.teaching.core.util.auth.AuthPower;
+import com.jcos.teaching.core.util.annotation.AuthPower;
 
 @Controller
 @RequestMapping(value = "/Plan")

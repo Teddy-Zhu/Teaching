@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.util.auth;
+package com.jcos.teaching.core.util.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,9 +9,8 @@ import java.lang.annotation.Target;
 
 @Documented
 @Inherited
-@Target(ElementType.LOCAL_VARIABLE)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SetAttributes {
+public @interface SetSettings {
 	String[] value() default {};
-	String[] name() default {};
 }

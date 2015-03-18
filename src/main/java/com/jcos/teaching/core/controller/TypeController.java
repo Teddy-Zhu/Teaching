@@ -21,7 +21,7 @@ import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.SupplierService;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserTypeService;
-import com.jcos.teaching.core.util.auth.AuthPower;
+import com.jcos.teaching.core.util.annotation.AuthPower;
 
 @Controller
 @RequestMapping(value = "/Type")

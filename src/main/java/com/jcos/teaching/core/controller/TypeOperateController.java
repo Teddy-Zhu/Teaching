@@ -22,7 +22,7 @@ import com.jcos.teaching.core.service.BookTypeService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.UserTypeService;
-import com.jcos.teaching.core.util.auth.AuthPower;
+import com.jcos.teaching.core.util.annotation.AuthPower;
 
 @Controller
 @RequestMapping(value = "/TypeOperate")

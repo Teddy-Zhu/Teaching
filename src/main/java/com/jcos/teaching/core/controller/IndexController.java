@@ -21,8 +21,8 @@ import com.jcos.teaching.core.model.VersionLog;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
-import com.jcos.teaching.core.util.auth.SetPower;
-import com.jcos.teaching.core.util.auth.SetSettings;
+import com.jcos.teaching.core.util.annotation.SetPower;
+import com.jcos.teaching.core.util.annotation.SetSettings;
 
 @Controller
 public class IndexController {

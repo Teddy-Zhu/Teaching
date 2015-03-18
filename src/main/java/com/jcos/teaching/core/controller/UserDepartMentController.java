@@ -17,7 +17,7 @@ import com.jcos.teaching.core.model.UserDepartMent;
 import com.jcos.teaching.core.service.UserDepartMentService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.util.PowerTool;
-import com.jcos.teaching.core.util.auth.AuthPower;
+import com.jcos.teaching.core.util.annotation.AuthPower;
 
 @Controller
 @RequestMapping(value = "/DepartMent")

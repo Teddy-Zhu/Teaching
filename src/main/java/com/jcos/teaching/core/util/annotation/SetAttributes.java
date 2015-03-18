@@ -1,4 +1,4 @@
-package com.jcos.teaching.core.util.auth;
+package com.jcos.teaching.core.util.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,8 +9,9 @@ import java.lang.annotation.Target;
 
 @Documented
 @Inherited
-@Target(ElementType.METHOD)
+@Target(ElementType.LOCAL_VARIABLE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AuthPower {
-	String value() default "";
+public @interface SetAttributes {
+	String[] value() default {};
+	String[] name() default {};
 }

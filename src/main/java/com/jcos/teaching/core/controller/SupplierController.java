@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jcos.teaching.core.model.Supplier;
 import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.SupplierService;
-import com.jcos.teaching.core.util.auth.AuthPower;
+import com.jcos.teaching.core.util.annotation.AuthPower;
 
 @Controller
 @RequestMapping(value = "/Supplier")
