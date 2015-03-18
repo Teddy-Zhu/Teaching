@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-15 13:39:06
+Date: 2015-03-18 12:37:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -90,12 +90,14 @@ CREATE TABLE `bookplanchange` (
   `strChangeReason` varchar(255) COLLATE utf8_bin NOT NULL,
   `dateChangeTime` datetime NOT NULL,
   PRIMARY KEY (`intBookChangeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanchange
 -- ----------------------------
 INSERT INTO `bookplanchange` VALUES ('1', '1', '2', '10', '1', 'none', '2015-03-15 13:12:40');
+INSERT INTO `bookplanchange` VALUES ('2', '1', '3', '0', '3', 'none', '2015-03-18 12:32:33');
+INSERT INTO `bookplanchange` VALUES ('3', '1', '4', '0', '3', 'none', '2015-03-18 12:37:09');
 
 -- ----------------------------
 -- Table structure for bookplanlog
@@ -108,13 +110,15 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
 -- ----------------------------
 INSERT INTO `bookplanlog` VALUES ('1', '1', '3', '1', '2015-03-15 13:12:22');
 INSERT INTO `bookplanlog` VALUES ('2', '1', '6', '1', '2015-03-15 13:12:40');
+INSERT INTO `bookplanlog` VALUES ('3', '1', '6', '1', '2015-03-18 12:32:33');
+INSERT INTO `bookplanlog` VALUES ('4', '1', '6', '1', '2015-03-18 12:37:09');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -547,8 +551,9 @@ CREATE TABLE `user` (
   `intUserMajor` int(11) NOT NULL,
   `intUserDepartment` int(11) NOT NULL,
   `strStuNum` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '学号或教师号',
-  `strPhone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `strPhone` varchar(255) COLLATE utf8_bin NOT NULL,
   `strMail` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strPic` varchar(255) COLLATE utf8_bin NOT NULL,
   `dateRegTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -556,16 +561,16 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', '2015-03-06 14:52:27');
-INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', '2015-02-28 20:44:02');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', '2015-02-28 20:44:52');
-INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', '2015-02-28 20:56:49');
-INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', '2015-02-28 20:56:01');
-INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '2342343', '1111178888', 'qqq@11.com', '2015-02-28 20:56:39');
-INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', '2015-02-28 20:56:23');
-INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', '2015-02-28 20:56:23');
-INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', '2015-02-28 20:57:00');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-06 14:52:27');
+INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-02-28 20:44:52');
+INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');
+INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', 'avatar.jpg', '2015-02-28 20:56:01');
+INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '2342343', '1111178888', 'qqq@11.com', 'avatar.jpg', '2015-02-28 20:56:39');
+INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', 'avatar.jpg', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', 'avatar.jpg', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', 'avatar.jpg', '2015-02-28 20:57:00');
+INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', 'avatar.jpg', '2015-02-28 20:56:23');
 
 -- ----------------------------
 -- Table structure for userdepartment
@@ -661,7 +666,7 @@ INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `AddOrUpdatePersonalConfig`;
 DELIMITER ;;
-CREATE PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(11),IN `configValue` int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(11),IN `configValue` int(11))
 BEGIN
 	DECLARE i int(11);
 	SET i = -1;

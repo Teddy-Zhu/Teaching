@@ -62,14 +62,14 @@
 								</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 										<div class="avatar">
-											<img src="resources/img/avatar.jpg" class="img-circle" alt="avatar" />
+											<img src="${user.strpic}" class="img-circle" alt="avatar" />
 										</div> <i class="fa fa-angle-down pull-right"></i>
 										<div class="user-mini pull-right">
-											<span class="welcome">Welcome,</span> <span>${loginUser}</span>
+											<span class="welcome">Welcome,</span> <span>${user.username}</span>
 										</div>
 								</a>
 									<ul class="dropdown-menu">
-										<li><a class="ajax-link" href="ajax/personinfo_manage"> <i class="fa fa-user"></i> <span>Profile</span>
+										<li><a href="javascript:LoadAjaxContent('ajax/personinfo_manage')"> <i class="fa fa-user"></i> <span>Profile</span>
 										</a></li>
 										<li><a href="#"> <i class="fa fa-cog"></i> <span>Settings</span>
 										</a></li>

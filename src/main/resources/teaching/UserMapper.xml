@@ -12,11 +12,12 @@
 		<result column="strStuNum" property="strstunum" jdbcType="VARCHAR" />
 		<result column="strPhone" property="strphone" jdbcType="VARCHAR" />
 		<result column="strMail" property="strmail" jdbcType="VARCHAR" />
+		<result column="strPic" property="strpic" jdbcType="VARCHAR" />
 		<result column="dateRegTime" property="dateregtime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		intId, username, password, strName, intTypeId, intUserMajor, intUserDepartment, strStuNum,
-		strPhone, strMail, dateRegTime
+		strPhone, strMail, strPic, dateRegTime
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
@@ -32,12 +33,13 @@
 		insert into user (intId, username, password,
 		strName, intTypeId, intUserMajor,
 		intUserDepartment, strStuNum, strPhone,
-		strMail, dateRegTime)
-		values
-		(#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		strMail, strPic, dateRegTime
+		)
+		values (#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
 		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intusermajor,jdbcType=INTEGER},
 		#{intuserdepartment,jdbcType=INTEGER}, #{strstunum,jdbcType=VARCHAR}, #{strphone,jdbcType=VARCHAR},
-		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
+		#{strmail,jdbcType=VARCHAR}, #{strpic,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP}
+		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.User">
 		insert into user
@@ -71,6 +73,9 @@
 			</if>
 			<if test="strmail != null">
 				strMail,
+			</if>
+			<if test="strpic != null">
+				strPic,
 			</if>
 			<if test="dateregtime != null">
 				dateRegTime,
@@ -107,6 +112,9 @@
 			<if test="strmail != null">
 				#{strmail,jdbcType=VARCHAR},
 			</if>
+			<if test="strpic != null">
+				#{strpic,jdbcType=VARCHAR},
+			</if>
 			<if test="dateregtime != null">
 				#{dateregtime,jdbcType=TIMESTAMP},
 			</if>
@@ -142,6 +150,9 @@
 			<if test="strmail != null">
 				strMail = #{strmail,jdbcType=VARCHAR},
 			</if>
+			<if test="strpic != null">
+				strPic = #{strpic,jdbcType=VARCHAR},
+			</if>
 			<if test="dateregtime != null">
 				dateRegTime = #{dateregtime,jdbcType=TIMESTAMP},
 			</if>
@@ -153,19 +164,16 @@
 		set username = #{username,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
 		strName = #{strname,jdbcType=VARCHAR},
-		intTypeId =
-		#{inttypeid,jdbcType=INTEGER},
+		intTypeId = #{inttypeid,jdbcType=INTEGER},
 		intUserMajor = #{intusermajor,jdbcType=INTEGER},
-		intUserDepartment =
-		#{intuserdepartment,jdbcType=INTEGER},
+		intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
 		strStuNum = #{strstunum,jdbcType=VARCHAR},
-		strPhone =
-		#{strphone,jdbcType=VARCHAR},
+		strPhone = #{strphone,jdbcType=VARCHAR},
 		strMail = #{strmail,jdbcType=VARCHAR},
+		strPic = #{strpic,jdbcType=VARCHAR},
 		dateRegTime = #{dateregtime,jdbcType=TIMESTAMP}
 		where intId = #{intid,jdbcType=INTEGER}
 	</update>
-
 	<select id="selectUserSelective" resultMap="BaseResultMap" parameterType="User">
 		select
 		<include refid="Base_Column_List" />
@@ -201,6 +209,9 @@
 			<if test="strmail != null">
 				strMail= #{strmail,jdbcType=VARCHAR} AND
 			</if>
+			<if test="strpic != null">
+				strPic = #{strpic,jdbcType=VARCHAR},
+			</if>
 			<if test="dateregtime != null">
 				dateRegTime = #{dateregtime,jdbcType=TIMESTAMP} AND
 			</if>
@@ -216,7 +227,7 @@
 		insert into user ( username, password,
 		strName, intTypeId,intUserMajor,intUserDepartment,
 		strStuNum, strPhone,
-		strMail, dateRegTime)
+		strMail,strPic,dateRegTime)
 		values (
 		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
@@ -224,7 +235,7 @@
 		#{intusermajor,jdbcType=INTEGER}, #{intuserdepartment,jdbcType=INTEGER},
 		#{strstunum,jdbcType=VARCHAR},
 		#{strphone,jdbcType=VARCHAR},
-		#{strmail,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP})
+		#{strmail,jdbcType=VARCHAR}, #{strpic,jdbcType=VARCHAR},#{dateregtime,jdbcType=TIMESTAMP})
 	</insert>
 
 	<resultMap id="UserTypeExtendMap" type="User" extends="BaseResultMap">
@@ -256,7 +267,7 @@
 	<select id="GetAllUser" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
 		select
 		intId, username, strName, intTypeId, intUserMajor,intUserDepartment, strStuNum, strPhone,
-		strMail, dateRegTime
+		strMail, strPic,dateRegTime
 		from user
 		order by
 		intId asc

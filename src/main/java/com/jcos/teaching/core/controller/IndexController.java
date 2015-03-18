@@ -61,6 +61,10 @@ public class IndexController {
 	@SetSettings(value = { "openAnimation" })
 	@SetPower(value = "AdminMenu")
 	public String adminmenu(HttpServletRequest request, Model model) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (loginSession != null) {
+			model.addAttribute("user", loginSession.getLoginUser());
+		}
 		return "AdminMenu";
 	}
 
