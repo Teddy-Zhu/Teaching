@@ -47,7 +47,7 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Dashboard</a></li>
+			<li><a href="#">Dashboard</a></li>
 			<li><a href="#">Personal Setting</a></li>
 			<li><a href="#">Setting Manage</a></li>
 		</ol>
@@ -80,30 +80,30 @@
 				<div class="inlineblock col-xs-12" id="inlineblock">
 					<c:if test="${querybook eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-4">Books DataGrid Size:</label><input id="BookGridSize" class="settingForm form-control col-xs-7" value="${bookgridsize}" />
+							<label class="col-xs-5">Books DataGrid Size:</label><input id="BookGridSize" class="settingForm form-control col-xs-7" value="${bookgridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${queryuser eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-4">Users DataGrid Size:</label><input id="UserGridSize" class="settingForm form-control col-xs-7" value="${usergridsize}" />
+							<label class="col-xs-5">Users DataGrid Size:</label><input id="UserGridSize" class="settingForm form-control col-xs-7" value="${usergridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${querysupplier eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-4">Suppliers DataGrid Size:</label><input id="SupplierGridSize" class="settingForm form-control col-xs-7" value="${suppliergridsize}" />
+							<label class="col-xs-5">Suppliers DataGrid Size:</label><input id="SupplierGridSize" class="settingForm form-control col-xs-7" value="${suppliergridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<c:if test="${queryplan eq true}">
 						<div class="col-xs-7 col-xs-offset-1 div-mtop">
-							<label class="col-xs-4">Plans DataGrid Size:</label><input id="PlanGridSize" class="settingForm form-control col-xs-7" value="${plangridsize}" />
+							<label class="col-xs-5">Plans DataGrid Size:</label><input id="PlanGridSize" class="settingForm form-control col-xs-7" value="${plangridsize}" />
 						</div>
 						<div class="col-xs-3 div-mtop"></div>
 					</c:if>
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
-						<label class="col-xs-4">Animation Effect:</label><input id="AnimationToggle" class="settingForm" type="checkbox" data-open="${openAnimation}" />
+						<label class="col-xs-5">Animation Effect:</label><input id="AnimationToggle" class="settingForm" type="checkbox" data-open="${openAnimation}" />
 					</div>
 					<div class="col-xs-3 div-mtop"></div>
 				</div>

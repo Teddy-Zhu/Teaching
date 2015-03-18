@@ -55,7 +55,7 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Dashboard</a></li>
+			<li><a href="#">Dashboard</a></li>
 			<li><a href="#">Books Manage</a></li>
 			<li><a href="#">Book Query</a></li>
 		</ol>

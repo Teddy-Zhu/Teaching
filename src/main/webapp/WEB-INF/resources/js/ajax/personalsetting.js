@@ -7,7 +7,7 @@ $(function() {
 		step : 1
 	});
 
-	$('#AnimationToggle').bootstrapSwitch();
+	$('#AnimationToggle').bootstrapSwitch('size','small');
 
 	$('#AnimationToggle').bootstrapSwitch('onSwitchChange', function(e, data) {
 		$('#AnimationToggle').val(data ? 'on' : 'off');

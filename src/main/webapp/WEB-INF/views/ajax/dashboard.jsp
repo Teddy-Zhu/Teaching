@@ -5,7 +5,7 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="/teaching">Home</a></li>
+			<li><a href="#">Home</a></li>
 			<li><a href="#">Dashboard</a></li>
 		</ol>
 		<div id="social" class="pull-right">

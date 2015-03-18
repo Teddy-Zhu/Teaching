@@ -37,7 +37,7 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Dashboard</a></li>
+			<li><a href="#">Dashboard</a></li>
 			<li><a href="#">Personal Detail</a></li>
 			<li><a href="#">Info Manage</a></li>
 		</ol>
