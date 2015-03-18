@@ -660,7 +660,7 @@ INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提
 INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查询<br>修复多出数据处理BUG<br>改善后台逻辑,优化web性能<br>优化js,css,移除不必要的css', '2015-03-12 16:59:31');
 INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', '2015-03-13 13:41:45');
 INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变更', '2015-03-13 16:21:35');
-INSERT INTO `versionlog` VALUES ('20', '0020', '00', '1', '新增用户头像上传与变更<br>变更权限控制,session控制方式<br>缩减无用html,js,java代码', '2015-03-18 21:55:35');
+INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上传与变更<br>变更权限控制,session控制方式<br>缩减无用html,js,java代码', '2015-03-18 21:55:35');
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
 -- ----------------------------
