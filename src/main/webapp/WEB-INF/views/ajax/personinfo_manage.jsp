@@ -148,6 +148,8 @@
 </div>
 <script type="text/javascript">
 	$(function() {
-		loadJs("resources/plugins/jqueryajaxupload/ajaxfileupload.min.js").loadJs("resources/js/ajax/personalinfo.js")
+		loadJs("resources/plugins/jqueryajaxupload/ajaxfileupload.min.js").done(function() {
+			$.getScript("resources/js/ajax/personalinfo.js");
+		});
 	})
 </script>
