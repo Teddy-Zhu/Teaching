@@ -150,7 +150,7 @@
 				</ul>
 			</div>
 			<!--Start Content-->
-			<div id="content" class="col-xs-12 col-sm-10">
+			<div id="content" class="col-xs-12 col-sm-10" style="overflow: auto;">
 				<div id="about">
 					<div class="about-inner"></div>
 				</div>

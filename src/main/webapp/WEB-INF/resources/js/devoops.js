@@ -579,7 +579,7 @@ $(function() {
 			e.preventDefault();
 		}
 	});
-	var height = window.innerHeight - 50;
+	var height = $(window).height() - 50;
 	$('#main').css('min-height', height).on('click', '.expand-link', function(e) {
 		var body = $('body');
 		e.preventDefault();
@@ -646,6 +646,8 @@ $(function() {
 			LoadAjaxContent(ajax_url);
 		}
 	});
+	
+	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
 	NProgress.configure({
 		parent : '#headernavbar',
 		ease : 'ease',
