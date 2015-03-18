@@ -22,27 +22,8 @@ span.passwordc {
 	margin-top: 10px;
 }
 
-.input-span {
-	width: 100px;
-	text-align: left;
-	width: 100px;
-}
-
 .alert {
 	margin-bottom: 0px;
-}
-
-.row div .input-group {
-	margin-bottom: 12px;
-	width: 100%;
-}
-
-.row div .input-group input {
-	width: 100% !important;
-}
-
-.row div .input-group select {
-	width: 100% !important;
 }
 
 .panel.panel-default {
@@ -50,18 +31,42 @@ span.passwordc {
 	-moz-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
 	box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
 }
+
+#registerModal div div div div {
+	margin-bottom: 2%;
+}
+
+#loginModal div div div div {
+	margin-bottom: 2%;
+}
+
+#registerModal div div div div .input-group {
+	width: 100%;
+}
+
+#loginModal div div div div .input-group {
+	width: 100%;
+}
+
+.input-span {
+	width: 100px;
+	text-align: left;
+	width: 100px;
+}
+
+after-span {
+	width: 70%;
+}
 </style>
 <body style="background-color: #353535 ! important">
 	<div class="container">
-		<div class="col-xs-12" style="height: 170px;">
-			<div class="col-xs-3"></div>
-			<div class="col-xs-6">
-				<h1 class="text-center" style="color: white; margin-top: 40px;">
+		<div class="col-xs-12 text-center" style="height: 170px;">
+			<div class="col-xs-12">
+				<h1 style="color: white; margin-top: 40px;">
 					<strong>Teaching ManageMent System</strong>
 				</h1>
-				<h5 class="text-center" style="color: white; margin-top: 25px;">It's a System For Teaching</h5>
+				<h5 style="color: white; margin-top: 25px;">It's a System For Teaching</h5>
 			</div>
-			<div class="col-xs-3"></div>
 			<div class="col-xs-12" style="text-align: center">
 				<div class="preloader" style="display: none;">
 					<img src="resources/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
@@ -69,151 +74,122 @@ span.passwordc {
 			</div>
 		</div>
 
-		<div id="loginModal" class="col-xs-12 am-animation-slide-top" style="display: block">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-8">
-				<div class="col-xs-12">
-					<div class="panel panel-default">
-						<div class="panel-heading text-center">Login Your Account and Continue!</div>
-						<div class="panel-body text-center">
-							<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
-							<div class="input-group col-xs-7 col-sm-offset-2">
+		<div id="loginModal" class="text-center col-xs-12 am-animation-slide-top" style="display: block">
+			<div class="col-xs-12 text-center">
+				<div class="panel panel-default center-block" style="width: 50%;">
+					<div class="panel-heading text-center">Login Your Account and Continue!</div>
+					<div class="panel-body text-center">
+						<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
+						<div class="col-xs-8 col-sm-offset-2">
+							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user">User</span></span> <input id="loginUserName" type="text" class="form-control" value="Admin" placeholder="Username">
 							</div>
-
-							<div class="input-group col-xs-7 col-sm-offset-2">
+						</div>
+						<div class="col-xs-8 col-sm-offset-2">
+							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="loginPassWord" type="password" value="a" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
-
-							<div class="input-group col-xs-7 col-sm-offset-2">
+						</div>
+						<div class="col-xs-8 col-sm-offset-2">
+							<div class="input-group">
 								<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Login</button>
-								<div class="input-group col-xs-9"></div>
 								<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
-
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-2"></div>
 		</div>
 		<div id="registerModal" class="col-xs-12 am-animation-slide-top" style="display: none;">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-8">
-				<div class="col-xs-12">
-					<div class="panel panel-default">
-						<div class="panel-heading text-center">Register Your Account and Continue!</div>
-						<div class="panel-body text-center">
-							<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
-							<div class="row" style="margin-bottom: 10px;">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">UserType</span></span><select id="UserType" class="form-control"></select>
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+			<div class="col-xs-12 text-center">
+				<div class="panel panel-default center-block" style="width: 50%;">
+					<div class="panel-heading text-center">Register Your Account and Continue!</div>
+					<div class="panel-body text-center">
+						<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
+						<div class="col-xs-8 col-sm-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">UserType</span></span><select id="UserType" class="after-span form-control"></select>
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user"> User</span></span> <input id="UserName" type="text" class="form-control" placeholder="Username">
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user"> User</span></span> <input id="UserName" type="text" class="after-span form-control" placeholder="Username">
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="PassWord" type="password" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="PassWord" type="password" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Re-Pass</span></span> <input id="RePassWord" type="password" class="form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Re-Pass</span></span> <input id="RePassWord" type="password" class="form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="form-control"></select>
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="after-span form-control"></select>
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="form-control"></select>
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="after-span form-control"></select>
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="form-control" placeholder="Your Name">
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="after-span form-control" placeholder="Your Name">
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Number</span></span> <input id="StudentId" type="text" class="form-control" placeholder="Your Student Id">
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Number</span></span> <input id="StudentId" type="text" class="after-span form-control" placeholder="Your Student Id">
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope"> Email</span></span> <input id="Email" type="text" class="form-control" placeholder="Email">
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope"> Email</span></span> <input id="Email" type="text" class="after-span form-control" placeholder="Email">
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Phone</span></span> <input id="Phone" type="text" class="form-control" placeholder="Your Phone Number">
-									</div>
-								</div>
-								<div class="col-xs-4"></div>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Phone</span></span> <input id="Phone" type="text" class="after-span form-control" placeholder="Your Phone Number">
 							</div>
-							<div class="row">
-								<div class="col-xs-6 col-xs-offset-1">
-									<div class="input-group">
-										<button id="registerButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Register</button>
-										<button id="resetRegButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
-									</div>
-								</div>
+						</div>
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="input-group">
+								<button id="registerButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Register</button>
+								<button id="resetRegButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-2"></div>
 		</div>
-		<div class="col-xs-12">
-			<div class="col-xs-2"></div>
-			<div class="col-xs-8">
-				<h5 class="text-center" style="color: white; margin-top: 10px;">Designed By ZhuXi Powered By Bootstrap And Others OpenCode.</h5>
-				<h5 class="text-center" style="color: white; margin-top: 10px;">
-					<strong>Copy Right©2014-${year} JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
-							Version :${version}</strong></a>
-				</h5>
-				<div style="text-align: center;">
-					<div style="color: white; display: inline-block;">Pic</div>
-					<input id="toggleBackGround" type="checkbox" />
-				</div>
+	</div>
+	<div class="col-xs-12">
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8">
+			<h5 class="text-center" style="color: white; margin-top: 10px;">Designed By ZhuXi Powered By Bootstrap And Others OpenCode.</h5>
+			<h5 class="text-center" style="color: white; margin-top: 10px;">
+				<strong>Copy Right©2014-${year} JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
+						Version :${version}</strong></a>
+			</h5>
+			<div style="text-align: center;">
+				<div style="color: white; display: inline-block;">Pic</div>
+				<input id="toggleBackGround" type="checkbox" />
 			</div>
-			<div class="col-xs-2"></div>
 		</div>
+		<div class="col-xs-2"></div>
+	</div>
 	</div>
 	<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>

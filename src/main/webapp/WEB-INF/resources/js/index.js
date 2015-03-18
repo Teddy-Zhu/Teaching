@@ -10,13 +10,12 @@ function p(s) {
 var error = '<div class="alert alert-danger" role="alert" style="display:none;line-height: 0px;width: 80%;height: 1px;">{errormsg}</div>'
 var hander = {
 	action : {
-		FormSetTimer : function(domId) {
+		SetFailed : function(domId) {
 			var Opdom = $('#' + domId).parent();
 			Opdom.removeClass('has-success');
 			Opdom.removeClass('has-error');
 			Opdom.addClass('has-error');
 			Opdom.addClass('am-animation-shake');
-			Opdom.parent().next().html(error.replace(/{errormsg}/g, "Parameter Error!"));
 			setTimeout(returntimeer(domId), 1000);
 		},
 		SetSucccess : function(domId) {
@@ -28,11 +27,7 @@ var hander = {
 	}
 }
 function delShakeClass(domId) {
-	if (domId == "UserType") {
-		$('#' + domId).removeClass('am-animation-shake');
-	} else {
 		$('#' + domId).parent().removeClass('am-animation-shake');
-	}
 }
 function returntimeer(domId) {
 	return function() {
@@ -114,14 +109,14 @@ $(function() {
 		var userName = $('#loginUserName').val();
 		var mark = true;
 		if (userName == "" || userName.trim() == "") {
-			hander.action.FormSetTimer('loginUserName');
+			hander.action.SetFailed('loginUserName');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('loginUserName');
 		}
 		var passWord = $('#loginPassWord').val();
 		if (passWord == "" || passWord.trim() == "") {
-			hander.action.FormSetTimer('loginPassWord');
+			hander.action.SetFailed('loginPassWord');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('loginPassWord');
@@ -293,7 +288,7 @@ $(function() {
 		$(this).button('loading');
 		var userTypeId = $("#UserType").val();
 		if (userTypeId == undefined || userTypeId == "") {
-			hander.action.FormSetTimer('UserType');
+			hander.action.SetFailed('UserType');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('UserType');
@@ -302,42 +297,42 @@ $(function() {
 		var userName = $('#UserName').val().trim();
 		var mark = true;
 		if (userName == "") {
-			hander.action.FormSetTimer('UserName');
+			hander.action.SetFailed('UserName');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('UserName');
 		}
 		var passsWord = $('#PassWord').val().trim();
 		if (passsWord == "") {
-			hander.action.FormSetTimer('PassWord');
+			hander.action.SetFailed('PassWord');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('PassWord');
 		}
 		var rePassword = $('#RePassWord').val().trim();
 		if (rePassword == "" || rePassword != passsWord) {
-			hander.action.FormSetTimer('RePassWord');
+			hander.action.SetFailed('RePassWord');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('RePassWord');
 		}
 		var departid = $('#DepartMent').val();
 		if (departid == undefined || departid == "") {
-			hander.action.FormSetTimer('DepartMent');
+			hander.action.SetFailed('DepartMent');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('DepartMent');
 		}
 		var majorid = $('#Majors').val();
 		if (majorid == undefined || majorid == "") {
-			hander.action.FormSetTimer('Majors');
+			hander.action.SetFailed('Majors');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('Majors');
 		}
 		var phone = $('#Phone').val().trim();
 		if (phone == "") {
-			hander.action.FormSetTimer('Phone');
+			hander.action.SetFailed('Phone');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('Phone');
@@ -345,7 +340,7 @@ $(function() {
 
 		var email = $('#Email').val().trim();
 		if (email == "") {
-			hander.action.FormSetTimer('Email');
+			hander.action.SetFailed('Email');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('Email');
@@ -353,14 +348,14 @@ $(function() {
 
 		var realName = $('#RealName').val().trim();
 		if (realName == "") {
-			hander.action.FormSetTimer('RealName');
+			hander.action.SetFailed('RealName');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('RealName');
 		}
 		var idcard = $('#StudentId').val().trim();
 		if (idcard == "") {
-			hander.action.FormSetTimer('StudentId');
+			hander.action.SetFailed('StudentId');
 			mark = false;
 		} else {
 			hander.action.SetSucccess('StudentId');
@@ -450,10 +445,10 @@ $(function() {
 					if (data) {
 						hander.action.SetSucccess('UserName');
 					} else {
-						hander.action.FormSetTimer('UserName');
+						hander.action.SetFailed('UserName');
 					}
 				} else {
-					hander.action.FormSetTimer('UserName');
+					hander.action.SetFailed('UserName');
 				}
 			},
 			error : function(data) {
