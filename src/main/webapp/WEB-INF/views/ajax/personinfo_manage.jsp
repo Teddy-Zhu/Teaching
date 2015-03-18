@@ -17,19 +17,32 @@
 
 .inlineblock div label {
 	display: inline-block;
-	top: 5px;
+	margin-top: 1%;
 }
 
 .inlineblock div select {
 	width: 57% !important;
 }
 
+.inlineblock div img {
+	height: 100px;
+	width: 100px;
+}
+
 .inlineblock div input {
 	width: 57% !important;
 }
 
+.imgh {
+	height: 106px !important;
+}
+
 .input-lg-self {
 	height: 30px;
+}
+
+.userpic:hover {
+	cursor: pointer;
 }
 </style>
 <div class="row">
@@ -68,6 +81,13 @@
 					</h1>
 				</div>
 				<div class="inlineblock" id="inlineblock">
+					<div class="col-xs-5 col-xs-offset-1 imgh">
+						<label class="col-xs-5 " style="margin-top: 11%">Avatar:</label><img id="UserPic" name="UserPic" src="${user.strpic}" alt="${user.username}" data-origin="${user.strpic}" data-new="" class="img-circle img-thumbnail userpic"> <input type="file" id="picfile" name="picfile"
+							style="display: none;" accept=".jpg,.png" />
+						<button id="picUpload" class="img-circle fa fa-upload btn btn-md" style="display: none; border-radius: 50%; width: 50px; height: 50px"></button>
+						<button class="img-circle fa fa-trash btn btn-md" style="display: none; border-radius: 50%; width: 50px; height: 50px"></button>
+					</div>
+					<div class="col-xs-6 imgh"></div>
 					<div class="col-xs-5 col-xs-offset-1">
 						<label class="col-xs-5">UserName:</label><input id="UserName" class="perinfo form-control col-xs-7 input-lg-self" type="text" value="${user.username}" disabled />
 					</div>
@@ -128,6 +148,6 @@
 </div>
 <script type="text/javascript">
 	$(function() {
-		$.getScript("resources/js/ajax/personalinfo.js");
+		loadJs("resources/plugins/jqueryajaxupload/ajaxfileupload.min.js").loadJs("resources/js/ajax/personalinfo.js")
 	})
 </script>
