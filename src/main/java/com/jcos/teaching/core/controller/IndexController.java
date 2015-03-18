@@ -75,11 +75,7 @@ public class IndexController {
 	@SetPower(value = "dashboard")
 	public String menu1(HttpServletRequest request, Model model, HttpServletResponse response) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		model.addAttribute("loginUser", loginSession.getLoginUser().getUsername());
-		model.addAttribute("userEmail", loginSession.getLoginUser().getStrmail());
-		model.addAttribute("userPhone", loginSession.getLoginUser().getStrphone());
-		model.addAttribute("userRegTime", loginSession.getLoginUser().getDateregtime().toString());
-		model.addAttribute("userGroup", loginSession.getLoginUser().getUserType().getStrname());
+		model.addAttribute("user", loginSession.getLoginUser());
 		return "ajax/dashboard";
 	}
 

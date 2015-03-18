@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jcos.teaching.core.util.PersonalConfigTool;
 import com.jcos.teaching.core.util.PowerTool;
 import com.jcos.teaching.core.util.annotation.AuthPower;
-import com.jcos.teaching.core.util.annotation.SetAttributes;
 import com.jcos.teaching.core.util.annotation.SetPower;
 import com.jcos.teaching.core.util.annotation.SetSettings;
 
@@ -31,16 +30,6 @@ public class AuthenticationFilter implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView model) throws Exception {
 		if (handler.getClass().isAssignableFrom(HandlerMethod.class)) {
-			SetAttributes attributes = ((HandlerMethod) handler).getMethodAnnotation(SetAttributes.class);
-			if (attributes != null) {
-				String[] value = attributes.value();
-				String[] name = attributes.name();
-				if (value.length != 0 && name.length != 0 && value.length == name.length) {
-					for (int i = 0; i < value.length; i++) {
-						model.addObject(value[i], name[i]);
-					}
-				}
-			}
 			SetPower set = ((HandlerMethod) handler).getMethodAnnotation(SetPower.class);
 			if (set != null) {
 				String value = set.value();

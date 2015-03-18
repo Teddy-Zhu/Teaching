@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!--Start Breadcrumb-->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
@@ -17,7 +17,7 @@
 <!--Start Dashboard 1-->
 <div id="dashboard-header" class="row">
 	<div class="col-xs-12 col-sm-4 col-md-5">
-		<h3>Hello, ${loginUser}!</h3>
+		<h3>Hello, ${user.username}!</h3>
 	</div>
 	<div class="clearfix visible-xs"></div>
 	<div class="col-xs-12 col-sm-8 col-md-7 pull-right"></div>
@@ -52,23 +52,23 @@
 				<tbody>
 					<tr>
 						<td>UserName</td>
-						<td>${loginUser}</td>
+						<td>${user.username}</td>
 					</tr>
 					<tr class="active">
 						<td>User Group</td>
-						<td>${userGroup}</td>
+						<td>${user.userDepartMent.strname}-->${user.userMajor.strname}</td>
 					</tr>
 					<tr>
 						<td>User Email</td>
-						<td>${userEmail}</td>
+						<td>${user.strmail}</td>
 					</tr>
 					<tr class="active">
 						<td>User Phone</td>
-						<td>${userPhone}</td>
+						<td>${user.strphone}</td>
 					</tr>
 					<tr>
 						<td>User Register Time</td>
-						<td>${userRegTime}</td>
+						<td><fmt:formatDate value="${user.dateregtime}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 					</tr>
 				</tbody>
 			</table>
