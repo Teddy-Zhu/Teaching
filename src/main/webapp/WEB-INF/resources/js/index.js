@@ -79,7 +79,6 @@ $(function() {
 				$.TeachDialog({
 					title : 'Versions',
 					content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!</strong><div id="versioninfo" style="margin-top:10px;"></div>',
-					largeSize : true
 				});
 				$.ajax({
 					url : 'action/GetVersions',

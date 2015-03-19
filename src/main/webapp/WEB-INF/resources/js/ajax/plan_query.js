@@ -16,11 +16,12 @@ function toolBarClick(type) {
 	var rows = $('#datatable_perplaninfo').datagrid('getSelections');
 	if (rows.length != 1) {
 		$.TeachDialog({
-			content : 'You should select a row!',
+			content : 'You should select one row at most!',
 			bootstrapModalOption : {},
 		});
 		return;
 	}
+	var planId = rows[0].intplanid;
 	switch (type) {
 	case 1: {
 		if (rows[0].bookPlanStatus.intplanstatusid > 2) {
@@ -30,7 +31,6 @@ function toolBarClick(type) {
 			});
 			return;
 		}
-		var planId = rows[0].intplanid;
 		$
 				.TeachDialog({
 					title : 'Change The Plan',
@@ -53,7 +53,7 @@ function toolBarClick(type) {
 								return;
 							}
 							$.ajax({
-								url : 'Plan/ChangePlan',
+								url : 'Plan/Change',
 								dataType : 'json',
 								type : 'post',
 								data : {
@@ -80,6 +80,58 @@ function toolBarClick(type) {
 				})
 		break;
 	}
+	case 2: {
+		if (rows[0].bookPlanStatus.intplanstatusid > 2) {
+			$.TeachDialog({
+				content : 'The Plan can not be canceled because it\'s status is ' + rows[0].bookPlanStatus.strmark + '!',
+				bootstrapModalOption : {},
+			});
+			return;
+		}
+		$.ajax({
+			url : 'Plan/Cancel',
+			dataType : 'json',
+			type : 'post',
+			data : {
+				PlanId : planId
+			}
+		}).success(function(data) {
+			if (data) {
+				$.TeachDialog({
+					content : 'The Plan has been canceled!',
+					bootstrapModalOption : {},
+				});
+				$('#datatable_perplaninfo').datagrid('reload');
+			}
+		})
+		break;
+	}
+	case 3: {
+		if (rows[0].bookPlanStatus.intplanstatusid != 2) {
+			$.TeachDialog({
+				content : 'The Plan can not be re-submitted because it\'s status is ' + rows[0].bookPlanStatus.strmark + '!',
+				bootstrapModalOption : {},
+			});
+			return;
+		}
+		$.ajax({
+			url : 'Plan/ReSubmit',
+			dataType : 'json',
+			type : 'post',
+			data : {
+				PlanId : planId
+			}
+		}).success(function(data) {
+			if (data) {
+				$.TeachDialog({
+					content : 'The Plan has been canceled!',
+					bootstrapModalOption : {},
+				});
+				$('#datatable_perplaninfo').datagrid('reload');
+			}
+		})
+		break;
+	}
 	case 4: {
 		$.TeachDialog({
 			title : 'The Plan History',
@@ -89,6 +141,9 @@ function toolBarClick(type) {
 					url : 'Plan/GetPerPlanHistory',
 					dataType : 'json',
 					type : 'post',
+					data : {
+						PlanId : planId
+					}
 				}).success(function(data) {
 					$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Changes</th><th>Operation Time</th></tr></thead><tbody></tbody>');
 					for (var i = 0, len = data.length; i < len; i++) {
@@ -266,19 +321,29 @@ $(function() {
 			text : "Cancel",
 			iconCls : 'fa fa-remove',
 			handler : function() {
-				alert('delete');
+				toolBarClick(2);
 			}
 		}, '-', {
 			text : "Re-Submit",
 			iconCls : 'fa fa-recycle',
 			handler : function() {
-				alert('delete');
+				toolBarClick(3);
 			}
 		}, '-', {
 			text : "Query History Changes",
 			iconCls : 'fa fa-search',
 			handler : function() {
 				toolBarClick(4);
+			}
+		}, '-', {
+			text : "Export Below Plan To Excel",
+			iconCls : 'fa fa-download',
+			handler : function() {
+				$.DownloadFile({
+					url : 'Plan/ImportPerPlan',
+					method : 'post',
+					data : getSearchParams(),
+				})
 			}
 		} ]
 	});

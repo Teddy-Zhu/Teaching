@@ -21,4 +21,8 @@ public interface BookPlanService {
 
 	boolean authPlanStatusForChange(Integer planId);
 
+	boolean updatePlan(BookPlan record);
+
+	boolean authPlanStatusForResubmit(Integer planId);
+
 }

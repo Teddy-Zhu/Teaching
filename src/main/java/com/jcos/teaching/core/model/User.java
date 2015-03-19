@@ -155,10 +155,16 @@ public class User {
 	}
 
 	public String getStrpic() {
-		return "resources/img/userpic/" + strpic;
+		if (strpic != null && !strpic.contains("resources/img/userpic")) {
+			strpic = "resources/img/userpic/" + strpic;
+		}
+		return strpic;
 	}
 
 	public void setStrpic(String strpic) {
+		if (strpic != null && !strpic.contains("resources/img/userpic")) {
+			strpic = "resources/img/userpic/" + strpic;
+		}
 		this.strpic = strpic == null ? null : strpic.trim();
 	}
 

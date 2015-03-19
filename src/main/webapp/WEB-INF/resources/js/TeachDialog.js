@@ -2,7 +2,7 @@
 	$.fn.TeachDialog = function(options) {
 		var defaults = {
 			modalId : undefined,
-			title : 'Sorry about the Meaasge!',
+			title : 'Meaasge From System',
 			content : '<p>Content</p>',
 			showCloseButton : true,
 			showCloseButtonName : 'Close',

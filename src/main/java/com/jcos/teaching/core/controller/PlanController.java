@@ -3,6 +3,7 @@ package com.jcos.teaching.core.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -159,77 +162,89 @@ public class PlanController {
 
 		Integer userId = loginSession.getLoginUser().getIntid();
 
-		return bookPlanLogService.getBookPlanLogByUserId(userId);
+		Integer planId = -1;
+		try {
+			planId = Integer.valueOf(request.getParameter("PlanId"));
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return new ArrayList<BookPlanLog>();
+		}
+		if (planId == -1) {
+			response.setStatus(3386);
+			return new ArrayList<BookPlanLog>();
+		}
+
+		return bookPlanLogService.getBookPlanLogByUserId(userId, planId);
 	}
 
-	@RequestMapping(value = "/ImportPerPlan", method = RequestMethod.GET)
+	@RequestMapping(value = "/ImportPerPlan", method = RequestMethod.POST)
 	@ResponseBody
+	@AuthPower(value = "queryplan")
 	public boolean importPersonalPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
-		// if (!pwTool.authUserTypePower(request, "queryplan")) {
-		// response.setStatus(3388);
-		// return null;
-		// }
-		// int rows = 10, page = 1;
-		// String CourseName = "", ClassId = "", BookName = "";
-		// Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1,
-		// Term = -1, StuCount = -1, TeaCount = -1;
-		// Date date = null;
-		// try {
-		// rows = Integer.valueOf(request.getParameter("rows"));
-		// page = Integer.valueOf(request.getParameter("page"));
-		// CourseName = request.getParameter("CourseName").trim().equals("") ?
-		// null : request.getParameter("CourseName");
-		// ClassId = request.getParameter("ClassId").trim().equals("") ? null :
-		// request.getParameter("ClassId");
-		// BookName = request.getParameter("BookName").trim().equals("") ? null
-		// : request.getParameter("BookName");
-		// StuCount = request.getParameter("StuCount").trim().equals("") ? null
-		// : Integer.valueOf(request.getParameter("StuCount"));
-		// TeaCount = request.getParameter("TeaCount").trim().equals("") ? null
-		// : Integer.valueOf(request.getParameter("TeaCount"));
-		// CourseType = Integer.valueOf(request.getParameter("CourseType")) ==
-		// -1 ? null : Integer.valueOf(request.getParameter("CourseType"));
-		// PlanStatus = Integer.valueOf(request.getParameter("PlanStatus")) ==
-		// -1 ? null : Integer.valueOf(request.getParameter("PlanStatus"));
-		// FromYear = request.getParameter("FromYear").trim().equals("") ? null
-		// : Integer.valueOf(request.getParameter("FromYear"));
-		// ToYear = request.getParameter("ToYear").trim().equals("") ? null :
-		// Integer.valueOf(request.getParameter("ToYear"));
-		// Term = Integer.valueOf(request.getParameter("Term")) == -1 ? null :
-		// Integer.valueOf(request.getParameter("Term"));
-		// date = request.getParameter("SearchDate").equals("") ? null : new
-		// SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
-		// } catch (Exception e) {
-		// logger.debug(e.getMessage());
-		// response.setStatus(3386);
-		// return null;
-		// }
-		// if (FromYear != null && ToYear != null && FromYear > ToYear) {
-		// response.setStatus(3387);
-		// return null;
-		// }
-		// LoginSession loginSession = (LoginSession)
-		// request.getSession().getAttribute("loginSession");
-		// BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId,
-		// StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(),
-		// PlanStatus, FromYear, ToYear, Term, date, null, null, null, new
-		// Book(BookName));
-		// Map<String, Object> ret = new HashMap<String, Object>();
-		// ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
-		// ret.put("rows", bookPlanService.getPersonalBookPlan(record, page,
-		// rows));
+
+		int rows = 200, page = 1;
+		String CourseName = "", ClassId = "", BookName = "";
+		Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1, Term = -1, StuCount = -1, TeaCount = -1;
+		Date date = null;
+		try {
+			CourseName = request.getParameter("CourseName").trim().equals("") ? null : request.getParameter("CourseName");
+			ClassId = request.getParameter("ClassId").trim().equals("") ? null : request.getParameter("ClassId");
+			BookName = request.getParameter("BookName").trim().equals("") ? null : request.getParameter("BookName");
+			StuCount = request.getParameter("StuCount").trim().equals("") ? null : Integer.valueOf(request.getParameter("StuCount"));
+			TeaCount = request.getParameter("TeaCount").trim().equals("") ? null : Integer.valueOf(request.getParameter("TeaCount"));
+			CourseType = Integer.valueOf(request.getParameter("CourseType")) == -1 ? null : Integer.valueOf(request.getParameter("CourseType"));
+			PlanStatus = Integer.valueOf(request.getParameter("PlanStatus")) == -1 ? null : Integer.valueOf(request.getParameter("PlanStatus"));
+			FromYear = request.getParameter("FromYear").trim().equals("") ? null : Integer.valueOf(request.getParameter("FromYear"));
+			ToYear = request.getParameter("ToYear").trim().equals("") ? null : Integer.valueOf(request.getParameter("ToYear"));
+			Term = Integer.valueOf(request.getParameter("Term")) == -1 ? null : Integer.valueOf(request.getParameter("Term"));
+			date = request.getParameter("SearchDate").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return false;
+		}
+		if (FromYear != null && ToYear != null && FromYear > ToYear) {
+			response.setStatus(3387);
+			return false;
+		}
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
+				null, new Book(BookName));
+
+		List<BookPlan> plans = bookPlanService.getPersonalBookPlan(record, page, rows);
 
 		ExcelTool excel = null;
 		try {
-			excel = new ExcelTool(request);
+			excel = new ExcelTool(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/teacher.xls");
 		} catch (IOException e1) {
 			logger.debug(e1.getMessage());
+		}
+		excel.setworkSheet(0);
+		
+		//update title
+		String title = excel.getCellString(row, column)
+		//update excel content
+		for (int i = 0; i < plans.size(); i++) {
+			BookPlan curPlan = plans.get(i);
+			excel.setCellBorderStyle(3 + i, 0, Integer.toString(i), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 1, curPlan.getStrcoursename(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 2, curPlan.getCourseType().getStrcoursename(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 3, curPlan.getStrclass(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 4, curPlan.getIntstudcount().toString(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 5, curPlan.getIntstudcount().toString(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 6, curPlan.getIntteaccount().toString(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 7, Integer.toString(curPlan.getIntteaccount() + curPlan.getIntstudcount()), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 8, curPlan.getBook().getStrbookname(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 9, curPlan.getBook().getStrauthor(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 10, Double.toString(curPlan.getBook().getStrprice() * curPlan.getBook().getIntpricediscount() / 10), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 11, curPlan.getBook().getStrpress(), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 12, curPlan.getStrmark().equals("none") ? "" : curPlan.getStrmark(), HSSFCellStyle.BORDER_THIN);
 		}
 
 		ByteArrayOutputStream output = excel.getXlsStream();
 
 		return dlTool.pushOutputStream(response, output, System.currentTimeMillis() + ".xls");
-
 	}
 
 	@RequestMapping(value = "/GetPerPlan", method = RequestMethod.POST)
@@ -264,7 +279,8 @@ public class PlanController {
 			return null;
 		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
+				null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
@@ -272,7 +288,111 @@ public class PlanController {
 		return ret;
 	}
 
-	@RequestMapping(value = "/ChangePlan", method = RequestMethod.POST)
+	@RequestMapping(value = "/Cancel", method = RequestMethod.POST)
+	@ResponseBody
+	@AuthPower(value = "queryplan")
+	public boolean cancelPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+		Integer planId = -1;
+		try {
+			planId = Integer.valueOf(request.getParameter("PlanId"));
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return false;
+		}
+
+		if (planId == -1) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// auth planId exist for the user
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (!bookPlanService.authPlanByUserIdAndPlanId(planId, loginSession.getLoginUser().getIntid())) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// auth plan status
+		// pending
+		if (!bookPlanService.authPlanStatusForChange(planId)) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// for insert log first
+		// for insert log
+		BookPlanLog log = new BookPlanLog();
+		log.setDatecreatetime(new Date());
+		log.setIntoperateid(7);
+		log.setIntuserid(loginSession.getLoginUser().getIntid());
+		log.setIntplanid(planId);
+		if (!bookPlanLogService.addNewLog(log)) {
+			response.setStatus(3383);
+			return false;
+		}
+
+		// set record
+		BookPlan record = new BookPlan();
+		record.setIntplanid(planId);
+		record.setIntplanstatusid(4);
+
+		return bookPlanService.updatePlan(record);
+	}
+
+	@RequestMapping(value = "/ReSubmit", method = RequestMethod.POST)
+	@ResponseBody
+	@AuthPower(value = "queryplan")
+	public boolean resubmitPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+		Integer planId = -1;
+		try {
+			planId = Integer.valueOf(request.getParameter("PlanId"));
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return false;
+		}
+
+		if (planId == -1) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// auth planId exist for the user
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (!bookPlanService.authPlanByUserIdAndPlanId(planId, loginSession.getLoginUser().getIntid())) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// auth plan status
+		// pending
+		if (!bookPlanService.authPlanStatusForResubmit(planId)) {
+			response.setStatus(3386);
+			return false;
+		}
+
+		// for insert log first
+		// for insert log
+		BookPlanLog log = new BookPlanLog();
+		log.setDatecreatetime(new Date());
+		log.setIntoperateid(7);
+		log.setIntuserid(loginSession.getLoginUser().getIntid());
+		log.setIntplanid(planId);
+		if (!bookPlanLogService.addNewLog(log)) {
+			response.setStatus(3383);
+			return false;
+		}
+
+		// set record
+		BookPlan record = new BookPlan();
+		record.setIntplanid(planId);
+		record.setIntplanstatusid(1);
+
+		return bookPlanService.updatePlan(record);
+	}
+
+	@RequestMapping(value = "/Change", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "queryplan")
 	public boolean changePlan(HttpServletRequest request, Model model, HttpServletResponse response) {

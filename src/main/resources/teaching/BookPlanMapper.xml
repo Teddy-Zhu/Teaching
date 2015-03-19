@@ -271,7 +271,8 @@
 		x.dateCreateTime,x.strMark
 		from bookplan
 		x LEFT JOIN book
-		y on x.intBookId=y.intBookId LEFT JOIN bookplanchange z ON x.intPlanId = z.intPlanId
+		y on x.intBookId=y.intBookId LEFT JOIN bookplanchange z ON x.intPlanId =
+		z.intPlanId
 		<trim prefix="where" suffix="" suffixOverrides="AND">
 			<if test="record.intuserid != null">
 				x.intUserId = #{record.intuserid,jdbcType=INTEGER} AND
@@ -310,6 +311,7 @@
 				date_format(x.dateCreateTime,'%y-%m-%d') = date_format(#{record.datecreatetime,jdbcType=TIMESTAMP},'%y-%m-%d')
 			</if>
 		</trim>
+		group by x.intPlanId
 		order by intBookId asc
 		limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
 	</select>

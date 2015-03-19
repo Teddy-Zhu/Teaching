@@ -19,6 +19,6 @@ public interface BookPlanLogMapper {
 
 	int updateByPrimaryKey(BookPlanLog record);
 
-	List<BookPlanLog> selectBookPlanLogByuserId(@Param(value = "userId") Integer userId);
+	List<BookPlanLog> selectBookPlanLogByuserId(@Param(value = "userId") Integer userId, @Param(value = "planId") Integer planId);
 
 }

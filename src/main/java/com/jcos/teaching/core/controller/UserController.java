@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import com.alibaba.druid.util.Base64;
 import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
@@ -369,7 +378,7 @@ public class UserController {
 	public boolean updateUser(HttpServletRequest request, Model model, HttpServletResponse response) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		Integer userId = loginSession.getLoginUser().getIntid();
-		String userName = "", oldPassword = "", passWord = "", phone = "", realName = "", email = "", IdCard = "";
+		String userName = "", oldPassword = "", passWord = "", phone = "", realName = "", picfile = "", email = "", IdCard = "";
 		Integer DepartId = 0, MajorId = 0, userTypeId = 0;
 
 		try {
@@ -380,6 +389,7 @@ public class UserController {
 			if (passWord.equals("")) {
 				passWord = null;
 			}
+			picfile = request.getParameter("picfile").trim();
 			realName = request.getParameter("RealName").trim();
 			phone = request.getParameter("Phone").trim();
 			IdCard = request.getParameter("Number").trim();
@@ -391,6 +401,7 @@ public class UserController {
 			response.setStatus(3386);
 			return false;
 		}
+		// deal with authorization
 		User recordauth = new User();
 		recordauth.setIntid(userId);
 		recordauth.setUsername(userName);
@@ -402,11 +413,44 @@ public class UserController {
 			return false;
 		}
 
+		// auth userpic
+		String filename = "";
+		if (!picfile.equals("")) {
+			String picpath = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/tmp/";
+
+			try {
+				filename = new String(new BASE64Decoder().decodeBuffer(picfile));
+			} catch (IOException e) {
+				response.setStatus(3386);
+				return false;
+			}
+			File tmpfile = new File(picpath + filename);
+
+			File avatarfile = new File(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/userpic/" + filename);
+
+			if (!tmpfile.isFile() || !tmpfile.exists()) {
+				return false;
+			}
+			if (avatarfile.exists()) {
+				avatarfile.delete();
+			}
+
+			boolean fileret = tmpfile.renameTo(avatarfile);
+			if (!fileret) {
+				return false;
+			}
+		} else {
+			filename = null;
+		}
 		if (!userDepartMentService.authDepartAndMajor(DepartId, MajorId)) {
 			response.setStatus(3386);
 			return false;
 		}
 
+		if (phone.equals("") || realName.equals("") || email.equals("")) {
+			response.setStatus(3386);
+			return false;
+		}
 		User record = new User();
 		record.setIntid(userId);
 		record.setUsername(null); // modify username disable
@@ -418,6 +462,7 @@ public class UserController {
 		record.setStrphone(phone);
 		record.setIntuserdepartment(DepartId);
 		record.setIntusermajor(MajorId);
+		record.setStrpic(filename); // pic name
 
 		if (userService.updateUser(record)) {
 			LoginSession loginSessiontmp = new LoginSession();
@@ -439,4 +484,35 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value = "/UploadUserPic", method = RequestMethod.POST)
+	@ResponseBody
+	public String uploadPic(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartFile file = multipartRequest.getFile("picfile");
+		String tmpname = "";
+		if (file == null || file.isEmpty()) {
+		} else {
+			logger.debug("文件长度: " + file.getSize());
+			logger.debug("文件类型: " + file.getContentType());
+			logger.debug("文件名称: " + file.getName());
+			logger.debug("文件原名: " + file.getOriginalFilename());
+			if (file.getSize() > 2097152) {
+				return "";
+			}
+			String originfilename = file.getOriginalFilename();
+			String ext = originfilename.substring(originfilename.lastIndexOf(".") + 1, originfilename.length());
+			if (!ext.toLowerCase().equals("jpg") && !ext.toLowerCase().equals("png")) {
+				return "";
+			}
+			String realPath = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/tmp/";
+			tmpname = Long.toString(System.currentTimeMillis()) + "." + ext;
+			try {
+				FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, tmpname));
+			} catch (IOException e) {
+				logger.debug(e.getMessage());
+				return tmpname;
+			}
+		}
+		return tmpname = new BASE64Encoder().encode(tmpname.getBytes());
+	}
 }

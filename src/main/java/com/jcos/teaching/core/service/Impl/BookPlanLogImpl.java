@@ -26,16 +26,16 @@ public class BookPlanLogImpl implements BookPlanLogService {
 	}
 
 	@Override
-	public List<BookPlanLog> getBookPlanLogByUserId(Integer userId) {
-		return bookPlanLogDao.selectBookPlanLogByuserId(userId);
+	public List<BookPlanLog> getBookPlanLogByUserId(Integer userId, Integer planId) {
+		return bookPlanLogDao.selectBookPlanLogByuserId(userId, planId);
 	}
-	
+
 	@Override
-	public boolean removeLogById(Integer logId){
+	public boolean removeLogById(Integer logId) {
 		Integer i = bookPlanLogDao.deleteByPrimaryKey(logId);
-		if(i!=1){
+		if (i != 1) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
 	}

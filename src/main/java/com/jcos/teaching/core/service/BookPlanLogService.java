@@ -8,8 +8,8 @@ public interface BookPlanLogService {
 
 	boolean addNewLog(BookPlanLog record);
 
-	List<BookPlanLog> getBookPlanLogByUserId(Integer userId);
-
 	boolean removeLogById(Integer logId);
+
+	List<BookPlanLog> getBookPlanLogByUserId(Integer userId, Integer planId);
 
 }

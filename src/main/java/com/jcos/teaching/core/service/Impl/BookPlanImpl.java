@@ -48,6 +48,16 @@ public class BookPlanImpl implements BookPlanService {
 	}
 
 	@Override
+	public boolean updatePlan(BookPlan record) {
+		Integer i = bookPlanDao.updateByPrimaryKeySelective(record);
+		if (i == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
 	public List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows) {
 		List<BookPlan> list = bookPlanDao.selectPersonal(record, rows * (page - 1), rows);
 		if (list == null || list.get(0) == null) {
@@ -76,6 +86,16 @@ public class BookPlanImpl implements BookPlanService {
 	public boolean authPlanStatusForChange(Integer planId) {
 		Integer i = bookPlanDao.selectPlanStatusForChange(planId);
 		if (i > 2) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@Override
+	public boolean authPlanStatusForResubmit(Integer planId) {
+		Integer i = bookPlanDao.selectPlanStatusForChange(planId);
+		if (i != 2) {
 			return false;
 		} else {
 			return true;

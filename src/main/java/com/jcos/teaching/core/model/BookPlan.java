@@ -34,9 +34,9 @@ public class BookPlan {
 	private CourseType courseType;
 
 	private BookPlanStatus bookPlanStatus;
-	
+
 	private Book book;
-	
+
 	public CourseType getCourseType() {
 		return courseType;
 	}
@@ -62,19 +62,19 @@ public class BookPlan {
 	}
 
 	public BookPlan() {
-		this.intplanid = -1;
-		this.strcoursename = "";
-		this.intcoursetypeid = -1;
-		this.strclass = "";
-		this.intstudcount = -1;
-		this.intteaccount = -1;
-		this.intbookid = -1;
-		this.intuserid = -1;
-		this.intplanstatusid = -1;
-		this.intfromyear = -1;
-		this.inttoyear = -1;
-		this.intterm = -1;
-		this.datecreatetime = new Date();
+		this.intplanid = null;
+		this.strcoursename = null;
+		this.intcoursetypeid = null;
+		this.strclass = null;
+		this.intstudcount = null;
+		this.intteaccount = null;
+		this.intbookid = null;
+		this.intuserid = null;
+		this.intplanstatusid = null;
+		this.intfromyear = null;
+		this.inttoyear = null;
+		this.intterm = null;
+		this.datecreatetime = null;
 		this.strmark = "none";
 	}
 
@@ -96,7 +96,6 @@ public class BookPlan {
 		this.datecreatetime = datecreatetime;
 		this.strmark = strmark;
 	}
-
 
 	public BookPlan(Integer intplanid, String strcoursename, Integer intcoursetypeid, String strclass, Integer intstudcount, Integer intteaccount, Integer intbookid, Integer intuserid,
 			Integer intplanstatusid, Integer intfromyear, Integer inttoyear, Integer intterm, Date datecreatetime, String strmark, CourseType courseType, BookPlanStatus bookPlanStatus, Book book) {

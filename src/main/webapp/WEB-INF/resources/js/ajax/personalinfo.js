@@ -19,7 +19,24 @@ function initUserDepartMent(id, type) {
 	return dtd.promise();
 
 }
-
+function picChange() {
+	var filepath = $('#picfile').val();
+	if ($.trim(filepath) != "") {
+		var extStart = filepath.lastIndexOf(".");
+		var ext = filepath.substring(extStart, filepath.length).toUpperCase();
+		if (ext != ".BMP" && ext != ".PNG" && ext != ".JPG" && ext != ".JPEG") {
+			$('#picfile').val('');
+			$.TeachDialog({
+				content : "The Picture Format is not correct !",
+			})
+		} else {
+			var url = window.URL.createObjectURL($('#picfile').prop('files')[0]);
+			$('#UserPic').attr('src', url);
+			$('#UserPic').css("border-color", "orange");
+			$('#picUpload').fadeIn(2000);
+		}
+	}
+}
 $(function() {
 	console.debug('aaa');
 	initUserDepartMent('DepartMent', 1).done(function() {
@@ -31,29 +48,43 @@ $(function() {
 			$("#Major").val($("#Major").attr("data-curValue"));
 		});
 	})
-	$('#picfile').change(function() {
-		var filepath = $(this).val();
-		if ($.trim(filepath) != "") {
-			var extStart = filepath.lastIndexOf(".");
-			var ext = filepath.substring(extStart, filepath.length).toUpperCase();
-			if (ext != ".BMP" && ext != ".PNG" && ext != ".JPG" && ext != ".JPEG") {
-				$(this).val('');
-				$.TeachDialog({
-					content : "The Picture Format is not correct !",
-				})
-			} else {
-				var url = window.URL.createObjectURL($('#picfile').prop('files')[0]);
-				$('#UserPic').attr('src', url);
-				$('#picUpload').fadeIn(2000);
-			}
-		}
 
+	$('#UserPic').hover(function() {
+		$(this).addClass('userpic');
+	}, function() {
+		$(this).removeClass('userpic');
 	})
-	$('#picUpload').click(function() {
+	$('#picUpload').on('click', function() {
 		if ($('#UserPic').attr('data-new') == "" && $('#picfile').val() != "") {
-			
-			$(this).fadeOut(1000);
+			$.ajaxFileUpload({
+				url : 'User/UploadUserPic',
+				secureuri : false,
+				fileElementId : 'picfile',
+				dataType : 'json',
+				success : function(data, status) {
+					if (data != "") {
+						$('#UserPic').attr('data-new', data)
+						$.TeachDialog({
+							content : "Upload Avatar Success!",
+						})
+					}
+				},
+				error : function(data) {
+					alert(data);
+				}
+			})
+			$('#UserPic').css("border-color", "cadetblue")
+			$(this).fadeOut().delay(2000).fadeOut();
+			$('#picReset').fadeIn(2000);
 		}
+	})
+
+	$('#picReset').click(function() {
+		$('#UserPic').attr('data-new', '');
+		$('#picfile').val('');
+		$('#UserPic').attr('src', $('#UserPic').attr('data-origin'));
+		$('#UserPic').css("border-color", "");
+		$(this).fadeOut(1000);
 	})
 	$('#UserPic').click(function() {
 		$('#picfile').trigger('click')
@@ -99,6 +130,7 @@ $(function() {
 			$('.alert.alert-danger').slideDown();
 			return;
 		}
+		postdata["picfile"] = $('#UserPic').attr('data-new');
 		$.ajax({
 			url : 'User/UpdateUser',
 			data : postdata,

@@ -62,7 +62,7 @@
 								</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 										<div class="avatar">
-											<img src="${user.strpic}" class="img-circle" alt="avatar" />
+											<img src="${user.strpic}<c:if test="${empty user}">resources/img/userpic/avatar.jpg</c:if>" class="img-circle" alt="avatar" />
 										</div> <i class="fa fa-angle-down pull-right"></i>
 										<div class="user-mini pull-right">
 											<span class="welcome">Welcome,</span> <span>${user.username}</span>
@@ -71,7 +71,7 @@
 									<ul class="dropdown-menu">
 										<li><a href="javascript:LoadAjaxContent('ajax/personinfo_manage')"> <i class="fa fa-user"></i> <span>Profile</span>
 										</a></li>
-										<li><a href="#"> <i class="fa fa-cog"></i> <span>Settings</span>
+										<li><a href="javascript:LoadAjaxContent('ajax/personal_setting')"> <i class="fa fa-cog"></i> <span>Settings</span>
 										</a></li>
 										<li><a href="javascript:logout();"> <i class="fa fa-power-off"></i> <span>Logout</span>
 										</a></li>

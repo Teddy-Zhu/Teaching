@@ -3,6 +3,20 @@
 //
 "use strict";
 
+jQuery.DownloadFile = function(parameters) {
+	var url = parameters.url;
+	var data = parameters.data;
+	var method = parameters.method
+	if (url && data) {
+		data = typeof data == 'string' ? data : jQuery.param(data);
+		var inputs = '';
+		jQuery.each(data.split('&'), function() {
+			var pair = this.split('=');
+			inputs += '<input type="hidden" name="' + pair[0] + '" value="' + pair[1] + '" />';
+		});
+		jQuery('<form style="display:none;" action="' + url + '" method="' + (method || 'post') + '">' + inputs + '</form>').appendTo('body').submit().remove();
+	}
+}
 function LoadOpenLayersScript(callback) {
 	if (!$.fn.OpenLayers) {
 		$.getScript('http://www.openlayers.org/api/OpenLayers.js', callback);
@@ -646,7 +660,7 @@ $(function() {
 			LoadAjaxContent(ajax_url);
 		}
 	});
-	
+
 	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
 	NProgress.configure({
 		parent : '#headernavbar',

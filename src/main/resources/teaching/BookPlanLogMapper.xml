@@ -104,7 +104,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from bookplanlog
-		where intUserId = #{userId,jdbcType=INTEGER}
+		where intUserId = #{userId,jdbcType=INTEGER} and intPlanId = #{planId,jdbcType=INTEGER}
 		order by dateCreateTime asc
 	</select>
 </mapper>

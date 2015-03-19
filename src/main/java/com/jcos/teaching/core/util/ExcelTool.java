@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
@@ -25,19 +26,33 @@ public class ExcelTool {
 
 	private HSSFSheet workSheet;
 
-	public ExcelTool(HttpServletRequest request) throws IOException {
-		TemplateOne = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/teacher.xls";
+	public ExcelTool(String templateFullPath) throws IOException {
+		TemplateOne = templateFullPath;
 		workBook = new HSSFWorkbook(new FileInputStream(new File(TemplateOne)));
 		logger.debug("initial excel tool");
 	}
 
 	public void setCellText(int row, int column, String value) {
-		HSSFCell cell = workSheet.getRow(row).getCell(column);
+		HSSFRow Row = workSheet.getRow(row);
+		if (Row == null) {
+			Row = workSheet.createRow(row);
+		}
+		HSSFCell cell = Row.getCell(column);
+		if (cell == null) {
+			cell = Row.createCell(column);
+		}
 		cell.setCellValue(value);
 	}
 
 	public void setCellBorderStyle(int row, int column, String value, short border) {
-		HSSFCell cell = workSheet.getRow(row).getCell(column);
+		HSSFRow Row = workSheet.getRow(row);
+		if (Row == null) {
+			Row = workSheet.createRow(row);
+		}
+		HSSFCell cell = Row.getCell(column);
+		if (cell == null) {
+			cell = Row.createCell(column);
+		}
 		HSSFCellStyle style = cell.getCellStyle();
 		style.setBorderBottom(border);
 		style.setBorderLeft(border);
@@ -51,6 +66,18 @@ public class ExcelTool {
 		for (int i = 0, len = workSheet.getRow(0).getPhysicalNumberOfCells(); i < len; i++) {
 			workSheet.autoSizeColumn(i);
 		}
+	}
+
+	public String getCellString(int row, int column) {
+		HSSFRow Row = workSheet.getRow(row);
+		if (Row == null) {
+			return "";
+		}
+		HSSFCell Cell = Row.getCell(column);
+		if (Cell == null) {
+			return "";
+		}
+		return Cell.getStringCellValue();
 	}
 
 	public void setColumnAutoWidth(int column) {
@@ -76,21 +103,4 @@ public class ExcelTool {
 		}
 		return output;
 	}
-
-	public HSSFWorkbook getWorkBook() {
-		return workBook;
-	}
-
-	public void setWorkBook(HSSFWorkbook workBook) {
-		this.workBook = workBook;
-	}
-
-	public HSSFSheet getWorkSheet() {
-		return workSheet;
-	}
-
-	public void setWorkSheet(HSSFSheet workSheet) {
-		this.workSheet = workSheet;
-	}
-
 }

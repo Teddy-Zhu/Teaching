@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-18 12:37:37
+Date: 2015-03-19 18:27:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -70,12 +70,13 @@ CREATE TABLE `bookplan` (
   `dateCreateTime` datetime NOT NULL,
   `strMark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`intPlanId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '1', '2014', '2015', '0', '2015-03-15 13:12:22', 'none');
+INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '4', '2014', '2015', '0', '2015-03-15 13:12:22', 'none');
+INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '1', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -90,7 +91,7 @@ CREATE TABLE `bookplanchange` (
   `strChangeReason` varchar(255) COLLATE utf8_bin NOT NULL,
   `dateChangeTime` datetime NOT NULL,
   PRIMARY KEY (`intBookChangeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanchange
@@ -98,6 +99,8 @@ CREATE TABLE `bookplanchange` (
 INSERT INTO `bookplanchange` VALUES ('1', '1', '2', '10', '1', 'none', '2015-03-15 13:12:40');
 INSERT INTO `bookplanchange` VALUES ('2', '1', '3', '0', '3', 'none', '2015-03-18 12:32:33');
 INSERT INTO `bookplanchange` VALUES ('3', '1', '4', '0', '3', 'none', '2015-03-18 12:37:09');
+INSERT INTO `bookplanchange` VALUES ('4', '2', '7', '0', '3', 'none', '2015-03-19 16:51:35');
+INSERT INTO `bookplanchange` VALUES ('5', '2', '8', '-4', '-3', 'none', '2015-03-19 16:51:41');
 
 -- ----------------------------
 -- Table structure for bookplanlog
@@ -110,7 +113,7 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
@@ -119,6 +122,10 @@ INSERT INTO `bookplanlog` VALUES ('1', '1', '3', '1', '2015-03-15 13:12:22');
 INSERT INTO `bookplanlog` VALUES ('2', '1', '6', '1', '2015-03-15 13:12:40');
 INSERT INTO `bookplanlog` VALUES ('3', '1', '6', '1', '2015-03-18 12:32:33');
 INSERT INTO `bookplanlog` VALUES ('4', '1', '6', '1', '2015-03-18 12:37:09');
+INSERT INTO `bookplanlog` VALUES ('5', '1', '7', '1', '2015-03-19 16:25:21');
+INSERT INTO `bookplanlog` VALUES ('6', '2', '3', '1', '2015-03-19 16:43:17');
+INSERT INTO `bookplanlog` VALUES ('7', '2', '6', '1', '2015-03-19 16:51:35');
+INSERT INTO `bookplanlog` VALUES ('8', '2', '6', '1', '2015-03-19 16:51:41');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -264,7 +271,7 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
@@ -275,6 +282,7 @@ INSERT INTO `operation` VALUES ('3', '提交教学计划审核');
 INSERT INTO `operation` VALUES ('4', '再次教学计划提交审核');
 INSERT INTO `operation` VALUES ('5', '驳回教学计划申请');
 INSERT INTO `operation` VALUES ('6', '更改教学计划');
+INSERT INTO `operation` VALUES ('7', '取消教学计划');
 
 -- ----------------------------
 -- Table structure for personalconfig
@@ -561,7 +569,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-06 14:52:27');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'resources/img/userpic/1426755676811.jpg', '2015-03-19 17:01:21');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-02-28 20:44:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');
@@ -635,7 +643,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -661,6 +669,7 @@ INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查
 INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', '2015-03-13 13:41:45');
 INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变更', '2015-03-13 16:21:35');
 INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上传与变更<br>变更权限控制,session控制方式<br>缩减无用html,js,java代码', '2015-03-18 21:55:35');
+
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
 -- ----------------------------
