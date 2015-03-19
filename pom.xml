@@ -152,7 +152,6 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 					<source>1.8</source>
 					<encoding>UTF-8</encoding>
 					<warName>teaching</warName>
-					<ignorePackaging>true</ignorePackaging>
 				</configuration>
 			</plugin>
 		</plugins>
