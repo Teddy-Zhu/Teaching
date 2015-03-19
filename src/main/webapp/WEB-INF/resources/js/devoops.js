@@ -641,16 +641,6 @@ $(function() {
 		ScreenSaver();
 	});
 
-	// unlock screen
-	$('#screen_unlock').on(
-			'mouseover',
-			function() {
-				var header = 'Enter current username and password';
-				var form = $('<div class="form-group"><label class="control-label">Username</label><input type="text" class="form-control" name="username" /></div>'
-						+ '<div class="form-group"><label class="control-label">Password</label><input type="password" class="form-control" name="password" /></div>');
-				var button = $('<div class="text-center"><a href="index.html" class="btn btn-primary">Unlock</a></div>');
-				OpenModalBox(header, form, button);
-			});
 	$('#search').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault();

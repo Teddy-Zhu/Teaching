@@ -43,7 +43,7 @@ function LoadAccessTree() {
 	})
 }
 $(function() {
-	console.log('123');
+	$('.panel-body').css('height', $(window).height() * 0.625 + 'px');
 	$.ajax({
 		url : 'Type/GetUserTypeAll',
 		dataType : 'json',
@@ -54,7 +54,7 @@ $(function() {
 			$('#usertype').append('<option value="' + data[i].intidentityid + '">' + data[i].strname + '</option>');
 		}
 		LoadAccessTree();
-	})
+	});
 	$('.usertype').click(function() {
 		LoadAccessTree();
 	});
