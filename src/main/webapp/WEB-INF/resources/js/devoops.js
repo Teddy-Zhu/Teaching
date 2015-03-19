@@ -545,7 +545,7 @@ $(function() {
 	});
 	var ajax_url = location.hash.replace(/^#/, '');
 	if (ajax_url.length < 1) {
-		ajax_url = 'ajax/dashboard.html';
+		ajax_url = 'ajax/dashboard';
 	}
 	LoadAjaxContent(ajax_url);
 	var item = $('.main-menu li a[href$="' + ajax_url + '"]');
@@ -661,7 +661,7 @@ $(function() {
 		}
 	});
 
-	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
+    $('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
 	NProgress.configure({
 		parent : '#headernavbar',
 		ease : 'ease',
@@ -733,6 +733,14 @@ $(function() {
 				$.TeachDialog({
 					title : 'Warnning!',
 					content : 'Save Logs ERROR!',
+					showCloseButton : true,
+				});
+				break;
+			}
+			case 3382: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'No Data!',
 					showCloseButton : true,
 				});
 				break;

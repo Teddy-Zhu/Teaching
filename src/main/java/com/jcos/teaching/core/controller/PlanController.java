@@ -209,11 +209,14 @@ public class PlanController {
 			return false;
 		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
-				null, new Book(BookName));
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 
 		List<BookPlan> plans = bookPlanService.getPersonalBookPlan(record, page, rows);
 
+		if (plans.size() == 0) {
+			response.setStatus(3387);
+			return false;
+		}
 		ExcelTool excel = null;
 		try {
 			excel = new ExcelTool(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/teacher.xls");
@@ -221,13 +224,15 @@ public class PlanController {
 			logger.debug(e1.getMessage());
 		}
 		excel.setworkSheet(0);
-		
-		//update title
-		String title = excel.getCellString(row, column)
-		//update excel content
+
+		// update title
+		String title = excel.getCellString(0, 0);
+		excel.setCellText(0, 0, title.replace("{From}", plans.get(0).getIntfromyear().toString()).replace("{To}", plans.get(0).getInttoyear().toString()).replace("{Term}", plans.get(0).getIntterm() == 0 ? "上" : "下"));
+		excel.setCellAlign(0, 0, HSSFCellStyle.ALIGN_CENTER);
+		// update excel content
 		for (int i = 0; i < plans.size(); i++) {
 			BookPlan curPlan = plans.get(i);
-			excel.setCellBorderStyle(3 + i, 0, Integer.toString(i), HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 0, Integer.toString(i + 1), HSSFCellStyle.BORDER_THIN);
 			excel.setCellBorderStyle(3 + i, 1, curPlan.getStrcoursename(), HSSFCellStyle.BORDER_THIN);
 			excel.setCellBorderStyle(3 + i, 2, curPlan.getCourseType().getStrcoursename(), HSSFCellStyle.BORDER_THIN);
 			excel.setCellBorderStyle(3 + i, 3, curPlan.getStrclass(), HSSFCellStyle.BORDER_THIN);
@@ -279,8 +284,7 @@ public class PlanController {
 			return null;
 		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
-				null, new Book(BookName));
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));

@@ -62,6 +62,20 @@ public class ExcelTool {
 		cell.setCellValue(value);
 	}
 
+	public void setCellAlign(int row, int column,short Align) {
+		HSSFRow Row = workSheet.getRow(row);
+		if (Row == null) {
+			Row = workSheet.createRow(row);
+		}
+		HSSFCell cell = Row.getCell(column);
+		if (cell == null) {
+			cell = Row.createCell(column);
+		}
+		HSSFCellStyle style = cell.getCellStyle();
+		style.setAlignment(Align);
+		cell.setCellStyle(style);
+	}
+
 	public void setAllColumnAutoWidth() {
 		for (int i = 0, len = workSheet.getRow(0).getPhysicalNumberOfCells(); i < len; i++) {
 			workSheet.autoSizeColumn(i);

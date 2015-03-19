@@ -87,8 +87,6 @@ a.show-sidebar:hover {
 #sidebar-left {
 	position: relative;
 	z-index: inherit;
-	padding-bottom: 3000px !important;
-	margin-bottom: -3000px !important;
 	background: #353535;
 	-webkit-transition: 0.1s;
 	-moz-transition: 0.1s;
@@ -101,8 +99,7 @@ a.show-sidebar:hover {
 	z-index: 10;
 	background: #FBFBF0;
 	box-shadow: 0 0 6px #000;
-	padding-bottom: 3000px !important;
-	margin-bottom: -2980px !important;
+	padding-bottom: 200px !important;
 	overflow: hidden;
 	-webkit-transition: 0.1s;
 	-moz-transition: 0.1s;
