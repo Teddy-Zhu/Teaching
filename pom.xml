@@ -142,7 +142,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 				<configuration>
 					<url>http://127.0.0.1/manager/text</url>
 					<server>teaching</server>
-					<path>/</path>
+					<path>/teaching</path>
 					<target>1.8</target>
 					<source>1.8</source>
 					<encoding>UTF-8</encoding>
