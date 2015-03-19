@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-19 18:27:43
+Date: 2015-03-19 20:55:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -75,7 +75,7 @@ CREATE TABLE `bookplan` (
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '4', '2014', '2015', '0', '2015-03-15 13:12:22', 'none');
+INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '4', '2014', '2015', '0', '2015-03-15 13:12:22', '附言测试');
 INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '1', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
 
 -- ----------------------------
@@ -643,7 +643,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -669,6 +669,7 @@ INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查
 INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', '2015-03-13 13:41:45');
 INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变更', '2015-03-13 16:21:35');
 INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上传与变更<br>变更权限控制,session控制方式<br>缩减无用html,js,java代码', '2015-03-18 21:55:35');
+INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不支持低版本IE678],FF,Chrome.', '2015-03-19 20:55:05');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig

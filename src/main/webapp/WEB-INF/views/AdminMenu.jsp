@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <title>Teaching ManageMent System</title>
 <meta name="description" content="description">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
