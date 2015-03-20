@@ -139,14 +139,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
 				<configuration>
-					<url>http://127.0.0.1/manager/text</url>
-					<server>teaching</server>
 					<path>/</path>
 					<target>1.8</target>
 					<source>1.8</source>
@@ -160,29 +153,4 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 	<name>Teach ManageMent System</name>
 	<description>for zhuxi's  graduation design</description>
 	<version>1.0</version>
-	<repositories>
-		<repository>
-			<id>people.apache.snapshots</id>
-			<url>http://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>apache.snapshots</id>
-			<name>Apache Snapshots</name>
-			<url>http://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 </project>
