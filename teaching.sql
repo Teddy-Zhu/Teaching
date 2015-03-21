@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-19 20:55:30
+Date: 2015-03-21 14:34:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -643,7 +643,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -670,13 +670,14 @@ INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', 
 INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变更', '2015-03-13 16:21:35');
 INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上传与变更<br>变更权限控制,session控制方式<br>缩减无用html,js,java代码', '2015-03-18 21:55:35');
 INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不支持低版本IE678],FF,Chrome.', '2015-03-19 20:55:05');
+INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动化持续化部署.', '2015-03-21 14:33:15');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `AddOrUpdatePersonalConfig`;
 DELIMITER ;;
-CREATE PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(11),IN `configValue` int(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddOrUpdatePersonalConfig`(IN `configName` varchar(255),IN `userId` int(11),IN `configValue` int(11))
 BEGIN
 	DECLARE i int(11);
 	SET i = -1;
