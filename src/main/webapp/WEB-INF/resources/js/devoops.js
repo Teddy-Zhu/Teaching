@@ -545,10 +545,10 @@ $(function() {
 	});
 	var ajax_url = location.hash.replace(/^#/, '');
 	if (ajax_url.length < 1) {
-		ajax_url = 'ajax/dashboard';
+		ajax_url = 'dashboard';
 	}
-	LoadAjaxContent(ajax_url);
-	var item = $('.main-menu li a[href$="' + ajax_url + '"]');
+	LoadAjaxContent('ajax/' + ajax_url);
+	var item = $('.main-menu li a[href$="ajax/' + ajax_url + '"]');
 	item.addClass('active-parent active');
 	$('.dropdown:has(li:has(a.active)) > a').addClass('active-parent active');
 	$('.dropdown:has(li:has(a.active)) > ul').css("display", "block");
@@ -586,7 +586,7 @@ $(function() {
 				$('#content').removeClass('full-content');
 			}
 			var url = $(this).attr('href');
-			window.location.hash = url;
+			window.location.hash = url.replace('ajax/', '');
 			LoadAjaxContent(url);
 		}
 		if ($(this).attr('href') == '#') {
@@ -651,7 +651,7 @@ $(function() {
 		}
 	});
 
-    $('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
+	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
 	NProgress.configure({
 		parent : '#headernavbar',
 		ease : 'ease',
