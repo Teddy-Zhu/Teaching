@@ -180,7 +180,7 @@ after-span {
 		<div class="col-xs-8">
 			<h5 class="text-center" style="color: white; margin-top: 10px;">Designed By ZhuXi Powered By Bootstrap And Others OpenCode.</h5>
 			<h5 class="text-center" style="color: white; margin-top: 10px;">
-				<strong>Copy Right©2014-${year} JinChengOpenSource Inc.</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
+				<strong>Copy Right©2014-${year} JinChengOpenSource Inc.Deployed By Jenkins</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
 						Version :${version}</strong></a>
 			</h5>
 			<div style="text-align: center;">
@@ -189,7 +189,6 @@ after-span {
 			</div>
 		</div>
 		<div class="col-xs-2"></div>
-	</div>
 	</div>
 	<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>
