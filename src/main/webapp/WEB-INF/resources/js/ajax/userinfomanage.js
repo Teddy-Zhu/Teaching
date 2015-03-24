@@ -82,7 +82,6 @@ $('#newDepartMent').change(function() {
 })
 
 $(function() {
-	console.debug('aaa');
 	// initial tablegrid
 	var psval = $('#datatable_userinfo').attr('data-size');
 	if (psval == undefined || psval == "") {
@@ -403,7 +402,4 @@ $(function() {
 
 		})
 	})
-
-	// Add Drag-n-Drop
-	WinMove();
 });

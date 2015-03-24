@@ -94,5 +94,4 @@ $(function() {
 		LoadAccessTree();
 	})
 
-	WinMove();
 })

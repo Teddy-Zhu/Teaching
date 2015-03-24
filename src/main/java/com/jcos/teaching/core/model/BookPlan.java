@@ -34,8 +34,18 @@ public class BookPlan {
 	private CourseType courseType;
 
 	private BookPlanStatus bookPlanStatus;
+	
+	private User user;
 
 	private Book book;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public CourseType getCourseType() {
 		return courseType;

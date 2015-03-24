@@ -15,8 +15,6 @@ public interface BookPlanService {
 
 	List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows);
 
-	Integer getPersonalBookPlanTotal(BookPlan record);
-
 	boolean authPlanByUserIdAndPlanId(Integer planId, Integer userId);
 
 	boolean authPlanStatusForChange(Integer planId);
@@ -24,5 +22,9 @@ public interface BookPlanService {
 	boolean updatePlan(BookPlan record);
 
 	boolean authPlanStatusForResubmit(Integer planId);
+
+	List<BookPlan> getAllBookPlan(BookPlan record, Integer page, Integer rows);
+
+	Integer getPersonalBookPlanTotalOrAll(BookPlan record);
 
 }

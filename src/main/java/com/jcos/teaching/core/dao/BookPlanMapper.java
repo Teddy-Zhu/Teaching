@@ -23,9 +23,9 @@ public interface BookPlanMapper {
 
 	Integer authBookIds(Integer intbookid);
 
-	List<BookPlan> selectPersonal(@Param(value = "record") BookPlan record, @Param(value = "start") Integer start, @Param(value = "size") Integer size);
+	List<BookPlan> selectPersonalOrAll(@Param(value = "type") boolean type, @Param(value = "record") BookPlan record, @Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
-	Integer selectPersonalTotalCount(BookPlan record);
+	Integer selectPersonalTotalCountOrAll(BookPlan record);
 
 	Integer authPlanByUserIdAndPlanId(@Param(value = "userId") Integer userId, @Param(value = "planId") Integer planId);
 

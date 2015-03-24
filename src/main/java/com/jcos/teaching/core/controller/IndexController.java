@@ -147,6 +147,13 @@ public class IndexController {
 		return "/ajax/plan_query";
 	}
 
+	@RequestMapping(value = "/ajax/plan_manage", method = RequestMethod.GET)
+	@SetSettings(value = { "plangridsize" })
+	@SetPower(value = "plan_manage")
+	public String menu12(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/plan_manage";
+	}
+	
 	@RequestMapping(value = "/ajax/personal_setting", method = RequestMethod.GET)
 	@SetSettings(value = { "openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize" })
 	@SetPower(value = "personal_setting")

@@ -351,6 +351,4 @@ $(function() {
 	$('#Search').click(function() {
 		$mydatagrid.datagrid('reload');
 	})
-	// Add Drag-n-Drop
-	WinMove();
 })

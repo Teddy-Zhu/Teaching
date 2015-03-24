@@ -59,8 +59,8 @@ public class BookPlanImpl implements BookPlanService {
 
 	@Override
 	public List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows) {
-		List<BookPlan> list = bookPlanDao.selectPersonal(record, rows * (page - 1), rows);
-		if (list == null || list.get(0) == null) {
+		List<BookPlan> list = bookPlanDao.selectPersonalOrAll(false, record, rows * (page - 1), rows);
+		if (list == null || list.size() == 0) {
 			return new ArrayList<BookPlan>();
 		} else {
 			return list;
@@ -68,8 +68,18 @@ public class BookPlanImpl implements BookPlanService {
 	}
 
 	@Override
-	public Integer getPersonalBookPlanTotal(BookPlan record) {
-		return bookPlanDao.selectPersonalTotalCount(record);
+	public List<BookPlan> getAllBookPlan(BookPlan record, Integer page, Integer rows) {
+		List<BookPlan> list = bookPlanDao.selectPersonalOrAll(true, record, rows * (page - 1), rows);
+		if (list == null || list.size() == 0) {
+			return new ArrayList<BookPlan>();
+		} else {
+			return list;
+		}
+	}
+
+	@Override
+	public Integer getPersonalBookPlanTotalOrAll(BookPlan record) {
+		return bookPlanDao.selectPersonalTotalCountOrAll(record);
 	}
 
 	@Override

@@ -47,7 +47,6 @@ function initSupplierType(id, addition) {
 }
 
 $(function() {
-	console.log('a');
 	$.ajax({
 		url : 'Plan/GetCourseType',
 		dataType : 'json',

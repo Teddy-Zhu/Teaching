@@ -218,9 +218,10 @@
 		<association property="courseType" column="intCourseTypeId" select="com.jcos.teaching.core.dao.CourseTypeMapper.selectByPrimaryKey" />
 		<association property="book" column="intBookId" select="com.jcos.teaching.core.dao.BookMapper.selectByPrimaryKey" />
 		<association property="bookPlanStatus" column="intPlanStatusId" select="com.jcos.teaching.core.dao.BookPlanStatusMapper.selectByPrimaryKey" />
+		<association property="user" column="intUserId" select="com.jcos.teaching.core.dao.UserMapper.selectByPrimaryKey" />
 	</resultMap>
 
-	<select id="selectPersonalTotalCount" resultType="java.lang.Integer">
+	<select id="selectPersonalTotalCountOrAll" resultType="java.lang.Integer">
 		select
 		count(x.intPlanId)
 		from bookplan x LEFT JOIN book y on x.intBookId=y.intBookId
@@ -263,12 +264,13 @@
 			</if>
 		</trim>
 	</select>
-	<select id="selectPersonal" resultMap="BookPlanTypeExtendMap">
+	<select id="selectPersonalOrAll" resultMap="BookPlanTypeExtendMap">
 		select
 		x.intPlanId, x.strCourseName, x.intCourseTypeId, x.strClass, (x.intStudCount + COALESCE(SUM(z.intStudent),0)) as intStudCount, (x.intTeacCount + COALESCE(SUM(z.intTeacher),0)) as intTeacCount,
 		x.intBookId,
 		x.intPlanStatusId, x.intFromYear, x.intToYear, x.intTerm,
 		x.dateCreateTime,x.strMark
+		<if test="type == true ">,x.intUserId</if>
 		from bookplan
 		x LEFT JOIN book
 		y on x.intBookId=y.intBookId LEFT JOIN bookplanchange z ON x.intPlanId =
@@ -323,4 +325,12 @@
 	<select id="selectPlanStatusForChange" resultType="java.lang.Integer">
 		select intPlanStatusId from bookplan where intPlanId = #{planId,jdbcType=INTEGER}
 	</select>
+
+	<resultMap id="BookPlanAllTypeExtendMap" type="BookPlan" extends="BaseResultMap">
+		<association property="courseType" column="intCourseTypeId" select="com.jcos.teaching.core.dao.CourseTypeMapper.selectByPrimaryKey" />
+		<association property="book" column="intBookId" select="com.jcos.teaching.core.dao.BookMapper.selectByPrimaryKey" />
+		<association property="bookPlanStatus" column="intPlanStatusId" select="com.jcos.teaching.core.dao.BookPlanStatusMapper.selectByPrimaryKey" />
+		<association property="user" column="intUserId" select="com.jcos.teaching.core.dao.UserMapper.selectByPrimaryKey" />
+	</resultMap>
+
 </mapper>

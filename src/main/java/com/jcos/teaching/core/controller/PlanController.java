@@ -286,7 +286,47 @@ public class PlanController {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("total", bookPlanService.getPersonalBookPlanTotal(record));
+		ret.put("total", bookPlanService.getPersonalBookPlanTotalOrAll(record));
+		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
+
+		return ret;
+	}
+
+	@RequestMapping(value = "/GetAllPlan", method = RequestMethod.POST)
+	@ResponseBody
+	@AuthPower(value = "queryallplan")
+	public Map<String, Object> getAllPlan(HttpServletRequest request, Model model, HttpServletResponse response) {
+		int rows = 10, page = 1;
+		String CourseName = "", ClassId = "", BookName = "";
+		Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1, Term = -1, StuCount = -1, TeaCount = -1, userId = -1;
+		Date date = null;
+		try {
+			rows = Integer.valueOf(request.getParameter("rows"));
+			page = Integer.valueOf(request.getParameter("page"));
+			userId = request.getParameter("UserId").trim().equals("") ? null : Integer.valueOf(request.getParameter("UserId"));
+			CourseName = request.getParameter("CourseName").trim().equals("") ? null : request.getParameter("CourseName");
+			ClassId = request.getParameter("ClassId").trim().equals("") ? null : request.getParameter("ClassId");
+			BookName = request.getParameter("BookName").trim().equals("") ? null : request.getParameter("BookName");
+			StuCount = request.getParameter("StuCount").trim().equals("") ? null : Integer.valueOf(request.getParameter("StuCount"));
+			TeaCount = request.getParameter("TeaCount").trim().equals("") ? null : Integer.valueOf(request.getParameter("TeaCount"));
+			CourseType = Integer.valueOf(request.getParameter("CourseType")) == -1 ? null : Integer.valueOf(request.getParameter("CourseType"));
+			PlanStatus = Integer.valueOf(request.getParameter("PlanStatus")) == -1 ? null : Integer.valueOf(request.getParameter("PlanStatus"));
+			FromYear = request.getParameter("FromYear").trim().equals("") ? null : Integer.valueOf(request.getParameter("FromYear"));
+			ToYear = request.getParameter("ToYear").trim().equals("") ? null : Integer.valueOf(request.getParameter("ToYear"));
+			Term = Integer.valueOf(request.getParameter("Term")) == -1 ? null : Integer.valueOf(request.getParameter("Term"));
+			date = request.getParameter("SearchDate").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return null;
+		}
+		if (FromYear != null && ToYear != null && FromYear > ToYear) {
+			response.setStatus(3387);
+			return null;
+		}
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, userId, PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("total", bookPlanService.getPersonalBookPlanTotalOrAll(record));
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
 
 		return ret;

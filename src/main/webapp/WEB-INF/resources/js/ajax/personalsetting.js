@@ -1,5 +1,4 @@
 $(function() {
-	console.log('as');
 	// initial date input
 	$("#BookGridSize,#UserGridSize,#SupplierGridSize,#PlanGridSize").TouchSpin({
 		min : 1,

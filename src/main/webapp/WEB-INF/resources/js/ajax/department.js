@@ -192,7 +192,6 @@ $(function() {
 
 	});
 
-	WinMove();
 })
 
 function initial() {

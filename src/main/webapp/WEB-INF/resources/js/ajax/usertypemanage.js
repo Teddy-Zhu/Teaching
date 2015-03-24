@@ -178,5 +178,4 @@ $(function() {
 	$("[data-toggle='tooltip']").click(function() {
 		LoadAjaxContent('ajax/access_manage');
 	});
-	WinMove();
 })

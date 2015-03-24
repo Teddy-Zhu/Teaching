@@ -11,7 +11,6 @@ function setVal(id, obj) {
 	$('#editContactPhone' + id).val(obj.strcontactpersonphone);
 }
 $(function() {
-	console.debug('aaa');
 	// initial tablegrid
 	var psval = $('#datatable_supplierinfo').attr('data-size');
 	if (psval == undefined || psval == "") {

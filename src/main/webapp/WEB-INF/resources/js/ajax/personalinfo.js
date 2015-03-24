@@ -38,7 +38,6 @@ function picChange() {
 	}
 }
 $(function() {
-	console.debug('aaa');
 	initUserDepartMent('DepartMent', 1).done(function() {
 		$("#DepartMent").change(function() {
 			initUserDepartMent('Major', $('#DepartMent').val());
@@ -157,5 +156,4 @@ $(function() {
 		LoadAjaxContent("ajax/personinfo_manage");
 	})
 
-	WinMove();
 })

@@ -86,7 +86,6 @@ function getSearchParams(params) {
 }
 
 $(function() {
-	console.debug('aaa');
 	$('button.editbook').click(
 			function() {
 				var rows = $('#datatable_bookinfo').datagrid('getSelections');
@@ -422,6 +421,5 @@ $(function() {
 	$('#Search').click(function() {
 		$('#datatable_bookinfo').datagrid('reload');
 	})
-	// Add Drag-n-Drop
-	WinMove();
+
 });
