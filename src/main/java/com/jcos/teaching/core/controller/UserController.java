@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
-import com.alibaba.druid.util.Base64;
 import com.jcos.teaching.core.exmodel.LoginSession;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.UserType;
@@ -418,12 +415,7 @@ public class UserController {
 		if (!picfile.equals("")) {
 			String picpath = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/tmp/";
 
-			try {
-				filename = new String(new BASE64Decoder().decodeBuffer(picfile));
-			} catch (IOException e) {
-				response.setStatus(3386);
-				return false;
-			}
+			filename = Base64.encodeBase64(picfile.getBytes()).toString();
 			File tmpfile = new File(picpath + filename);
 
 			File avatarfile = new File(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/userpic/" + filename);
@@ -513,6 +505,6 @@ public class UserController {
 				return tmpname;
 			}
 		}
-		return tmpname = new BASE64Encoder().encode(tmpname.getBytes());
+		return tmpname = Base64.encodeBase64(tmpname.getBytes()).toString();
 	}
 }
