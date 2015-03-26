@@ -43,6 +43,10 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String admin(HttpServletRequest request, Model model) {
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		if (loginSession != null && loginSession.getLoginUser() != null) {
+			return "redirect:/AdminMenu";
+		}
 		VersionLog version = versionLogService.queryCururentVersion();
 		model.addAttribute("version", version.getStrversion() + "." + version.getStrfunversion() + "." + version.getStrbuildversion());
 		Calendar cal = Calendar.getInstance();
@@ -153,7 +157,7 @@ public class IndexController {
 	public String menu12(HttpServletRequest request, Model model, HttpServletResponse response) {
 		return "/ajax/plan_manage";
 	}
-	
+
 	@RequestMapping(value = "/ajax/personal_setting", method = RequestMethod.GET)
 	@SetSettings(value = { "openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize" })
 	@SetPower(value = "personal_setting")
