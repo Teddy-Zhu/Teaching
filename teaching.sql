@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-21 15:34:36
+Date: 2015-03-26 22:48:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -143,7 +143,7 @@ CREATE TABLE `bookplanstatus` (
 -- ----------------------------
 INSERT INTO `bookplanstatus` VALUES ('1', 'pending', '审核');
 INSERT INTO `bookplanstatus` VALUES ('2', 'reject', '驳回');
-INSERT INTO `bookplanstatus` VALUES ('3', 'fail', '失败');
+INSERT INTO `bookplanstatus` VALUES ('3', 'refuse', '失败');
 INSERT INTO `bookplanstatus` VALUES ('4', 'cancel', '取消');
 INSERT INTO `bookplanstatus` VALUES ('5', 'pass', '通过');
 INSERT INTO `bookplanstatus` VALUES ('6', 'overdue', '过期');
@@ -173,7 +173,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -230,6 +230,9 @@ INSERT INTO `config` VALUES ('49', 'personal_setting', 'querybook');
 INSERT INTO `config` VALUES ('50', 'personal_setting', 'queryplan');
 INSERT INTO `config` VALUES ('51', 'personal_setting', 'querysupplier');
 INSERT INTO `config` VALUES ('52', 'personal_setting', 'queryuser');
+INSERT INTO `config` VALUES ('53', 'plan_manage', 'manageplan');
+INSERT INTO `config` VALUES ('54', 'plan_manage', 'aduitplan');
+INSERT INTO `config` VALUES ('55', 'plan_manage', 'queryallplan');
 
 -- ----------------------------
 -- Table structure for coursetype
