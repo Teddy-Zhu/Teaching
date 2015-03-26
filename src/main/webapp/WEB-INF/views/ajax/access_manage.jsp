@@ -120,9 +120,11 @@
 <script type="text/javascript">
 	$(function() {
 		<c:if test="${accesscontrol eq true}">
-		LoadJsFile([ "resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", "resources/plugins/ztree/js/jquery.ztree.excheck-3.5.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/access_manage.js");
-		});
+		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
+			$.getScript("resources/plugins/ztree/js/jquery.ztree.excheck-3.5.min.js", function() {
+				$.getScript("resources/js/ajax/access_manage.js");
+			})
+		})
 		</c:if>
 	})
 </script>
