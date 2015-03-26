@@ -415,7 +415,7 @@ public class UserController {
 		if (!picfile.equals("")) {
 			String picpath = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/tmp/";
 
-			filename = Base64.encodeBase64(picfile.getBytes()).toString();
+			filename = new String(Base64.decodeBase64(picfile.getBytes()));
 			File tmpfile = new File(picpath + filename);
 
 			File avatarfile = new File(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/userpic/" + filename);
@@ -484,10 +484,6 @@ public class UserController {
 		String tmpname = "";
 		if (file == null || file.isEmpty()) {
 		} else {
-			logger.debug("文件长度: " + file.getSize());
-			logger.debug("文件类型: " + file.getContentType());
-			logger.debug("文件名称: " + file.getName());
-			logger.debug("文件原名: " + file.getOriginalFilename());
 			if (file.getSize() > 2097152) {
 				return "";
 			}
@@ -505,6 +501,6 @@ public class UserController {
 				return tmpname;
 			}
 		}
-		return tmpname = Base64.encodeBase64(tmpname.getBytes()).toString();
+		return new String(Base64.encodeBase64(tmpname.getBytes()));
 	}
 }
