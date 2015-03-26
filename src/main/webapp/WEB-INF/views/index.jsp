@@ -32,6 +32,12 @@ span.passwordc {
 	box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.5);
 }
 
+.input-group {
+	-webkit-box-shadow: 0px 5px 5px rgba(255, 255, 255, 0.5);
+	-moz-box-shadow: 0px 5px 5px rgba(255, 255, 255, 0.5);
+	box-shadow: 0px 5px 5px rgba(98, 98, 98, 0.5);
+}
+
 #registerModal div div div div {
 	margin-bottom: 2%;
 }
@@ -91,10 +97,8 @@ after-span {
 							</div>
 						</div>
 						<div class="col-xs-8 col-sm-offset-2">
-							<div class="input-group">
-								<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Login</button>
-								<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
-							</div>
+							<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Login</button>
+							<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
 						</div>
 					</div>
 				</div>
@@ -165,10 +169,8 @@ after-span {
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
-							<div class="input-group">
-								<button id="registerButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Register</button>
-								<button id="resetRegButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
-							</div>
+							<button id="registerButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Register</button>
+							<button id="resetRegButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
 						</div>
 					</div>
 				</div>
