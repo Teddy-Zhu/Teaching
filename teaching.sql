@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-26 22:48:20
+Date: 2015-03-26 22:58:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -646,7 +646,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -674,6 +674,7 @@ INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变
 INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上传与变更<br>变更权限控制,session控制方式<br>缩减无用html,js,java代码', '2015-03-18 21:55:35');
 INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不支持低版本IE678],FF,Chrome.', '2015-03-19 20:55:05');
 INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动化持续化部署.', '2015-03-21 14:33:15');
+INSERT INTO `versionlog` VALUES ('34', '0023', '00', '1', '修复部分BUG,移除SunBase64', '2015-03-26 22:57:56');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
