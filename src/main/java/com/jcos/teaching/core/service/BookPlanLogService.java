@@ -12,4 +12,6 @@ public interface BookPlanLogService {
 
 	List<BookPlanLog> getBookPlanLogByUserId(Integer userId, Integer planId);
 
+	List<BookPlanLog> getBookPlanLogByUserIdAdmin(Integer planId);
+
 }

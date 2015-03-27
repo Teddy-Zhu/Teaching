@@ -61,9 +61,10 @@
 								<li class="hidden-xs"><a class="ajax-link" href="ajax/calendar.html"> <i class="fa fa-calendar"></i> <span class="badge">7</span>
 								</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-										<div class="avatar">
+										<span class="avatar">
 											<img src="${user.strpic}<c:if test="${empty user}">resources/img/userpic/avatar.jpg</c:if>" class="img-circle" alt="avatar" />
-										</div> <i class="fa fa-angle-down pull-right"></i>
+										</span> 
+										<i class="fa fa-angle-down pull-right"></i>
 										<div class="user-mini pull-right">
 											<span class="welcome">Welcome,</span> <span>${user.username}</span>
 										</div>

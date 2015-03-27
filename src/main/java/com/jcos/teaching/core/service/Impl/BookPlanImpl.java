@@ -1,6 +1,7 @@
 package com.jcos.teaching.core.service.Impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -94,18 +95,45 @@ public class BookPlanImpl implements BookPlanService {
 
 	@Override
 	public boolean authPlanStatusForChange(Integer planId) {
-		Integer i = bookPlanDao.selectPlanStatusForChange(planId);
-		if (i > 2) {
-			return false;
-		} else {
-			return true;
+		List<BookPlan> plans = bookPlanDao.selectPlanStatus(Arrays.asList(planId));
+		for (int i = 0, len = plans.size(); i < len; i++) {
+			if (plans.get(i).getIntplanstatusid() > 2) {
+				return false;
+			} else {
+				return true;
+			}
 		}
+		return false;
 	}
 
 	@Override
 	public boolean authPlanStatusForResubmit(Integer planId) {
-		Integer i = bookPlanDao.selectPlanStatusForChange(planId);
-		if (i != 2) {
+		List<BookPlan> plans = bookPlanDao.selectPlanStatus(Arrays.asList(planId));
+		for (int i = 0, len = plans.size(); i < len; i++) {
+			if (plans.get(i).getIntplanstatusid() != 2) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean authPlanStatusForPassAndRejectAndRefuse(Integer[] planId) {
+		List<BookPlan> plans = bookPlanDao.selectPlanStatus(Arrays.asList(planId));
+		for (int i = 0, len = plans.size(); i < len; i++) {
+			if (plans.get(i).getIntplanstatusid() != 1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updatePlanStatusByIds(Integer[] planId, Integer statusId) {
+		Integer i = bookPlanDao.setPlanStatusByIds(Arrays.asList(planId), statusId);
+		if (i != planId.length) {
 			return false;
 		} else {
 			return true;

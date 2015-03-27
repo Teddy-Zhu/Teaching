@@ -129,15 +129,20 @@ font-size:inherit;
 									</div>
 									<div class="col-xs-12">
 										<label>StudentCount</label><input class="SearchForm form-control" type="text" id="StuCount" /> <label>TeacherCount</label><input class="SearchForm form-control" type="text" id="TeaCount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
-										<label>User</label><select class="SearchForm form-control" type="text" id="UserId"></select>
-										<button id="Search" class="btn btn-primary btn-xs">Search</button>
+										<button id="Search" class="btn btn-primary btn-xs" style="height: 30px;">Search</button>
+									</div>
+									<div class="col-xs-12">
+										<label class="col-xs-2" style="margin-top: 0.6%">User</label>
+										<div class="input-group col-xs-2">
+											<select id="UserId" class="SearchForm form-control" style="width: 56% !important; margin-right: 0px;"></select>
+											<button id="userselect" class="btn btn-info form-control" style="width: 34%" type="button">Select</button>
+										</div>
 									</div>
 								</div>
+								<table id="datatable_perplaninfo" data-size="${plangridsize}" style="width: 100%">
+								</table>
 							</div>
-							<table id="datatable_perplaninfo" data-size="${plangridsize}" style="width: 100%">
-							</table>
 						</div>
-					</div>
 				</c:if>
 			</div>
 		</div>

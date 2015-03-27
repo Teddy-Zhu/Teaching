@@ -17,15 +17,7 @@ jQuery.DownloadFile = function(parameters) {
 		jQuery('<form style="display:none;" action="' + url + '" method="' + (method || 'post') + '">' + inputs + '</form>').appendTo('body').submit().remove();
 	}
 }
-function LoadOpenLayersScript(callback) {
-	if (!$.fn.OpenLayers) {
-		$.getScript('http://www.openlayers.org/api/OpenLayers.js', callback);
-	} else {
-		if (callback && typeof (callback) === "function") {
-			callback();
-		}
-	}
-}
+
 function loadJs(url) {
 	var dtd = $.Deferred();
 	$.getScript(url, function() {
@@ -203,11 +195,13 @@ function SetMinBlockHeight(elem) {
 function DashboardTabChecker() {
 	$('#content').on('click', 'a.tab-link', function(e) {
 		e.preventDefault();
-		$('div#dashboard_tabs').find('div[id^=dashboard]').each(function() {
-			$(this).css('visibility', 'hidden').css('position', 'absolute');
-		});
 		var attr = $(this).attr('id');
-		$('#' + 'dashboard-' + attr).css('visibility', 'visible').css('position', 'relative');
+		$('div#dashboard_tabs').find('div[id^=dashboard]').each(function() {
+			if ($(this).attr('id') != "dashboard-" + attr) {
+				$(this).slideUp();
+			}
+		});
+		$('#' + 'dashboard-' + attr).slideDown();
 		$(this).closest('.nav').find('li').removeClass('active');
 		$(this).closest('li').addClass('active');
 	});

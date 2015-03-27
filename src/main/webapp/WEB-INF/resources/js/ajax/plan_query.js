@@ -305,9 +305,7 @@ $(function() {
 			formatter : function(value) {
 				return value.strmark;
 			}
-		}
-
-		] ],
+		} ] ],
 		onBeforeLoad : function(param) {
 			param = getSearchParams(param);
 		},
@@ -340,7 +338,7 @@ $(function() {
 			iconCls : 'fa fa-download',
 			handler : function() {
 				$.DownloadFile({
-					url : 'Plan/ImportPerPlan',
+					url : 'Plan/ExportPerPlan',
 					method : 'post',
 					data : getSearchParams(),
 				})

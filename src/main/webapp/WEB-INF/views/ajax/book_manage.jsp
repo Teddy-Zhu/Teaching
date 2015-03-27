@@ -92,7 +92,7 @@
 						<div class="panel-body">
 							<div class="container-fluid" style="margin-top: 10px;">
 
-								<div id="operationpanel" class="col-xs-12" style="overflow-x: hidden;">
+								<div id="operationpanel" class="col-xs-12" style="overflow: hidden;">
 									<div class="alert alert-danger" role="alert">
 										<strong>Warning!</strong> <br>[1]Before delete or edit, you should select one at least.<br>[2]If you want clear selected row quickly,you can refresh the grid.<br>[3]Or you have no power and you can browser books below.
 									</div>
@@ -190,7 +190,7 @@
 							</h4>
 						</div>
 						<div id="collapseForBookTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-							<div class="panel-body" style="overflow-x: hidden;">
+							<div class="panel-body" style="overflow: hidden;">
 								<div class="searchClass row">
 									<div class="col-xs-12">
 										<label>Code</label><input class="SearchForm form-control" type="text" id="SearchCode" /> <label>Name</label><input class="SearchForm form-control" type="text" id="SearchName" /> <label>SN</label><input class="SearchForm form-control" type="text" id="SearchSN" /> <label>Type</label><select
@@ -202,7 +202,7 @@
 									</div>
 									<div class="col-xs-12">
 										<label>Discount</label><input class="SearchForm form-control" type="text" id="SearchDiscount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
-										<button id="Search" class="btn btn-primary btn-xs">Search</button>
+										<button id="Search" class="btn btn-primary btn-xs" style="height: 30px">Search</button>
 									</div>
 								</div>
 							</div>

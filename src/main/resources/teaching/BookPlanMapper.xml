@@ -322,8 +322,11 @@
 		select count(intPlanId) from bookplan where intPlanId = #{planId,jdbcType=INTEGER} and intUserId = #{userId,jdbcType=INTEGER}
 	</select>
 
-	<select id="selectPlanStatusForChange" resultType="java.lang.Integer">
-		select intPlanStatusId from bookplan where intPlanId = #{planId,jdbcType=INTEGER}
+	<select id="selectPlanStatus" resultMap="BaseResultMap">
+		select intPlanId,intPlanStatusId from bookplan where intPlanId in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item,jdbcType=INTEGER}
+		</foreach>
 	</select>
 
 	<resultMap id="BookPlanAllTypeExtendMap" type="BookPlan" extends="BaseResultMap">
@@ -333,4 +336,12 @@
 		<association property="user" column="intUserId" select="com.jcos.teaching.core.dao.UserMapper.selectByPrimaryKey" />
 	</resultMap>
 
+	<update id="setPlanStatusByIds" parameterType="com.jcos.teaching.core.model.BookPlan">
+		update bookplan
+		set intPlanStatusId = #{statusid,jdbcType=INTEGER}
+		where intPlanId in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+	</update>
 </mapper>

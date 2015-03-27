@@ -29,5 +29,7 @@ public interface BookPlanMapper {
 
 	Integer authPlanByUserIdAndPlanId(@Param(value = "userId") Integer userId, @Param(value = "planId") Integer planId);
 
-	Integer selectPlanStatusForChange(@Param(value = "planId") Integer planId);
+	List<BookPlan> selectPlanStatus(@Param(value = "list") List<Integer> planId);
+
+	Integer setPlanStatusByIds(@Param(value = "list") List<Integer> planId, @Param(value = "statusid") Integer statusid);
 }

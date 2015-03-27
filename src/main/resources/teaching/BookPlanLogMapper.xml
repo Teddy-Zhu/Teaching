@@ -100,6 +100,20 @@
 		<association property="bookPlanChange" column="intPlanLogId" select="com.jcos.teaching.core.dao.BookPlanChangeMapper.selectByPlanLogId" />
 	</resultMap>
 
+	<resultMap id="BookPlanExtendMapAdmin" type="com.jcos.teaching.core.model.BookPlanLog" extends="BaseResultMap">
+		<association property="operation" column="intOperateId" select="com.jcos.teaching.core.dao.OperationMapper.selectByPrimaryKey" />
+		<association property="bookPlanChange" column="intPlanLogId" select="com.jcos.teaching.core.dao.BookPlanChangeMapper.selectByPlanLogId" />
+		<association property="user" column="intUserId" select="com.jcos.teaching.core.dao.UserMapper.selectByPrimaryKey" />
+	</resultMap>
+
+	<select id="selectBookPlanLogByuserIdAdmin" resultMap="BookPlanExtendMapAdmin">
+		select
+		<include refid="Base_Column_List" />
+		from bookplanlog
+		where intPlanId = #{planId,jdbcType=INTEGER}
+		order by dateCreateTime asc
+	</select>
+
 	<select id="selectBookPlanLogByuserId" resultMap="BookPlanExtendMap">
 		select
 		<include refid="Base_Column_List" />

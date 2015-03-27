@@ -27,4 +27,8 @@ public interface BookPlanService {
 
 	Integer getPersonalBookPlanTotalOrAll(BookPlan record);
 
+	boolean authPlanStatusForPassAndRejectAndRefuse(Integer[] planId);
+
+	boolean updatePlanStatusByIds(Integer[] planId, Integer statusId);
+
 }

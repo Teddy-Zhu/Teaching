@@ -1,16 +1,16 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-26 22:58:05
+Date: 2015-03-27 17:24:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -75,8 +75,8 @@ CREATE TABLE `bookplan` (
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
-INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '4', '2014', '2015', '0', '2015-03-15 13:12:22', '附言测试');
-INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '1', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
+INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '5', '2014', '2015', '0', '2015-03-15 13:12:22', '附言测试');
+INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '4', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -113,7 +113,7 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
@@ -126,6 +126,8 @@ INSERT INTO `bookplanlog` VALUES ('5', '1', '7', '1', '2015-03-19 16:25:21');
 INSERT INTO `bookplanlog` VALUES ('6', '2', '3', '1', '2015-03-19 16:43:17');
 INSERT INTO `bookplanlog` VALUES ('7', '2', '6', '1', '2015-03-19 16:51:35');
 INSERT INTO `bookplanlog` VALUES ('8', '2', '6', '1', '2015-03-19 16:51:41');
+INSERT INTO `bookplanlog` VALUES ('9', '2', '7', '1', '2015-03-27 13:03:10');
+INSERT INTO `bookplanlog` VALUES ('10', '1', '8', '1', '2015-03-27 15:32:34');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -274,7 +276,7 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
@@ -286,6 +288,9 @@ INSERT INTO `operation` VALUES ('4', '再次教学计划提交审核');
 INSERT INTO `operation` VALUES ('5', '驳回教学计划申请');
 INSERT INTO `operation` VALUES ('6', '更改教学计划');
 INSERT INTO `operation` VALUES ('7', '取消教学计划');
+INSERT INTO `operation` VALUES ('8', '通过了教学计划审核');
+INSERT INTO `operation` VALUES ('9', '教学计划过期');
+INSERT INTO `operation` VALUES ('10', '拒绝教学计划申请');
 
 -- ----------------------------
 -- Table structure for personalconfig
@@ -335,7 +340,7 @@ INSERT INTO `power` VALUES ('6', '1', '管理书籍类型', '1', 'managebooktype
 INSERT INTO `power` VALUES ('7', '1', '管理供应商', '1', 'managesupplier', '1');
 INSERT INTO `power` VALUES ('8', '1', '管理用户系部', '1', 'manageuserdepart', '1');
 INSERT INTO `power` VALUES ('9', '1', '管理书籍', '1', 'managebook', '1');
-INSERT INTO `power` VALUES ('10', '1', '教材计划管理', '1', 'manageplan', '1');
+INSERT INTO `power` VALUES ('10', '1', '教材计划管理(UI)', '1', 'manageplan', '1');
 INSERT INTO `power` VALUES ('11', '1', '教材计划申请(个人)', '1', 'submitplan', '1');
 INSERT INTO `power` VALUES ('12', '1', '教材计划查询(个人)', '1', 'queryplan', '1');
 INSERT INTO `power` VALUES ('13', '1', '教材计划(UI)', '1', 'planui', '1');
@@ -365,7 +370,7 @@ INSERT INTO `power` VALUES ('36', '6', '编辑书记类型', '1', 'editbooktype'
 INSERT INTO `power` VALUES ('37', '6', '删除书籍类型', '1', 'rmbooktype', '1');
 INSERT INTO `power` VALUES ('38', '6', '查询书籍类型', '1', 'querybooktype', '1');
 INSERT INTO `power` VALUES ('39', '10', '教材计划查询(管理)', '1', 'queryallplan', '1');
-INSERT INTO `power` VALUES ('40', '10', '教材计划审核', '1', 'auditplan', '1');
+INSERT INTO `power` VALUES ('40', '10', '教材计划管理', '1', 'auditplan', '1');
 INSERT INTO `power` VALUES ('41', '1', '登录', '2', 'Login', '1');
 INSERT INTO `power` VALUES ('42', '1', '权限控管', '2', 'accesscontrol', '0');
 INSERT INTO `power` VALUES ('43', '1', '管理用户', '2', 'manageuser', '1');
@@ -374,7 +379,7 @@ INSERT INTO `power` VALUES ('45', '1', '管理书籍类型', '2', 'managebooktyp
 INSERT INTO `power` VALUES ('46', '1', '管理供应商', '2', 'managesupplier', '1');
 INSERT INTO `power` VALUES ('47', '1', '管理用户系部', '2', 'manageuserdepart', '1');
 INSERT INTO `power` VALUES ('48', '1', '管理书籍', '2', 'managebook', '1');
-INSERT INTO `power` VALUES ('49', '1', '教材计划管理', '2', 'manageplan', '0');
+INSERT INTO `power` VALUES ('49', '1', '教材计划管理(UI)', '2', 'manageplan', '0');
 INSERT INTO `power` VALUES ('50', '1', '教材计划申请(个人)', '2', 'submitplan', '1');
 INSERT INTO `power` VALUES ('51', '1', '教材计划查询(个人)', '2', 'queryplan', '1');
 INSERT INTO `power` VALUES ('52', '1', '教材计划(UI)', '2', 'planui', '1');
@@ -404,7 +409,7 @@ INSERT INTO `power` VALUES ('75', '48', '添加书籍', '2', 'addbook', '0');
 INSERT INTO `power` VALUES ('76', '48', '删除书籍', '2', 'rmbook', '0');
 INSERT INTO `power` VALUES ('77', '48', '编辑书籍', '2', 'editbook', '0');
 INSERT INTO `power` VALUES ('78', '49', '教材计划查询(管理)', '2', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('79', '49', '教材计划审核', '2', 'auditplan', '0');
+INSERT INTO `power` VALUES ('79', '49', '教材计划管理', '2', 'auditplan', '0');
 INSERT INTO `power` VALUES ('80', '1', '登录', '3', 'Login', '1');
 INSERT INTO `power` VALUES ('81', '1', '权限控管', '3', 'accesscontrol', '0');
 INSERT INTO `power` VALUES ('82', '1', '管理用户', '3', 'manageuser', '0');
@@ -413,7 +418,7 @@ INSERT INTO `power` VALUES ('84', '1', '管理书籍类型', '3', 'managebooktyp
 INSERT INTO `power` VALUES ('85', '1', '管理供应商', '3', 'managesupplier', '0');
 INSERT INTO `power` VALUES ('86', '1', '管理用户系部', '3', 'manageuserdepart', '0');
 INSERT INTO `power` VALUES ('87', '1', '管理书籍', '3', 'managebook', '0');
-INSERT INTO `power` VALUES ('88', '1', '教材计划管理', '3', 'manageplan', '0');
+INSERT INTO `power` VALUES ('88', '1', '教材计划管理(UI)', '3', 'manageplan', '0');
 INSERT INTO `power` VALUES ('89', '1', '教材计划申请(个人)', '3', 'submitplan', '0');
 INSERT INTO `power` VALUES ('90', '1', '教材计划查询(个人)', '3', 'queryplan', '0');
 INSERT INTO `power` VALUES ('91', '1', '教材计划(UI)', '3', 'planui', '0');
@@ -443,7 +448,7 @@ INSERT INTO `power` VALUES ('114', '87', '添加书籍', '3', 'addbook', '0');
 INSERT INTO `power` VALUES ('115', '87', '删除书籍', '3', 'rmbook', '0');
 INSERT INTO `power` VALUES ('116', '87', '编辑书籍', '3', 'editbook', '0');
 INSERT INTO `power` VALUES ('117', '88', '教材计划查询(管理)', '3', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('118', '88', '教材计划审核', '3', 'auditplan', '0');
+INSERT INTO `power` VALUES ('118', '88', '教材计划管理', '3', 'auditplan', '0');
 INSERT INTO `power` VALUES ('119', '1', '登录', '4', 'Login', '1');
 INSERT INTO `power` VALUES ('120', '1', '权限控管', '4', 'accesscontrol', '0');
 INSERT INTO `power` VALUES ('121', '1', '管理用户', '4', 'manageuser', '0');
@@ -452,7 +457,7 @@ INSERT INTO `power` VALUES ('123', '1', '管理书籍类型', '4', 'managebookty
 INSERT INTO `power` VALUES ('124', '1', '管理供应商', '4', 'managesupplier', '0');
 INSERT INTO `power` VALUES ('125', '1', '管理用户系部', '4', 'manageuserdepart', '0');
 INSERT INTO `power` VALUES ('126', '1', '管理书籍', '4', 'managebook', '0');
-INSERT INTO `power` VALUES ('127', '1', '教材计划管理', '4', 'manageplan', '0');
+INSERT INTO `power` VALUES ('127', '1', '教材计划管理(UI)', '4', 'manageplan', '0');
 INSERT INTO `power` VALUES ('128', '1', '教材计划申请(个人)', '4', 'submitplan', '0');
 INSERT INTO `power` VALUES ('129', '1', '教材计划查询(个人)', '4', 'queryplan', '0');
 INSERT INTO `power` VALUES ('130', '1', '教材计划(UI)', '4', 'planui', '0');
@@ -482,7 +487,7 @@ INSERT INTO `power` VALUES ('153', '126', '添加书籍', '4', 'addbook', '0');
 INSERT INTO `power` VALUES ('154', '126', '删除书籍', '4', 'rmbook', '0');
 INSERT INTO `power` VALUES ('155', '126', '编辑书籍', '4', 'editbook', '0');
 INSERT INTO `power` VALUES ('156', '127', '教材计划查询(管理)', '4', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('157', '127', '教材计划审核', '4', 'auditplan', '0');
+INSERT INTO `power` VALUES ('157', '127', '教材计划管理', '4', 'auditplan', '0');
 INSERT INTO `power` VALUES ('158', '1', '登录', '5', 'Login', '0');
 INSERT INTO `power` VALUES ('159', '1', '权限控管', '5', 'accesscontrol', '0');
 INSERT INTO `power` VALUES ('160', '1', '管理用户', '5', 'manageuser', '0');
@@ -491,7 +496,7 @@ INSERT INTO `power` VALUES ('162', '1', '管理书籍类型', '5', 'managebookty
 INSERT INTO `power` VALUES ('163', '1', '管理供应商', '5', 'managesupplier', '0');
 INSERT INTO `power` VALUES ('164', '1', '管理用户系部', '5', 'manageuserdepart', '0');
 INSERT INTO `power` VALUES ('165', '1', '管理书籍', '5', 'managebook', '0');
-INSERT INTO `power` VALUES ('166', '1', '教材计划管理', '5', 'manageplan', '0');
+INSERT INTO `power` VALUES ('166', '1', '教材计划管理(UI)', '5', 'manageplan', '0');
 INSERT INTO `power` VALUES ('167', '1', '教材计划申请(个人)', '5', 'submitplan', '0');
 INSERT INTO `power` VALUES ('168', '1', '教材计划查询(个人)', '5', 'queryplan', '0');
 INSERT INTO `power` VALUES ('169', '1', '教材计划(UI)', '5', 'planui', '0');
@@ -521,7 +526,7 @@ INSERT INTO `power` VALUES ('192', '165', '添加书籍', '5', 'addbook', '0');
 INSERT INTO `power` VALUES ('193', '165', '删除书籍', '5', 'rmbook', '0');
 INSERT INTO `power` VALUES ('194', '165', '编辑书籍', '5', 'editbook', '0');
 INSERT INTO `power` VALUES ('195', '166', '教材计划查询(管理)', '5', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('196', '166', '教材计划审核', '5', 'auditplan', '0');
+INSERT INTO `power` VALUES ('196', '166', '教材计划管理', '5', 'auditplan', '0');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -572,7 +577,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', 'www', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-19 17:01:21');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-27 16:26:53');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-02-28 20:44:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');

@@ -34,7 +34,7 @@ public class BookPlan {
 	private CourseType courseType;
 
 	private BookPlanStatus bookPlanStatus;
-	
+
 	private User user;
 
 	private Book book;
@@ -85,7 +85,7 @@ public class BookPlan {
 		this.inttoyear = null;
 		this.intterm = null;
 		this.datecreatetime = null;
-		this.strmark = "none";
+		this.strmark = null;
 	}
 
 	public BookPlan(Integer intplanid, String strcoursename, Integer intcoursetypeid, String strclass, Integer intstudcount, Integer intteaccount, Integer intbookid, Integer intuserid,

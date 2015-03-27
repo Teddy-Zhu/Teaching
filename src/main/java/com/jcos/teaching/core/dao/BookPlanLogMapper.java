@@ -21,4 +21,5 @@ public interface BookPlanLogMapper {
 
 	List<BookPlanLog> selectBookPlanLogByuserId(@Param(value = "userId") Integer userId, @Param(value = "planId") Integer planId);
 
+	List<BookPlanLog> selectBookPlanLogByuserIdAdmin(@Param(value = "planId") Integer planId);
 }

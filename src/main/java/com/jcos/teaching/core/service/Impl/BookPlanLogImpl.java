@@ -31,6 +31,11 @@ public class BookPlanLogImpl implements BookPlanLogService {
 	}
 
 	@Override
+	public List<BookPlanLog> getBookPlanLogByUserIdAdmin(Integer planId) {
+		return bookPlanLogDao.selectBookPlanLogByuserIdAdmin(planId);
+	}
+
+	@Override
 	public boolean removeLogById(Integer logId) {
 		Integer i = bookPlanLogDao.deleteByPrimaryKey(logId);
 		if (i != 1) {

@@ -23,7 +23,6 @@ var nodes;
 var curtreeNode;
 function treeonClick(event, treeId, treeNode, clickFlag) {
 	curtreeNode = treeNode;
-	console.log(curtreeNode)
 	if (curtreeNode.intparentid == 0) {
 		// set edit
 		$('#parent_edit_sel').empty();
@@ -59,6 +58,7 @@ function loadDepartMent() {
 			var treeObj = $.fn.zTree.getZTreeObj("ul_tree");
 			treeObj.expandAll(true);
 			curtreeNode = null;
+			$('#parent_edit_sel').removeData('department1', undefined);
 		},
 		async : true,
 	});
@@ -206,24 +206,32 @@ function initial() {
 }
 
 function initUserDepartMent(id, type, dtd) {
-	$.ajax({
-		url : 'Type/GetDepartMent',
-		type : 'post',
-		dataType : 'json',
-		data : {
-			id : type,
-		},
-		success : function(data) {
-			$('#' + id).empty();
-			for (var i = 0; len = data.length, i < len; i++) {
-				$('#' + id).append('<option value="' + data[i].intid + '">' + data[i].strname + '</option>');
-			}
-			if (dtd != undefined) {
-				dtd.resolve();
-			}
-		},
-		async : true
-	})
+	var fillDom = function(domData) {
+		$('#' + id).empty();
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intid + '">' + domData[i].strname + '</option>');
+		}
+		if (dtd != undefined) {
+			dtd.resolve();
+		}
+	}
+	if ($('#' + id).data('department' + type) != undefined) {
+		fillDom($('#' + id).data('department' + type));
+	} else {
+		$.ajax({
+			url : 'Type/GetDepartMent',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				id : type,
+			},
+			success : function(data) {
+				$('#' + id).data('department' + type, data);
+				fillDom(data);
+			},
+			async : true
+		})
+	}
 	if (dtd != undefined) {
 		return dtd.promise();
 	}

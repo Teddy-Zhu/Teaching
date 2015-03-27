@@ -129,7 +129,7 @@ font-size:inherit;
 									</div>
 									<div class="col-xs-12">
 										<label>StudentCount</label><input class="SearchForm form-control" type="text" id="StuCount" /> <label>TeacherCount</label><input class="SearchForm form-control" type="text" id="TeaCount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
-										<button id="Search" class="btn btn-primary btn-xs">Search</button>
+										<button id="Search" class="btn btn-primary btn-xs" style="height: 30px">Search</button>
 									</div>
 								</div>
 							</div>

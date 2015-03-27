@@ -17,7 +17,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<!-- jackson for json -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -147,12 +147,9 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<path>/</path>
 					<target>1.7</target>
 					<source>1.7</source>
 					<encoding>UTF-8</encoding>
-					<warName>teaching</warName>
-					<server>teaching</server>
 				</configuration>
 			</plugin>
 		</plugins>
