@@ -58,8 +58,8 @@
 
 #Search {
 	float: right;
-	margin-right: 3.2%;
-	width: 14.9%;
+	margin-right: 7%;
+	width: 14%;
 }
 </style>
 <div class="row">

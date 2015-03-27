@@ -82,12 +82,19 @@ $('#newDepartMent').change(function() {
 })
 
 $(function() {
+	$('#SearchTime').datepicker({
+		format : "yyyy-mm-dd",
+		todayBtn : "linked",
+		autoclose : true,
+		todayHighlight : true,
+		clearBtn : true
+	});
 	// initial tablegrid
 	var psval = $('#datatable_userinfo').attr('data-size');
 	if (psval == undefined || psval == "") {
 		psval = 10;
 	}
-	var cellwidth = ($(".box-content.table-responsive").width() - 55) / 10;
+	var cellwidth = ($(".box-content.table-responsive").width() - 55) / 11;
 	$('#datatable_userinfo').datagrid({
 		striped : true,
 		remoteSort : false,
@@ -101,6 +108,12 @@ $(function() {
 		pageSize : psval,
 		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
+			field : 'intid',
+			title : 'User ID',
+			align : 'center',
+			sortable : true,
+			width : cellwidth * 0.5,
+		}, {
 			field : 'username',
 			title : 'UserName',
 			align : 'center',
@@ -108,7 +121,7 @@ $(function() {
 			width : cellwidth,
 		}, {
 			field : 'strname',
-			title : 'UserNick',
+			title : 'RealName',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
@@ -134,7 +147,7 @@ $(function() {
 			field : 'userMajor',
 			title : 'Major',
 			align : 'center',
-			width : cellwidth,
+			width : cellwidth * 1.4,
 			sortable : true,
 			formatter : function(value) {
 				return value.strname;
@@ -161,7 +174,7 @@ $(function() {
 			field : 'dateregtime',
 			title : 'CreateTime',
 			align : 'center',
-			width : cellwidth + 5,
+			width : cellwidth * 1.1 + 10,
 			sortable : true,
 			formatter : function(value) {
 				return unix2human(value);

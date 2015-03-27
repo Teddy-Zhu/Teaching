@@ -53,8 +53,8 @@
 
 #Search {
 	float: right;
-	margin-right: 4%;
-	width: 14.9%;
+	margin-right: 8.2%;
+	width: 14%;
 }
 
 .bootstrap-touchspin {

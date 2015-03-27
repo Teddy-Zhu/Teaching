@@ -41,13 +41,14 @@
 }
 
 .searchClass label {
-	width: 7%;
+	width: 9%;
+	font-weight: bold;
 }
 
 #Search {
 	float: right;
-	margin-right: 8%;
-	width: 14.8%;
+	margin-right: 4%;
+	width: 14%;
 }
 </style>
 <div class="row">

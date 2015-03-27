@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="resources/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <style>
 .panel-header, .panel-body {
 	border-width: 0px;
@@ -28,6 +29,21 @@
 
 .inlineblock div input {
 	width: 65%;
+}
+
+.searchClass {
+	margin-left: 5%;
+	margin-top: 1%;
+}
+
+.searchClass label {
+	width: 9%;
+}
+
+#Search {
+	float: right;
+	margin-right: 3.7%;
+	width: 14%;
 }
 </style>
 <div class="row">
@@ -168,7 +184,21 @@
 						</div>
 						<div id="collapseForUserTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 							<div class="panel-body" style="overflow-x: hidden;"></div>
-							<table id="datatable_userinfo"  data-size="${usergridsize}" style="width: 100%">
+							<div class="searchClass row">
+								<div class="col-xs-12">
+									<label>UserName</label><input class="SearchForm form-control" type="text" id="SearchUserName" /> <label>RealName</label><input class="SearchForm form-control" type="text" id="SearchRealName" /> <label>UserType</label><input class="SearchForm form-control" type="text" id="SearchUserType" />
+									<label>Id</label><input class="SearchForm form-control" id="SearchId" />
+								</div>
+								<div class="col-xs-12">
+									<label>DepartMent</label><input class="SearchForm form-control" type="text" id="SearchDepartMent" /> <label>Major</label><input class="SearchForm form-control" type="text" id="SearchMajor" /> <label>Phone</label><input class="SearchForm form-control" id="SearchPhone" type="text" /> <label>Email</label><input
+										class="SearchForm form-control" type="text" id="SearchEmail" />
+								</div>
+								<div class="col-xs-12">
+									<label>CreateTime</label><input class="SearchForm form-control" type="text" id="SearchTime" ReadOnly />
+									<button id="Search" class="btn btn-primary btn-xs" style="height: 30px">Search</button>
+								</div>
+							</div>
+							<table id="datatable_userinfo" data-size="${usergridsize}" style="width: 100%">
 							</table>
 						</div>
 					</div>
@@ -181,7 +211,9 @@
 <script type="text/javascript">
 	<c:if test="${manageuser eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/userinfomanage.js");
+		LoadJsFile([ "resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js" ]).done(function() {
+			$.getScript("resources/js/ajax/userinfomanage.js");
+		})
 	})
 	</c:if>
 </script>
