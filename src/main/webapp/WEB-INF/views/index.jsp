@@ -100,6 +100,9 @@ after-span {
 							<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Login</button>
 							<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
 						</div>
+						<div class="col-xs-12">
+							<div class="alert alert-success" role="alert">Reminder:Lost Password?</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -125,44 +128,36 @@ after-span {
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="PassWord" type="password" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
-
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Re-Pass</span></span> <input id="RePassWord" type="password" class="form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="after-span form-control"></select>
 							</div>
 						</div>
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="after-span form-control"></select>
 							</div>
 						</div>
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="after-span form-control" placeholder="Your Name">
 							</div>
 						</div>
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Number</span></span> <input id="StudentId" type="text" class="after-span form-control" placeholder="Your Student Id">
 							</div>
 						</div>
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope"> Email</span></span> <input id="Email" type="text" class="after-span form-control" placeholder="Email">
 							</div>
 						</div>
-
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
 								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Phone</span></span> <input id="Phone" type="text" class="after-span form-control" placeholder="Your Phone Number">
@@ -177,20 +172,12 @@ after-span {
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-12">
-		<div class="col-xs-2"></div>
-		<div class="col-xs-8">
-			<h5 class="text-center" style="color: white; margin-top: 10px;">Designed By ZhuXi Powered By Bootstrap And Others OpenCode.</h5>
-			<h5 class="text-center" style="color: white; margin-top: 10px;">
-				<strong>Copy Right©2014-${year} JinChengOpenSource Inc.Deployed By Jenkins</strong> <br> <br> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a><br> <br> <a href="#" class="label label-default version" style="margin-top: 10px"><strong>Current
-						Version :${version}</strong></a>
-			</h5>
-			<div style="text-align: center;">
-				<div style="color: white; display: inline-block;">Pic</div>
-				<input id="toggleBackGround" type="checkbox" />
-			</div>
-		</div>
-		<div class="col-xs-2"></div>
+	<div class="col-xs-12 navbar-fixed-bottom">
+		<h5 class="text-center" style="color: white; background-color: #353535; margin-bottom: 0px;">
+			Designed By ZhuXi Powered By Bootstrap And Others OpenCode. <strong>Copy Right©2014-${year} JinChengOpenSource Inc.Deployed By Jenkins</strong> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a>-<a href="#" class="label label-default version"
+				style="margin-top: 10px"><strong>Current Version :${version}</strong></a> <span style="text-align: center; display: inline-block;"> <span style="color: white; display: inline-block;">Pic</span> <input id="toggleBackGround" type="checkbox" />
+			</span>
+		</h5>
 	</div>
 	<script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>

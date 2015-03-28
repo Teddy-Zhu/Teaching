@@ -424,6 +424,12 @@ $(function() {
 			$('.preloader').fadeToggle("slow");
 		}
 	})
+	
+	$('#loginPassWord').keypress(function(e){
+		 if (e.which == 13) {
+		        $('#loginButton').trigger('click');
+		    }
+	})
 	$('#UserName').blur(function() {
 
 		var userName = $('#UserName').val();

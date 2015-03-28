@@ -210,16 +210,13 @@
 </div>
 <script type="text/javascript">
 	$(function() {
-		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
-			$.getScript("resources/plugins/icheck/icheck.min.js", function() {
-				<c:if test="${manageusertype eq true}">
-				$.getScript("resources/js/ajax/usertypemanage.js");
-				</c:if>
-				<c:if test="${managebooktype eq true}">
-				$.getScript("resources/js/ajax/booktypemanage.js");
-				</c:if>
-			});
-
-		});
+		LoadJsFile(["resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js","resources/plugins/icheck/icheck.min.js"]).done(function(){
+			<c:if test="${manageusertype eq true}">
+			$.getScript("resources/js/ajax/usertypemanage.js");
+			</c:if>
+			<c:if test="${managebooktype eq true}">
+			$.getScript("resources/js/ajax/booktypemanage.js");
+			</c:if>
+		})
 	})
 </script>
