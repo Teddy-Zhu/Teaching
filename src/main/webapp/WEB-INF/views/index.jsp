@@ -80,7 +80,7 @@ after-span {
 			</div>
 		</div>
 
-		<div id="loginModal" class="text-center col-xs-12 am-animation-slide-top" style="display: block">
+		<div id="loginModal" class="text-center col-xs-12 am-animation-slide-top" style="display: block; margin-bottom: 5%;">
 			<div class="col-xs-12 text-center">
 				<div class="panel panel-default center-block" style="width: 50%;">
 					<div class="panel-heading text-center">Login Your Account and Continue!</div>
