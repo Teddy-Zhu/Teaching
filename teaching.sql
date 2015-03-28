@@ -1,16 +1,16 @@
-﻿/*
+/*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-27 17:24:33
+Date: 2015-03-28 14:56:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -309,10 +309,10 @@ CREATE TABLE `personalconfig` (
 -- ----------------------------
 INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
 INSERT INTO `personalconfig` VALUES ('2', '1', 'openAnimation', '1');
-INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '14');
+INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '18');
 INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '12');
 INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '16');
-INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '15');
+INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '12');
 
 -- ----------------------------
 -- Table structure for power
@@ -365,9 +365,9 @@ INSERT INTO `power` VALUES ('31', '5', '查询用户类型', '1', 'queryusertype
 INSERT INTO `power` VALUES ('32', '5', '添加用户类型', '1', 'addusertype', '1');
 INSERT INTO `power` VALUES ('33', '5', '编辑用户类型', '1', 'editusertype', '1');
 INSERT INTO `power` VALUES ('34', '5', '删除用户类型', '1', 'rmusertype', '1');
-INSERT INTO `power` VALUES ('35', '6', '添加书籍类型', '1', 'addbooktype', '1');
-INSERT INTO `power` VALUES ('36', '6', '编辑书记类型', '1', 'editbooktype', '1');
-INSERT INTO `power` VALUES ('37', '6', '删除书籍类型', '1', 'rmbooktype', '1');
+INSERT INTO `power` VALUES ('35', '6', '添加书籍类型', '1', 'addbooktype', '0');
+INSERT INTO `power` VALUES ('36', '6', '编辑书记类型', '1', 'editbooktype', '0');
+INSERT INTO `power` VALUES ('37', '6', '删除书籍类型', '1', 'rmbooktype', '0');
 INSERT INTO `power` VALUES ('38', '6', '查询书籍类型', '1', 'querybooktype', '1');
 INSERT INTO `power` VALUES ('39', '10', '教材计划查询(管理)', '1', 'queryallplan', '1');
 INSERT INTO `power` VALUES ('40', '10', '教材计划管理', '1', 'auditplan', '1');
@@ -651,7 +651,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -680,6 +680,7 @@ INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上
 INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不支持低版本IE678],FF,Chrome.', '2015-03-19 20:55:05');
 INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动化持续化部署.', '2015-03-21 14:33:15');
 INSERT INTO `versionlog` VALUES ('34', '0023', '00', '1', '修复部分BUG,移除SunBase64', '2015-03-26 22:57:56');
+INSERT INTO `versionlog` VALUES ('35', '0023', '02', '1', '修复个人设置界面快速切换500错误<br>新增user filter(未完成)', '2015-03-28 14:56:41');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig

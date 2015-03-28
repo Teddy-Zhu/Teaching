@@ -1,4 +1,7 @@
 function initUserDepartMent(id, type) {
+	if(type==undefined){
+		return dtd.reject();
+	}
 	var dtd = $.Deferred();
 	$.ajax({
 		url : 'Type/GetDepartMent',
