@@ -6,7 +6,7 @@ $(function() {
 		step : 1
 	});
 
-	$('#AnimationToggle').bootstrapSwitch('size','small');
+	$('#AnimationToggle').bootstrapSwitch('size', 'small');
 
 	$('#AnimationToggle').bootstrapSwitch('onSwitchChange', function(e, data) {
 		$('#AnimationToggle').val(data ? 'on' : 'off');
@@ -45,6 +45,7 @@ $(function() {
 			async : true
 		}).success(function(data) {
 			if (data) {
+				$('#animation').attr('data-open', $('#AnimationToggle').val() == 'on' ? 1 : 0);
 				$.TeachDialog({
 					content : 'Update Settings Success!',
 				});

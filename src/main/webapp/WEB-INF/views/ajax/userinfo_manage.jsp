@@ -186,13 +186,12 @@
 							<div class="panel-body" style="overflow-x: hidden;"></div>
 							<div class="searchClass row">
 								<div class="col-xs-12">
-									<label>Id</label><input class="SearchForm form-control" type="text" id="SearchUserId" /><label>UserName</label><input class="SearchForm form-control" type="text" id="SearchUserName" /> <label>RealName</label><input class="SearchForm form-control" type="text" id="SearchRealName" /> <label>UserType</label><input
-										class="SearchForm form-control" type="text" id="SearchUserType" />
-
+									<label>Id</label><input class="SearchForm form-control" type="text" id="SearchUserId" /><label>UserName</label><input class="SearchForm form-control" type="text" id="SearchUserName" /> <label>RealName</label><input class="SearchForm form-control" type="text" id="SearchRealName" /> <label>UserType</label><select
+										class="SearchForm form-control" id="SearchUserType"><option value="-1">All UserType</option></select>
 								</div>
 								<div class="col-xs-12">
-									<label>Id Card</label><input class="SearchForm form-control" id="SearchIdCard" /><label>DepartMent</label><input class="SearchForm form-control" type="text" id="SearchDepartMent" /> <label>Major</label><input class="SearchForm form-control" type="text" id="SearchMajor" /> <label>Phone</label><input
-										class="SearchForm form-control" id="SearchPhone" type="text" />
+									<label>Id Card</label><input class="SearchForm form-control" id="SearchIdCard" /><label>DepartMent</label><select class="SearchForm form-control" id="SearchDepartMent"><option value="-1">All Department</option></select> <label>Major</label><select class="SearchForm form-control"
+										id="SearchMajor"><option value="-1">All Department</option></select> <label>Phone</label><input class="SearchForm form-control" id="SearchPhone" type="text" />
 								</div>
 								<div class="col-xs-12">
 									<label>CreateTime</label><input class="SearchForm form-control" type="text" id="SearchTime" ReadOnly /><label>Email</label><input class="SearchForm form-control" type="text" id="SearchEmail" />

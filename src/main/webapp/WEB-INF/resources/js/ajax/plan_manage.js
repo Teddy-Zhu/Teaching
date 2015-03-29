@@ -15,6 +15,84 @@ function getSearchParams(params) {
 	return searchParams;
 }
 
+function initUserType(id, addition) {
+	var dtd = $.Deferred();
+	var fillDom = function(domData) {
+		$('#' + id).empty();
+		if (addition != undefined) {
+			$('#' + id).append('<option value="-1">All UserType</option>');
+		}
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intidentityid + '">' + domData[i].strname + '</option>');
+		}
+		dtd.resolve();
+	}
+	if ($('#datatable_perplaninfo').data('usertype') != undefined) {
+		fillDom($('#datatable_perplaninfo').data('usertype'));
+	} else {
+		$.ajax({
+			url : 'Type/GetUserTypeAll',
+			dataType : 'json',
+			type : 'post',
+			success : function(data) {
+				$('#datatable_perplaninfo').data('usertype', data);
+				fillDom(data);
+			},
+			async : true
+		})
+	}
+	return dtd.promise();
+}
+function initUserDepartMent(id, type, addition) {
+	var typedata = type.toString().replace('-', 'minus');
+	var dtd = $.Deferred();
+	var filldom = function(domData) {
+		$('#' + id).empty();
+		if (addition != undefined) {
+			$('#' + id).append('<option value="-1">All DepartMent</option>');
+		}
+		for (var i = 0; len = domData.length, i < len; i++) {
+			$('#' + id).append('<option value="' + domData[i].intid + '">' + domData[i].strname + '</option>');
+		}
+		dtd.resolve();
+	}
+	if ($('#datatable_perplaninfo').data('userdepartment' + typedata) != undefined) {
+		filldom($('#datatable_perplaninfo').data('userdepartment' + typedata));
+	} else {
+		$.ajax({
+			url : 'Type/GetDepartMent',
+			type : 'post',
+			dataType : 'json',
+			data : {
+				id : type,
+			},
+			success : function(data) {
+				$('#datatable_perplaninfo').data('userdepartment' + typedata, data);
+				filldom(data);
+			},
+			async : true
+		})
+	}
+
+	return dtd.promise();
+}
+function getDialogSearchParams(params) {
+	var searchParams = new Object();
+	if (params != undefined) {
+		searchParams = params;
+	}
+	$('.DialogSearchForm').each(function() {
+		var param = $(this).val()
+		if (param == null && param == undefined) {
+			param = ''
+		} else {
+			param = param.trim();
+		}
+		searchParams[$(this).attr('id')] = param;
+	});
+	return searchParams;
+}
+
 function getPlanStatus(domId) {
 	var dtd = $.Deferred();
 	var fillDom = function(domData) {
@@ -390,6 +468,144 @@ $(function() {
 		} ]
 	});
 
+	$('#userselect')
+			.click(
+					function() {
+						$
+								.TeachDialog({
+									modalID : "SelectUsersModal",
+									title : 'Select Users From Table',
+									content : '<div class="searchClass row"><div class="col-xs-12"><label>Id</label><input class="DialogSearchForm form-control" type="text" id="SearchUserId" /><label>UserName</label><input class="DialogSearchForm form-control" type="text" id="SearchUserName" /> <label>RealName</label><input class="DialogSearchForm form-control" type="text" id="SearchRealName" /> <label>UserType</label><select class="DialogSearchForm form-control" id="SearchUserType"><option value="-1">All UserType</option></select></div><div class="col-xs-12"><label>Id Card</label><input class="DialogSearchForm form-control" id="SearchIdCard" /><label>DepartMent</label><select class="DialogSearchForm form-control" id="SearchDepartMent"><option value="-1">All Department</option></select> <label>Major</label><select class="DialogSearchForm form-control" id="SearchMajor"><option value="-1">All Department</option></select> <label>Phone</label><input class="DialogSearchForm form-control" id="SearchPhone" type="text" /></div><div class="col-xs-12"><label>CreateTime</label><input class="DialogSearchForm form-control" type="text" id="SearchTime" ReadOnly /><label>Email</label><input class="DialogSearchForm form-control" type="text" id="SearchEmail" /><button id="DialogSearch" class="btn btn-primary btn-xs" style="height: 30px">Search</button></div></div><table id="datatable_userinfo" style="width: 100%"></table>',
+									largeSize : true,
+									otherButtons : [ 'Select' ],
+									otherButtonStyles : [ 'btn btn-primary' ],
+									clickButton : function(sender, modal, index) {
+										if (index == 0) {
+											var rows = $('#datatable_userinfo').datagrid('getSelections');
+											if (rows.length != 1) {
+												$.TeachDialog({
+													content : 'You should select a row!',
+													bootstrapModalOption : {},
+												});
+												return;
+											} else {
+												$('#UserId').empty();
+												$('#UserId').append('<option value="' + rows[0].intid + '">' + rows[0].strname + '</option>')
+											}
+											modal.modal('hide');
+										}
+									},
+									dialogHide : function() {
+										$('#DialogSearch').off('click');
+									},
+									dialogShown : function() {
+										initUserType('SearchUserType', true);
+										initUserDepartMent('SearchDepartMent', 1, true).done(function() {
+											$('#SearchDepartMent').change(function() {
+												initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+											})
+											initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+										})
+										$('#DialogSearch').click(function() {
+											$('#datatable_userinfo').datagrid('reload');
+										})
+										var cellwidth = ($(".modal-body").width() - 55) / 11;
+										$('#datatable_userinfo').datagrid({
+											striped : true,
+											remoteSort : false,
+											collapsible : true,
+											fit : false,
+											url : 'User/GetAllUser',
+											loadMsg : 'Please waiting for loading date.....',
+											pagination : true,
+											rownumbers : true,
+											singleSelect : true,
+											fitColumns : true,
+											columns : [ [ {
+												field : 'intid',
+												title : 'User ID',
+												align : 'center',
+												sortable : true,
+												width : cellwidth * 0.5,
+											}, {
+												field : 'username',
+												title : 'UserName',
+												align : 'center',
+												sortable : true,
+												width : cellwidth,
+											}, {
+												field : 'strname',
+												title : 'RealName',
+												align : 'center',
+												width : cellwidth,
+												sortable : true
+											}, {
+												field : 'userType',
+												title : 'UserType',
+												align : 'center',
+												width : cellwidth,
+												sortable : true,
+												formatter : function(value) {
+													return value.strname;
+												}
+											}, {
+												field : 'userDepartMent',
+												title : 'DepartMent',
+												align : 'center',
+												width : cellwidth,
+												sortable : true,
+												formatter : function(value) {
+													return value.strname;
+												}
+											}, {
+												field : 'userMajor',
+												title : 'Major',
+												align : 'center',
+												width : cellwidth * 1.4,
+												sortable : true,
+												formatter : function(value) {
+													return value.strname;
+												}
+											}, {
+												field : 'strstunum',
+												title : 'Id Card',
+												align : 'center',
+												width : cellwidth,
+												sortable : true
+											}, {
+												field : 'strphone',
+												title : 'Phone',
+												align : 'center',
+												width : cellwidth,
+												sortable : true
+											}, {
+												field : 'strmail',
+												title : 'Email',
+												align : 'center',
+												width : cellwidth,
+												sortable : true,
+											}, {
+												field : 'dateregtime',
+												title : 'CreateTime',
+												align : 'center',
+												width : cellwidth * 1.1 + 10,
+												sortable : true,
+												formatter : function(value) {
+													return unix2human(value);
+												}
+											} ] ],
+											onBeforeLoad : function(param) {
+												param = getDialogSearchParams(param);
+											},
+											onDblClickRow : function(rowIndex, rowData) {
+												$('#UserId').empty();
+												$('#UserId').append('<option value="' + rowData.intid + '">' + rowData.strname + '</option>')
+												$('#SelectUsersModal').modal('hide');
+											}
+										});
+									}
+								});
+					})
 	$('#Search').click(function() {
 		$mydatagrid.datagrid('reload');
 	})

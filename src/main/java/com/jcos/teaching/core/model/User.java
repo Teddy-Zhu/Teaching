@@ -34,16 +34,16 @@ public class User {
 	private UserDepartMent userMajor;
 
 	public User() {
-		this.intid = 0;
-		this.username = "";
-		this.password = "you can guess";
-		this.strname = "";
-		this.inttypeid = 0;
-		this.intusermajor = 0;
-		this.intuserdepartment = 0;
-		this.strstunum = "";
-		this.strphone = "";
-		this.strmail = "";
+		this.intid = null;
+		this.username = null;
+		this.password = null;
+		this.strname = null;
+		this.inttypeid = null;
+		this.intusermajor = null;
+		this.intuserdepartment = null;
+		this.strstunum = null;
+		this.strphone = null;
+		this.strmail = null;
 		this.dateregtime = new Date();
 		this.userType = new UserType();
 		this.userDepartMent = new UserDepartMent();

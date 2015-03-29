@@ -68,6 +68,19 @@
 .modal-body div label {
 	margin-top: 1.5%;
 }
+
+.DialogSearchForm {
+	display: inline-block;
+	width: 14%;
+	margin-right: 10px;
+	height: 30px;
+}
+
+#DialogSearch {
+	float: right;
+	margin-right: 7.5%;
+	width: 14%;
+}
 </style>
 <!--[if gte IE 8]>
 //fix font awesome icon for ie 
@@ -133,7 +146,7 @@ font-size:inherit;
 									</div>
 									<div class="col-xs-12">
 										<label class="col-xs-2" style="margin-top: 0.6%">User</label>
-										<div class="input-group col-xs-2">
+										<div class="input-group col-xs-2" style="width: 15.6%;">
 											<select id="UserId" class="SearchForm form-control" style="width: 56% !important; margin-right: 0px;"></select>
 											<button id="userselect" class="btn btn-info form-control" style="width: 34%" type="button">Select</button>
 										</div>

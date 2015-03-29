@@ -22,10 +22,13 @@ function setVal(id, obj) {
 		});
 	})
 }
-function initUserType(id) {
+function initUserType(id, addition) {
 	var dtd = $.Deferred();
 	var fillDom = function(domData) {
 		$('#' + id).empty();
+		if (addition != undefined) {
+			$('#' + id).append('<option value="-1">All UserType</option>');
+		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intidentityid + '">' + domData[i].strname + '</option>');
 		}
@@ -47,17 +50,34 @@ function initUserType(id) {
 	}
 	return dtd.promise();
 }
-function initUserDepartMent(id, type) {
+function getSearchParams(params) {
+	var searchParams = new Object();
+	if (params != undefined) {
+		searchParams = params;
+	}
+	$('.SearchForm').each(function() {
+		var param = $(this).val().trim();
+		if (param == undefined)
+			param = '';
+		searchParams[$(this).attr('id')] = param;
+	});
+	return searchParams;
+}
+function initUserDepartMent(id, type, addition) {
+	var typedata = type.toString().replace('-', 'minus');
 	var dtd = $.Deferred();
 	var filldom = function(domData) {
 		$('#' + id).empty();
+		if (addition != undefined) {
+			$('#' + id).append('<option value="-1">All DepartMent</option>');
+		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intid + '">' + domData[i].strname + '</option>');
 		}
 		dtd.resolve();
 	}
-	if ($('#operationpanel').data('userdepartment' + type) != undefined) {
-		filldom($('#operationpanel').data('userdepartment' + type));
+	if ($('#operationpanel').data('userdepartment' + typedata) != undefined) {
+		filldom($('#operationpanel').data('userdepartment' + typedata));
 	} else {
 		$.ajax({
 			url : 'Type/GetDepartMent',
@@ -67,7 +87,7 @@ function initUserDepartMent(id, type) {
 				id : type,
 			},
 			success : function(data) {
-				$('#operationpanel').data('userdepartment' + type, data);
+				$('#operationpanel').data('userdepartment' + typedata, data);
 				filldom(data);
 			},
 			async : true
@@ -77,11 +97,11 @@ function initUserDepartMent(id, type) {
 	return dtd.promise();
 }
 
-$('#newDepartMent').change(function() {
-	initUserDepartMent('newMajor', $(this).val());
-})
-
 $(function() {
+	$('#newDepartMent').change(function() {
+		initUserDepartMent('newMajor', $(this).val());
+	})
+
 	$('#SearchTime').datepicker({
 		format : "yyyy-mm-dd",
 		todayBtn : "linked",
@@ -179,8 +199,20 @@ $(function() {
 			formatter : function(value) {
 				return unix2human(value);
 			}
-		} ] ]
+		} ] ],
+		onBeforeLoad : function(param) {
+			param = getSearchParams(param);
+		},
 	});
+
+	// init search
+	initUserType('SearchUserType', true);
+	initUserDepartMent('SearchDepartMent', 1, true).done(function() {
+		$('#SearchDepartMent').change(function() {
+			initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+		})
+		initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+	})
 
 	// for add user
 	$('button.adduser').click(function() {
@@ -415,4 +447,8 @@ $(function() {
 
 		})
 	})
+	$('#Search').click(function(){
+		$('#datatable_userinfo').datagrid('reload');
+	})
+	
 });

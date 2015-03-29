@@ -2,8 +2,10 @@ package com.jcos.teaching.core.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,18 +47,14 @@ public class UserController {
 
 	@Inject
 	private UserService userService;
-
 	@Inject
 	private UserTypeService userTypeService;
-
 	@Inject
 	private UserDepartMentService userDepartMentService;
-
 	@Inject
 	private BookPlanService bookPlanService;
 	@Inject
 	private StringUtil tools;
-
 	@Inject
 	private PowerTool pwTool;
 
@@ -211,19 +209,43 @@ public class UserController {
 	@ResponseBody
 	@AuthPower(value = "queryuser")
 	public Map<String, Object> getAllUser(HttpServletRequest request, Model model, HttpServletResponse response) {
-		Integer rows = 10, page = 1;
+		Integer rows = 10, page = 1, userId = -1, userType = -1, departMent = -1, major = -1;
+		String userName = "", realName = "", idCard = "", phone = "", email = "";
+		Date date = null;
 		try {
 			rows = Integer.valueOf(request.getParameter("rows"));
 			page = Integer.valueOf(request.getParameter("page"));
+			// get filter parameters
+			userName = request.getParameter("SearchUserName").trim().equals("") ? null : request.getParameter("SearchUserName");
+			realName = request.getParameter("SearchRealName").trim().equals("") ? null : request.getParameter("SearchRealName");
+			idCard = request.getParameter("SearchIdCard").trim().equals("") ? null : request.getParameter("SearchIdCard");
+			phone = request.getParameter("SearchPhone").trim().equals("") ? null : request.getParameter("SearchPhone");
+			email = request.getParameter("SearchEmail").trim().equals("") ? null : request.getParameter("SearchEmail");
+			userId = request.getParameter("SearchUserId").trim().equals("") ? null : Integer.valueOf(request.getParameter("SearchUserId").trim());
+			userType = Integer.valueOf(request.getParameter("SearchUserType").trim()) == -1 ? null : Integer.valueOf(request.getParameter("SearchUserType").trim());
+			departMent = Integer.valueOf(request.getParameter("SearchDepartMent").trim()) == -1 ? null : Integer.valueOf(request.getParameter("SearchDepartMent").trim());
+			major = Integer.valueOf(request.getParameter("SearchMajor").trim()) == -1 ? null : Integer.valueOf(request.getParameter("SearchMajor").trim());
+			date = request.getParameter("SearchTime").trim().equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchTime").trim());
 		} catch (Exception e) {
 			response.setStatus(3386);
 			return null;
 		}
 
+		User record = new User();
+		record.setIntid(userId);
+		record.setUsername(userName);
+		record.setStrname(realName);
+		record.setStrstunum(idCard);
+		record.setStrphone(phone);
+		record.setStrmail(email);
+		record.setStrpic(null);
+		record.setInttypeid(userType);
+		record.setIntuserdepartment(departMent);
+		record.setIntusermajor(major);
+		record.setDateregtime(date);
 		Map<String, Object> ret = new HashMap<String, Object>();
-		ret.put("total", userService.getuUserTotal());
-		List<User> users = userService.getAllUser(page, rows);
-		ret.put("rows", users);
+		ret.put("total", userService.getuUserTotal(record));
+		ret.put("rows", userService.getAllUser(record, page, rows));
 		return ret;
 	}
 

@@ -29,9 +29,9 @@ public interface UserMapper {
 
 	User authUserByIdUserNamePass(@Param(value = "userid") Integer userid, @Param(value = "username") String userName, @Param(value = "password") String passWord);
 
-	List<User> GetAllUser(@Param(value = "start") Integer start, @Param(value = "size") Integer size);
+	List<User> GetAllUser(@Param(value = "record") User record, @Param(value = "start") Integer start, @Param(value = "size") Integer size);
 
-	Integer queryUserTotal();
+	Integer queryUserTotal(User record);
 
 	Integer selectUserByUserNameAndId(@Param(value = "username") String userName, @Param(value = "userId") Integer userId);
 

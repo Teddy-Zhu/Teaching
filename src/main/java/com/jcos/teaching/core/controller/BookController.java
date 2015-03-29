@@ -30,13 +30,10 @@ import com.jcos.teaching.core.util.annotation.AuthPower;
 public class BookController {
 	@Inject
 	private BookService bookService;
-
 	@Inject
 	private BookTypeService bookTypeService;
-
 	@Inject
 	private SupplierService supplierService;
-
 	@Inject
 	private BookPlanService bookPlanService;
 
@@ -62,16 +59,16 @@ public class BookController {
 		try {
 			rows = Integer.valueOf(request.getParameter("rows"));
 			page = Integer.valueOf(request.getParameter("page"));
-			code = request.getParameter("SearchCode").equals("") ? null : request.getParameter("SearchCode");
-			name = request.getParameter("SearchName").equals("") ? null : request.getParameter("SearchName");
-			sn = request.getParameter("SearchSN").equals("") ? null : request.getParameter("SearchSN");
-			type = Integer.valueOf(request.getParameter("SearchType")) == -1 ? null : Integer.valueOf(request.getParameter("SearchType"));
-			press = request.getParameter("SearchPress").equals("") ? null : request.getParameter("SearchPress");
-			author = request.getParameter("SearchAuthor").equals("") ? null : request.getParameter("SearchAuthor");
-			supplier = Integer.valueOf(request.getParameter("SearchSupplier")) == -1 ? null : Integer.valueOf(request.getParameter("SearchSupplier"));
-			price = request.getParameter("SearchPrice").equals("") ? null : Double.valueOf(request.getParameter("SearchPrice"));
-			discount = request.getParameter("SearchDiscount").equals("") ? null : Double.valueOf(request.getParameter("SearchDiscount"));
-			date = request.getParameter("SearchDate").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
+			code = request.getParameter("SearchCode").trim().equals("") ? null : request.getParameter("SearchCode").trim();
+			name = request.getParameter("SearchName").trim().equals("") ? null : request.getParameter("SearchName").trim();
+			sn = request.getParameter("SearchSN").trim().equals("") ? null : request.getParameter("SearchSN").trim();
+			type = Integer.valueOf(request.getParameter("SearchType")) == -1 ? null : Integer.valueOf(request.getParameter("SearchType").trim());
+			press = request.getParameter("SearchPress").trim().equals("") ? null : request.getParameter("SearchPress").trim();
+			author = request.getParameter("SearchAuthor").trim().equals("") ? null : request.getParameter("SearchAuthor").trim();
+			supplier = Integer.valueOf(request.getParameter("SearchSupplier")) == -1 ? null : Integer.valueOf(request.getParameter("SearchSupplier").trim());
+			price = request.getParameter("SearchPrice").trim().equals("") ? null : Double.valueOf(request.getParameter("SearchPrice").trim());
+			discount = request.getParameter("SearchDiscount").trim().equals("") ? null : Double.valueOf(request.getParameter("SearchDiscount").trim());
+			date = request.getParameter("SearchDate").trim().equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate").trim());
 		} catch (Exception e) {
 			response.setStatus(3386);
 			return null;

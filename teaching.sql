@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-03-28 14:56:49
+Date: 2015-03-29 20:03:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -579,14 +579,14 @@ CREATE TABLE `user` (
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-27 16:26:53');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-02-28 20:44:52');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'resources/img/userpic/avatar.jpg', '2015-03-29 17:01:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');
 INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', 'avatar.jpg', '2015-02-28 20:56:01');
 INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '2342343', '1111178888', 'qqq@11.com', 'avatar.jpg', '2015-02-28 20:56:39');
 INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', 'avatar.jpg', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', 'avatar.jpg', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', 'avatar.jpg', '2015-02-28 20:57:00');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', 'avatar.jpg', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '13', '11', '656564', '11111', '655', 'resources/img/userpic/avatar.jpg', '2015-03-29 17:02:12');
 
 -- ----------------------------
 -- Table structure for userdepartment
@@ -651,7 +651,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -681,6 +681,7 @@ INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不
 INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动化持续化部署.', '2015-03-21 14:33:15');
 INSERT INTO `versionlog` VALUES ('34', '0023', '00', '1', '修复部分BUG,移除SunBase64', '2015-03-26 22:57:56');
 INSERT INTO `versionlog` VALUES ('35', '0023', '02', '1', '修复个人设置界面快速切换500错误<br>新增user filter(未完成)', '2015-03-28 14:56:41');
+INSERT INTO `versionlog` VALUES ('36', '0024', '00', '1', '新增教师申请导出到excel<br>新增用户查询详细filter<br>新增修改个人设置实时生效<br>继续完善计划管理', '2015-03-29 20:03:36');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig

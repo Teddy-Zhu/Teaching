@@ -71,13 +71,13 @@ public class UserImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllUser(Integer page, Integer rows) {
-		return userDao.GetAllUser(rows * (page - 1), rows);
+	public List<User> getAllUser(User record, Integer page, Integer rows) {
+		return userDao.GetAllUser(record, rows * (page - 1), rows);
 	}
 
 	@Override
-	public Integer getuUserTotal() {
-		return userDao.queryUserTotal();
+	public Integer getuUserTotal(User record) {
+		return userDao.queryUserTotal(record);
 	}
 
 	@Override

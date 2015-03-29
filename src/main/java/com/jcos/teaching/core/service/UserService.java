@@ -13,10 +13,6 @@ public interface UserService {
     public Integer registerUser(User record);
 
     public User authLoginUser(User record);
-    
-	List<User> getAllUser(Integer page, Integer rows);
-
-	Integer getuUserTotal();
 
 	boolean updateUserByIds(List<User> record);
 
@@ -33,4 +29,8 @@ public interface UserService {
 	boolean authUserType(int id);
 
 	User authLoginUserForUpdateInfo(User record);
+
+	List<User> getAllUser(User record, Integer page, Integer rows);
+
+	Integer getuUserTotal(User record);
 }

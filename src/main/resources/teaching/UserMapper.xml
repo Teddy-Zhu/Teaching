@@ -35,7 +35,8 @@
 		intUserDepartment, strStuNum, strPhone,
 		strMail, strPic, dateRegTime
 		)
-		values (#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		values
+		(#{intid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
 		#{strname,jdbcType=VARCHAR}, #{inttypeid,jdbcType=INTEGER}, #{intusermajor,jdbcType=INTEGER},
 		#{intuserdepartment,jdbcType=INTEGER}, #{strstunum,jdbcType=VARCHAR}, #{strphone,jdbcType=VARCHAR},
 		#{strmail,jdbcType=VARCHAR}, #{strpic,jdbcType=VARCHAR}, #{dateregtime,jdbcType=TIMESTAMP}
@@ -164,11 +165,13 @@
 		set username = #{username,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
 		strName = #{strname,jdbcType=VARCHAR},
-		intTypeId = #{inttypeid,jdbcType=INTEGER},
+		intTypeId =
+		#{inttypeid,jdbcType=INTEGER},
 		intUserMajor = #{intusermajor,jdbcType=INTEGER},
 		intUserDepartment = #{intuserdepartment,jdbcType=INTEGER},
 		strStuNum = #{strstunum,jdbcType=VARCHAR},
-		strPhone = #{strphone,jdbcType=VARCHAR},
+		strPhone =
+		#{strphone,jdbcType=VARCHAR},
 		strMail = #{strmail,jdbcType=VARCHAR},
 		strPic = #{strpic,jdbcType=VARCHAR},
 		dateRegTime = #{dateregtime,jdbcType=TIMESTAMP}
@@ -264,11 +267,43 @@
 		from user
 		where intId = #{intid,jdbcType=INTEGER}
 	</select>
-	<select id="GetAllUser" resultMap="UserTypeExtendMap" parameterType="java.lang.Integer">
+	<select id="GetAllUser" resultMap="UserTypeExtendMap">
 		select
 		intId, username, strName, intTypeId, intUserMajor,intUserDepartment, strStuNum, strPhone,
 		strMail, strPic,dateRegTime
 		from user
+		<trim prefix="WHERE" suffix="" suffixOverrides="AND">
+			<if test="record.intid != null">
+				intId = #{record.intid,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.username != null">
+				username like CONCAT('%',#{record.username,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strname != null">
+				strName like CONCAT('%',#{record.strname,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.inttypeid != null">
+				intTypeId = #{record.inttypeid,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.intusermajor != null">
+				intUserMajor = #{record.intusermajor,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.intuserdepartment != null">
+				intUserDepartment = #{record.intuserdepartment,jdbcType=INTEGER} AND
+			</if>
+			<if test="record.strstunum != null">
+				strStuNum like CONCAT('%',#{record.strstunum,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strphone != null">
+				strPhone like CONCAT('%',#{record.strphone,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.strmail != null">
+				strMail like CONCAT('%',#{record.strmail,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="record.dateregtime != null">
+				date_format(dateRegTime,'%y-%m-%d') = date_format(#{record.dateregtime,jdbcType=TIMESTAMP},'%y-%m-%d')
+			</if>
+		</trim>
 		order by
 		intId asc
 		limit
@@ -276,6 +311,38 @@
 	</select>
 	<select id="queryUserTotal" resultType="java.lang.Integer">
 		select count(*) from user
+		<trim prefix="WHERE" suffix="" suffixOverrides="AND">
+			<if test="intid != null">
+				intId = #{intid,jdbcType=INTEGER} AND
+			</if>
+			<if test="username != null">
+				username like CONCAT('%',#{username,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strname != null">
+				strName like CONCAT('%',#{strname,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="inttypeid != null">
+				intTypeId = #{inttypeid,jdbcType=INTEGER} AND
+			</if>
+			<if test="intusermajor != null">
+				intUserMajor = #{intusermajor,jdbcType=INTEGER} AND
+			</if>
+			<if test="intuserdepartment != null">
+				intUserDepartment = #{intuserdepartment,jdbcType=INTEGER} AND
+			</if>
+			<if test="strstunum != null">
+				strStuNum like CONCAT('%',#{strstunum,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strphone != null">
+				strPhone like CONCAT('%',#{strphone,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="strmail != null">
+				strMail like CONCAT('%',#{strmail,jdbcType=VARCHAR},'%') AND
+			</if>
+			<if test="dateregtime != null">
+				date_format(dateRegTime,'%y-%m-%d') = date_format(#{dateregtime,jdbcType=TIMESTAMP},'%y-%m-%d')
+			</if>
+		</trim>
 	</select>
 	<select id="authUserDepartMent" parameterType="java.lang.Integer" resultType="java.lang.Integer">
 		select count(intId) from user where intUserMajor = #{id,jdbcType=INTEGER} or intUserDepartment =
