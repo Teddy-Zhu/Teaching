@@ -295,9 +295,12 @@ $(function() {
 				flag = false;
 			} else {
 				param = param.trim();
-				if (param == "") {
+				if (param != "") {
 					postdata[id] = param;
 					hander.action.SetSucccess(id);
+				} else {
+					flag = false;
+					hander.action.SetFailed(id);
 				}
 			}
 			if (id == 'RePassWord') {
