@@ -107,7 +107,7 @@ after-span {
 				</div>
 			</div>
 		</div>
-		<div id="registerModal" class="col-xs-12 am-animation-slide-top" style="display: none;">
+		<div id="registerModal" class="col-xs-12 am-animation-slide-top" style="display: none; margin-bottom: 5%;">
 			<div class="col-xs-12 text-center">
 				<div class="panel panel-default center-block" style="width: 50%;">
 					<div class="panel-heading text-center">Register Your Account and Continue!</div>
@@ -115,52 +115,52 @@ after-span {
 						<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
 						<div class="col-xs-8 col-sm-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">UserType</span></span><select id="UserType" class="after-span form-control"></select>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">UserType</span></span><select id="UserType" class="RegisterForm after-span form-control"></select>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user"> User</span></span> <input id="UserName" type="text" class="after-span form-control" placeholder="Username">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user"> User</span></span> <input id="UserName" type="text" class="RegisterForm after-span form-control" placeholder="Username">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="PassWord" type="password" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="PassWord" type="password" class="RegisterForm form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Re-Pass</span></span> <input id="RePassWord" type="password" class="form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Re-Pass</span></span> <input id="RePassWord" type="password" class="RegisterForm form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="after-span form-control"></select>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="RegisterForm after-span form-control"></select>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="after-span form-control"></select>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="RegisterForm after-span form-control"></select>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="after-span form-control" placeholder="Your Name">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="RegisterForm after-span form-control" placeholder="Your Name">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Number</span></span> <input id="StudentId" type="text" class="after-span form-control" placeholder="Your Student Id">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Number</span></span> <input id="StudentId" type="text" class="RegisterForm after-span form-control" placeholder="Your Student Id">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope"> Email</span></span> <input id="Email" type="text" class="after-span form-control" placeholder="Email">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope"> Email</span></span> <input id="Email" type="text" class="RegisterForm after-span form-control" placeholder="Email">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Phone</span></span> <input id="Phone" type="text" class="after-span form-control" placeholder="Your Phone Number">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Phone</span></span> <input id="Phone" type="text" class="RegisterForm after-span form-control" placeholder="Your Phone Number">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">

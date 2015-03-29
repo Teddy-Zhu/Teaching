@@ -27,7 +27,7 @@ var hander = {
 	}
 }
 function delShakeClass(domId) {
-		$('#' + domId).parent().removeClass('am-animation-shake');
+	$('#' + domId).parent().removeClass('am-animation-shake');
 }
 function returntimeer(domId) {
 	return function() {
@@ -285,121 +285,49 @@ $(function() {
 		$('.alert.alert-danger').remove();
 		$('.preloader').fadeToggle("slow");
 		$(this).button('loading');
-		var userTypeId = $("#UserType").val();
-		if (userTypeId == undefined || userTypeId == "") {
-			hander.action.SetFailed('UserType');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('UserType');
-		}
-
-		var userName = $('#UserName').val().trim();
-		var mark = true;
-		if (userName == "") {
-			hander.action.SetFailed('UserName');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('UserName');
-		}
-		var passsWord = $('#PassWord').val().trim();
-		if (passsWord == "") {
-			hander.action.SetFailed('PassWord');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('PassWord');
-		}
-		var rePassword = $('#RePassWord').val().trim();
-		if (rePassword == "" || rePassword != passsWord) {
-			hander.action.SetFailed('RePassWord');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('RePassWord');
-		}
-		var departid = $('#DepartMent').val();
-		if (departid == undefined || departid == "") {
-			hander.action.SetFailed('DepartMent');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('DepartMent');
-		}
-		var majorid = $('#Majors').val();
-		if (majorid == undefined || majorid == "") {
-			hander.action.SetFailed('Majors');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('Majors');
-		}
-		var phone = $('#Phone').val().trim();
-		if (phone == "") {
-			hander.action.SetFailed('Phone');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('Phone');
-		}
-
-		var email = $('#Email').val().trim();
-		if (email == "") {
-			hander.action.SetFailed('Email');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('Email');
-		}
-
-		var realName = $('#RealName').val().trim();
-		if (realName == "") {
-			hander.action.SetFailed('RealName');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('RealName');
-		}
-		var idcard = $('#StudentId').val().trim();
-		if (idcard == "") {
-			hander.action.SetFailed('StudentId');
-			mark = false;
-		} else {
-			hander.action.SetSucccess('StudentId');
-		}
-		if (!mark) {
+		var postdata = new Object();
+		var flag = true;
+		$('.RegisterForm').each(function() {
+			var param = $(this).val()
+			var id = $(this).attr('id');
+			if (param == null && param == undefined) {
+				hander.action.SetFailed(id);
+				flag = false;
+			} else {
+				param = param.trim();
+				if (param == "") {
+					postdata[id] = param;
+					hander.action.SetSucccess(id);
+				}
+			}
+			if (id == 'RePassWord') {
+				if (param != $('#Password').val()) {
+					flag = false;
+					hander.action.SetFailed(id);
+				}
+			}
+		});
+		if (!flag) {
 			$('.alert.alert-danger').slideDown();
 			$(this).button('reset');
 			$('.preloader').fadeToggle("slow");
 			return;
 		}
-
-		if (mark) {
-			$.ajax({
-				url : 'User/AuthRegister',
-				type : 'post',
-				data : {
-					UserName : userName,
-					UserType : userTypeId,
-					PassWord : passsWord,
-					RealName : realName,
-					IdCard : idcard,
-					Phone : phone,
-					Email : email,
-					DepartId : departid,
-					MajorId : majorid
-				},
-				dataType : 'json',
-				success : function(data) {
-					if (data != null) {
-						if (data) {
-							$.TeachDialog({
-								title : 'Congratulations',
-								content : 'Register Successfully! Welcome to Use the System!',
-								dialogHidden : function() {
-									window.location.href = '/';
-								}
-							});
-						} else {
-							$.TeachDialog({
-								title : 'Faild',
-								content : 'Failed to register!'
-							});
-							$(this).button('reset');
-							$('.preloader').fadeToggle("slow");
-						}
+		$.ajax({
+			url : 'User/AuthRegister',
+			type : 'post',
+			data : postdata,
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					if (data) {
+						$.TeachDialog({
+							title : 'Congratulations',
+							content : 'Register Successfully! Welcome to Use the System!',
+							dialogHidden : function() {
+								window.location.href = '/';
+							}
+						});
 					} else {
 						$.TeachDialog({
 							title : 'Faild',
@@ -408,63 +336,74 @@ $(function() {
 						$(this).button('reset');
 						$('.preloader').fadeToggle("slow");
 					}
-				},
-				error : function(data) {
-					$.TeachDialog({
-						title : 'Sorry!Service is down!',
-						content : 'Login failed because the service issue.',
-						bootstrapModalOption : {}
-					});
-					console.debug(data.status);
-				},
-				async : true
-			});
-		} else {
-			$(this).button('reset');
-			$('.preloader').fadeToggle("slow");
-		}
-	})
-	
-	$('#loginPassWord').keypress(function(e){
-		 if (e.which == 13) {
-		        $('#loginButton').trigger('click');
-		    }
-	})
-	$('#UserName').blur(function() {
-
-		var userName = $('#UserName').val();
-		if (userName == "" || userName.trim() == "") {
-			return;
-		}
-		$.ajax({
-			url : 'User/AuthUserName',
-			type : 'post',
-			data : {
-				UserName : userName
-			},
-			dataType : 'json',
-			complete : function(data) {
-			},
-			success : function(data) {
-				if (data != null) {
-					if (data) {
-						hander.action.SetSucccess('UserName');
-					} else {
-						hander.action.SetFailed('UserName');
-					}
 				} else {
-					hander.action.SetFailed('UserName');
+					$.TeachDialog({
+						title : 'Faild',
+						content : 'Failed to register!'
+					});
+					$(this).button('reset');
+					$('.preloader').fadeToggle("slow");
 				}
 			},
 			error : function(data) {
+				$.TeachDialog({
+					title : 'Sorry!Service is down!',
+					content : 'Login failed because the service issue.',
+					bootstrapModalOption : {}
+				});
 				console.debug(data.status);
 			},
 			async : true
 		});
+
+	})
+
+	$('#resetButton').click(function() {
+		$('#loginPassWord').val('');
+		$('#loginUserName').val('');
+	})
+
+	$('#loginPassWord').keypress(function(e) {
+		if (e.which == 13) {
+			$('#loginButton').trigger('click');
+		}
+	})
+	$('#UserName').blur(function() {
+		authUserRepeat();
 	})
 
 })
-
+function authUserRepeat() {
+	var userName = $('#UserName').val();
+	if (userName == "" || userName.trim() == "") {
+		return;
+	}
+	$.ajax({
+		url : 'User/AuthUserName',
+		type : 'post',
+		data : {
+			UserName : userName
+		},
+		dataType : 'json',
+		complete : function(data) {
+		},
+		success : function(data) {
+			if (data != null) {
+				if (data) {
+					hander.action.SetSucccess('UserName');
+				} else {
+					hander.action.SetFailed('UserName');
+				}
+			} else {
+				hander.action.SetFailed('UserName');
+			}
+		},
+		error : function(data) {
+			console.debug(data.status);
+		},
+		async : true
+	});
+}
 function selectchange() {
 	var fillDom = function(domData) {
 		$('#Majors').empty();
