@@ -60,11 +60,8 @@
 							<ul class="nav navbar-nav pull-right panel-menu">
 								<li class="hidden-xs"><a class="ajax-link" href="ajax/calendar.html"> <i class="fa fa-calendar"></i> <span class="badge">7</span>
 								</a></li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-										<span class="avatar">
-											<img src="${user.strpic}<c:if test="${empty user}">resources/img/userpic/avatar.jpg</c:if>" class="img-circle" alt="avatar" />
-										</span> 
-										<i class="fa fa-angle-down pull-right"></i>
+								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown"> <span class="avatar"> <img src="${user.strpic}<c:if test="${empty user}">resources/img/userpic/avatar.jpg</c:if>" class="img-circle" alt="avatar" />
+									</span> <i class="fa fa-angle-down pull-right"></i>
 										<div class="user-mini pull-right">
 											<span class="welcome">Welcome,</span> <span>${user.username}</span>
 										</div>
@@ -90,17 +87,17 @@
 		<div class="row">
 			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> am-animation-slide-left</c:if>">
 				<ul class="nav main-menu">
-					<li><a href="ajax/dashboard.html" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
+					<li><a href="dashboard" class="ajax-link"> <i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span>
 					</a></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Books</span>
 					</a>
 						<ul class="dropdown-menu">
 							<c:if test="${managebook eq true}">
-								<li><a class="ajax-link" href="ajax/book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
+								<li><a class="ajax-link" href="book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
 							</c:if>
 							<c:if test="${managesupplier eq true}">
-								<li><a class="ajax-link" href="ajax/supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
+								<li><a class="ajax-link" href="supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
 							</c:if>
 						</ul></li>
 					<c:if test="${planui eq true}">
@@ -108,13 +105,13 @@
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${submitplan eq true}">
-									<li><a class="ajax-link" href="ajax/plan_submit"><i class="fa fa-paper-plane-o"></i> Plan Submit</a></li>
+									<li><a class="ajax-link" href="plan_submit"><i class="fa fa-paper-plane-o"></i> Plan Submit</a></li>
 								</c:if>
 								<c:if test="${queryplan eq true}">
-									<li><a class="ajax-link" href="ajax/plan_query"><i class="fa fa-file-archive-o"></i> Plan Query</a></li>
+									<li><a class="ajax-link" href="plan_query"><i class="fa fa-file-archive-o"></i> Plan Query</a></li>
 								</c:if>
 								<c:if test="${manageplan eq true}">
-									<li><a class="ajax-link" href="ajax/plan_manage"><i class="fa fa-paper-plane"></i> Plan Manage</a></li>
+									<li><a class="ajax-link" href="plan_manage"><i class="fa fa-paper-plane"></i> Plan Manage</a></li>
 								</c:if>
 							</ul></li>
 					</c:if>
@@ -122,27 +119,27 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a class="ajax-link" href="ajax/userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
+								<li><a class="ajax-link" href="userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
 							</ul></li>
 					</c:if>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-user"></i> <span class="hidden-xs">Person Setting</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
-							<li><a class="ajax-link" href="ajax/personal_setting"><i class="fa fa-clipboard"></i> Setting Manage</a></li>
+							<li><a class="ajax-link" href="personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
+							<li><a class="ajax-link" href="personal_setting"><i class="fa fa-clipboard"></i> Setting Manage</a></li>
 						</ul></li>
 					<c:if test="${setting eq true}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-cog"></i> <span class="hidden-xs">System Settings</span>
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${manageuserdepart eq true}">
-									<li><a class="ajax-link" href="ajax/department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
+									<li><a class="ajax-link" href="department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
 								</c:if>
 								<c:if test="${manageusertype eq true or managebooktype eq true}">
-									<li><a class="ajax-link" href="ajax/type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
+									<li><a class="ajax-link" href="type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
 								</c:if>
 								<c:if test="${accesscontrol eq true}">
-									<li><a class="ajax-link" href="ajax/access_manage"><i class="fa fa-clipboard"></i> Access Manage</a></li>
+									<li><a class="ajax-link" href="access_manage"><i class="fa fa-clipboard"></i> Access Manage</a></li>
 								</c:if>
 							</ul></li>
 					</c:if>

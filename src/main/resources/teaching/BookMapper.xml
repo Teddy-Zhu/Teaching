@@ -165,7 +165,7 @@
 		where intBookId
 		= #{intbookid,jdbcType=INTEGER}
 	</update>
-	<resultMap id="BookTypeExtendMap" type="Book" extends="BaseResultMap">
+	<resultMap id="BookTypeExtendMap" type="com.jcos.teaching.core.model.Book" extends="BaseResultMap">
 		<association property="bookType" column="intBookTypeId" select="com.jcos.teaching.core.dao.BookTypeMapper.selectByPrimaryKey" />
 		<association property="supplier" column="intSupplierId" select="com.jcos.teaching.core.dao.SupplierMapper.selectByPrimaryKey" />
 	</resultMap>

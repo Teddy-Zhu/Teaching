@@ -214,7 +214,7 @@
 		where intUserId = #{intuserid,jdbcType=INTEGER}
 	</select>
 
-	<resultMap id="BookPlanTypeExtendMap" type="BookPlan" extends="BaseResultMap">
+	<resultMap id="BookPlanTypeExtendMap" type="com.jcos.teaching.core.model.BookPlan" extends="BaseResultMap">
 		<association property="courseType" column="intCourseTypeId" select="com.jcos.teaching.core.dao.CourseTypeMapper.selectByPrimaryKey" />
 		<association property="book" column="intBookId" select="com.jcos.teaching.core.dao.BookMapper.selectByPrimaryKey" />
 		<association property="bookPlanStatus" column="intPlanStatusId" select="com.jcos.teaching.core.dao.BookPlanStatusMapper.selectByPrimaryKey" />
@@ -329,7 +329,7 @@
 		</foreach>
 	</select>
 
-	<resultMap id="BookPlanAllTypeExtendMap" type="BookPlan" extends="BaseResultMap">
+	<resultMap id="BookPlanAllTypeExtendMap" type="com.jcos.teaching.core.model.BookPlan" extends="BaseResultMap">
 		<association property="courseType" column="intCourseTypeId" select="com.jcos.teaching.core.dao.CourseTypeMapper.selectByPrimaryKey" />
 		<association property="book" column="intBookId" select="com.jcos.teaching.core.dao.BookMapper.selectByPrimaryKey" />
 		<association property="bookPlanStatus" column="intPlanStatusId" select="com.jcos.teaching.core.dao.BookPlanStatusMapper.selectByPrimaryKey" />
