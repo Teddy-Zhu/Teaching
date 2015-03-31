@@ -177,7 +177,7 @@
 		dateRegTime = #{dateregtime,jdbcType=TIMESTAMP}
 		where intId = #{intid,jdbcType=INTEGER}
 	</update>
-	<select id="selectUserSelective" resultMap="BaseResultMap" parameterType="User">
+	<select id="selectUserSelective" resultMap="BaseResultMap" parameterType="com.jcos.teaching.core.model.User">
 		select
 		<include refid="Base_Column_List" />
 		from user
@@ -226,7 +226,7 @@
 	<select id="selectUserByUserNameAndId" resultType="java.lang.Integer">
 		select count(intId) from user where username = #{username,jdbcType=VARCHAR} and intId != #{userId,jdbcType=INTEGER}
 	</select>
-	<insert id="InertUser" parameterType="User">
+	<insert id="InertUser" parameterType="com.jcos.teaching.core.model.User">
 		insert into user ( username, password,
 		strName, intTypeId,intUserMajor,intUserDepartment,
 		strStuNum, strPhone,
@@ -241,7 +241,7 @@
 		#{strmail,jdbcType=VARCHAR}, #{strpic,jdbcType=VARCHAR},#{dateregtime,jdbcType=TIMESTAMP})
 	</insert>
 
-	<resultMap id="UserTypeExtendMap" type="User" extends="BaseResultMap">
+	<resultMap id="UserTypeExtendMap" type="com.jcos.teaching.core.model.User" extends="BaseResultMap">
 		<association property="userType" column="intTypeId" select="com.jcos.teaching.core.dao.UserTypeMapper.selectByPrimaryKey" />
 		<association property="userDepartMent" column="intUserDepartment" select="com.jcos.teaching.core.dao.UserDepartMentMapper.selectByPrimaryKey" />
 		<association property="userMajor" column="intUserMajor" select="com.jcos.teaching.core.dao.UserDepartMentMapper.selectByPrimaryKey" />

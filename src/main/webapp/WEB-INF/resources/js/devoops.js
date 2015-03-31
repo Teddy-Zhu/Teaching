@@ -498,7 +498,7 @@ $(function() {
 		ajax_url = 'dashboard';
 	}
 	LoadAjaxContent('ajax/' + ajax_url);
-	var item = $('.main-menu li a[href$="ajax/' + ajax_url + '"]');
+	var item = $('.main-menu li a[href$="' + ajax_url + '"]');
 	item.addClass('active-parent active');
 	$('.dropdown:has(li:has(a.active)) > a').addClass('active-parent active');
 	$('.dropdown:has(li:has(a.active)) > ul').css("display", "block");
@@ -536,8 +536,8 @@ $(function() {
 				$('#content').removeClass('full-content');
 			}
 			var url = $(this).attr('href');
-			window.location.hash = url.replace('ajax/', '');
-			LoadAjaxContent(url);
+			window.location.hash = url;
+			LoadAjaxContent('ajax/'+url);
 		}
 		if ($(this).attr('href') == '#') {
 			e.preventDefault();

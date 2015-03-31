@@ -138,6 +138,11 @@ public class IndexController {
 		return "/ajax/access_manage";
 	}
 
+	@RequestMapping(value = "/ajax/menu_manage", method = RequestMethod.GET)
+	public String menu13(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/menu_manage";
+	}
+
 	@RequestMapping(value = "/ajax/plan_submit", method = RequestMethod.GET)
 	@SetPower(value = "plan_submit")
 	public String menu9(HttpServletRequest request, Model model, HttpServletResponse response) {
