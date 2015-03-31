@@ -6,3 +6,5 @@
 *.ear
 target
 src/main/resources/config.properties
+.idea
+*.iml
