@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-xs-4 col-sm-8 top-panel-right">
                         <ul class="nav navbar-nav pull-right panel-menu">
-                            <li class="hidden-xs"><a class="ajax-link" href="ajax/calendar.html"> <i
+                            <li class="hidden-xs"><a class="ajax-link" href="#"> <i
                                     class="fa fa-calendar"></i> <span class="badge">7</span>
                             </a></li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle account"
@@ -131,10 +131,6 @@
                                 <li><a class="ajax-link" href="plan_manage"><i class="fa fa-paper-plane"></i> Plan
                                     Manage</a></li>
                             </c:if>
-                            <c:if test="${manageplan eq true}">
-                                <li><a class="ajax-link" href="ajax/plan_manage"><i class="fa fa-paper-plane"></i> Plan
-                                    Manage</a></li>
-                            </c:if>
                         </ul>
                     </li>
                 </c:if>
@@ -174,6 +170,11 @@
                             <c:if test="${accesscontrol eq true}">
                                 <li><a class="ajax-link" href="access_manage"><i class="fa fa-clipboard"></i> Access
                                     Manage</a></li>
+                            </c:if>
+                            <c:if test="${systemsetting eq true}">
+
+                                <li><a class="ajax-link" href="system_settings"><i class="fa fa-clipboard"></i> System
+                                    Setting</a></li>
                             </c:if>
                         </ul>
                     </li>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -515,9 +516,13 @@ public class UserController {
 				return "";
 			}
 			String realPath = request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/img/tmp/";
-			tmpname = Long.toString(System.currentTimeMillis()) + "." + ext;
+			String md5 = DigestUtils.md5Hex(file.getInputStream());
+			tmpname = md5 + "." + ext;
+
 			try {
-				FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, tmpname));
+				if(!new File(realPath,tmpname).exists()){
+					FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, tmpname));
+				}
 			} catch (IOException e) {
 				logger.debug(e.getMessage());
 				return tmpname;

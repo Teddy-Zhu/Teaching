@@ -18,7 +18,7 @@ jQuery.DownloadFile = function(parameters) {
 	}
 }
 
-function loadJs(url) {
+function LoadJS(url) {
 	var dtd = $.Deferred();
 	$.getScript(url, function() {
 		dtd.resolve();
@@ -28,12 +28,12 @@ function loadJs(url) {
 
 function LoadJsFile(urls) {
 	if (!$.isArray(urls)) {
-		return loadJs(urls);
+		return LoadJS(urls);
 	}
 	var ret = [];
 	for (var i = 0, len = urls.length; i < len; i++) {
 
-		ret[i] = loadJs(urls[i]);
+		ret[i] = LoadJS(urls[i]);
 	}
 	return $.when.apply($, ret);
 }
