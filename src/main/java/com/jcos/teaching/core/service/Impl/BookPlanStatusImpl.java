@@ -19,4 +19,14 @@ public class BookPlanStatusImpl implements BookPlanStatusService {
 	public List<BookPlanStatus> getAllBookPlanStatus() {
 		return bookPlanStatusDao.getAllPlanStatus();
 	}
+
+	@Override
+	public boolean authBookPlanStatus(Integer statusId) {
+		Integer i = bookPlanStatusDao.authBookPlanStatus(statusId);
+		if (i == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -187,6 +187,7 @@ function toolBarClick(type, oneneed, pendingneed) {
 		break;
 	}
 	case 4: {
+		url = 'ChangeStatus';
 		$.TeachDialog({
 			title : 'Change The Plan Status',
 			content : '<div class="col-xs-offset-1 row" style="width: 80%;"><label class="col-xs-4">Plan Status:</label><select id="ChangePlanStatus" style="width:50%" type="text" class="col-xs-8 form-control" ></select></div>',
@@ -197,7 +198,27 @@ function toolBarClick(type, oneneed, pendingneed) {
 			},
 			clickButton : function(sender, modal, index) {
 				if (index == 0) {
-
+					$.ajax({
+						url : 'Plan/' + url,
+						dataType : 'json',
+						type : 'post',
+						data : {
+							planId : plans,
+							Status : $('#ChangePlanStatus').val(),
+						}
+					}).success(function(data) {
+						modal.modal('hide');
+						if (data) {
+							$.TeachDialog({
+								content : 'Change Plans Status Success!'
+							});
+							$('#datatable_perplaninfo').datagrid('reload');
+						} else {
+							$.TeachDialog({
+								content : 'Change Plans Status failed!'
+							});
+						}
+					})
 				}
 			},
 		})
@@ -509,6 +530,13 @@ $(function() {
 										$('#DialogSearch').click(function() {
 											$('#datatable_userinfo').datagrid('reload');
 										})
+										$('#SearchTime').datepicker({
+											format : "yyyy-mm-dd",
+											todayBtn : "linked",
+											autoclose : true,
+											todayHighlight : true,
+											clearBtn : true
+										});
 										var cellwidth = ($(".modal-body").width() - 55) / 11;
 										$('#datatable_userinfo').datagrid({
 											striped : true,

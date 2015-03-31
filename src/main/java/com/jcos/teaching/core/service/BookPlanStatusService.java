@@ -8,4 +8,6 @@ public interface BookPlanStatusService {
 
 	List<BookPlanStatus> getAllBookPlanStatus();
 
+	boolean authBookPlanStatus(Integer statusId);
+
 }

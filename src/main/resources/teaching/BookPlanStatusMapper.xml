@@ -22,7 +22,8 @@
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.BookPlanStatus">
 		insert into bookplanstatus (intPlanStatusId, strName, strMark
 		)
-		values (#{intplanstatusid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR}, #{strmark,jdbcType=VARCHAR}
+		values (#{intplanstatusid,jdbcType=INTEGER}, #{strname,jdbcType=VARCHAR},
+		#{strmark,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookPlanStatus">
@@ -66,11 +67,15 @@
 		update bookplanstatus
 		set strName = #{strname,jdbcType=VARCHAR},
 		strMark = #{strmark,jdbcType=VARCHAR}
-		where intPlanStatusId = #{intplanstatusid,jdbcType=INTEGER}
+		where intPlanStatusId =
+		#{intplanstatusid,jdbcType=INTEGER}
 	</update>
 	<select id="getAllPlanStatus" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from bookplanstatus
+	</select>
+	<select id="authBookPlanStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(intPlanStatusId) from bookplanstatus where intPlanStatusId = #{statusId,jdbcType=INTEGER}
 	</select>
 </mapper>

@@ -154,6 +154,52 @@ public class PlanController {
 		return bookPlanStatusService.getAllBookPlanStatus();
 	}
 
+	@RequestMapping(value = "/ChangeStatus", method = RequestMethod.POST)
+	@ResponseBody
+	@AuthPower(value = "auditplan")
+	public boolean changePlanStatus(@RequestParam(value = "planId[]") Integer[] planId, HttpServletRequest request, Model model, HttpServletResponse response) {
+		if (planId.length <= 0) {
+			response.setStatus(3386);
+			return false;
+		}
+		Integer status = -1;
+		try {
+			status = Integer.valueOf(request.getParameter("Status").trim());
+		} catch (Exception e) {
+			response.setStatus(3386);
+			return false;
+		}
+		if (status != -1) {
+			if (!bookPlanStatusService.authBookPlanStatus(status)) {
+				response.setStatus(3386);
+				return false;
+			}
+		} else {
+			response.setStatus(3386);
+			return false;
+		}
+
+		if (!bookPlanService.updatePlanStatusByIds(planId, status)) {
+			return false;
+		}
+		// log
+		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+		BookPlanLog log = new BookPlanLog();
+		log.setDatecreatetime(new Date());
+		log.setIntoperateid(status + 10);
+		log.setIntuserid(loginSession.getLoginUser().getIntid());
+
+		for (int i = 0, len = planId.length; i < len; i++) {
+			log.setIntplanid(planId[i]);
+			if (!bookPlanLogService.addNewLog(log)) {
+				response.setStatus(3383);
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	@RequestMapping(value = "/GetPerPlanHistory", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "queryplan")
@@ -326,7 +372,7 @@ public class PlanController {
 	@ResponseBody
 	@AuthPower(value = "auditplan")
 	public boolean pass(@RequestParam(value = "planId[]") Integer[] planId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (planId.length == 0) {
+		if (planId.length <= 0) {
 			response.setStatus(3386);
 			return false;
 		}
@@ -360,7 +406,7 @@ public class PlanController {
 	@ResponseBody
 	@AuthPower(value = "auditplan")
 	public boolean reject(@RequestParam(value = "planId[]") Integer[] planId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (planId.length == 0) {
+		if (planId.length <= 0) {
 			response.setStatus(3386);
 			return false;
 		}
@@ -394,7 +440,7 @@ public class PlanController {
 	@ResponseBody
 	@AuthPower(value = "auditplan")
 	public boolean refuse(@RequestParam(value = "planId[]") Integer[] planId, HttpServletRequest request, Model model, HttpServletResponse response) {
-		if (planId.length == 0) {
+		if (planId.length <= 0) {
 			response.setStatus(3386);
 			return false;
 		}

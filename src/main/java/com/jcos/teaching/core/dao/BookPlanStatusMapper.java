@@ -5,17 +5,19 @@ import java.util.List;
 import com.jcos.teaching.core.model.BookPlanStatus;
 
 public interface BookPlanStatusMapper {
-    int deleteByPrimaryKey(Integer intplanstatusid);
+	int deleteByPrimaryKey(Integer intplanstatusid);
 
-    int insert(BookPlanStatus record);
+	int insert(BookPlanStatus record);
 
-    int insertSelective(BookPlanStatus record);
+	int insertSelective(BookPlanStatus record);
 
-    BookPlanStatus selectByPrimaryKey(Integer intplanstatusid);
+	BookPlanStatus selectByPrimaryKey(Integer intplanstatusid);
 
-    int updateByPrimaryKeySelective(BookPlanStatus record);
+	int updateByPrimaryKeySelective(BookPlanStatus record);
 
-    int updateByPrimaryKey(BookPlanStatus record);
-    
-    List<BookPlanStatus> getAllPlanStatus();	
+	int updateByPrimaryKey(BookPlanStatus record);
+
+	List<BookPlanStatus> getAllPlanStatus();
+
+	int authBookPlanStatus(Integer statusId);
 }
