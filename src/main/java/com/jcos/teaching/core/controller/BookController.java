@@ -1,16 +1,11 @@
 package com.jcos.teaching.core.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jcos.teaching.core.model.Book;
+import com.jcos.teaching.core.service.BookPlanService;
+import com.jcos.teaching.core.service.BookService;
+import com.jcos.teaching.core.service.BookTypeService;
+import com.jcos.teaching.core.service.SupplierService;
+import com.jcos.teaching.core.util.annotation.AuthPower;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcos.teaching.core.model.Book;
-import com.jcos.teaching.core.service.BookPlanService;
-import com.jcos.teaching.core.service.BookService;
-import com.jcos.teaching.core.service.BookTypeService;
-import com.jcos.teaching.core.service.SupplierService;
-import com.jcos.teaching.core.util.annotation.AuthPower;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/Book")
@@ -38,12 +32,10 @@ public class BookController {
 	private BookPlanService bookPlanService;
 
 	/**
-	 * 
-	 * @param rows
-	 * @param page
-	 * @param text
+	 *
 	 * @param request
 	 * @param model
+	 * @param response
 	 * @return
 	 */
 	@RequestMapping(value = "/GetBooks", method = RequestMethod.POST)
