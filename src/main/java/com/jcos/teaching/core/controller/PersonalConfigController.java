@@ -21,34 +21,42 @@ import com.jcos.teaching.core.service.PersonalConfigService;
 @RequestMapping(value = "/PersonalConfig")
 public class PersonalConfigController {
 
-	@Inject
-	private PersonalConfigService personalConfigService;
+    @Inject
+    private PersonalConfigService personalConfigService;
 
-	@RequestMapping(value = "/SaveChanges", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean savepersonalchange(HttpServletRequest request, Model model, HttpServletResponse response) {
+    @RequestMapping(value = "/SaveChanges", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean savepersonalchange(HttpServletRequest request, Model model, HttpServletResponse response) {
 
-		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
+        LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 
-		Integer userId = loginSession.getLoginUser().getIntid();
+        Integer userId = loginSession.getLoginUser().getIntid();
 
-		Integer booksize = 10, usersize = 10, plansize = 10, suppliersize = 10, animation = 1;
-		try {
-			booksize = Integer.valueOf(request.getParameter("BookGridSize"));
-			usersize = Integer.valueOf(request.getParameter("UserGridSize"));
-			plansize = Integer.valueOf(request.getParameter("SupplierGridSize"));
-			suppliersize = Integer.valueOf(request.getParameter("PlanGridSize"));
-			animation = request.getParameter("AnimationToggle").equals("on") ? 1 : 0;
-		} catch (Exception e) {
-			response.setStatus(3386);
-			return false;
-		}
-		List<PersonalConfig> list = new ArrayList<PersonalConfig>();
-		list.add(new PersonalConfig(null, userId, "bookgridsize", booksize));
-		list.add(new PersonalConfig(null, userId, "usergridsize", usersize));
-		list.add(new PersonalConfig(null, userId, "suppliergridsize", suppliersize));
-		list.add(new PersonalConfig(null, userId, "plangridsize", plansize));
-		list.add(new PersonalConfig(null, userId, "openAnimation", animation));
-		return personalConfigService.addOrUpdatePersonalConfig(list);
-	}
+        Integer booksize = 10, usersize = 10, plansize = 10, suppliersize = 10, animation = 1;
+        try {
+            booksize = request.getParameter("BookGridSize") != null ? Integer.valueOf(request.getParameter("BookGridSize")) : null;
+            usersize = request.getParameter("UserGridSize") != null ? Integer.valueOf(request.getParameter("UserGridSize")) : null;
+            plansize = request.getParameter("UserGridSize") != null ? Integer.valueOf(request.getParameter("SupplierGridSize")) : null;
+            suppliersize = request.getParameter("UserGridSize") != null ? Integer.valueOf(request.getParameter("PlanGridSize")) : null;
+            animation = request.getParameter("AnimationToggle").equals("on") ? 1 : 0;
+        } catch (Exception e) {
+            response.setStatus(3386);
+            return false;
+        }
+        List<PersonalConfig> list = new ArrayList<PersonalConfig>();
+        if (booksize != null) {
+            list.add(new PersonalConfig(null, userId, "bookgridsize", booksize));
+        }
+        if (usersize != null) {
+            list.add(new PersonalConfig(null, userId, "usergridsize", usersize));
+        }
+        if (suppliersize != null) {
+            list.add(new PersonalConfig(null, userId, "suppliergridsize", suppliersize));
+        }
+        if (plansize != null) {
+            list.add(new PersonalConfig(null, userId, "plangridsize", plansize));
+        }
+        list.add(new PersonalConfig(null, userId, "openAnimation", animation));
+        return personalConfigService.addOrUpdatePersonalConfig(list);
+    }
 }
