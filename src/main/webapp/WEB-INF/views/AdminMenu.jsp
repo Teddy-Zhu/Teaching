@@ -172,7 +172,6 @@
                                     Manage</a></li>
                             </c:if>
                             <c:if test="${systemsetting eq true}">
-
                                 <li><a class="ajax-link" href="system_settings"><i class="fa fa-clipboard"></i> System
                                     Setting</a></li>
                             </c:if>

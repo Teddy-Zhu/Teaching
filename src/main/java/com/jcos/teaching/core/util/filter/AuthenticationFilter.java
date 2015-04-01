@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jcos.teaching.core.util.annotation.SetGlobalSettings;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,6 +44,11 @@ public class AuthenticationFilter implements HandlerInterceptor {
 				if (value.length != 0) {
 					pcTool.setModelPConfig(request, model, value);
 				}
+			}
+			SetGlobalSettings setglobalsetting = ((HandlerMethod) handler).getMethodAnnotation(SetGlobalSettings.class);
+			if (setglobalsetting !=null){
+				String[] value = setglobalsetting.value();
+				pcTool.setGlobalConfig(model,value);
 			}
 		}
 	}

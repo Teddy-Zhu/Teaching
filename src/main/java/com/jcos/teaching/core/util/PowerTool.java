@@ -1,15 +1,13 @@
 package com.jcos.teaching.core.util;
 
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import com.jcos.teaching.core.exmodel.LoginSession;
+import com.jcos.teaching.core.service.PowerService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
-import com.jcos.teaching.core.service.PowerService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Service
 public class PowerTool {
@@ -18,7 +16,7 @@ public class PowerTool {
 	private PowerService powerService;
 
 	/**
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */

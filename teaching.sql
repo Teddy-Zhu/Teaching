@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-29 20:03:59
+Date: 2015-04-01 18:24:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,7 +76,7 @@ CREATE TABLE `bookplan` (
 -- Records of bookplan
 -- ----------------------------
 INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '5', '2014', '2015', '0', '2015-03-15 13:12:22', '附言测试');
-INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '4', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
+INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '3', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -113,7 +113,7 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
@@ -128,6 +128,10 @@ INSERT INTO `bookplanlog` VALUES ('7', '2', '6', '1', '2015-03-19 16:51:35');
 INSERT INTO `bookplanlog` VALUES ('8', '2', '6', '1', '2015-03-19 16:51:41');
 INSERT INTO `bookplanlog` VALUES ('9', '2', '7', '1', '2015-03-27 13:03:10');
 INSERT INTO `bookplanlog` VALUES ('10', '1', '8', '1', '2015-03-27 15:32:34');
+INSERT INTO `bookplanlog` VALUES ('12', '2', '10', '1', '2015-03-30 17:20:34');
+INSERT INTO `bookplanlog` VALUES ('13', '2', '10', '1', '2015-03-30 17:20:53');
+INSERT INTO `bookplanlog` VALUES ('14', '2', '11', '1', '2015-03-30 17:23:22');
+INSERT INTO `bookplanlog` VALUES ('15', '2', '13', '1', '2015-03-31 13:36:32');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -175,7 +179,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -235,6 +239,9 @@ INSERT INTO `config` VALUES ('52', 'personal_setting', 'queryuser');
 INSERT INTO `config` VALUES ('53', 'plan_manage', 'manageplan');
 INSERT INTO `config` VALUES ('54', 'plan_manage', 'aduitplan');
 INSERT INTO `config` VALUES ('55', 'plan_manage', 'queryallplan');
+INSERT INTO `config` VALUES ('56', 'AdminMenu', 'systemsetting');
+INSERT INTO `config` VALUES ('57', 'system_settings', 'systemsetting');
+INSERT INTO `config` VALUES ('58', 'AllowPlanSubmit', '1');
 
 -- ----------------------------
 -- Table structure for coursetype
@@ -276,7 +283,7 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
@@ -291,6 +298,12 @@ INSERT INTO `operation` VALUES ('7', '取消教学计划');
 INSERT INTO `operation` VALUES ('8', '通过了教学计划审核');
 INSERT INTO `operation` VALUES ('9', '教学计划过期');
 INSERT INTO `operation` VALUES ('10', '拒绝教学计划申请');
+INSERT INTO `operation` VALUES ('11', '更改教学计划状态为审核');
+INSERT INTO `operation` VALUES ('12', '更改教学计划状态为驳回');
+INSERT INTO `operation` VALUES ('13', '更改教学计划状态为失败');
+INSERT INTO `operation` VALUES ('14', '更改教学计划状态为取消');
+INSERT INTO `operation` VALUES ('15', '更改教学计划状态为通过');
+INSERT INTO `operation` VALUES ('16', '更改教学计划状态为过期');
 
 -- ----------------------------
 -- Table structure for personalconfig
@@ -309,10 +322,10 @@ CREATE TABLE `personalconfig` (
 -- ----------------------------
 INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
 INSERT INTO `personalconfig` VALUES ('2', '1', 'openAnimation', '1');
-INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '18');
+INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '14');
 INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '12');
 INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '16');
-INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '12');
+INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '15');
 
 -- ----------------------------
 -- Table structure for power
@@ -326,7 +339,7 @@ CREATE TABLE `power` (
   `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
@@ -365,9 +378,9 @@ INSERT INTO `power` VALUES ('31', '5', '查询用户类型', '1', 'queryusertype
 INSERT INTO `power` VALUES ('32', '5', '添加用户类型', '1', 'addusertype', '1');
 INSERT INTO `power` VALUES ('33', '5', '编辑用户类型', '1', 'editusertype', '1');
 INSERT INTO `power` VALUES ('34', '5', '删除用户类型', '1', 'rmusertype', '1');
-INSERT INTO `power` VALUES ('35', '6', '添加书籍类型', '1', 'addbooktype', '0');
-INSERT INTO `power` VALUES ('36', '6', '编辑书记类型', '1', 'editbooktype', '0');
-INSERT INTO `power` VALUES ('37', '6', '删除书籍类型', '1', 'rmbooktype', '0');
+INSERT INTO `power` VALUES ('35', '6', '添加书籍类型', '1', 'addbooktype', '1');
+INSERT INTO `power` VALUES ('36', '6', '编辑书记类型', '1', 'editbooktype', '1');
+INSERT INTO `power` VALUES ('37', '6', '删除书籍类型', '1', 'rmbooktype', '1');
 INSERT INTO `power` VALUES ('38', '6', '查询书籍类型', '1', 'querybooktype', '1');
 INSERT INTO `power` VALUES ('39', '10', '教材计划查询(管理)', '1', 'queryallplan', '1');
 INSERT INTO `power` VALUES ('40', '10', '教材计划管理', '1', 'auditplan', '1');
@@ -527,6 +540,7 @@ INSERT INTO `power` VALUES ('193', '165', '删除书籍', '5', 'rmbook', '0');
 INSERT INTO `power` VALUES ('194', '165', '编辑书籍', '5', 'editbook', '0');
 INSERT INTO `power` VALUES ('195', '166', '教材计划查询(管理)', '5', 'queryallplan', '0');
 INSERT INTO `power` VALUES ('196', '166', '教材计划管理', '5', 'auditplan', '0');
+INSERT INTO `power` VALUES ('197', '1', '系统设置', '1', 'systemsetting', '1');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -577,16 +591,16 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-27 16:26:53');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'resources/img/userpic/6a31544e9753801ca1acb149f5d57796.jpg', '2015-03-31 18:15:04');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'resources/img/userpic/avatar.jpg', '2015-03-29 17:01:52');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-02-28 20:44:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');
 INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', 'avatar.jpg', '2015-02-28 20:56:01');
 INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '2342343', '1111178888', 'qqq@11.com', 'avatar.jpg', '2015-02-28 20:56:39');
 INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', 'avatar.jpg', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', 'avatar.jpg', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', 'avatar.jpg', '2015-02-28 20:57:00');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '13', '11', '656564', '11111', '655', 'resources/img/userpic/avatar.jpg', '2015-03-29 17:02:12');
+INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', 'avatar.jpg', '2015-02-28 20:56:23');
 
 -- ----------------------------
 -- Table structure for userdepartment
@@ -651,7 +665,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -680,8 +694,6 @@ INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上
 INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不支持低版本IE678],FF,Chrome.', '2015-03-19 20:55:05');
 INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动化持续化部署.', '2015-03-21 14:33:15');
 INSERT INTO `versionlog` VALUES ('34', '0023', '00', '1', '修复部分BUG,移除SunBase64', '2015-03-26 22:57:56');
-INSERT INTO `versionlog` VALUES ('35', '0023', '02', '1', '修复个人设置界面快速切换500错误<br>新增user filter(未完成)', '2015-03-28 14:56:41');
-INSERT INTO `versionlog` VALUES ('36', '0024', '00', '1', '新增教师申请导出到excel<br>新增用户查询详细filter<br>新增修改个人设置实时生效<br>继续完善计划管理', '2015-03-29 20:03:36');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
