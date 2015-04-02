@@ -140,6 +140,7 @@ function sessionout() {
 		dialogHidden : function() {
 			window.top.location.href = '/?ref=' + window.top.location.pathname + window.top.location.hash;
 		},
+		bootstrapModalOption : {}
 	});
 }
 
@@ -188,6 +189,29 @@ function LoadAjaxContent(url) {
 	});
 }
 
+function LoadModel(modelName) {
+	var dtd = $.Deferred();
+	if (modelName == undefined || modelName.trim() == "") {
+		dtd.reject();
+	}
+	if ($('.box-content.table-responsive').data('modelName') != undefined) {
+		dtd.resolve($('.box-content.table-responsive').data('modelName'));
+	} else {
+		$.ajax({
+			mimeType : 'text/html; charset=utf-8',
+			url : 'Model/' + modelName,
+			type : 'POST',
+			dataType : "html",
+			async : false
+		}).success(function(data) {
+			$('.box-content.table-responsive').data('modelName', data);
+			dtd.resolve(data);
+		}).fail(function() {
+			dtd.reject();
+		})
+	}
+	return dtd;
+}
 function SetMinBlockHeight(elem) {
 	elem.css('min-height', window.innerHeight - 49)
 }
@@ -681,6 +705,14 @@ $(function() {
 				$.TeachDialog({
 					title : 'Warnning!',
 					content : 'No Data!',
+					showCloseButton : true,
+				});
+				break;
+			}
+			case 405: {
+				$.TeachDialog({
+					title : 'Warnning!',
+					content : 'Illegal access!',
 					showCloseButton : true,
 				});
 				break;

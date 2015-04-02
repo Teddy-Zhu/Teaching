@@ -31,53 +31,54 @@ function toolBarClick(type) {
 			});
 			return;
 		}
-		$
-				.TeachDialog({
-					title : 'Change The Plan',
-					content : '<div class="col-xs-offset-1 row" style="width: 80%;"><label class="col-xs-4">Student Change:</label><input id="StuChange" type="text" value="0" class="col-xs-8 form-control" /><label class="col-xs-4">Teacher Change:</label><input id="TeaChange" type="text" value="0" class="col-md-5 form-control" /> <label class="col-xs-4">ChangeReason:</label><textarea id="ChangeReason" type="text" style="width:66.3%" class="col-md-5 form-control">none</textarea></div>',
-					otherButtons : [ 'Submit' ],
-					otherButtonStyles : [ 'btn btn-primary' ],
-					dialogShow : function() {
-						$("#StuChange,#TeaChange").TouchSpin({
-							min : -100,
-							max : 100,
-							step : 1
-						});
-					},
-					clickButton : function(sender, modal, index) {
-						if (index == 0) {
-							if (($('#StuChange').val() == '0' && $('#TeaChange').val() == '0') || $('#StuChange').val().trim() == "" || $('#TeaChange').val().trim() == "") {
-								$.TeachDialog({
-									content : 'Parameters are not correct!',
-								})
-								return;
-							}
-							$.ajax({
-								url : 'Plan/Change',
-								dataType : 'json',
-								type : 'post',
-								data : {
-									StuChange : $('#StuChange').val(),
-									TeaChange : $('#TeaChange').val(),
-									ChangeReason : $('#ChangeReason').val(),
-									PlanId : planId
-								}
-							}).success(function(data) {
-								if (data) {
-									$.TeachDialog({
-										content : 'Changes Saved!',
-									})
-									modal.modal('hide');
-									$('#datatable_perplaninfo').datagrid('reload');
-								} else {
-									$.TeachDialog({
-										content : 'Changes failed!',
-									})
-								}
+		LoadModel('changeplandetailmodel').done(function(responseContent) {
+			$.TeachDialog({
+				title : 'Change The Plan',
+				content : responseContent,
+				otherButtons : [ 'Submit' ],
+				otherButtonStyles : [ 'btn btn-primary' ],
+				dialogShow : function() {
+					$("#StuChange,#TeaChange").TouchSpin({
+						min : -100,
+						max : 100,
+						step : 1
+					});
+				},
+				clickButton : function(sender, modal, index) {
+					if (index == 0) {
+						if (($('#StuChange').val() == '0' && $('#TeaChange').val() == '0') || $('#StuChange').val().trim() == "" || $('#TeaChange').val().trim() == "") {
+							$.TeachDialog({
+								content : 'Parameters are not correct!',
 							})
+							return;
 						}
-					},
-				})
+						$.ajax({
+							url : 'Plan/Change',
+							dataType : 'json',
+							type : 'post',
+							data : {
+								StuChange : $('#StuChange').val(),
+								TeaChange : $('#TeaChange').val(),
+								ChangeReason : $('#ChangeReason').val(),
+								PlanId : planId
+							}
+						}).success(function(data) {
+							if (data) {
+								$.TeachDialog({
+									content : 'Changes Saved!',
+								})
+								modal.modal('hide');
+								$('#datatable_perplaninfo').datagrid('reload');
+							} else {
+								$.TeachDialog({
+									content : 'Changes failed!',
+								})
+							}
+						})
+					}
+				},
+			});
+		});
 		break;
 	}
 	case 2: {

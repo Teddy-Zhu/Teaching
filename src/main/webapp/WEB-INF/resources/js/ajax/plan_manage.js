@@ -188,39 +188,41 @@ function toolBarClick(type, oneneed, pendingneed) {
 	}
 	case 4: {
 		url = 'ChangeStatus';
-		$.TeachDialog({
-			title : 'Change The Plan Status',
-			content : '<div class="col-xs-offset-1 row" style="width: 80%;"><label class="col-xs-5"><span class="label label-danger">Danger</span>Plan Status:</label><select id="ChangePlanStatus" style="width:50%" type="text" class="col-xs-8 form-control" ></select></div>',
-			otherButtons : [ 'Change' ],
-			otherButtonStyles : [ 'btn btn-primary' ],
-			dialogShow : function() {
-				getPlanStatus('ChangePlanStatus');
-			},
-			clickButton : function(sender, modal, index) {
-				if (index == 0) {
-					$.ajax({
-						url : 'Plan/' + url,
-						dataType : 'json',
-						type : 'post',
-						data : {
-							planId : plans,
-							Status : $('#ChangePlanStatus').val()
-						}
-					}).success(function(data) {
-						modal.modal('hide');
-						if (data) {
-							$.TeachDialog({
-								content : 'Change Plans Status Success!'
-							});
-							$('#datatable_perplaninfo').datagrid('reload');
-						} else {
-							$.TeachDialog({
-								content : 'Change Plans Status failed!'
-							});
-						}
-					})
+		LoadModel('changeplanstatusmodel').done(function(responseContent) {
+			$.TeachDialog({
+				title : 'Change The Plan Status',
+				content : responseContent,
+				otherButtons : [ 'Change' ],
+				otherButtonStyles : [ 'btn btn-primary' ],
+				dialogShow : function() {
+					getPlanStatus('ChangePlanStatus');
+				},
+				clickButton : function(sender, modal, index) {
+					if (index == 0) {
+						$.ajax({
+							url : 'Plan/' + url,
+							dataType : 'json',
+							type : 'post',
+							data : {
+								planId : plans,
+								Status : $('#ChangePlanStatus').val()
+							}
+						}).success(function(data) {
+							modal.modal('hide');
+							if (data) {
+								$.TeachDialog({
+									content : 'Change Plans Status Success!'
+								});
+								$('#datatable_perplaninfo').datagrid('reload');
+							} else {
+								$.TeachDialog({
+									content : 'Change Plans Status failed!'
+								});
+							}
+						})
+					}
 				}
-			}
+			})
 		})
 		break;
 	}
@@ -497,153 +499,152 @@ $(function() {
 		}
 	});
 
-	$('#userselect')
-			.click(
-					function() {
-						$
-								.TeachDialog({
-									modalID : "SelectUsersModal",
-									title : 'Select Users From Table',
-									content : '<div class="searchClass row"><div class="col-xs-12"><label>Id</label><input class="DialogSearchForm form-control" type="text" id="SearchUserId" /><label>UserName</label><input class="DialogSearchForm form-control" type="text" id="SearchUserName" /> <label>RealName</label><input class="DialogSearchForm form-control" type="text" id="SearchRealName" /> <label>UserType</label><select class="DialogSearchForm form-control" id="SearchUserType"><option value="-1">All UserType</option></select></div><div class="col-xs-12"><label>Id Card</label><input class="DialogSearchForm form-control" id="SearchIdCard" /><label>DepartMent</label><select class="DialogSearchForm form-control" id="SearchDepartMent"><option value="-1">All Department</option></select> <label>Major</label><select class="DialogSearchForm form-control" id="SearchMajor"><option value="-1">All Department</option></select> <label>Phone</label><input class="DialogSearchForm form-control" id="SearchPhone" type="text" /></div><div class="col-xs-12"><label>CreateTime</label><input class="DialogSearchForm form-control" type="text" id="SearchTime" ReadOnly /><label>Email</label><input class="DialogSearchForm form-control" type="text" id="SearchEmail" /><button id="DialogSearch" class="btn btn-primary btn-xs" style="height: 30px">Search</button></div></div><table id="datatable_userinfo" style="width: 100%"></table>',
-									largeSize : true,
-									otherButtons : [ 'Clear', 'Select' ],
-									otherButtonStyles : [ 'btn btn-primary' ],
-									clickButton : function(sender, modal, index) {
-										if (index == 1) {
-											var rows = $('#datatable_userinfo').datagrid('getSelections');
-											if (rows.length != 1) {
-												$.TeachDialog({
-													content : 'You should select a row!',
-													bootstrapModalOption : {}
-												});
-												return;
-											} else {
-												$('#UserId').empty();
-												$('#UserId').append('<option value="' + rows[0].intid + '">' + rows[0].strname + '</option>')
-											}
-										} else if (index == 0) {
-											$('#UserId').empty();
-										}
-										modal.modal('hide');
-									},
-									dialogHide : function() {
-										$('#DialogSearch').off('click');
-									},
-									dialogShown : function() {
-										initUserType('SearchUserType', true);
-										initUserDepartMent('SearchDepartMent', 1, true).done(function() {
-											$('#SearchDepartMent').change(function() {
-												initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
-											})
-											initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
-										})
-										$('#DialogSearch').click(function() {
-											$('#datatable_userinfo').datagrid('reload');
-										})
-										$('#SearchTime').datepicker({
-											format : "yyyy-mm-dd",
-											todayBtn : "linked",
-											autoclose : true,
-											todayHighlight : true,
-											clearBtn : true
-										});
-										var cellwidth = ($(".modal-body").width() - 55) / 11;
-										$('#datatable_userinfo').datagrid({
-											striped : true,
-											remoteSort : false,
-											collapsible : true,
-											fit : false,
-											url : 'User/GetAllUser',
-											loadMsg : 'Please waiting for loading date.....',
-											pagination : true,
-											rownumbers : true,
-											singleSelect : true,
-											fitColumns : true,
-											columns : [ [ {
-												field : 'intid',
-												title : 'User ID',
-												align : 'center',
-												sortable : true,
-												width : cellwidth * 0.5
-											}, {
-												field : 'username',
-												title : 'UserName',
-												align : 'center',
-												sortable : true,
-												width : cellwidth
-											}, {
-												field : 'strname',
-												title : 'RealName',
-												align : 'center',
-												width : cellwidth,
-												sortable : true
-											}, {
-												field : 'userType',
-												title : 'UserType',
-												align : 'center',
-												width : cellwidth,
-												sortable : true,
-												formatter : function(value) {
-													return value.strname;
-												}
-											}, {
-												field : 'userDepartMent',
-												title : 'DepartMent',
-												align : 'center',
-												width : cellwidth,
-												sortable : true,
-												formatter : function(value) {
-													return value.strname;
-												}
-											}, {
-												field : 'userMajor',
-												title : 'Major',
-												align : 'center',
-												width : cellwidth * 1.4,
-												sortable : true,
-												formatter : function(value) {
-													return value.strname;
-												}
-											}, {
-												field : 'strstunum',
-												title : 'Id Card',
-												align : 'center',
-												width : cellwidth,
-												sortable : true
-											}, {
-												field : 'strphone',
-												title : 'Phone',
-												align : 'center',
-												width : cellwidth,
-												sortable : true
-											}, {
-												field : 'strmail',
-												title : 'Email',
-												align : 'center',
-												width : cellwidth,
-												sortable : true
-											}, {
-												field : 'dateregtime',
-												title : 'CreateTime',
-												align : 'center',
-												width : cellwidth * 1.1 + 10,
-												sortable : true,
-												formatter : function(value) {
-													return unix2human(value);
-												}
-											} ] ],
-											onBeforeLoad : function(param) {
-												param = getDialogSearchParams(param);
-											},
-											onDblClickRow : function(rowIndex, rowData) {
-												$('#UserId').empty();
-												$('#UserId').append('<option value="' + rowData.intid + '">' + rowData.strname + '</option>')
-												$('#SelectUsersModal').modal('hide');
-											}
-										});
-									}
-								});
+	$('#userselect').click(function() {
+		LoadModel('selectusermodel').done(function(responseContent) {
+			$.TeachDialog({
+				modalID : "SelectUsersModal",
+				title : 'Select Users From Table',
+				content : responseContent,
+				largeSize : true,
+				otherButtons : [ 'Clear', 'Select' ],
+				otherButtonStyles : [ 'btn btn-primary' ],
+				clickButton : function(sender, modal, index) {
+					if (index == 1) {
+						var rows = $('#datatable_userinfo').datagrid('getSelections');
+						if (rows.length != 1) {
+							$.TeachDialog({
+								content : 'You should select a row!',
+								bootstrapModalOption : {}
+							});
+							return;
+						} else {
+							$('#UserId').empty();
+							$('#UserId').append('<option value="' + rows[0].intid + '">' + rows[0].strname + '</option>')
+						}
+					} else if (index == 0) {
+						$('#UserId').empty();
+					}
+					modal.modal('hide');
+				},
+				dialogHide : function() {
+					$('#DialogSearch').off('click');
+				},
+				dialogShown : function() {
+					initUserType('SearchUserType', true);
+					initUserDepartMent('SearchDepartMent', 1, true).done(function() {
+						$('#SearchDepartMent').change(function() {
+							initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+						})
+						initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
 					})
+					$('#DialogSearch').click(function() {
+						$('#datatable_userinfo').datagrid('reload');
+					})
+					$('#SearchTime').datepicker({
+						format : "yyyy-mm-dd",
+						todayBtn : "linked",
+						autoclose : true,
+						todayHighlight : true,
+						clearBtn : true
+					});
+					var cellwidth = ($(".modal-body").width() - 55) / 11;
+					$('#datatable_userinfo').datagrid({
+						striped : true,
+						remoteSort : false,
+						collapsible : true,
+						fit : false,
+						url : 'User/GetAllUser',
+						loadMsg : 'Please waiting for loading date.....',
+						pagination : true,
+						rownumbers : true,
+						singleSelect : true,
+						fitColumns : true,
+						columns : [ [ {
+							field : 'intid',
+							title : 'User ID',
+							align : 'center',
+							sortable : true,
+							width : cellwidth * 0.5
+						}, {
+							field : 'username',
+							title : 'UserName',
+							align : 'center',
+							sortable : true,
+							width : cellwidth
+						}, {
+							field : 'strname',
+							title : 'RealName',
+							align : 'center',
+							width : cellwidth,
+							sortable : true
+						}, {
+							field : 'userType',
+							title : 'UserType',
+							align : 'center',
+							width : cellwidth,
+							sortable : true,
+							formatter : function(value) {
+								return value.strname;
+							}
+						}, {
+							field : 'userDepartMent',
+							title : 'DepartMent',
+							align : 'center',
+							width : cellwidth,
+							sortable : true,
+							formatter : function(value) {
+								return value.strname;
+							}
+						}, {
+							field : 'userMajor',
+							title : 'Major',
+							align : 'center',
+							width : cellwidth * 1.4,
+							sortable : true,
+							formatter : function(value) {
+								return value.strname;
+							}
+						}, {
+							field : 'strstunum',
+							title : 'Id Card',
+							align : 'center',
+							width : cellwidth,
+							sortable : true
+						}, {
+							field : 'strphone',
+							title : 'Phone',
+							align : 'center',
+							width : cellwidth,
+							sortable : true
+						}, {
+							field : 'strmail',
+							title : 'Email',
+							align : 'center',
+							width : cellwidth,
+							sortable : true
+						}, {
+							field : 'dateregtime',
+							title : 'CreateTime',
+							align : 'center',
+							width : cellwidth * 1.1 + 10,
+							sortable : true,
+							formatter : function(value) {
+								return unix2human(value);
+							}
+						} ] ],
+						onBeforeLoad : function(param) {
+							param = getDialogSearchParams(param);
+						},
+						onDblClickRow : function(rowIndex, rowData) {
+							$('#UserId').empty();
+							$('#UserId').append('<option value="' + rowData.intid + '">' + rowData.strname + '</option>')
+							$('#SelectUsersModal').modal('hide');
+						}
+					});
+				}
+			});
+		})
+	})
 	$('#Search').click(function() {
 		$mydatagrid.datagrid('reload');
 	})
