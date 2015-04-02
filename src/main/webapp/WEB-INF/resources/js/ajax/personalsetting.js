@@ -38,7 +38,7 @@ $(function () {
             return;
         }
         $.ajax({
-            url: 'PersonalConfig/SaveChanges',
+            url: 'Config/SavePerChanges',
             dataType: 'json',
             type: 'post',
             data: Params,

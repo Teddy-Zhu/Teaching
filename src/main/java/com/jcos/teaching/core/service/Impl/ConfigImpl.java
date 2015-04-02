@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.service.Impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +23,16 @@ public class ConfigImpl implements ConfigService {
 	@Override
 	public String getAllVersion() {
 		return queryByName("version").getStrvalue() + "." + queryByName("funcversion").getStrvalue() + "." + queryByName("buildversion").getStrvalue();
+	}
+
+	@Override
+	public boolean updateConfigList(List<Config> list) {
+		for (int i = 0, len = list.size(); i < len; i++) {
+			Integer j = configDao.updateSelectiveByName(list.get(i));
+			if (j != 1) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

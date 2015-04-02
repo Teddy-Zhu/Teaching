@@ -46,8 +46,8 @@
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Personal Setting</a></li>
-			<li><a href="#">Setting Manage</a></li>
+			<li><a href="#">System Settings</a></li>
+			<li><a href="#">System Setting</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -59,7 +59,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>User Personal Setting</span>
+					<i class="fa fa-clipboard"></i> <span>Global Settings</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -72,7 +72,7 @@
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="page-header">
 					<h1>
-						Personal Settings <small>detail for setting</small>
+						Global Settings <small>detail for setting</small>
 					</h1>
 				</div>
 				<div class="inlineblock col-xs-12" id="inlineblock">

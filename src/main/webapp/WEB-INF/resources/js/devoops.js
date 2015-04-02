@@ -138,7 +138,7 @@ function sessionout() {
 	$.TeachDialog({
 		content : 'Your Login Session is out of date,please login  again!',
 		dialogHidden : function() {
-			window.top.location.href = '/';
+			window.top.location.href = '/?ref=' + window.top.location.pathname + window.top.location.hash;
 		},
 	});
 }
@@ -537,7 +537,7 @@ $(function() {
 			}
 			var url = $(this).attr('href');
 			window.location.hash = url;
-			LoadAjaxContent('ajax/'+url);
+			LoadAjaxContent('ajax/' + url);
 		}
 		if ($(this).attr('href') == '#') {
 			e.preventDefault();
