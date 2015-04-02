@@ -8,6 +8,3 @@ target
 src/main/resources/config.properties
 .idea
 *.iml
-.settings
-.project
-.classpath
