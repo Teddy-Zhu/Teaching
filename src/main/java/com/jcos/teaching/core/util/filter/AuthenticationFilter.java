@@ -4,16 +4,17 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jcos.teaching.core.util.annotation.SetGlobalSettings;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jcos.teaching.core.util.PersonalConfigTool;
 import com.jcos.teaching.core.util.PowerTool;
+import com.jcos.teaching.core.util.annotation.AuthGlobalConfig;
 import com.jcos.teaching.core.util.annotation.AuthPower;
-import com.jcos.teaching.core.util.annotation.SetPower;
+import com.jcos.teaching.core.util.annotation.SetGlobalSettings;
 import com.jcos.teaching.core.util.annotation.SetPerSettings;
+import com.jcos.teaching.core.util.annotation.SetPower;
 
 public class AuthenticationFilter implements HandlerInterceptor {
 
@@ -46,9 +47,11 @@ public class AuthenticationFilter implements HandlerInterceptor {
 				}
 			}
 			SetGlobalSettings setglobalsetting = ((HandlerMethod) handler).getMethodAnnotation(SetGlobalSettings.class);
-			if (setglobalsetting !=null){
+			if (setglobalsetting != null) {
 				String[] value = setglobalsetting.value();
-				pcTool.setGlobalConfig(model, value);
+				if (value.length != 0) {
+					pcTool.setGlobalConfig(model, value);
+				}
 			}
 		}
 	}
@@ -56,18 +59,24 @@ public class AuthenticationFilter implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		if (handler.getClass().isAssignableFrom(HandlerMethod.class)) {
+			boolean flag = true;
 			AuthPower auth = ((HandlerMethod) handler).getMethodAnnotation(AuthPower.class);
-			if (auth == null) {
-				return true;
-			} else {
+			if (auth != null) {
 				String value = auth.value();
 				if (!pwTool.authUserTypePower(request, value)) {
 					response.setStatus(3388);
-					return false;
-				} else {
-					return true;
+					flag = false;
 				}
 			}
+			AuthGlobalConfig authConfig = ((HandlerMethod) handler).getMethodAnnotation(AuthGlobalConfig.class);
+			if (authConfig != null) {
+				String value = auth.value();
+				if (!pwTool.authGlobalConfig(value)) {
+					response.setStatus(3388);
+					flag = false;
+				}
+			}
+			return flag;
 		} else {
 			return true;
 		}

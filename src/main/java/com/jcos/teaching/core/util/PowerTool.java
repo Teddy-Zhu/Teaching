@@ -1,12 +1,16 @@
 package com.jcos.teaching.core.util;
 
 import com.jcos.teaching.core.exmodel.LoginSession;
+import com.jcos.teaching.core.model.Config;
+import com.jcos.teaching.core.service.ConfigService;
 import com.jcos.teaching.core.service.PowerService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Map;
 
 @Service
@@ -14,6 +18,8 @@ public class PowerTool {
 
 	@Inject
 	private PowerService powerService;
+	@Inject
+	private ConfigService configService;
 
 	/**
 	 *
@@ -26,6 +32,15 @@ public class PowerTool {
 			return false;
 		}
 		return powerService.queryPowerByName(name, loginSession.getLoginUser().getIntid());
+	}
+
+	public boolean authGlobalConfig(String name) {
+		Config config = configService.queryByName(name);
+		if (config == null) {
+			return false;
+		} else {
+			return Integer.valueOf(config.getStrvalue()) == 1 ? true : false;
+		}
 	}
 
 	public boolean setModel(HttpServletRequest request, ModelAndView model, String name) {

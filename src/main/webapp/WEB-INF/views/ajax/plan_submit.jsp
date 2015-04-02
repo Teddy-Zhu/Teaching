@@ -97,58 +97,71 @@
 						Plan Submit Panel <small>please fill the form carefully</small>
 					</h1>
 				</div>
-				<div class="inlineblock">
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Course Name:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Course Name" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Course Type</label><select id="CourseType" class="planinfo form-control col-xs-7 input-lg-self"></select>
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Class Id:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Class Id" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Student Count:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Student Book Count" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Teacher Count:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Teacher Book Count" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Book:</label>
-						<div class="input-group col-xs-7">
-							<select id="BookId" class="planinfo form-control" style="width: 71% !important"></select>
-							<button id="bookselect" class="btn btn-info form-control" style="width: 26%" type="button">Select</button>
-						</div>
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Plan Time:</label> <label class="col-xs-1" style="margin-left: -3.5%;">From</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="text" placeholder="From Year" /><label class="col-xs-1"
-							style="margin-left: -3.5%;">To</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="text" placeholder="ToYear" />
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5"> Term:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self"><option value="0">上半学年</option>
-							<option value="1">下半学年</option></select>
-					</div>
-					<div class="col-xs-6"></div>
-					<div class="col-xs-5 col-xs-offset-1">
-						<label class="col-xs-5">Mark:</label>
-						<textarea id="Mark" class="planinfo form-control col-xs-7">none</textarea>
-					</div>
-					<div class="col-xs-6"></div>
+				<c:choose>
+					<c:when test="${AllowPlanSubmit eq '1'}">
+						<div class="inlineblock">
 
-				</div>
-				<div class="col-xs-12" style="height: 30px;"></div>
-				<div class="col-xs-5 col-xs-offset-1">
-					<button id="submitform" data-toggle="button" type="button" class="btn btn-primary">Submit Plan</button>
-					<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">Reset</button>
-				</div>
-				<div class="col-xs-6" style="height: 50px;"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Course Name:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Course Name" />
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Course Type</label><select id="CourseType" class="planinfo form-control col-xs-7 input-lg-self"></select>
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Class Id:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Class Id" />
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Student Count:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Student Book Count" />
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Teacher Count:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Teacher Book Count" />
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Book:</label>
+								<div class="input-group col-xs-7">
+									<select id="BookId" class="planinfo form-control" style="width: 71% !important"></select>
+									<button id="bookselect" class="btn btn-info form-control" style="width: 26%" type="button">Select</button>
+								</div>
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Plan Time:</label> <label class="col-xs-1" style="margin-left: -3.5%;">From</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="text" placeholder="From Year" /><label class="col-xs-1"
+									style="margin-left: -3.5%;">To</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="text" placeholder="ToYear" />
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5"> Term:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self"><option value="0">上半学年</option>
+									<option value="1">下半学年</option></select>
+							</div>
+							<div class="col-xs-6"></div>
+							<div class="col-xs-5 col-xs-offset-1">
+								<label class="col-xs-5">Mark:</label>
+								<textarea id="Mark" class="planinfo form-control col-xs-7">none</textarea>
+							</div>
+							<div class="col-xs-6"></div>
+						</div>
+						<div class="col-xs-12" style="height: 30px;"></div>
+						<div class="col-xs-5 col-xs-offset-1">
+							<button id="submitform" data-toggle="button" type="button" class="btn btn-primary">Submit Plan</button>
+							<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">Reset</button>
+						</div>
+						<div class="col-xs-6" style="height: 50px;"></div>
+					</c:when>
+					<c:otherwise>
+						<div class="jumbotron">
+							<h1 style="margin-bottom: 1.5%">
+								<span class="label label-info">Opps!</span>
+							</h1>
+							<p>Sorry,the function submit plan is Closed temporarily!</p>
+							<p>Please wait administrator to open it.</p>
+						</div>
+					</c:otherwise>
+				</c:choose>
 				<div class="panel-footer row" style="margin-top: 10px;">
 					<h5>After you submit the form,admin will aduit it.Any Questions ,please contact administrator.</h5>
 				</div>
@@ -158,7 +171,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	<c:if test="${submitplan eq true}">
+	<c:if test="${submitplan eq true and AllowPlanSubmit eq '1'}">
 	$(function() {
 		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
 			$.getScript("resources/js/ajax/plan_submit.js");

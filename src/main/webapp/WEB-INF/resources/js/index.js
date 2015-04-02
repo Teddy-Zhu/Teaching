@@ -143,12 +143,11 @@ $(function() {
 						title : 'Congratulations',
 						content : 'Login Successfully! Welcome to Use the System!',
 						dialogHidden : function() {
-							var ref = window.location.href.replace(/(.*?)ref=\//, '');
-							if (ref) {
-								window.location.href = href;
-							} else {
-								window.location.href = 'AdminMenu';
+							var ref = "AdminMenu";
+							if (window.location.href.indexOf('ref=') != -1) {
+								ref = window.location.href.replace(/(.*?)ref=\//, '');
 							}
+							window.location.href = ref;
 						}
 					});
 					return;

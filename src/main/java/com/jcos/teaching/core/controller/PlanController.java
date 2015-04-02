@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +37,7 @@ import com.jcos.teaching.core.service.BookService;
 import com.jcos.teaching.core.service.CourseTypeService;
 import com.jcos.teaching.core.util.DownloadTool;
 import com.jcos.teaching.core.util.ExcelTool;
+import com.jcos.teaching.core.util.annotation.AuthGlobalConfig;
 import com.jcos.teaching.core.util.annotation.AuthPower;
 
 @Controller
@@ -66,6 +66,7 @@ public class PlanController {
 	@RequestMapping(value = "/Submit", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "submitplan")
+	@AuthGlobalConfig(value = "AllowPlanSubmit")
 	public boolean getbooks(HttpServletRequest request, Model model, HttpServletResponse response) {
 		String name = "", classid = "", mark = "";
 		int stucount = -1, teacount = -1, bookid = -1, from = -1, to = -1, term = -1, type = -1;
@@ -281,8 +282,7 @@ public class PlanController {
 			return false;
 		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
-				null, new Book(BookName));
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 
 		List<BookPlan> plans = bookPlanService.getPersonalBookPlan(record, page, rows);
 
@@ -300,8 +300,7 @@ public class PlanController {
 
 		// update title
 		String title = excel.getCellString(0, 0);
-		excel.setCellText(0, 0,
-				title.replace("{From}", plans.get(0).getIntfromyear().toString()).replace("{To}", plans.get(0).getInttoyear().toString()).replace("{Term}", plans.get(0).getIntterm() == 0 ? "一" : "二"));
+		excel.setCellText(0, 0, title.replace("{From}", plans.get(0).getIntfromyear().toString()).replace("{To}", plans.get(0).getInttoyear().toString()).replace("{Term}", plans.get(0).getIntterm() == 0 ? "一" : "二"));
 		excel.setCellAlign(0, 0, HSSFCellStyle.ALIGN_CENTER);
 		// update excel content
 		for (int i = 0; i < plans.size(); i++) {
@@ -318,8 +317,7 @@ public class PlanController {
 			excel.setCellBorderStyle(3 + i, 9, curPlan.getBook().getStrauthor(), HSSFCellStyle.BORDER_THIN);
 			excel.setCellBorderStyle(3 + i, 10, Double.toString(curPlan.getBook().getStrprice() * curPlan.getBook().getIntpricediscount() / 10), HSSFCellStyle.BORDER_THIN);
 			excel.setCellBorderStyle(3 + i, 11, curPlan.getBook().getStrpress(), HSSFCellStyle.BORDER_THIN);
-			excel.setCellBorderStyle(3 + i, 12, curPlan.getStrmark() == null || curPlan.getStrmark().equals("") || curPlan.getStrmark().equals("none") ? "" : curPlan.getStrmark(),
-					HSSFCellStyle.BORDER_THIN);
+			excel.setCellBorderStyle(3 + i, 12, curPlan.getStrmark() == null || curPlan.getStrmark().equals("") || curPlan.getStrmark().equals("none") ? "" : curPlan.getStrmark(), HSSFCellStyle.BORDER_THIN);
 		}
 
 		ByteArrayOutputStream output = excel.getXlsStream();
@@ -359,8 +357,7 @@ public class PlanController {
 			return null;
 		}
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
-		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null,
-				null, new Book(BookName));
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotalOrAll(record));
 		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));

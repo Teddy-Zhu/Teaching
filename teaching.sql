@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-04-01 18:24:38
+Date: 2015-04-02 22:49:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,7 +76,7 @@ CREATE TABLE `bookplan` (
 -- Records of bookplan
 -- ----------------------------
 INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '5', '2014', '2015', '0', '2015-03-15 13:12:22', '附言测试');
-INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '3', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
+INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '4', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -113,7 +113,7 @@ CREATE TABLE `bookplanlog` (
   `intUserId` int(11) NOT NULL,
   `dateCreateTime` datetime NOT NULL,
   PRIMARY KEY (`intPlanLogId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of bookplanlog
@@ -128,10 +128,6 @@ INSERT INTO `bookplanlog` VALUES ('7', '2', '6', '1', '2015-03-19 16:51:35');
 INSERT INTO `bookplanlog` VALUES ('8', '2', '6', '1', '2015-03-19 16:51:41');
 INSERT INTO `bookplanlog` VALUES ('9', '2', '7', '1', '2015-03-27 13:03:10');
 INSERT INTO `bookplanlog` VALUES ('10', '1', '8', '1', '2015-03-27 15:32:34');
-INSERT INTO `bookplanlog` VALUES ('12', '2', '10', '1', '2015-03-30 17:20:34');
-INSERT INTO `bookplanlog` VALUES ('13', '2', '10', '1', '2015-03-30 17:20:53');
-INSERT INTO `bookplanlog` VALUES ('14', '2', '11', '1', '2015-03-30 17:23:22');
-INSERT INTO `bookplanlog` VALUES ('15', '2', '13', '1', '2015-03-31 13:36:32');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -179,69 +175,66 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
 -- ----------------------------
-INSERT INTO `config` VALUES ('1', 'version', '1');
-INSERT INTO `config` VALUES ('2', 'funcversion', '0003');
-INSERT INTO `config` VALUES ('3', 'buildversion', '03');
-INSERT INTO `config` VALUES ('4', 'AdminMenu', 'planui');
-INSERT INTO `config` VALUES ('5', 'AdminMenu', 'queryplan');
-INSERT INTO `config` VALUES ('6', 'AdminMenu', 'manageplan');
-INSERT INTO `config` VALUES ('7', 'AdminMenu', 'submitplan');
-INSERT INTO `config` VALUES ('8', 'AdminMenu', 'managebook');
-INSERT INTO `config` VALUES ('9', 'AdminMenu', 'managebooktype');
-INSERT INTO `config` VALUES ('10', 'AdminMenu', 'managesupplier');
-INSERT INTO `config` VALUES ('11', 'AdminMenu', 'setting');
-INSERT INTO `config` VALUES ('12', 'AdminMenu', 'manageusertype');
-INSERT INTO `config` VALUES ('13', 'AdminMenu', 'manageuserdepart');
-INSERT INTO `config` VALUES ('14', 'AdminMenu', 'manageuser');
-INSERT INTO `config` VALUES ('15', 'AdminMenu', 'accesscontrol');
-INSERT INTO `config` VALUES ('16', 'book_manage', 'addbook');
-INSERT INTO `config` VALUES ('17', 'book_manage', 'editbook');
-INSERT INTO `config` VALUES ('18', 'book_manage', 'rmbook');
-INSERT INTO `config` VALUES ('19', 'book_manage', 'querybook');
-INSERT INTO `config` VALUES ('20', 'book_manage', 'managebook');
-INSERT INTO `config` VALUES ('21', 'userinfo_manage', 'adduser');
-INSERT INTO `config` VALUES ('22', 'userinfo_manage', 'edituser');
-INSERT INTO `config` VALUES ('23', 'userinfo_manage', 'rmuser');
-INSERT INTO `config` VALUES ('24', 'userinfo_manage', 'queryuser');
-INSERT INTO `config` VALUES ('25', 'userinfo_manage', 'manageuser');
-INSERT INTO `config` VALUES ('26', 'supplier_manage', 'addsupplier');
-INSERT INTO `config` VALUES ('27', 'supplier_manage', 'editsupplier');
-INSERT INTO `config` VALUES ('28', 'supplier_manage', 'rmsupplier');
-INSERT INTO `config` VALUES ('29', 'supplier_manage', 'querysupplier');
-INSERT INTO `config` VALUES ('30', 'supplier_manage', 'managesupplier');
-INSERT INTO `config` VALUES ('31', 'department_manage', 'adduserdepart');
-INSERT INTO `config` VALUES ('32', 'department_manage', 'edituserdepart');
-INSERT INTO `config` VALUES ('33', 'department_manage', 'rmuserdepart');
-INSERT INTO `config` VALUES ('34', 'department_manage', 'queryuserdepart');
-INSERT INTO `config` VALUES ('35', 'department_manage', 'manageuserdepart');
-INSERT INTO `config` VALUES ('36', 'type_manage', 'addusertype');
-INSERT INTO `config` VALUES ('37', 'type_manage', 'editusertype');
-INSERT INTO `config` VALUES ('38', 'type_manage', 'rmusertype');
-INSERT INTO `config` VALUES ('39', 'type_manage', 'queryusertype');
-INSERT INTO `config` VALUES ('40', 'type_manage', 'querybooktype');
-INSERT INTO `config` VALUES ('41', 'type_manage', 'addbooktype');
-INSERT INTO `config` VALUES ('42', 'type_manage', 'editbooktype');
-INSERT INTO `config` VALUES ('43', 'type_manage', 'rmbooktype');
-INSERT INTO `config` VALUES ('44', 'type_manage', 'managebooktype');
-INSERT INTO `config` VALUES ('45', 'type_manage', 'manageusertype');
-INSERT INTO `config` VALUES ('46', 'access_manage', 'accesscontrol');
-INSERT INTO `config` VALUES ('47', 'plan_submit', 'submitplan');
-INSERT INTO `config` VALUES ('48', 'plan_query', 'queryplan');
-INSERT INTO `config` VALUES ('49', 'personal_setting', 'querybook');
-INSERT INTO `config` VALUES ('50', 'personal_setting', 'queryplan');
-INSERT INTO `config` VALUES ('51', 'personal_setting', 'querysupplier');
-INSERT INTO `config` VALUES ('52', 'personal_setting', 'queryuser');
-INSERT INTO `config` VALUES ('53', 'plan_manage', 'manageplan');
-INSERT INTO `config` VALUES ('54', 'plan_manage', 'aduitplan');
-INSERT INTO `config` VALUES ('55', 'plan_manage', 'queryallplan');
-INSERT INTO `config` VALUES ('56', 'AdminMenu', 'systemsetting');
-INSERT INTO `config` VALUES ('57', 'system_settings', 'systemsetting');
-INSERT INTO `config` VALUES ('58', 'AllowPlanSubmit', '1');
+INSERT INTO `config` VALUES ('1', 'AdminMenu', 'planui');
+INSERT INTO `config` VALUES ('2', 'AdminMenu', 'queryplan');
+INSERT INTO `config` VALUES ('3', 'AdminMenu', 'manageplan');
+INSERT INTO `config` VALUES ('4', 'AdminMenu', 'submitplan');
+INSERT INTO `config` VALUES ('5', 'AdminMenu', 'managebook');
+INSERT INTO `config` VALUES ('6', 'AdminMenu', 'managebooktype');
+INSERT INTO `config` VALUES ('7', 'AdminMenu', 'managesupplier');
+INSERT INTO `config` VALUES ('8', 'AdminMenu', 'setting');
+INSERT INTO `config` VALUES ('9', 'AdminMenu', 'manageusertype');
+INSERT INTO `config` VALUES ('10', 'AdminMenu', 'manageuserdepart');
+INSERT INTO `config` VALUES ('11', 'AdminMenu', 'manageuser');
+INSERT INTO `config` VALUES ('12', 'AdminMenu', 'accesscontrol');
+INSERT INTO `config` VALUES ('13', 'AdminMenu', 'systemsetting');
+INSERT INTO `config` VALUES ('14', 'book_manage', 'addbook');
+INSERT INTO `config` VALUES ('15', 'book_manage', 'editbook');
+INSERT INTO `config` VALUES ('16', 'book_manage', 'rmbook');
+INSERT INTO `config` VALUES ('17', 'book_manage', 'querybook');
+INSERT INTO `config` VALUES ('18', 'book_manage', 'managebook');
+INSERT INTO `config` VALUES ('19', 'userinfo_manage', 'adduser');
+INSERT INTO `config` VALUES ('20', 'userinfo_manage', 'edituser');
+INSERT INTO `config` VALUES ('21', 'userinfo_manage', 'rmuser');
+INSERT INTO `config` VALUES ('22', 'userinfo_manage', 'queryuser');
+INSERT INTO `config` VALUES ('23', 'userinfo_manage', 'manageuser');
+INSERT INTO `config` VALUES ('24', 'supplier_manage', 'addsupplier');
+INSERT INTO `config` VALUES ('25', 'supplier_manage', 'editsupplier');
+INSERT INTO `config` VALUES ('26', 'supplier_manage', 'rmsupplier');
+INSERT INTO `config` VALUES ('27', 'supplier_manage', 'querysupplier');
+INSERT INTO `config` VALUES ('28', 'supplier_manage', 'managesupplier');
+INSERT INTO `config` VALUES ('29', 'department_manage', 'adduserdepart');
+INSERT INTO `config` VALUES ('30', 'department_manage', 'edituserdepart');
+INSERT INTO `config` VALUES ('31', 'department_manage', 'rmuserdepart');
+INSERT INTO `config` VALUES ('32', 'department_manage', 'queryuserdepart');
+INSERT INTO `config` VALUES ('33', 'department_manage', 'manageuserdepart');
+INSERT INTO `config` VALUES ('34', 'type_manage', 'addusertype');
+INSERT INTO `config` VALUES ('35', 'type_manage', 'editusertype');
+INSERT INTO `config` VALUES ('36', 'type_manage', 'rmusertype');
+INSERT INTO `config` VALUES ('37', 'type_manage', 'queryusertype');
+INSERT INTO `config` VALUES ('38', 'type_manage', 'querybooktype');
+INSERT INTO `config` VALUES ('39', 'type_manage', 'addbooktype');
+INSERT INTO `config` VALUES ('40', 'type_manage', 'editbooktype');
+INSERT INTO `config` VALUES ('41', 'type_manage', 'rmbooktype');
+INSERT INTO `config` VALUES ('42', 'type_manage', 'managebooktype');
+INSERT INTO `config` VALUES ('43', 'type_manage', 'manageusertype');
+INSERT INTO `config` VALUES ('44', 'access_manage', 'accesscontrol');
+INSERT INTO `config` VALUES ('45', 'plan_submit', 'submitplan');
+INSERT INTO `config` VALUES ('46', 'plan_query', 'queryplan');
+INSERT INTO `config` VALUES ('47', 'personal_setting', 'querybook');
+INSERT INTO `config` VALUES ('48', 'personal_setting', 'queryplan');
+INSERT INTO `config` VALUES ('49', 'personal_setting', 'querysupplier');
+INSERT INTO `config` VALUES ('50', 'personal_setting', 'queryuser');
+INSERT INTO `config` VALUES ('51', 'plan_manage', 'manageplan');
+INSERT INTO `config` VALUES ('52', 'plan_manage', 'aduitplan');
+INSERT INTO `config` VALUES ('53', 'plan_manage', 'queryallplan');
+INSERT INTO `config` VALUES ('54', 'system_settings', 'systemsetting');
+INSERT INTO `config` VALUES ('55', 'AllowPlanSubmit', '1');
 
 -- ----------------------------
 -- Table structure for coursetype
@@ -283,7 +276,7 @@ CREATE TABLE `operation` (
   `intOperationId` int(11) NOT NULL AUTO_INCREMENT,
   `strOperationName` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intOperationId`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of operation
@@ -298,12 +291,6 @@ INSERT INTO `operation` VALUES ('7', '取消教学计划');
 INSERT INTO `operation` VALUES ('8', '通过了教学计划审核');
 INSERT INTO `operation` VALUES ('9', '教学计划过期');
 INSERT INTO `operation` VALUES ('10', '拒绝教学计划申请');
-INSERT INTO `operation` VALUES ('11', '更改教学计划状态为审核');
-INSERT INTO `operation` VALUES ('12', '更改教学计划状态为驳回');
-INSERT INTO `operation` VALUES ('13', '更改教学计划状态为失败');
-INSERT INTO `operation` VALUES ('14', '更改教学计划状态为取消');
-INSERT INTO `operation` VALUES ('15', '更改教学计划状态为通过');
-INSERT INTO `operation` VALUES ('16', '更改教学计划状态为过期');
 
 -- ----------------------------
 -- Table structure for personalconfig
@@ -322,10 +309,10 @@ CREATE TABLE `personalconfig` (
 -- ----------------------------
 INSERT INTO `personalconfig` VALUES ('1', '1', '33', '0');
 INSERT INTO `personalconfig` VALUES ('2', '1', 'openAnimation', '1');
-INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '14');
+INSERT INTO `personalconfig` VALUES ('3', '1', 'bookgridsize', '18');
 INSERT INTO `personalconfig` VALUES ('4', '1', 'usergridsize', '12');
 INSERT INTO `personalconfig` VALUES ('5', '1', 'suppliergridsize', '16');
-INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '15');
+INSERT INTO `personalconfig` VALUES ('6', '1', 'plangridsize', '12');
 
 -- ----------------------------
 -- Table structure for power
@@ -384,163 +371,163 @@ INSERT INTO `power` VALUES ('37', '6', '删除书籍类型', '1', 'rmbooktype', 
 INSERT INTO `power` VALUES ('38', '6', '查询书籍类型', '1', 'querybooktype', '1');
 INSERT INTO `power` VALUES ('39', '10', '教材计划查询(管理)', '1', 'queryallplan', '1');
 INSERT INTO `power` VALUES ('40', '10', '教材计划管理', '1', 'auditplan', '1');
-INSERT INTO `power` VALUES ('41', '1', '登录', '2', 'Login', '1');
-INSERT INTO `power` VALUES ('42', '1', '权限控管', '2', 'accesscontrol', '0');
-INSERT INTO `power` VALUES ('43', '1', '管理用户', '2', 'manageuser', '1');
-INSERT INTO `power` VALUES ('44', '1', '管理用户类型', '2', 'manageusertype', '1');
-INSERT INTO `power` VALUES ('45', '1', '管理书籍类型', '2', 'managebooktype', '1');
-INSERT INTO `power` VALUES ('46', '1', '管理供应商', '2', 'managesupplier', '1');
-INSERT INTO `power` VALUES ('47', '1', '管理用户系部', '2', 'manageuserdepart', '1');
-INSERT INTO `power` VALUES ('48', '1', '管理书籍', '2', 'managebook', '1');
-INSERT INTO `power` VALUES ('49', '1', '教材计划管理(UI)', '2', 'manageplan', '0');
-INSERT INTO `power` VALUES ('50', '1', '教材计划申请(个人)', '2', 'submitplan', '1');
-INSERT INTO `power` VALUES ('51', '1', '教材计划查询(个人)', '2', 'queryplan', '1');
-INSERT INTO `power` VALUES ('52', '1', '教材计划(UI)', '2', 'planui', '1');
-INSERT INTO `power` VALUES ('53', '1', '系统设置(UI)', '2', 'setting', '1');
-INSERT INTO `power` VALUES ('54', '43', '查询用户', '2', 'queryuser', '1');
-INSERT INTO `power` VALUES ('55', '43', '添加用户', '2', 'adduser', '0');
-INSERT INTO `power` VALUES ('56', '43', '编辑用户', '2', 'edituser', '0');
-INSERT INTO `power` VALUES ('57', '43', '删除用户', '2', 'rmuser', '0');
-INSERT INTO `power` VALUES ('58', '44', '查询用户类型', '2', 'queryusertype', '1');
-INSERT INTO `power` VALUES ('59', '44', '添加用户类型', '2', 'addusertype', '0');
-INSERT INTO `power` VALUES ('60', '44', '编辑用户类型', '2', 'editusertype', '0');
-INSERT INTO `power` VALUES ('61', '44', '删除用户类型', '2', 'rmusertype', '0');
-INSERT INTO `power` VALUES ('62', '45', '添加书籍类型', '2', 'addbooktype', '0');
-INSERT INTO `power` VALUES ('63', '45', '编辑书记类型', '2', 'editbooktype', '0');
-INSERT INTO `power` VALUES ('64', '45', '删除书籍类型', '2', 'rmbooktype', '0');
-INSERT INTO `power` VALUES ('65', '45', '查询书籍类型', '2', 'querybooktype', '1');
-INSERT INTO `power` VALUES ('66', '46', '查询供应商', '2', 'querysupplier', '1');
-INSERT INTO `power` VALUES ('67', '46', '添加供应商', '2', 'addsupplier', '0');
-INSERT INTO `power` VALUES ('68', '46', '编辑供应商', '2', 'editsupplier', '0');
-INSERT INTO `power` VALUES ('69', '46', '删除供应商', '2', 'rmsupplier', '0');
-INSERT INTO `power` VALUES ('70', '47', '添加用户系部', '2', 'adduserdepart', '0');
-INSERT INTO `power` VALUES ('71', '47', '编辑用户系部', '2', 'edituserdepart', '0');
-INSERT INTO `power` VALUES ('72', '47', '删除用户系部', '2', 'rmuserdepart', '0');
-INSERT INTO `power` VALUES ('73', '47', '查询用户系部', '2', 'queryuserdepart', '1');
-INSERT INTO `power` VALUES ('74', '48', '查询书籍', '2', 'querybook', '1');
-INSERT INTO `power` VALUES ('75', '48', '添加书籍', '2', 'addbook', '0');
-INSERT INTO `power` VALUES ('76', '48', '删除书籍', '2', 'rmbook', '0');
-INSERT INTO `power` VALUES ('77', '48', '编辑书籍', '2', 'editbook', '0');
-INSERT INTO `power` VALUES ('78', '49', '教材计划查询(管理)', '2', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('79', '49', '教材计划管理', '2', 'auditplan', '0');
-INSERT INTO `power` VALUES ('80', '1', '登录', '3', 'Login', '1');
-INSERT INTO `power` VALUES ('81', '1', '权限控管', '3', 'accesscontrol', '0');
-INSERT INTO `power` VALUES ('82', '1', '管理用户', '3', 'manageuser', '0');
-INSERT INTO `power` VALUES ('83', '1', '管理用户类型', '3', 'manageusertype', '0');
-INSERT INTO `power` VALUES ('84', '1', '管理书籍类型', '3', 'managebooktype', '0');
-INSERT INTO `power` VALUES ('85', '1', '管理供应商', '3', 'managesupplier', '0');
-INSERT INTO `power` VALUES ('86', '1', '管理用户系部', '3', 'manageuserdepart', '0');
-INSERT INTO `power` VALUES ('87', '1', '管理书籍', '3', 'managebook', '0');
-INSERT INTO `power` VALUES ('88', '1', '教材计划管理(UI)', '3', 'manageplan', '0');
-INSERT INTO `power` VALUES ('89', '1', '教材计划申请(个人)', '3', 'submitplan', '0');
-INSERT INTO `power` VALUES ('90', '1', '教材计划查询(个人)', '3', 'queryplan', '0');
-INSERT INTO `power` VALUES ('91', '1', '教材计划(UI)', '3', 'planui', '0');
-INSERT INTO `power` VALUES ('92', '1', '系统设置(UI)', '3', 'setting', '0');
-INSERT INTO `power` VALUES ('93', '82', '查询用户', '3', 'queryuser', '0');
-INSERT INTO `power` VALUES ('94', '82', '添加用户', '3', 'adduser', '0');
-INSERT INTO `power` VALUES ('95', '82', '编辑用户', '3', 'edituser', '0');
-INSERT INTO `power` VALUES ('96', '82', '删除用户', '3', 'rmuser', '0');
-INSERT INTO `power` VALUES ('97', '83', '查询用户类型', '3', 'queryusertype', '0');
-INSERT INTO `power` VALUES ('98', '83', '添加用户类型', '3', 'addusertype', '0');
-INSERT INTO `power` VALUES ('99', '83', '编辑用户类型', '3', 'editusertype', '0');
-INSERT INTO `power` VALUES ('100', '83', '删除用户类型', '3', 'rmusertype', '0');
-INSERT INTO `power` VALUES ('101', '84', '添加书籍类型', '3', 'addbooktype', '0');
-INSERT INTO `power` VALUES ('102', '84', '编辑书记类型', '3', 'editbooktype', '0');
-INSERT INTO `power` VALUES ('103', '84', '删除书籍类型', '3', 'rmbooktype', '0');
-INSERT INTO `power` VALUES ('104', '84', '查询书籍类型', '3', 'querybooktype', '0');
-INSERT INTO `power` VALUES ('105', '85', '查询供应商', '3', 'querysupplier', '0');
-INSERT INTO `power` VALUES ('106', '85', '添加供应商', '3', 'addsupplier', '0');
-INSERT INTO `power` VALUES ('107', '85', '编辑供应商', '3', 'editsupplier', '0');
-INSERT INTO `power` VALUES ('108', '85', '删除供应商', '3', 'rmsupplier', '0');
-INSERT INTO `power` VALUES ('109', '86', '添加用户系部', '3', 'adduserdepart', '0');
-INSERT INTO `power` VALUES ('110', '86', '编辑用户系部', '3', 'edituserdepart', '0');
-INSERT INTO `power` VALUES ('111', '86', '删除用户系部', '3', 'rmuserdepart', '0');
-INSERT INTO `power` VALUES ('112', '86', '查询用户系部', '3', 'queryuserdepart', '0');
-INSERT INTO `power` VALUES ('113', '87', '查询书籍', '3', 'querybook', '0');
-INSERT INTO `power` VALUES ('114', '87', '添加书籍', '3', 'addbook', '0');
-INSERT INTO `power` VALUES ('115', '87', '删除书籍', '3', 'rmbook', '0');
-INSERT INTO `power` VALUES ('116', '87', '编辑书籍', '3', 'editbook', '0');
-INSERT INTO `power` VALUES ('117', '88', '教材计划查询(管理)', '3', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('118', '88', '教材计划管理', '3', 'auditplan', '0');
-INSERT INTO `power` VALUES ('119', '1', '登录', '4', 'Login', '1');
-INSERT INTO `power` VALUES ('120', '1', '权限控管', '4', 'accesscontrol', '0');
-INSERT INTO `power` VALUES ('121', '1', '管理用户', '4', 'manageuser', '0');
-INSERT INTO `power` VALUES ('122', '1', '管理用户类型', '4', 'manageusertype', '0');
-INSERT INTO `power` VALUES ('123', '1', '管理书籍类型', '4', 'managebooktype', '0');
-INSERT INTO `power` VALUES ('124', '1', '管理供应商', '4', 'managesupplier', '0');
-INSERT INTO `power` VALUES ('125', '1', '管理用户系部', '4', 'manageuserdepart', '0');
-INSERT INTO `power` VALUES ('126', '1', '管理书籍', '4', 'managebook', '0');
-INSERT INTO `power` VALUES ('127', '1', '教材计划管理(UI)', '4', 'manageplan', '0');
-INSERT INTO `power` VALUES ('128', '1', '教材计划申请(个人)', '4', 'submitplan', '0');
-INSERT INTO `power` VALUES ('129', '1', '教材计划查询(个人)', '4', 'queryplan', '0');
-INSERT INTO `power` VALUES ('130', '1', '教材计划(UI)', '4', 'planui', '0');
-INSERT INTO `power` VALUES ('131', '1', '系统设置(UI)', '4', 'setting', '0');
-INSERT INTO `power` VALUES ('132', '121', '查询用户', '4', 'queryuser', '0');
-INSERT INTO `power` VALUES ('133', '121', '添加用户', '4', 'adduser', '0');
-INSERT INTO `power` VALUES ('134', '121', '编辑用户', '4', 'edituser', '0');
-INSERT INTO `power` VALUES ('135', '121', '删除用户', '4', 'rmuser', '0');
-INSERT INTO `power` VALUES ('136', '122', '查询用户类型', '4', 'queryusertype', '0');
-INSERT INTO `power` VALUES ('137', '122', '添加用户类型', '4', 'addusertype', '0');
-INSERT INTO `power` VALUES ('138', '122', '编辑用户类型', '4', 'editusertype', '0');
-INSERT INTO `power` VALUES ('139', '122', '删除用户类型', '4', 'rmusertype', '0');
-INSERT INTO `power` VALUES ('140', '123', '添加书籍类型', '4', 'addbooktype', '0');
-INSERT INTO `power` VALUES ('141', '123', '编辑书记类型', '4', 'editbooktype', '0');
-INSERT INTO `power` VALUES ('142', '123', '删除书籍类型', '4', 'rmbooktype', '0');
-INSERT INTO `power` VALUES ('143', '123', '查询书籍类型', '4', 'querybooktype', '0');
-INSERT INTO `power` VALUES ('144', '124', '查询供应商', '4', 'querysupplier', '0');
-INSERT INTO `power` VALUES ('145', '124', '添加供应商', '4', 'addsupplier', '0');
-INSERT INTO `power` VALUES ('146', '124', '编辑供应商', '4', 'editsupplier', '0');
-INSERT INTO `power` VALUES ('147', '124', '删除供应商', '4', 'rmsupplier', '0');
-INSERT INTO `power` VALUES ('148', '125', '添加用户系部', '4', 'adduserdepart', '0');
-INSERT INTO `power` VALUES ('149', '125', '编辑用户系部', '4', 'edituserdepart', '0');
-INSERT INTO `power` VALUES ('150', '125', '删除用户系部', '4', 'rmuserdepart', '0');
-INSERT INTO `power` VALUES ('151', '125', '查询用户系部', '4', 'queryuserdepart', '0');
-INSERT INTO `power` VALUES ('152', '126', '查询书籍', '4', 'querybook', '0');
-INSERT INTO `power` VALUES ('153', '126', '添加书籍', '4', 'addbook', '0');
-INSERT INTO `power` VALUES ('154', '126', '删除书籍', '4', 'rmbook', '0');
-INSERT INTO `power` VALUES ('155', '126', '编辑书籍', '4', 'editbook', '0');
-INSERT INTO `power` VALUES ('156', '127', '教材计划查询(管理)', '4', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('157', '127', '教材计划管理', '4', 'auditplan', '0');
-INSERT INTO `power` VALUES ('158', '1', '登录', '5', 'Login', '0');
-INSERT INTO `power` VALUES ('159', '1', '权限控管', '5', 'accesscontrol', '0');
-INSERT INTO `power` VALUES ('160', '1', '管理用户', '5', 'manageuser', '0');
-INSERT INTO `power` VALUES ('161', '1', '管理用户类型', '5', 'manageusertype', '0');
-INSERT INTO `power` VALUES ('162', '1', '管理书籍类型', '5', 'managebooktype', '0');
-INSERT INTO `power` VALUES ('163', '1', '管理供应商', '5', 'managesupplier', '0');
-INSERT INTO `power` VALUES ('164', '1', '管理用户系部', '5', 'manageuserdepart', '0');
-INSERT INTO `power` VALUES ('165', '1', '管理书籍', '5', 'managebook', '0');
-INSERT INTO `power` VALUES ('166', '1', '教材计划管理(UI)', '5', 'manageplan', '0');
-INSERT INTO `power` VALUES ('167', '1', '教材计划申请(个人)', '5', 'submitplan', '0');
-INSERT INTO `power` VALUES ('168', '1', '教材计划查询(个人)', '5', 'queryplan', '0');
-INSERT INTO `power` VALUES ('169', '1', '教材计划(UI)', '5', 'planui', '0');
-INSERT INTO `power` VALUES ('170', '1', '系统设置(UI)', '5', 'setting', '0');
-INSERT INTO `power` VALUES ('171', '160', '查询用户', '5', 'queryuser', '0');
-INSERT INTO `power` VALUES ('172', '160', '添加用户', '5', 'adduser', '0');
-INSERT INTO `power` VALUES ('173', '160', '编辑用户', '5', 'edituser', '0');
-INSERT INTO `power` VALUES ('174', '160', '删除用户', '5', 'rmuser', '0');
-INSERT INTO `power` VALUES ('175', '161', '查询用户类型', '5', 'queryusertype', '0');
-INSERT INTO `power` VALUES ('176', '161', '添加用户类型', '5', 'addusertype', '0');
-INSERT INTO `power` VALUES ('177', '161', '编辑用户类型', '5', 'editusertype', '0');
-INSERT INTO `power` VALUES ('178', '161', '删除用户类型', '5', 'rmusertype', '0');
-INSERT INTO `power` VALUES ('179', '162', '添加书籍类型', '5', 'addbooktype', '0');
-INSERT INTO `power` VALUES ('180', '162', '编辑书记类型', '5', 'editbooktype', '0');
-INSERT INTO `power` VALUES ('181', '162', '删除书籍类型', '5', 'rmbooktype', '0');
-INSERT INTO `power` VALUES ('182', '162', '查询书籍类型', '5', 'querybooktype', '0');
-INSERT INTO `power` VALUES ('183', '163', '查询供应商', '5', 'querysupplier', '0');
-INSERT INTO `power` VALUES ('184', '163', '添加供应商', '5', 'addsupplier', '0');
-INSERT INTO `power` VALUES ('185', '163', '编辑供应商', '5', 'editsupplier', '0');
-INSERT INTO `power` VALUES ('186', '163', '删除供应商', '5', 'rmsupplier', '0');
-INSERT INTO `power` VALUES ('187', '164', '添加用户系部', '5', 'adduserdepart', '0');
-INSERT INTO `power` VALUES ('188', '164', '编辑用户系部', '5', 'edituserdepart', '0');
-INSERT INTO `power` VALUES ('189', '164', '删除用户系部', '5', 'rmuserdepart', '0');
-INSERT INTO `power` VALUES ('190', '164', '查询用户系部', '5', 'queryuserdepart', '0');
-INSERT INTO `power` VALUES ('191', '165', '查询书籍', '5', 'querybook', '0');
-INSERT INTO `power` VALUES ('192', '165', '添加书籍', '5', 'addbook', '0');
-INSERT INTO `power` VALUES ('193', '165', '删除书籍', '5', 'rmbook', '0');
-INSERT INTO `power` VALUES ('194', '165', '编辑书籍', '5', 'editbook', '0');
-INSERT INTO `power` VALUES ('195', '166', '教材计划查询(管理)', '5', 'queryallplan', '0');
-INSERT INTO `power` VALUES ('196', '166', '教材计划管理', '5', 'auditplan', '0');
-INSERT INTO `power` VALUES ('197', '1', '系统设置', '1', 'systemsetting', '1');
+INSERT INTO `power` VALUES ('41', '14', '全局设置', '1', 'systemsetting', '1');
+INSERT INTO `power` VALUES ('42', '1', '登录', '2', 'Login', '0');
+INSERT INTO `power` VALUES ('43', '1', '权限控管', '2', 'accesscontrol', '0');
+INSERT INTO `power` VALUES ('44', '1', '管理用户', '2', 'manageuser', '0');
+INSERT INTO `power` VALUES ('45', '1', '管理用户类型', '2', 'manageusertype', '0');
+INSERT INTO `power` VALUES ('46', '1', '管理书籍类型', '2', 'managebooktype', '0');
+INSERT INTO `power` VALUES ('47', '1', '管理供应商', '2', 'managesupplier', '0');
+INSERT INTO `power` VALUES ('48', '1', '管理用户系部', '2', 'manageuserdepart', '0');
+INSERT INTO `power` VALUES ('49', '1', '管理书籍', '2', 'managebook', '0');
+INSERT INTO `power` VALUES ('50', '1', '教材计划管理(UI)', '2', 'manageplan', '0');
+INSERT INTO `power` VALUES ('51', '1', '教材计划申请(个人)', '2', 'submitplan', '0');
+INSERT INTO `power` VALUES ('52', '1', '教材计划查询(个人)', '2', 'queryplan', '0');
+INSERT INTO `power` VALUES ('53', '1', '教材计划(UI)', '2', 'planui', '0');
+INSERT INTO `power` VALUES ('54', '1', '系统设置(UI)', '2', 'setting', '0');
+INSERT INTO `power` VALUES ('55', '44', '查询用户', '2', 'queryuser', '0');
+INSERT INTO `power` VALUES ('56', '44', '添加用户', '2', 'adduser', '0');
+INSERT INTO `power` VALUES ('57', '44', '编辑用户', '2', 'edituser', '0');
+INSERT INTO `power` VALUES ('58', '44', '删除用户', '2', 'rmuser', '0');
+INSERT INTO `power` VALUES ('59', '45', '查询用户类型', '2', 'queryusertype', '0');
+INSERT INTO `power` VALUES ('60', '45', '添加用户类型', '2', 'addusertype', '0');
+INSERT INTO `power` VALUES ('61', '45', '编辑用户类型', '2', 'editusertype', '0');
+INSERT INTO `power` VALUES ('62', '45', '删除用户类型', '2', 'rmusertype', '0');
+INSERT INTO `power` VALUES ('63', '46', '添加书籍类型', '2', 'addbooktype', '0');
+INSERT INTO `power` VALUES ('64', '46', '编辑书记类型', '2', 'editbooktype', '0');
+INSERT INTO `power` VALUES ('65', '46', '删除书籍类型', '2', 'rmbooktype', '0');
+INSERT INTO `power` VALUES ('66', '46', '查询书籍类型', '2', 'querybooktype', '0');
+INSERT INTO `power` VALUES ('67', '47', '查询供应商', '2', 'querysupplier', '0');
+INSERT INTO `power` VALUES ('68', '47', '添加供应商', '2', 'addsupplier', '0');
+INSERT INTO `power` VALUES ('69', '47', '编辑供应商', '2', 'editsupplier', '0');
+INSERT INTO `power` VALUES ('70', '47', '删除供应商', '2', 'rmsupplier', '0');
+INSERT INTO `power` VALUES ('71', '48', '添加用户系部', '2', 'adduserdepart', '0');
+INSERT INTO `power` VALUES ('72', '48', '编辑用户系部', '2', 'edituserdepart', '0');
+INSERT INTO `power` VALUES ('73', '48', '删除用户系部', '2', 'rmuserdepart', '0');
+INSERT INTO `power` VALUES ('74', '48', '查询用户系部', '2', 'queryuserdepart', '0');
+INSERT INTO `power` VALUES ('75', '49', '查询书籍', '2', 'querybook', '0');
+INSERT INTO `power` VALUES ('76', '49', '添加书籍', '2', 'addbook', '0');
+INSERT INTO `power` VALUES ('77', '49', '删除书籍', '2', 'rmbook', '0');
+INSERT INTO `power` VALUES ('78', '49', '编辑书籍', '2', 'editbook', '0');
+INSERT INTO `power` VALUES ('79', '50', '教材计划查询(管理)', '2', 'queryallplan', '0');
+INSERT INTO `power` VALUES ('80', '50', '教材计划管理', '2', 'auditplan', '0');
+INSERT INTO `power` VALUES ('81', '1', '登录', '3', 'Login', '0');
+INSERT INTO `power` VALUES ('82', '1', '权限控管', '3', 'accesscontrol', '0');
+INSERT INTO `power` VALUES ('83', '1', '管理用户', '3', 'manageuser', '0');
+INSERT INTO `power` VALUES ('84', '1', '管理用户类型', '3', 'manageusertype', '0');
+INSERT INTO `power` VALUES ('85', '1', '管理书籍类型', '3', 'managebooktype', '0');
+INSERT INTO `power` VALUES ('86', '1', '管理供应商', '3', 'managesupplier', '0');
+INSERT INTO `power` VALUES ('87', '1', '管理用户系部', '3', 'manageuserdepart', '0');
+INSERT INTO `power` VALUES ('88', '1', '管理书籍', '3', 'managebook', '0');
+INSERT INTO `power` VALUES ('89', '1', '教材计划管理(UI)', '3', 'manageplan', '0');
+INSERT INTO `power` VALUES ('90', '1', '教材计划申请(个人)', '3', 'submitplan', '0');
+INSERT INTO `power` VALUES ('91', '1', '教材计划查询(个人)', '3', 'queryplan', '0');
+INSERT INTO `power` VALUES ('92', '1', '教材计划(UI)', '3', 'planui', '0');
+INSERT INTO `power` VALUES ('93', '1', '系统设置(UI)', '3', 'setting', '0');
+INSERT INTO `power` VALUES ('94', '83', '查询用户', '3', 'queryuser', '0');
+INSERT INTO `power` VALUES ('95', '83', '添加用户', '3', 'adduser', '0');
+INSERT INTO `power` VALUES ('96', '83', '编辑用户', '3', 'edituser', '0');
+INSERT INTO `power` VALUES ('97', '83', '删除用户', '3', 'rmuser', '0');
+INSERT INTO `power` VALUES ('98', '84', '查询用户类型', '3', 'queryusertype', '0');
+INSERT INTO `power` VALUES ('99', '84', '添加用户类型', '3', 'addusertype', '0');
+INSERT INTO `power` VALUES ('100', '84', '编辑用户类型', '3', 'editusertype', '0');
+INSERT INTO `power` VALUES ('101', '84', '删除用户类型', '3', 'rmusertype', '0');
+INSERT INTO `power` VALUES ('102', '85', '添加书籍类型', '3', 'addbooktype', '0');
+INSERT INTO `power` VALUES ('103', '85', '编辑书记类型', '3', 'editbooktype', '0');
+INSERT INTO `power` VALUES ('104', '85', '删除书籍类型', '3', 'rmbooktype', '0');
+INSERT INTO `power` VALUES ('105', '85', '查询书籍类型', '3', 'querybooktype', '0');
+INSERT INTO `power` VALUES ('106', '86', '查询供应商', '3', 'querysupplier', '0');
+INSERT INTO `power` VALUES ('107', '86', '添加供应商', '3', 'addsupplier', '0');
+INSERT INTO `power` VALUES ('108', '86', '编辑供应商', '3', 'editsupplier', '0');
+INSERT INTO `power` VALUES ('109', '86', '删除供应商', '3', 'rmsupplier', '0');
+INSERT INTO `power` VALUES ('110', '87', '添加用户系部', '3', 'adduserdepart', '0');
+INSERT INTO `power` VALUES ('111', '87', '编辑用户系部', '3', 'edituserdepart', '0');
+INSERT INTO `power` VALUES ('112', '87', '删除用户系部', '3', 'rmuserdepart', '0');
+INSERT INTO `power` VALUES ('113', '87', '查询用户系部', '3', 'queryuserdepart', '0');
+INSERT INTO `power` VALUES ('114', '88', '查询书籍', '3', 'querybook', '0');
+INSERT INTO `power` VALUES ('115', '88', '添加书籍', '3', 'addbook', '0');
+INSERT INTO `power` VALUES ('116', '88', '删除书籍', '3', 'rmbook', '0');
+INSERT INTO `power` VALUES ('117', '88', '编辑书籍', '3', 'editbook', '0');
+INSERT INTO `power` VALUES ('118', '89', '教材计划查询(管理)', '3', 'queryallplan', '0');
+INSERT INTO `power` VALUES ('119', '89', '教材计划管理', '3', 'auditplan', '0');
+INSERT INTO `power` VALUES ('120', '1', '登录', '4', 'Login', '0');
+INSERT INTO `power` VALUES ('121', '1', '权限控管', '4', 'accesscontrol', '0');
+INSERT INTO `power` VALUES ('122', '1', '管理用户', '4', 'manageuser', '0');
+INSERT INTO `power` VALUES ('123', '1', '管理用户类型', '4', 'manageusertype', '0');
+INSERT INTO `power` VALUES ('124', '1', '管理书籍类型', '4', 'managebooktype', '0');
+INSERT INTO `power` VALUES ('125', '1', '管理供应商', '4', 'managesupplier', '0');
+INSERT INTO `power` VALUES ('126', '1', '管理用户系部', '4', 'manageuserdepart', '0');
+INSERT INTO `power` VALUES ('127', '1', '管理书籍', '4', 'managebook', '0');
+INSERT INTO `power` VALUES ('128', '1', '教材计划管理(UI)', '4', 'manageplan', '0');
+INSERT INTO `power` VALUES ('129', '1', '教材计划申请(个人)', '4', 'submitplan', '0');
+INSERT INTO `power` VALUES ('130', '1', '教材计划查询(个人)', '4', 'queryplan', '0');
+INSERT INTO `power` VALUES ('131', '1', '教材计划(UI)', '4', 'planui', '0');
+INSERT INTO `power` VALUES ('132', '1', '系统设置(UI)', '4', 'setting', '0');
+INSERT INTO `power` VALUES ('133', '122', '查询用户', '4', 'queryuser', '0');
+INSERT INTO `power` VALUES ('134', '122', '添加用户', '4', 'adduser', '0');
+INSERT INTO `power` VALUES ('135', '122', '编辑用户', '4', 'edituser', '0');
+INSERT INTO `power` VALUES ('136', '122', '删除用户', '4', 'rmuser', '0');
+INSERT INTO `power` VALUES ('137', '123', '查询用户类型', '4', 'queryusertype', '0');
+INSERT INTO `power` VALUES ('138', '123', '添加用户类型', '4', 'addusertype', '0');
+INSERT INTO `power` VALUES ('139', '123', '编辑用户类型', '4', 'editusertype', '0');
+INSERT INTO `power` VALUES ('140', '123', '删除用户类型', '4', 'rmusertype', '0');
+INSERT INTO `power` VALUES ('141', '124', '添加书籍类型', '4', 'addbooktype', '0');
+INSERT INTO `power` VALUES ('142', '124', '编辑书记类型', '4', 'editbooktype', '0');
+INSERT INTO `power` VALUES ('143', '124', '删除书籍类型', '4', 'rmbooktype', '0');
+INSERT INTO `power` VALUES ('144', '124', '查询书籍类型', '4', 'querybooktype', '0');
+INSERT INTO `power` VALUES ('145', '125', '查询供应商', '4', 'querysupplier', '0');
+INSERT INTO `power` VALUES ('146', '125', '添加供应商', '4', 'addsupplier', '0');
+INSERT INTO `power` VALUES ('147', '125', '编辑供应商', '4', 'editsupplier', '0');
+INSERT INTO `power` VALUES ('148', '125', '删除供应商', '4', 'rmsupplier', '0');
+INSERT INTO `power` VALUES ('149', '126', '添加用户系部', '4', 'adduserdepart', '0');
+INSERT INTO `power` VALUES ('150', '126', '编辑用户系部', '4', 'edituserdepart', '0');
+INSERT INTO `power` VALUES ('151', '126', '删除用户系部', '4', 'rmuserdepart', '0');
+INSERT INTO `power` VALUES ('152', '126', '查询用户系部', '4', 'queryuserdepart', '0');
+INSERT INTO `power` VALUES ('153', '127', '查询书籍', '4', 'querybook', '0');
+INSERT INTO `power` VALUES ('154', '127', '添加书籍', '4', 'addbook', '0');
+INSERT INTO `power` VALUES ('155', '127', '删除书籍', '4', 'rmbook', '0');
+INSERT INTO `power` VALUES ('156', '127', '编辑书籍', '4', 'editbook', '0');
+INSERT INTO `power` VALUES ('157', '128', '教材计划查询(管理)', '4', 'queryallplan', '0');
+INSERT INTO `power` VALUES ('158', '128', '教材计划管理', '4', 'auditplan', '0');
+INSERT INTO `power` VALUES ('159', '1', '登录', '5', 'Login', '0');
+INSERT INTO `power` VALUES ('160', '1', '权限控管', '5', 'accesscontrol', '0');
+INSERT INTO `power` VALUES ('161', '1', '管理用户', '5', 'manageuser', '0');
+INSERT INTO `power` VALUES ('162', '1', '管理用户类型', '5', 'manageusertype', '0');
+INSERT INTO `power` VALUES ('163', '1', '管理书籍类型', '5', 'managebooktype', '0');
+INSERT INTO `power` VALUES ('164', '1', '管理供应商', '5', 'managesupplier', '0');
+INSERT INTO `power` VALUES ('165', '1', '管理用户系部', '5', 'manageuserdepart', '0');
+INSERT INTO `power` VALUES ('166', '1', '管理书籍', '5', 'managebook', '0');
+INSERT INTO `power` VALUES ('167', '1', '教材计划管理(UI)', '5', 'manageplan', '0');
+INSERT INTO `power` VALUES ('168', '1', '教材计划申请(个人)', '5', 'submitplan', '0');
+INSERT INTO `power` VALUES ('169', '1', '教材计划查询(个人)', '5', 'queryplan', '0');
+INSERT INTO `power` VALUES ('170', '1', '教材计划(UI)', '5', 'planui', '0');
+INSERT INTO `power` VALUES ('171', '1', '系统设置(UI)', '5', 'setting', '0');
+INSERT INTO `power` VALUES ('172', '161', '查询用户', '5', 'queryuser', '0');
+INSERT INTO `power` VALUES ('173', '161', '添加用户', '5', 'adduser', '0');
+INSERT INTO `power` VALUES ('174', '161', '编辑用户', '5', 'edituser', '0');
+INSERT INTO `power` VALUES ('175', '161', '删除用户', '5', 'rmuser', '0');
+INSERT INTO `power` VALUES ('176', '162', '查询用户类型', '5', 'queryusertype', '0');
+INSERT INTO `power` VALUES ('177', '162', '添加用户类型', '5', 'addusertype', '0');
+INSERT INTO `power` VALUES ('178', '162', '编辑用户类型', '5', 'editusertype', '0');
+INSERT INTO `power` VALUES ('179', '162', '删除用户类型', '5', 'rmusertype', '0');
+INSERT INTO `power` VALUES ('180', '163', '添加书籍类型', '5', 'addbooktype', '0');
+INSERT INTO `power` VALUES ('181', '163', '编辑书记类型', '5', 'editbooktype', '0');
+INSERT INTO `power` VALUES ('182', '163', '删除书籍类型', '5', 'rmbooktype', '0');
+INSERT INTO `power` VALUES ('183', '163', '查询书籍类型', '5', 'querybooktype', '0');
+INSERT INTO `power` VALUES ('184', '164', '查询供应商', '5', 'querysupplier', '0');
+INSERT INTO `power` VALUES ('185', '164', '添加供应商', '5', 'addsupplier', '0');
+INSERT INTO `power` VALUES ('186', '164', '编辑供应商', '5', 'editsupplier', '0');
+INSERT INTO `power` VALUES ('187', '164', '删除供应商', '5', 'rmsupplier', '0');
+INSERT INTO `power` VALUES ('188', '165', '添加用户系部', '5', 'adduserdepart', '0');
+INSERT INTO `power` VALUES ('189', '165', '编辑用户系部', '5', 'edituserdepart', '0');
+INSERT INTO `power` VALUES ('190', '165', '删除用户系部', '5', 'rmuserdepart', '0');
+INSERT INTO `power` VALUES ('191', '165', '查询用户系部', '5', 'queryuserdepart', '0');
+INSERT INTO `power` VALUES ('192', '166', '查询书籍', '5', 'querybook', '0');
+INSERT INTO `power` VALUES ('193', '166', '添加书籍', '5', 'addbook', '0');
+INSERT INTO `power` VALUES ('194', '166', '删除书籍', '5', 'rmbook', '0');
+INSERT INTO `power` VALUES ('195', '166', '编辑书籍', '5', 'editbook', '0');
+INSERT INTO `power` VALUES ('196', '167', '教材计划查询(管理)', '5', 'queryallplan', '0');
+INSERT INTO `power` VALUES ('197', '167', '教材计划管理', '5', 'auditplan', '0');
 
 -- ----------------------------
 -- Table structure for supplier
@@ -591,16 +578,16 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'resources/img/userpic/6a31544e9753801ca1acb149f5d57796.jpg', '2015-03-31 18:15:04');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-27 16:26:53');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
-INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-02-28 20:44:52');
+INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'resources/img/userpic/avatar.jpg', '2015-03-29 17:01:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');
 INSERT INTO `user` VALUES ('5', 'aasf', 'aasfaasf', 'aasf', '3', '6', '4', '34432453', 'aasf', 'aasf', 'avatar.jpg', '2015-02-28 20:56:01');
 INSERT INTO `user` VALUES ('6', 'qqq', 'qqqqqq', 'qqq', '5', '12', '11', '2342343', '1111178888', 'qqq@11.com', 'avatar.jpg', '2015-02-28 20:56:39');
 INSERT INTO `user` VALUES ('7', 'TestForInject', 'TestForInject', 'TestForInject', '5', '6', '4', '1112232', '1111', 'TestForInject', 'avatar.jpg', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('8', 'TestForAddUser', 'TestForAddUser', 'TestForAddUser', '4', '5', '4', 'TestForAddUser', '111111', 'TestForAddUser@qq.com', 'avatar.jpg', '2015-02-28 20:56:23');
 INSERT INTO `user` VALUES ('9', 'TestForAddUser2', 'TestForAddUser2', 'TestForAddUser2', '5', '16', '14', '121231231', '111111', 'TestForAddUser2@qq.com', 'avatar.jpg', '2015-02-28 20:57:00');
-INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '6', '4', '656564', '11111', '655', 'avatar.jpg', '2015-02-28 20:56:23');
+INSERT INTO `user` VALUES ('11', 'Test', '1asasds', 'ss222', '4', '13', '11', '656564', '11111', '655', 'resources/img/userpic/avatar.jpg', '2015-03-29 17:02:12');
 
 -- ----------------------------
 -- Table structure for userdepartment
@@ -665,7 +652,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -682,11 +669,11 @@ INSERT INTO `versionlog` VALUES ('9', '0009', '00', '1', '新增学生系部信�
 INSERT INTO `versionlog` VALUES ('10', '0010', '00', '1', '新增学生系部管理', '2015-02-11 13:43:13');
 INSERT INTO `versionlog` VALUES ('11', '0011', '00', '1', '新增用户类型管理，书籍类型管理', '2015-02-12 17:01:59');
 INSERT INTO `versionlog` VALUES ('12', '0011', '02', '1', '修复注册是多个用户类型错位Bug,<br>修复unix下数据库大小写敏感的BUG', '2015-02-12 20:57:56');
-INSERT INTO `versionlog` VALUES ('13', '0012', '01', '1', '新增UI权限控制<br>更新调整权限数据库,<br>[future] 权限控管', '2015-02-12 22:52:45');
-INSERT INTO `versionlog` VALUES ('14', '0013', '00', '1', '新增/完善权限控管<br>[future] 教学书籍订购计划管理', '2015-03-02 21:03:45');
+INSERT INTO `versionlog` VALUES ('13', '0012', '01', '1', '新增UI权限控制<br>更新调整权限数据库,<br>[feature] 权限控管', '2015-02-12 22:52:45');
+INSERT INTO `versionlog` VALUES ('14', '0013', '00', '1', '新增/完善权限控管<br>[feature] 教学书籍订购计划管理', '2015-03-02 21:03:45');
 INSERT INTO `versionlog` VALUES ('15', '0014', '04', '1', '新增书籍条件查询<br>修复UI等错位<br>修复编辑书籍类型，供应商类型丢失bug<br>修复删除用户是自身删除bug<br>修复权限控管部分失效bug<br>[feture]继续完善教学计划提交Plan Submit', '2015-03-05 16:42:26');
 INSERT INTO `versionlog` VALUES ('16', '0014', '05', '1', '修复编辑用户个人信息参数错误bug', '2015-03-06 13:14:36');
-INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提交<br>改善权限控制机制,优化读取逻辑<br>[feture]教学计划查询与更变', '2015-03-11 13:05:16');
+INSERT INTO `versionlog` VALUES ('17', '0015', '01', '1', '新增教学计划提交<br>改善权限控制机制,优化读取逻辑<br>[feature]教学计划查询与更变', '2015-03-11 13:05:16');
 INSERT INTO `versionlog` VALUES ('18', '0015', '04', '1', '新增个人计划查询<br>修复多出数据处理BUG<br>改善后台逻辑,优化web性能<br>优化js,css,移除不必要的css', '2015-03-12 16:59:31');
 INSERT INTO `versionlog` VALUES ('19', '0016', '00', '1', '新增个人设置', '2015-03-13 13:41:45');
 INSERT INTO `versionlog` VALUES ('20', '0017', '00', '1', '新增个人计划变更', '2015-03-13 16:21:35');
@@ -694,6 +681,8 @@ INSERT INTO `versionlog` VALUES ('21', '0020', '00', '1', '新增用户头像上
 INSERT INTO `versionlog` VALUES ('22', '0021', '00', '1', '调整UI,兼容IE[不支持低版本IE678],FF,Chrome.', '2015-03-19 20:55:05');
 INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动化持续化部署.', '2015-03-21 14:33:15');
 INSERT INTO `versionlog` VALUES ('34', '0023', '00', '1', '修复部分BUG,移除SunBase64', '2015-03-26 22:57:56');
+INSERT INTO `versionlog` VALUES ('35', '0023', '02', '1', '修复个人设置界面快速切换500错误<br>新增user filter(未完成)', '2015-03-28 14:56:41');
+INSERT INTO `versionlog` VALUES ('36', '0024', '00', '1', '新增教师申请导出到excel<br>新增用户查询详细filter<br>新增修改个人设置实时生效<br>继续完善计划管理', '2015-03-29 20:03:36');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
