@@ -47,11 +47,11 @@ $(function () {
             if (data) {
                 $('#animation').attr('data-open', $('#AnimationToggle').val() == 'on' ? 1 : 0);
                 $.TeachDialog({
-                    content: 'Update Settings Success!',
+                    content: 'Update Settings Success!'
                 });
             } else {
                 $.TeachDialog({
-                    content: 'Update Settings failed!',
+                    content: 'Update Settings failed!'
                 });
             }
         });

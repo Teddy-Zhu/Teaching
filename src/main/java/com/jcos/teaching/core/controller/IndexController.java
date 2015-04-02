@@ -3,7 +3,6 @@ package com.jcos.teaching.core.controller;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
 import com.jcos.teaching.core.util.annotation.SetPower;
-import com.jcos.teaching.core.util.annotation.SetSettings;
+import com.jcos.teaching.core.util.annotation.SetPerSettings;
 
 @Controller
 public class IndexController {
@@ -61,7 +60,7 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
-    @SetSettings(value = {"openAnimation"})
+    @SetPerSettings(value = {"openAnimation"})
     @SetPower(value = "AdminMenu")
     public String adminmenu(HttpServletRequest request, Model model) {
         LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
@@ -98,21 +97,21 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/ajax/book_manage", method = RequestMethod.GET)
-    @SetSettings(value = {"bookgridsize"})
+    @SetPerSettings(value = {"bookgridsize"})
     @SetPower(value = "book_manage")
     public String menu3(HttpServletRequest request, Model model, HttpServletResponse response) {
         return "/ajax/book_manage";
     }
 
     @RequestMapping(value = "/ajax/userinfo_manage", method = RequestMethod.GET)
-    @SetSettings(value = {"usergridsize"})
+    @SetPerSettings(value = {"usergridsize"})
     @SetPower(value = "userinfo_manage")
     public String menu4(HttpServletRequest request, Model model, HttpServletResponse response) {
         return "/ajax/userinfo_manage";
     }
 
     @RequestMapping(value = "/ajax/supplier_manage", method = RequestMethod.GET)
-    @SetSettings(value = {"suppliergridsize"})
+    @SetPerSettings(value = {"suppliergridsize"})
     @SetPower(value = "supplier_manage")
     public String menu5(HttpServletRequest request, Model model, HttpServletResponse response) {
         return "/ajax/supplier_manage";
@@ -143,14 +142,14 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/ajax/plan_query", method = RequestMethod.GET)
-    @SetSettings(value = {"plangridsize"})
+    @SetPerSettings(value = {"plangridsize"})
     @SetPower(value = "plan_query")
     public String menu10(HttpServletRequest request, Model model, HttpServletResponse response) {
         return "/ajax/plan_query";
     }
 
     @RequestMapping(value = "/ajax/plan_manage", method = RequestMethod.GET)
-    @SetSettings(value = {"plangridsize"})
+    @SetPerSettings(value = {"plangridsize"})
     @SetPower(value = "plan_manage")
     public String menu14(HttpServletRequest request, Model model, HttpServletResponse response) {
         return "/ajax/plan_manage";
@@ -164,7 +163,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/ajax/personal_setting", method = RequestMethod.GET)
-    @SetSettings(value = {"openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize"})
+    @SetPerSettings(value = {"openAnimation", "bookgridsize", "usergridsize", "suppliergridsize", "plangridsize"})
     @SetPower(value = "personal_setting")
     public String menu11(HttpServletRequest request, Model model, HttpServletResponse response) {
         return "/ajax/personal_setting";

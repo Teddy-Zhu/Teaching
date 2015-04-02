@@ -42,7 +42,7 @@ public class PersonalConfigTool {
 
     public boolean setGlobalConfig(ModelAndView model, String[] name) {
         for (int i = 0, len = name.length; i < len; i++) {
-            model.addObject(name[i], configService.queryByName(name[i]));
+            model.addObject(name[i], configService.queryByName(name[i]).getStrvalue());
         }
         return true;
     }

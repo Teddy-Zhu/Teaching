@@ -13,7 +13,7 @@ import com.jcos.teaching.core.util.PersonalConfigTool;
 import com.jcos.teaching.core.util.PowerTool;
 import com.jcos.teaching.core.util.annotation.AuthPower;
 import com.jcos.teaching.core.util.annotation.SetPower;
-import com.jcos.teaching.core.util.annotation.SetSettings;
+import com.jcos.teaching.core.util.annotation.SetPerSettings;
 
 public class AuthenticationFilter implements HandlerInterceptor {
 
@@ -38,7 +38,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
 					pwTool.setModel(request, model, value);
 				}
 			}
-			SetSettings setuser = ((HandlerMethod) handler).getMethodAnnotation(SetSettings.class);
+			SetPerSettings setuser = ((HandlerMethod) handler).getMethodAnnotation(SetPerSettings.class);
 			if (setuser != null) {
 				String[] value = setuser.value();
 				if (value.length != 0) {
@@ -48,7 +48,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
 			SetGlobalSettings setglobalsetting = ((HandlerMethod) handler).getMethodAnnotation(SetGlobalSettings.class);
 			if (setglobalsetting !=null){
 				String[] value = setglobalsetting.value();
-				pcTool.setGlobalConfig(model,value);
+				pcTool.setGlobalConfig(model, value);
 			}
 		}
 	}

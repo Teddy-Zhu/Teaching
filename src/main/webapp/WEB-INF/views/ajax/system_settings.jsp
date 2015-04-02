@@ -77,7 +77,7 @@
 				</div>
 				<div class="inlineblock col-xs-12" id="inlineblock">
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
-						<label class="col-xs-5">Enable Plan Submit:</label><input id="planSubmitToggle" class="settingForm" type="checkbox" data-open="${openAnimation}" />
+						<label class="col-xs-5">Enable Plan Submit:</label><input id="planSubmitToggle" class="settingForm" type="checkbox" data-open="${AllowPlanSubmit}" />
 					</div>
 					<div class="col-xs-3 div-mtop"></div>
 				</div>
