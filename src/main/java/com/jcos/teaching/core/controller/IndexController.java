@@ -2,13 +2,14 @@ package com.jcos.teaching.core.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jcos.teaching.core.util.annotation.SetGlobalSettings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcos.teaching.core.exmodel.LoginSession;
+import com.jcos.teaching.core.model.Menus;
 import com.jcos.teaching.core.model.User;
 import com.jcos.teaching.core.model.VersionLog;
+import com.jcos.teaching.core.service.MenuService;
 import com.jcos.teaching.core.service.PowerService;
 import com.jcos.teaching.core.service.UserService;
 import com.jcos.teaching.core.service.VersionLogService;
-import com.jcos.teaching.core.util.annotation.SetPower;
+import com.jcos.teaching.core.util.annotation.SetGlobalSettings;
 import com.jcos.teaching.core.util.annotation.SetPerSettings;
+import com.jcos.teaching.core.util.annotation.SetPower;
 
 @Controller
 public class IndexController {
@@ -34,6 +38,8 @@ public class IndexController {
 	private PowerService powerService;
 	@Inject
 	private UserService userService;
+	@Inject
+	private MenuService menusService;
 
 	/**
 	 * @param request
@@ -67,6 +73,16 @@ public class IndexController {
 		if (loginSession != null) {
 			model.addAttribute("user", loginSession.getLoginUser());
 		}
+		Map<String, String> menunames = new HashMap<String, String>();
+		Map<String, String> menuicons = new HashMap<String, String>();
+		List<Menus> menus = menusService.getAllMenus();
+		for (int i = 0, len = menus.size(); i < len; i++) {
+			Menus menu = menus.get(i);
+			menunames.put(menu.getStrmenuvalue(), menu.getStrmenuname());
+			menuicons.put(menu.getStrmenuvalue(), menu.getStrmenuiconclass());
+		}
+		model.addAttribute("menunames", menunames);
+		model.addAttribute("menuicons", menuicons);
 		return "AdminMenu";
 	}
 
@@ -156,6 +172,11 @@ public class IndexController {
 		return "/ajax/plan_manage";
 	}
 
+	@RequestMapping(value = "/ajax/menu_manage", method = RequestMethod.GET)
+	@SetPower(value = "menumanage")
+	public String menu15(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return "/ajax/menu_manage";
+	}
 	@RequestMapping(value = "/ajax/system_settings", method = RequestMethod.GET)
 	@SetGlobalSettings(value = { "AllowPlanSubmit" })
 	@SetPower(value = "system_settings")

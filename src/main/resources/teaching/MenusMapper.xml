@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jcos.teaching.core.dao.MenusMapper">
+	<resultMap id="BaseResultMap" type="com.jcos.teaching.core.model.Menus">
+		<id column="intMenuId" property="intmenuid" jdbcType="INTEGER" />
+		<result column="intParentMenuId" property="intparentmenuid" jdbcType="INTEGER" />
+		<result column="strMenuValue" property="strmenuvalue" jdbcType="VARCHAR" />
+		<result column="strMenuName" property="strmenuname" jdbcType="VARCHAR" />
+		<result column="strMenuIconClass" property="strmenuiconclass" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		intMenuId, intParentMenuId, strMenuValue, strMenuName, strMenuIconClass
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from menus
+		where intMenuId = #{intmenuid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from menus
+		where intMenuId = #{intmenuid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jcos.teaching.core.model.Menus">
+		insert into menus (intMenuId, intParentMenuId, strMenuValue,
+		strMenuName, strMenuIconClass)
+		values (#{intmenuid,jdbcType=INTEGER}, #{intparentmenuid,jdbcType=INTEGER}, #{strmenuvalue,jdbcType=VARCHAR},
+		#{strmenuname,jdbcType=VARCHAR},
+		#{strmenuiconclass,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.Menus">
+		insert into menus
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="intmenuid != null">
+				intMenuId,
+			</if>
+			<if test="intparentmenuid != null">
+				intParentMenuId,
+			</if>
+			<if test="strmenuvalue != null">
+				strMenuValue,
+			</if>
+			<if test="strmenuname != null">
+				strMenuName,
+			</if>
+			<if test="strmenuiconclass != null">
+				strMenuIconClass,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="intmenuid != null">
+				#{intmenuid,jdbcType=INTEGER},
+			</if>
+			<if test="intparentmenuid != null">
+				#{intparentmenuid,jdbcType=INTEGER},
+			</if>
+			<if test="strmenuvalue != null">
+				#{strmenuvalue,jdbcType=VARCHAR},
+			</if>
+			<if test="strmenuname != null">
+				#{strmenuname,jdbcType=VARCHAR},
+			</if>
+			<if test="strmenuiconclass != null">
+				#{strmenuiconclass,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jcos.teaching.core.model.Menus">
+		update menus
+		<set>
+			<if test="intparentmenuid != null">
+				intParentMenuId = #{intparentmenuid,jdbcType=INTEGER},
+			</if>
+			<if test="strmenuvalue != null">
+				strMenuValue = #{strmenuvalue,jdbcType=VARCHAR},
+			</if>
+			<if test="strmenuname != null">
+				strMenuName = #{strmenuname,jdbcType=VARCHAR},
+			</if>
+			<if test="strmenuiconclass != null">
+				strMenuIconClass = #{strmenuiconclass,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where intMenuId = #{intmenuid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jcos.teaching.core.model.Menus">
+		update menus
+		set intParentMenuId = #{intparentmenuid,jdbcType=INTEGER},
+		strMenuValue = #{strmenuvalue,jdbcType=VARCHAR},
+		strMenuName = #{strmenuname,jdbcType=VARCHAR},
+		strMenuIconClass = #{strmenuiconclass,jdbcType=VARCHAR}
+		where intMenuId =
+		#{intmenuid,jdbcType=INTEGER}
+	</update>
+	<select id="selectAllMenus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from menus
+		where intmenuid &lt;&gt; 1
+	</select>
+</mapper>

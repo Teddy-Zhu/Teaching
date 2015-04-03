@@ -88,66 +88,64 @@
 		<div class="row">
 			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> am-animation-slide-left</c:if>">
 				<ul class="nav main-menu">
-					<li><a href="dashboard" class="ajax-link"> <i class="fa fa-dashboard"></i>Dashboard
-					</a></li>
-
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Books</span>
+					<li><a href="dashboard" class="ajax-link"> <i class="${menuicons['dashboard']}"></i>${menunames['dashboard']}</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['books']}"></i> <span class="hidden-xs">${menunames['books']}</span>
 					</a>
 						<ul class="dropdown-menu">
 							<c:if test="${managebook eq true}">
-								<li><a class="ajax-link" href="book_manage"><i class="fa fa-clipboard"></i> Book Manage</a></li>
+								<li><a class="ajax-link" href="book_manage"><i class="${menuicons['book_manage']}"></i>${menunames['book_manage']}</a></li>
 							</c:if>
 							<c:if test="${managesupplier eq true}">
-								<li><a class="ajax-link" href="supplier_manage"><i class="fa fa-pied-piper"></i> Supplier Manage</a></li>
+								<li><a class="ajax-link" href="supplier_manage"><i class="${menuicons['supplier_manage']}"></i>${menunames['supplier_manage']}</a></li>
 							</c:if>
 						</ul></li>
 					<c:if test="${planui eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-book"></i> <span class="hidden-xs">Plans</span>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['plans']}"></i> <span class="hidden-xs">${menunames['plans']}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${submitplan eq true}">
-									<li><a class="ajax-link" href="plan_submit"><i class="fa fa-paper-plane-o"></i> Plan Submit</a></li>
+									<li><a class="ajax-link" href="plan_submit"><i class="${menuicons['plan_submit']}"></i>${menunames['plan_submit']}</a></li>
 								</c:if>
 								<c:if test="${queryplan eq true}">
-									<li><a class="ajax-link" href="plan_query"><i class="fa fa-file-archive-o"></i> Plan Query</a></li>
+									<li><a class="ajax-link" href="plan_query"><i class="${menuicons['plan_query']}"></i>${menunames['plan_query']}</a></li>
 								</c:if>
 								<c:if test="${manageplan eq true}">
-									<li><a class="ajax-link" href="plan_manage"><i class="fa fa-paper-plane"></i> Plan Manage</a></li>
+									<li><a class="ajax-link" href="plan_manage"><i class="${menuicons['plan_manage']}"></i>${menunames['plan_manage']}</a></li>
 								</c:if>
 							</ul></li>
 					</c:if>
 					<c:if test="${manageuser eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-suitcase"></i> <span class="hidden-xs">User Manage</span>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['usermanage']}"></i> <span class="hidden-xs">${menunames['usermanage']}</span>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a class="ajax-link" href="userinfo_manage"><i class="fa fa-book"></i> User Manage</a></li>
+								<li><a class="ajax-link" href="userinfo_manage"><i class="${menuicons['userinfo_manage']}"></i>${menunames['userinfo_manage']}</a></li>
 							</ul></li>
 					</c:if>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-user"></i> <span class="hidden-xs">Person Setting</span>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['personsetting']}"></i> <span class="hidden-xs">${menunames['personsetting']}</span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="personinfo_manage"><i class="fa fa-clipboard"></i> Info Manage</a></li>
-							<li><a class="ajax-link" href="personal_setting"><i class="fa fa-clipboard"></i> Setting Manage</a></li>
+							<li><a class="ajax-link" href="personinfo_manage"><i class="${menuicons['personinfo_manage']}"></i>${menunames['personinfo_manage']}</a></li>
+							<li><a class="ajax-link" href="personal_setting"><i class="${menuicons['personal_setting']}"></i>${menunames['personal_setting']}</a></li>
 						</ul></li>
 					<c:if test="${setting eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="fa fa-cog"></i> <span class="hidden-xs">System Settings</span>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['systemsettings']}"></i> <span class="hidden-xs">${menunames['systemsettings']}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${manageuserdepart eq true}">
-									<li><a class="ajax-link" href="department_manage"><i class="fa fa-clipboard"></i> Depart Manage</a></li>
+									<li><a class="ajax-link" href="department_manage"><i class="${menuicons['department_manage']}"></i>${menunames['department_manage']}</a></li>
 								</c:if>
 								<c:if test="${manageusertype eq true or managebooktype eq true}">
-									<li><a class="ajax-link" href="type_manage"><i class="fa fa-clipboard"></i> Type Manage</a></li>
+									<li><a class="ajax-link" href="type_manage"><i class="${menuicons['type_manage']}"></i>${menunames['type_manage']}</a></li>
 								</c:if>
 								<c:if test="${accesscontrol eq true}">
-									<li><a class="ajax-link" href="access_manage"><i class="fa fa-clipboard"></i> Access Manage</a></li>
+									<li><a class="ajax-link" href="access_manage"><i class="${menuicons['access_manage']}"></i>${menunames['access_manage']}</a></li>
 								</c:if>
 								<c:if test="${systemsetting eq true}">
-									<li><a class="ajax-link" href="system_settings"><i class="fa fa-clipboard"></i> System Setting</a></li>
+									<li><a class="ajax-link" href="system_settings"><i class="${menuicons['system_settings']}"></i>${menunames['system_settings']}</a></li>
 								</c:if>
 							</ul></li>
 					</c:if>
-					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="fa fa-sign-out"></i> <span class="hidden-xs">Log Out</span>
+					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="${menuicons['logout']}"></i> <span class="hidden-xs">${menunames['logout']}</span>
 					</a></li>
 				</ul>
 			</div>
