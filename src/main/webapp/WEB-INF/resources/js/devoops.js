@@ -607,21 +607,26 @@ $(function() {
 		e.preventDefault();
 		CloseModalBox();
 	});
-	// lock screen
-	$('#locked-screen').on('click', function(e) {
+	$('.dropdown-menu .top-link').on('click', function(e) {
 		e.preventDefault();
-		$('body').addClass('body-screensaver');
-		$('#screensaver').addClass("show");
-		ScreenSaver();
-	});
-
+		var ajax_url = $(this).attr('href');
+		var item = $('.main-menu li a[href$="' + ajax_url + '"]');
+		item.addClass('active-parent active');
+		$('.dropdown:has(li:has(a.active)) > a').addClass('active-parent active');
+		$('.dropdown:has(li:has(a.active)) > ul').css("display", "block");
+		window.location.hash = ajax_url;
+		item.trigger('click');
+	})
 	$('#search').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault();
-			$('#content').removeClass('full-content');
-			ajax_url = 'ajax/page_search.html';
+			var ajax_url = $('#searchMenu').attr('data-value');
+			var item = $('.main-menu li a[href$="' + ajax_url + '"]');
+			item.addClass('active-parent active');
+			$('.dropdown:has(li:has(a.active)) > a').addClass('active-parent active');
+			$('.dropdown:has(li:has(a.active)) > ul').css("display", "block");
 			window.location.hash = ajax_url;
-			LoadAjaxContent(ajax_url);
+			item.trigger('click');
 		}
 	});
 
@@ -636,6 +641,24 @@ $(function() {
 	});
 	$(document).ajaxStop(function() {
 		NProgress.done();
+	});
+	/*
+	 * var menu = [ { value : 'Andorra', data : 'AD' }, { value : 'Zimbabwe',
+	 * data : 'ZZ' } ];
+	 * 
+	 * $('#autocomplete').autocomplete({ lookup : countries, onSelect :
+	 * function(suggestion) { alert('You selected: ' + suggestion.value + ', ' +
+	 * suggestion.data); } }); $('#searchMenu').
+	 */
+	var menus = [];
+	$("[class='ajax-link'][href!='#']").each(function(e) {
+		var menu = {};
+		menu.data = $(this).attr('href');
+		menu.value = $.trim($(this).html().replace(/<i(.*?)<\/i>/, ""));
+		menus.push(menu);
+	})
+	$('#searchMenu').autocomplete({
+		lookup : menus
 	});
 	// for session out of date
 	$.ajaxSetup({
