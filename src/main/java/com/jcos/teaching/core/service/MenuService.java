@@ -8,4 +8,8 @@ public interface MenuService {
 
 	List<Menus> getAllMenus();
 
+	List<Menus> getAllMenusNoFilter();
+
+	boolean updateMenu(Menus record);
+
 }

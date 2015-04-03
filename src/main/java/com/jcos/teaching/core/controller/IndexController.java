@@ -173,7 +173,7 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/ajax/menu_manage", method = RequestMethod.GET)
-	@SetPower(value = "menumanage")
+	@SetPower(value = "menu_manage")
 	public String menu15(HttpServletRequest request, Model model, HttpServletResponse response) {
 		return "/ajax/menu_manage";
 	}

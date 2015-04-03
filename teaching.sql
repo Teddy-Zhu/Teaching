@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-04-03 16:16:16
+Date: 2015-04-04 03:28:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -175,7 +175,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -235,6 +235,7 @@ INSERT INTO `config` VALUES ('52', 'plan_manage', 'aduitplan');
 INSERT INTO `config` VALUES ('53', 'plan_manage', 'queryallplan');
 INSERT INTO `config` VALUES ('54', 'system_settings', 'systemsetting');
 INSERT INTO `config` VALUES ('55', 'AllowPlanSubmit', '1');
+INSERT INTO `config` VALUES ('56', 'menu_manage', 'menumanage');
 
 -- ----------------------------
 -- Table structure for coursetype
@@ -267,6 +268,44 @@ CREATE TABLE `logs` (
 -- ----------------------------
 -- Records of logs
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for menus
+-- ----------------------------
+DROP TABLE IF EXISTS `menus`;
+CREATE TABLE `menus` (
+  `intMenuId` int(11) NOT NULL AUTO_INCREMENT,
+  `intParentMenuId` int(11) NOT NULL,
+  `strMenuValue` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strMenuName` varchar(255) COLLATE utf8_bin NOT NULL,
+  `strMenuIconClass` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`intMenuId`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of menus
+-- ----------------------------
+INSERT INTO `menus` VALUES ('1', '0', 'menu', 'Menu', 'fa');
+INSERT INTO `menus` VALUES ('2', '1', 'dashboard', 'Dashboard', 'fa fa-dashboard');
+INSERT INTO `menus` VALUES ('3', '1', 'books', 'Books', 'fa fa-book');
+INSERT INTO `menus` VALUES ('4', '1', 'plans', 'Plans', 'fa fa-book');
+INSERT INTO `menus` VALUES ('5', '1', 'usermanage', 'User Manage', 'fa fa-suitcase');
+INSERT INTO `menus` VALUES ('6', '1', 'personsetting', 'Person Setting', 'fa fa-user');
+INSERT INTO `menus` VALUES ('7', '1', 'systemsettings', 'System Settings', 'fa fa-cog');
+INSERT INTO `menus` VALUES ('8', '1', 'logout', 'Log Out', 'fa fa-sign-out');
+INSERT INTO `menus` VALUES ('9', '3', 'book_manage', 'Book Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('10', '3', 'supplier_manage', 'Supplier Manage', 'fa fa-pied-piper');
+INSERT INTO `menus` VALUES ('11', '4', 'plan_submit', 'Plan Sumbit', 'fa fa-paper-plane-o');
+INSERT INTO `menus` VALUES ('12', '4', 'plan_query', 'Plan Query', 'fa fa-file-archive-o');
+INSERT INTO `menus` VALUES ('13', '4', 'plan_manage', 'Plan Manage', 'fa fa-paper-plane');
+INSERT INTO `menus` VALUES ('14', '5', 'userinfo_manage', 'User Manage', 'fa fa-book');
+INSERT INTO `menus` VALUES ('15', '6', 'personinfo_manage', 'Info Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('16', '6', 'personal_setting', 'Setting Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('17', '7', 'department_manage', 'Depart Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('18', '7', 'type_manage', 'Type Manage', 'fa fa-street-view');
+INSERT INTO `menus` VALUES ('19', '7', 'access_manage', 'Access Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('20', '7', 'system_settings', 'System Setting', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('21', '7', 'menu_manage', 'Menu Setting', 'fa fa-server');
 
 -- ----------------------------
 -- Table structure for operation
@@ -326,7 +365,7 @@ CREATE TABLE `power` (
   `strAuthName` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '1',
   `intAuthValue` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`intPowerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of power
@@ -528,6 +567,7 @@ INSERT INTO `power` VALUES ('194', '166', '删除书籍', '5', 'rmbook', '0');
 INSERT INTO `power` VALUES ('195', '166', '编辑书籍', '5', 'editbook', '0');
 INSERT INTO `power` VALUES ('196', '167', '教材计划查询(管理)', '5', 'queryallplan', '0');
 INSERT INTO `power` VALUES ('197', '167', '教材计划管理', '5', 'auditplan', '0');
+INSERT INTO `power` VALUES ('198', '14', '菜单管理', '1', 'menumanage', '1');
 
 -- ----------------------------
 -- Table structure for supplier

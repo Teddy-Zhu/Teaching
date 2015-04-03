@@ -15,11 +15,10 @@ var usersetting = {
 		}
 	},
 	callback : {
-		onClick : userTreeonClick
+		onClick : treeOnclick
 	}
 };
-var usernodes;
-var curUserTreeNode = null;
+var curUserTreeNode = null, userTreeObj;
 function userTreeonClick(event, treeId, treeNode, clickFlag) {
 	curUserTreeNode = treeNode;
 	console.log(curUserTreeNode)
@@ -31,6 +30,10 @@ function userTreeonClick(event, treeId, treeNode, clickFlag) {
 	}
 
 }
+function treeOnclick() {
+
+}
+
 function loadUserType() {
 	$.ajax({
 		url : "Type/GetUserTypeAllForType",
@@ -38,8 +41,8 @@ function loadUserType() {
 		dataType : 'json',
 		success : function(response) {
 			nodes = $.fn.zTree.init($("#ul_tree_usertype"), usersetting, response);
-			var treeObj = $.fn.zTree.getZTreeObj("ul_tree_usertype");
-			treeObj.expandAll(true);
+			userTreeObj = $.fn.zTree.getZTreeObj("ul_tree_usertype");
+			userTreeObj.expandAll(true);
 			curUserTreeNode = null;
 		},
 		async : true,
@@ -78,19 +81,21 @@ $(function() {
 			});
 			return;
 		}
-
+		var allregcheck = $('#regcheck').parent().hasClass('checked') == true ? 1 : 0;
 		$.ajax({
 			url : "TypeOperate/UpdateUserType",
 			type : 'post',
 			dataType : 'json',
 			data : {
 				id : curUserTreeNode.intidentityid,
-				allowreg : $('#regcheck').parent().hasClass('checked') == true ? 1 : 0,
+				allowreg : allregcheck,
 				name : name
 			},
 			success : function(response) {
 				if (response) {
-					loadUserType();
+					curUserTreeNode.strname = name;
+					curUserTreeNode.intallowreg = allregcheck;
+					userTreeObj.updateNode(curUserTreeNode);
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Update UserType successfully!',
@@ -125,8 +130,12 @@ $(function() {
 				name : name
 			},
 			success : function(response) {
-				if (response) {
-					loadUserType();
+				if (!isNaN(response)) {
+					var nodes = userTreeObj.getNodes();
+					userTreeObj.addNodes(null, {
+						intidentityid : parseInt(response),
+						strname : name
+					});
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Insert UserType successfully!',
@@ -159,7 +168,7 @@ $(function() {
 			},
 			success : function(response) {
 				if (response) {
-					loadUserType();
+					treeObj.removeNode(curUserTreeNode);
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Delete UserType successfully!',

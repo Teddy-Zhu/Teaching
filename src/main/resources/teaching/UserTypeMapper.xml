@@ -26,7 +26,7 @@
 		#{intallowreg,jdbcType=INTEGER}
 		)
 	</insert>
-	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.UserType">
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.UserType" useGeneratedKeys="true" keyProperty="intidentityid">
 		insert into usertype
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intidentityid != null">

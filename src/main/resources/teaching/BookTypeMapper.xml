@@ -22,7 +22,7 @@
 		insert into booktype (intBookTypeId, strBookTypeName)
 		values (#{intbooktypeid,jdbcType=INTEGER}, #{strbooktypename,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookType">
+	<insert id="insertSelective" parameterType="com.jcos.teaching.core.model.BookType" useGeneratedKeys="true" keyProperty="intbooktypeid">
 		insert into booktype
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="intbooktypeid != null">

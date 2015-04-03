@@ -72,7 +72,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/InsertUserType", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "addusertype")
-	public boolean insertUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public Object insertUserType(HttpServletRequest request, Model model, HttpServletResponse response) {
 		int check = 0;
 		String name = "";
 		try {
@@ -96,11 +96,11 @@ public class TypeOperateController {
 
 		Integer newtypeId = 0;
 		if (userTypeService.insertUserType(type)) {
-			newtypeId = userTypeService.selectidByName(name);
+			newtypeId = type.getIntidentityid();
 		} else {
 			return false;
 		}
-		if (newtypeId == 0) {
+		if (newtypeId == 0 || newtypeId == null) {
 			return false;
 		}
 
@@ -131,7 +131,7 @@ public class TypeOperateController {
 		}
 		powerService.insertPowers(needinsertPowers);
 
-		return true;
+		return newtypeId;
 	}
 
 	@RequestMapping(value = "/DeleteUserType", method = RequestMethod.POST)
@@ -188,7 +188,7 @@ public class TypeOperateController {
 	@RequestMapping(value = "/InsertBookType", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "addbooktype")
-	public boolean insertBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public Object insertBookType(HttpServletRequest request, Model model, HttpServletResponse response) {
 		String name = "";
 		try {
 			name = request.getParameter("name").trim();
@@ -203,7 +203,10 @@ public class TypeOperateController {
 		BookType type = new BookType();
 		type.setIntbooktypeid(null);
 		type.setStrbooktypename(name);
-		return bookTypeService.insertBookType(type);
+		if (!bookTypeService.insertBookType(type)) {
+			return false;
+		}
+		return type.getIntbooktypeid();
 	}
 
 	@RequestMapping(value = "/DeleteBookType", method = RequestMethod.POST)

@@ -1170,7 +1170,7 @@
 					icoCss.push(consts.folder.DOCU);
 				}
 			}
-			return consts.className.BUTTON + " " + icoCss.join('_');
+			return node.iconSkin ? icoCss.join('_') : consts.className.BUTTON + " " + icoCss.join('_');
 		},
 		makeNodeIcoStyle: function(setting, node) {
 			var icoStyle = [];

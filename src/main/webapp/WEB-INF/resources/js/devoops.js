@@ -629,7 +629,11 @@ $(function() {
 			item.trigger('click');
 		}
 	});
-
+	$('#search i').on('click',function(){
+		var e = $.Event('keydown');
+		e.keyCode = 13
+		$(this).trigger(e);
+	})
 	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
 	NProgress.configure({
 		parent : '#headernavbar',
@@ -642,19 +646,11 @@ $(function() {
 	$(document).ajaxStop(function() {
 		NProgress.done();
 	});
-	/*
-	 * var menu = [ { value : 'Andorra', data : 'AD' }, { value : 'Zimbabwe',
-	 * data : 'ZZ' } ];
-	 * 
-	 * $('#autocomplete').autocomplete({ lookup : countries, onSelect :
-	 * function(suggestion) { alert('You selected: ' + suggestion.value + ', ' +
-	 * suggestion.data); } }); $('#searchMenu').
-	 */
 	var menus = [];
 	$("[class='ajax-link'][href!='#']").each(function(e) {
 		var menu = {};
 		menu.data = $(this).attr('href');
-		menu.value = $.trim($(this).html().replace(/<i(.*?)<\/i>/, ""));
+		menu.value = $.trim($(this).html().replace(/<i(.*)<\/i>/, ""));
 		menus.push(menu);
 	})
 	$('#searchMenu').autocomplete({

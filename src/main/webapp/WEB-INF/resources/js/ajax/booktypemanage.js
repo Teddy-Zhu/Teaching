@@ -18,11 +18,9 @@ var booksetting = {
 		onClick : bookTreeonClick
 	}
 };
-var booknodes;
-var curBookTreeNode = null;
+var curBookTreeNode = null,bookTreeObj;
 function bookTreeonClick(event, treeId, treeNode, clickFlag) {
 	curBookTreeNode = treeNode;
-	console.log(curBookTreeNode)
 	$('#book_editname').val(curBookTreeNode.strbooktypename);
 }
 function loadBookType() {
@@ -32,8 +30,8 @@ function loadBookType() {
 		dataType : 'json',
 		success : function(response) {
 			nodes = $.fn.zTree.init($("#ul_tree_booktype"), booksetting, response);
-			var treeObj = $.fn.zTree.getZTreeObj("ul_tree_booktype");
-			treeObj.expandAll(true);
+			bookTreeObj = $.fn.zTree.getZTreeObj("ul_tree_booktype");
+			bookTreeObj.expandAll(true);
 			curBookTreeNode = null;
 		},
 		async : true,
@@ -75,7 +73,8 @@ $(function() {
 			},
 			success : function(response) {
 				if (response) {
-					loadBookType();
+					curBookTreeNode.strbooktypename = name;
+					bookTreeObj.updateNode(curBookTreeNode);
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Update BookType successfully!',
@@ -109,8 +108,12 @@ $(function() {
 				name : name
 			},
 			success : function(response) {
-				if (response) {
-					loadBookType();
+				if (!isNaN(response)) {
+					var nodes = bookTreeObj.getNodes();
+					bookTreeObj.addNodes(null, {
+						intbooktypeid : parseInt(response),
+						strbooktypename : name
+					});
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Insert BookType successfully!',
@@ -143,7 +146,7 @@ $(function() {
 			},
 			success : function(response) {
 				if (response) {
-					loadBookType();
+					bookTreeObj.removeNode(curBookTreeNode);
 					$.TeachDialog({
 						title : 'Operation Message!',
 						content : 'Delete BookType successfully!',

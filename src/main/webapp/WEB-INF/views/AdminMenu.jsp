@@ -143,6 +143,9 @@
 								<c:if test="${systemsetting eq true}">
 									<li><a class="ajax-link" href="system_settings"><i class="${menuicons['system_settings']}"></i>${menunames['system_settings']}</a></li>
 								</c:if>
+								<c:if test="${systemsetting eq true}">
+									<li><a class="ajax-link" href="menu_manage"><i class="${menuicons['menu_manage']}"></i>${menunames['menu_manage']}</a></li>
+								</c:if>
 							</ul></li>
 					</c:if>
 					<li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i class="${menuicons['logout']}"></i> <span class="hidden-xs">${menunames['logout']}</span>

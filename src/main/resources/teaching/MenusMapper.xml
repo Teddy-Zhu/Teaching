@@ -24,7 +24,8 @@
 	<insert id="insert" parameterType="com.jcos.teaching.core.model.Menus">
 		insert into menus (intMenuId, intParentMenuId, strMenuValue,
 		strMenuName, strMenuIconClass)
-		values (#{intmenuid,jdbcType=INTEGER}, #{intparentmenuid,jdbcType=INTEGER}, #{strmenuvalue,jdbcType=VARCHAR},
+		values (#{intmenuid,jdbcType=INTEGER},
+		#{intparentmenuid,jdbcType=INTEGER}, #{strmenuvalue,jdbcType=VARCHAR},
 		#{strmenuname,jdbcType=VARCHAR},
 		#{strmenuiconclass,jdbcType=VARCHAR})
 	</insert>
@@ -87,7 +88,8 @@
 		update menus
 		set intParentMenuId = #{intparentmenuid,jdbcType=INTEGER},
 		strMenuValue = #{strmenuvalue,jdbcType=VARCHAR},
-		strMenuName = #{strmenuname,jdbcType=VARCHAR},
+		strMenuName =
+		#{strmenuname,jdbcType=VARCHAR},
 		strMenuIconClass = #{strmenuiconclass,jdbcType=VARCHAR}
 		where intMenuId =
 		#{intmenuid,jdbcType=INTEGER}
@@ -97,5 +99,11 @@
 		<include refid="Base_Column_List" />
 		from menus
 		where intmenuid &lt;&gt; 1
+	</select>
+	<select id="selectAllMenusNoFilter" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from menus
+
 	</select>
 </mapper>

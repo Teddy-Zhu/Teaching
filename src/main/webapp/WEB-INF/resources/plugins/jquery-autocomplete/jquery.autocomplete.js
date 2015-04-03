@@ -646,7 +646,6 @@
 						if (groupBy) {
 							html += formatGroup(suggestion, value, i);
 						}
-
 						html += '<div class="' + className + '" data-index="' + i + '">' + formatResult(suggestion, value) + '</div>';
 					});
 

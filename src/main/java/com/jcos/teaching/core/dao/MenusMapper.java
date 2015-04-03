@@ -18,4 +18,6 @@ public interface MenusMapper {
 	int updateByPrimaryKey(Menus record);
 
 	List<Menus> selectAllMenus();
+
+	List<Menus> selectAllMenusNoFilter();
 }
