@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-04-04 03:28:48
+Date: 2015-04-04 03:46:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -175,7 +175,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -236,6 +236,7 @@ INSERT INTO `config` VALUES ('53', 'plan_manage', 'queryallplan');
 INSERT INTO `config` VALUES ('54', 'system_settings', 'systemsetting');
 INSERT INTO `config` VALUES ('55', 'AllowPlanSubmit', '1');
 INSERT INTO `config` VALUES ('56', 'menu_manage', 'menumanage');
+INSERT INTO `config` VALUES ('57', 'AdminMenu', 'menumanage');
 
 -- ----------------------------
 -- Table structure for coursetype
@@ -292,7 +293,7 @@ INSERT INTO `menus` VALUES ('4', '1', 'plans', 'Plans', 'fa fa-book');
 INSERT INTO `menus` VALUES ('5', '1', 'usermanage', 'User Manage', 'fa fa-suitcase');
 INSERT INTO `menus` VALUES ('6', '1', 'personsetting', 'Person Setting', 'fa fa-user');
 INSERT INTO `menus` VALUES ('7', '1', 'systemsettings', 'System Settings', 'fa fa-cog');
-INSERT INTO `menus` VALUES ('8', '1', 'logout', 'Log Out', 'fa fa-sign-out');
+INSERT INTO `menus` VALUES ('8', '1', 'javascript:logout();', 'Log Out', 'fa fa-sign-out');
 INSERT INTO `menus` VALUES ('9', '3', 'book_manage', 'Book Manage', 'fa fa-clipboard');
 INSERT INTO `menus` VALUES ('10', '3', 'supplier_manage', 'Supplier Manage', 'fa fa-pied-piper');
 INSERT INTO `menus` VALUES ('11', '4', 'plan_submit', 'Plan Sumbit', 'fa fa-paper-plane-o');

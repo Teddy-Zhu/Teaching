@@ -647,7 +647,7 @@ $(function() {
 		NProgress.done();
 	});
 	var menus = [];
-	$("[class='ajax-link'][href!='#']").each(function(e) {
+	$("[class~='ajax-link'][href!='#']").each(function(e) {
 		var menu = {};
 		menu.data = $(this).attr('href');
 		menu.value = $.trim($(this).html().replace(/<i(.*)<\/i>/, ""));
