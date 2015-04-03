@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-04-04 03:46:17
+Date: 2015-04-04 04:52:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `book` (
   `intSupplierId` int(11) NOT NULL COMMENT '供应商',
   `dateAddTime` datetime NOT NULL,
   PRIMARY KEY (`intBookId`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of book
@@ -49,6 +49,7 @@ INSERT INTO `book` VALUES ('9', '母亲杨沫', 'A25554', '45AS3', '4', '222.000
 INSERT INTO `book` VALUES ('10', '国家电网公司电力安全工作规程', 'B22206', '9787508391311', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-03-05 16:39:48');
 INSERT INTO `book` VALUES ('11', '电力安全监督管理工作手册', 'B22205', '9787512348660', '1', '100.000', '中国电力出版社', '国家电网公司', '10.000', '5', '2015-02-10 14:28:40');
 INSERT INTO `book` VALUES ('12', '谁动了我的奶酪', 'Z4005', '44545', '1', '17.400', 'none', '斯宾塞.约翰逊', '10.000', '3', '2015-02-10 14:29:51');
+INSERT INTO `book` VALUES ('13', '中国历史', 'bSSS', 'SN190203', '1', '100.000', '自编', '暂无', '5.000', '1', '2015-04-04 04:50:47');
 
 -- ----------------------------
 -- Table structure for bookplan
@@ -289,22 +290,22 @@ CREATE TABLE `menus` (
 INSERT INTO `menus` VALUES ('1', '0', 'menu', 'Menu', 'fa');
 INSERT INTO `menus` VALUES ('2', '1', 'dashboard', 'Dashboard', 'fa fa-dashboard');
 INSERT INTO `menus` VALUES ('3', '1', 'books', 'Books', 'fa fa-book');
-INSERT INTO `menus` VALUES ('4', '1', 'plans', 'Plans', 'fa fa-book');
+INSERT INTO `menus` VALUES ('4', '1', 'plans', 'Plans', 'fa fa-calculator');
 INSERT INTO `menus` VALUES ('5', '1', 'usermanage', 'User Manage', 'fa fa-suitcase');
 INSERT INTO `menus` VALUES ('6', '1', 'personsetting', 'Person Setting', 'fa fa-user');
-INSERT INTO `menus` VALUES ('7', '1', 'systemsettings', 'System Settings', 'fa fa-cog');
+INSERT INTO `menus` VALUES ('7', '1', 'systemsettings', 'System Settings', 'fa fa-cogs');
 INSERT INTO `menus` VALUES ('8', '1', 'javascript:logout();', 'Log Out', 'fa fa-sign-out');
-INSERT INTO `menus` VALUES ('9', '3', 'book_manage', 'Book Manage', 'fa fa-clipboard');
-INSERT INTO `menus` VALUES ('10', '3', 'supplier_manage', 'Supplier Manage', 'fa fa-pied-piper');
+INSERT INTO `menus` VALUES ('9', '3', 'book_manage', 'Book Manage', 'fa fa-bookmark');
+INSERT INTO `menus` VALUES ('10', '3', 'supplier_manage', 'Supplier Manage', 'fa fa-bus');
 INSERT INTO `menus` VALUES ('11', '4', 'plan_submit', 'Plan Sumbit', 'fa fa-paper-plane-o');
 INSERT INTO `menus` VALUES ('12', '4', 'plan_query', 'Plan Query', 'fa fa-file-archive-o');
-INSERT INTO `menus` VALUES ('13', '4', 'plan_manage', 'Plan Manage', 'fa fa-paper-plane');
-INSERT INTO `menus` VALUES ('14', '5', 'userinfo_manage', 'User Manage', 'fa fa-book');
-INSERT INTO `menus` VALUES ('15', '6', 'personinfo_manage', 'Info Manage', 'fa fa-clipboard');
-INSERT INTO `menus` VALUES ('16', '6', 'personal_setting', 'Setting Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('13', '4', 'plan_manage', 'Plan Manage', 'fa fa-bar-chart');
+INSERT INTO `menus` VALUES ('14', '5', 'userinfo_manage', 'User Manage', 'fa fa-group');
+INSERT INTO `menus` VALUES ('15', '6', 'personinfo_manage', 'Info Manage', 'fa fa-pencil-square-o');
+INSERT INTO `menus` VALUES ('16', '6', 'personal_setting', 'Setting Manage', 'fa fa-folder');
 INSERT INTO `menus` VALUES ('17', '7', 'department_manage', 'Depart Manage', 'fa fa-clipboard');
 INSERT INTO `menus` VALUES ('18', '7', 'type_manage', 'Type Manage', 'fa fa-street-view');
-INSERT INTO `menus` VALUES ('19', '7', 'access_manage', 'Access Manage', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('19', '7', 'access_manage', 'Access Manage', 'fa fa-key');
 INSERT INTO `menus` VALUES ('20', '7', 'system_settings', 'System Setting', 'fa fa-clipboard');
 INSERT INTO `menus` VALUES ('21', '7', 'menu_manage', 'Menu Setting', 'fa fa-server');
 
@@ -619,7 +620,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '16', '14', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-03-27 16:26:53');
+INSERT INTO `user` VALUES ('1', 'Admin', 'a', '管理员', '1', '13', '11', '222', '1111', 'administrator@qq.com', 'avatar.jpg', '2015-04-04 04:52:29');
 INSERT INTO `user` VALUES ('2', 'Troevil', '123456', 'SSSFF', '2', '3', '2', '1234234', '18994323', '2121@qq.com', 'avatar.jpg', '2015-02-28 20:44:02');
 INSERT INTO `user` VALUES ('3', 'TestUser', 'TestUser', 'TestUser', '3', '5', '4', '2342342', 'asd', 'TestUser@qq.com', 'avatar.jpg', '2015-03-29 17:01:52');
 INSERT INTO `user` VALUES ('4', 'AAAA', 'AAAAAAAA', 'AAAA', '4', '10', '9', '363464', 'AAAA', 'AAAA', 'avatar.jpg', '2015-02-28 20:56:49');

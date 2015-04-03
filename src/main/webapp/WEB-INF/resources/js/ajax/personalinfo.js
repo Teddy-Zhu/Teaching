@@ -1,5 +1,5 @@
 function initUserDepartMent(id, type) {
-	if(type==undefined){
+	if (type == undefined) {
 		return dtd.reject();
 	}
 	var dtd = $.Deferred();
@@ -41,6 +41,7 @@ function picChange() {
 	}
 }
 $(function() {
+	console.log('asd');
 	initUserDepartMent('DepartMent', 1).done(function() {
 		$("#DepartMent").change(function() {
 			initUserDepartMent('Major', $('#DepartMent').val());
@@ -64,20 +65,23 @@ $(function() {
 				fileElementId : 'picfile',
 				dataType : 'json',
 				success : function(data, status) {
-					if (data != "") {
+					if (data != "" && status == "success") {
 						$('#UserPic').attr('data-new', data)
 						$.TeachDialog({
 							content : "Upload Avatar Success!",
 						})
+						$('#UserPic').css("border-color", "cadetblue")
+						$(this).fadeOut().delay(2000).fadeOut();
+						$('#picReset').fadeIn(2000);
+					} else {
+						$.TeachDialog({
+							content : "Upload Avatar Failed!",
+						})
+						$(this).fadeOut().delay(2000).fadeOut();
 					}
 				},
-				error : function(data) {
-					alert(data);
-				}
 			})
-			$('#UserPic').css("border-color", "cadetblue")
-			$(this).fadeOut().delay(2000).fadeOut();
-			$('#picReset').fadeIn(2000);
+
 		}
 	})
 

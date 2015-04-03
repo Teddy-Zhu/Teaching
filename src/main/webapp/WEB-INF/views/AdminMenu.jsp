@@ -89,7 +89,7 @@
 			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> am-animation-slide-left</c:if>">
 				<ul class="nav main-menu">
 					<li><a href="dashboard" class="ajax-link"> <i class="${menuicons['dashboard']}"></i>${menunames['dashboard']}</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['books']}"></i> <span class="hidden-xs">${menunames['books']}</span>
+					<li class="dropdown"><a href="books" class="dropdown-toggle"> <i class="${menuicons['books']}"></i> <span class="hidden-xs">${menunames['books']}</span>
 					</a>
 						<ul class="dropdown-menu">
 							<c:if test="${managebook eq true}">
@@ -100,7 +100,7 @@
 							</c:if>
 						</ul></li>
 					<c:if test="${planui eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['plans']}"></i> <span class="hidden-xs">${menunames['plans']}</span>
+						<li class="dropdown"><a href="plans" class="dropdown-toggle"> <i class="${menuicons['plans']}"></i> <span class="hidden-xs">${menunames['plans']}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${submitplan eq true}">
@@ -115,20 +115,20 @@
 							</ul></li>
 					</c:if>
 					<c:if test="${manageuser eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['usermanage']}"></i> <span class="hidden-xs">${menunames['usermanage']}</span>
+						<li class="dropdown"><a href="usermanage" class="dropdown-toggle"> <i class="${menuicons['usermanage']}"></i> <span class="hidden-xs">${menunames['usermanage']}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<li><a class="ajax-link" href="userinfo_manage"><i class="${menuicons['userinfo_manage']}"></i>${menunames['userinfo_manage']}</a></li>
 							</ul></li>
 					</c:if>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['personsetting']}"></i> <span class="hidden-xs">${menunames['personsetting']}</span>
+					<li class="dropdown"><a href="personsetting" class="dropdown-toggle"> <i class="${menuicons['personsetting']}"></i> <span class="hidden-xs">${menunames['personsetting']}</span>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="ajax-link" href="personinfo_manage"><i class="${menuicons['personinfo_manage']}"></i>${menunames['personinfo_manage']}</a></li>
 							<li><a class="ajax-link" href="personal_setting"><i class="${menuicons['personal_setting']}"></i>${menunames['personal_setting']}</a></li>
 						</ul></li>
 					<c:if test="${setting eq true}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"> <i class="${menuicons['systemsettings']}"></i> <span class="hidden-xs">${menunames['systemsettings']}</span>
+						<li class="dropdown"><a href="systemsettings" class="dropdown-toggle"> <i class="${menuicons['systemsettings']}"></i> <span class="hidden-xs">${menunames['systemsettings']}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<c:if test="${manageuserdepart eq true}">

@@ -634,6 +634,9 @@ $(function() {
 		e.keyCode = 13
 		$(this).trigger(e);
 	})
+	$(".main-menu .dropdown a[class!='ajax-link']").not("[class~='ajax-link']").not("[href~='javascript']").on('click',function(e){
+		e.preventDefault();
+	})
 	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');
 	NProgress.configure({
 		parent : '#headernavbar',

@@ -95,17 +95,17 @@
 									<div class="col-xs-12 btn-menu-top-minus">
 										<c:if test="${adduser eq true}">
 											<button class="btn btn-primary btn-sm adduser">
-												<i class="fa fa-file-o"></i> Add A New User
+												<i class="fa fa-user-plus"></i> Add A New User
 											</button>
 										</c:if>
 										<c:if test="${edituser eq true}">
 											<button class="btn btn-primary btn-sm edituser">
-												<i class="fa fa-file-text"></i> Edit A User
+												<i class="fa fa-user-md"></i> Edit A User
 											</button>
 										</c:if>
 										<c:if test="${rmuser eq true}">
 											<button class="btn btn-danger btn-sm removeuser">
-												<i class="fa fa-trash-o"></i> Remove A User
+												<i class="fa fa-user-times"></i> Remove A User
 											</button>
 										</c:if>
 									</div>

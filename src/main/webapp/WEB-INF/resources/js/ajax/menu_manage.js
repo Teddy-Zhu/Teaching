@@ -37,7 +37,6 @@ function treeClick(event, treeId, treeNode, clickFlag) {
 	$('#menuicon').val(treeNode.strmenuiconclass);
 }
 $(function() {
-	console.log('aSD')
 	LoadMenuTree();
 	$('#refresh').click(function() {
 		LoadMenuTree();
