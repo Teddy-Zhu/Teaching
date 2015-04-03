@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-04-02 22:49:57
+Date: 2015-04-03 16:16:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -652,7 +652,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -683,6 +683,7 @@ INSERT INTO `versionlog` VALUES ('23', '0022', '00', '1', '使用Jenkins自动�
 INSERT INTO `versionlog` VALUES ('34', '0023', '00', '1', '修复部分BUG,移除SunBase64', '2015-03-26 22:57:56');
 INSERT INTO `versionlog` VALUES ('35', '0023', '02', '1', '修复个人设置界面快速切换500错误<br>新增user filter(未完成)', '2015-03-28 14:56:41');
 INSERT INTO `versionlog` VALUES ('36', '0024', '00', '1', '新增教师申请导出到excel<br>新增用户查询详细filter<br>新增修改个人设置实时生效<br>继续完善计划管理', '2015-03-29 20:03:36');
+INSERT INTO `versionlog` VALUES ('37', '0025', '2', '1', '新增菜单搜索<br>完善细节功能', '2015-04-03 16:15:08');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
