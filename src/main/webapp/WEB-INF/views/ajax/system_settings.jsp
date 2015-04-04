@@ -97,7 +97,7 @@
 	$(function() {
 		<c:if test="${systemsetting eq true}">
 		LoadJsFile([ "resources/plugins/bootstrap-switch/bootstrap-switch.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/systemsettings.js");
+			$.getScript("resources/js/ajax/min/systemsettings.js");
 		})
 		</c:if>
 	})

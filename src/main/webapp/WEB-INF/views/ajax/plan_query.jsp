@@ -146,7 +146,7 @@ font-size:inherit;
 	<c:if test="${queryplan eq true}">
 	$(function() {
 		LoadJsFile([ "resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", "resources/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/plan_query.js");
+			$.getScript("resources/js/ajax/min/plan_query.js");
 		})
 	})
 	</c:if>

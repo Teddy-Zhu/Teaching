@@ -122,7 +122,7 @@
 <script type="text/javascript">
 	$(function() {
 		LoadJsFile([ "resources/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js", "resources/plugins/bootstrap-switch/bootstrap-switch.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/personalsetting.js");
+			$.getScript("resources/js/ajax/min/personalsetting.js");
 		})
 	})
 </script>

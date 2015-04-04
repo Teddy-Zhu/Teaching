@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
     <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css"/>
-    <link rel="stylesheet" href="resources/css/self.css"/>
+    <link rel="stylesheet" href="resources/css/self.min.css"/>
     <link rel="stylesheet" href="resources/plugins/pnotify/pnotify.custom.min.css"/>
-    <link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
+    <link href="resources/plugins/nprogress/nprogress.min.css" rel="stylesheet">
     <link href="resources/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
 </head>
 <style>
@@ -187,9 +187,9 @@
 </div>
 <script type="text/javascript" src="resources/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="resources/plugins/bootstrap/bootstrap.min.js"></script>
-<script src="resources/plugins/nprogress/nprogress.js"></script>
+<script src="resources/plugins/nprogress/nprogress.min.js"></script>
 <script type="text/javascript" src="resources/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
-<script type="text/javascript" src="resources/js/TeachDialog.js"></script>
-<script type="text/javascript" src="resources/js/index.js"></script>
+<script type="text/javascript" src="resources/js/min/TeachDialog.js"></script>
+<script type="text/javascript" src="resources/js/min/index.js"></script>
 </body>
 </html>

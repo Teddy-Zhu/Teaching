@@ -268,12 +268,12 @@ function CloseModalBox() {
 						col.next().children("input[type=text]").focus();
 						break;
 					case 40: // down arrow
-						if (string_fill == false) {
+						if (!string_fill) {
 							tr.next().find('td:eq(' + col.index() + ') input[type=text]').focus();
 						}
 						break;
 					case 38: // up arrow
-						if (string_fill == false) {
+						if (!string_fill) {
 							tr.prev().find('td:eq(' + col.index() + ') input[type=text]').focus();
 						}
 						break;
@@ -288,12 +288,12 @@ function CloseModalBox() {
 						tr.find('td:last-child').find("input[type=text]").focus();
 						break;
 					case 40: // down arrow
-						if (string_fill == false) {
+						if (!string_fill) {
 							table.find('tr:last-child td:eq(' + col.index() + ') input[type=text]').focus();
 						}
 						break;
 					case 38: // up arrow
-						if (string_fill == false) {
+						if (!string_fill) {
 							table.find('tr:eq(1) td:eq(' + col.index() + ') input[type=text]').focus();
 						}
 						break;
@@ -303,7 +303,7 @@ function CloseModalBox() {
 					event.preventDefault();
 					col.next().find("input[type=text]").focus();
 				}
-				if (string_fill == false) {
+				if (!string_fill) {
 					if (event.keyCode == 34) {
 						event.preventDefault();
 						table.find('tr:last-child td:last-child').find("input[type=text]").focus();
@@ -319,7 +319,7 @@ function CloseModalBox() {
 			$(this).on('blur', function(event) {
 				var target = event.target;
 				var col = $(target).parents("td");
-				if (table.find("input[name=string-fill]").prop("checked") == true) {
+				if (table.find("input[name=string-fill]").prop("checked")) {
 					col.nextAll().find("input[type=text]").each(function() {
 						$(this).val($(target).val());
 					});
@@ -548,7 +548,7 @@ $(function() {
 				pre.find("li.dropdown").not($(this).closest('li')).find('ul.dropdown-menu').slideUp('fast');
 			}
 		}
-		if ($(this).hasClass('active') == false) {
+		if (!$(this).hasClass('active')) {
 			$(this).parents("ul.dropdown-menu").find('a').removeClass('active');
 			$(this).addClass('active')
 		}

@@ -149,8 +149,8 @@
 </div>
 <script type="text/javascript">
 	$(function() {
-		LoadJS("resources/plugins/jqueryajaxupload/ajaxfileupload.js").done(function() {
-			$.getScript("resources/js/ajax/personalinfo.js");
+		LoadJS("resources/plugins/jqueryajaxupload/jquery.iframe-transport.min.js").done(function() {
+				$.getScript("resources/js/ajax/min/personalinfo.js");
 		});
 	})
 </script>

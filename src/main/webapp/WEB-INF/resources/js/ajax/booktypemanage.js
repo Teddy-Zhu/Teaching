@@ -109,7 +109,6 @@ $(function() {
 			},
 			success : function(response) {
 				if (!isNaN(response)) {
-					var nodes = bookTreeObj.getNodes();
 					bookTreeObj.addNodes(null, {
 						intbooktypeid : parseInt(response),
 						strbooktypename : name

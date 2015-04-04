@@ -148,7 +148,7 @@
 	<c:if test="${manageuserdepart eq true}">
 	$(function() {
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
-			$.getScript("resources/js/ajax/department.js");
+			$.getScript("resources/js/ajax/min/department.js");
 		});
 	})
 	</c:if>

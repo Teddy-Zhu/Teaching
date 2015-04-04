@@ -118,7 +118,7 @@
 	$(function() {
 		<c:if test="${menumanage eq true}">
 		$.getScript("resources/plugins/ztree/js/jquery.ztree.core-3.5.min.js", function() {
-			$.getScript("resources/js/ajax/menu_manage.js");
+			$.getScript("resources/js/ajax/min/menu_manage.js");
 		})
 		</c:if>
 	})

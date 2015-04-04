@@ -506,6 +506,7 @@ public class UserController {
 		MultipartFile file = multipartRequest.getFile("picfile");
 		String tmpname = "";
 		if (file == null || file.isEmpty()) {
+			return "";
 		} else {
 			if (file.getSize() > 2097152) {
 				return "";
@@ -520,7 +521,7 @@ public class UserController {
 			tmpname = md5 + "." + ext;
 
 			try {
-				if(!new File(realPath,tmpname).exists()){
+				if (!new File(realPath, tmpname).exists()) {
 					FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, tmpname));
 				}
 			} catch (IOException e) {

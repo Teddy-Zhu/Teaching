@@ -227,7 +227,7 @@
     <c:if test="${managebook eq true}">
     $(function () {
         $.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function () {
-            $.getScript("resources/js/ajax/bookmanage.js");
+            $.getScript("resources/js/ajax/min/bookmanage.js");
         })
     })
     </c:if>

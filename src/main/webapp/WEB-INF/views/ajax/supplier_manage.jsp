@@ -182,7 +182,7 @@
 <script type="text/javascript">
 	<c:if test="${managesupplier eq true}">
 	$(function() {
-		$.getScript("resources/js/ajax/supplier.js");
+		$.getScript("resources/js/ajax/min/supplier.js");
 	})
 	</c:if>
 </script>

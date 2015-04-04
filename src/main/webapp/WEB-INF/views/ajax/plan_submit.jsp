@@ -174,7 +174,7 @@
 	<c:if test="${submitplan eq true and AllowPlanSubmit eq '1'}">
 	$(function() {
 		$.getScript("resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function() {
-			$.getScript("resources/js/ajax/plan_submit.js");
+			$.getScript("resources/js/ajax/min/plan_submit.js");
 		})
 	})
 	</c:if>

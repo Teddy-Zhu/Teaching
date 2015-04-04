@@ -8,13 +8,12 @@
 <meta name="description" content="description">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
-<link href="resources/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-<link href="resources/plugins/nprogress/nprogress.css" rel="stylesheet">
-<link href="resources/css/self.css" rel="stylesheet">
-<link href="resources/plugins/easyui/themes/bootstrap/easyui.css" rel="stylesheet">
-<link href="resources/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+<link href="resources/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="resources/plugins/nprogress/nprogress.min.css" rel="stylesheet">
+<link href="resources/css/self.min.css" rel="stylesheet">
+<link href="resources/plugins/easyui/themes/bootstrap/easyui.min.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
-<link href="resources/plugins/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
     <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
@@ -169,9 +168,9 @@
 	<script src="resources/plugins/jquery/jquery.min.js"></script>
 	<script src="resources/plugins/bootstrap/bootstrap.min.js"></script>
 	<script src="resources/plugins/easyui/jquery.easyui.min.js"></script>
-	<script src="resources/plugins/nprogress/nprogress.js"></script>
-	<script src="resources/js/TeachDialog.js"></script>
-	<script src="resources/js/devoops.js"></script>
+	<script src="resources/plugins/nprogress/nprogress.min.js"></script>
+	<script src="resources/js/min/TeachDialog.js"></script>
+	<script src="resources/js/min/devoops.js"></script>
 	<script src="resources/plugins/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 </body>
 </html>

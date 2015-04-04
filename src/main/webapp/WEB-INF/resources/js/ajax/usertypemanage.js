@@ -81,7 +81,7 @@ $(function() {
 			});
 			return;
 		}
-		var allregcheck = $('#regcheck').parent().hasClass('checked') == true ? 1 : 0;
+		var allregcheck = $('#regcheck').parent().hasClass('checked') ? 1 : 0;
 		$.ajax({
 			url : "TypeOperate/UpdateUserType",
 			type : 'post',
@@ -126,12 +126,11 @@ $(function() {
 			type : 'post',
 			dataType : 'json',
 			data : {
-				allowreg : $('#insertcheck').parent().hasClass('checked') == true ? 1 : 0,
+				allowreg : $('#insertcheck').parent().hasClass('checked') ? 1 : 0,
 				name : name
 			},
 			success : function(response) {
 				if (!isNaN(response)) {
-					var nodes = userTreeObj.getNodes();
 					userTreeObj.addNodes(null, {
 						intidentityid : parseInt(response),
 						strname : name

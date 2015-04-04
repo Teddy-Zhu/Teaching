@@ -212,7 +212,7 @@
 	<c:if test="${manageuser eq true}">
 	$(function() {
 		LoadJsFile([ "resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/userinfomanage.js");
+			$.getScript("resources/js/ajax/min/userinfomanage.js");
 		})
 	})
 	</c:if>

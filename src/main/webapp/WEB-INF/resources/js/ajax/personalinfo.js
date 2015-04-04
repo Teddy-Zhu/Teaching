@@ -59,29 +59,29 @@ $(function() {
 	})
 	$('#picUpload').on('click', function() {
 		if ($('#UserPic').attr('data-new') == "" && $('#picfile').val() != "") {
-			$.ajaxFileUpload({
-				url : 'User/UploadUserPic',
-				secureuri : false,
-				fileElementId : 'picfile',
-				dataType : 'json',
-				success : function(data, status) {
-					if (data != "" && status == "success") {
-						$('#UserPic').attr('data-new', data)
-						$.TeachDialog({
-							content : "Upload Avatar Success!",
-						})
-						$('#UserPic').css("border-color", "cadetblue")
-						$(this).fadeOut().delay(2000).fadeOut();
-						$('#picReset').fadeIn(2000);
-					} else {
-						$.TeachDialog({
-							content : "Upload Avatar Failed!",
-						})
-						$(this).fadeOut().delay(2000).fadeOut();
-					}
-				},
-			})
-
+			$.ajax('User/UploadUserPic', {
+				files : $('#picfile'),
+				type : 'post',
+				iframe : true,
+				processData : false,
+				dataType : 'text',
+			}).done(function(data) {
+				console.log(data);
+				if (data != "") {
+					$('#UserPic').attr('data-new', data)
+					$.TeachDialog({
+						content : "Upload Avatar Success!",
+					})
+					$('#UserPic').css("border-color", "cadetblue")
+					$('#picUpload').fadeOut().delay(2000).fadeOut();
+					$('#picReset').fadeIn(2000);
+				} else {
+					$.TeachDialog({
+						content : "Upload Avatar Failed!",
+					})
+					$(this).fadeOut().delay(2000).fadeOut();
+				}
+			});
 		}
 	})
 
