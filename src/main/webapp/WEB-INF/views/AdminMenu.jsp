@@ -170,7 +170,7 @@
 	<script src="resources/plugins/easyui/jquery.easyui.min.js"></script>
 	<script src="resources/plugins/nprogress/nprogress.min.js"></script>
 	<script src="resources/js/min/TeachDialog.js"></script>
-	<script src="resources/js/min/devoops.js"></script>
+	<script src="resources/js/devoops.js"></script>
 	<script src="resources/plugins/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 </body>
 </html>
