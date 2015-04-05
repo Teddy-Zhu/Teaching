@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" style="min-width: 1000px;">
 <head>
-    <title>Teaching ManageMent System</title>
+    <title>${GlobalTitle}</title>
     <meta charset="utf-8">
     <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
     <link rel="stylesheet" href="resources/plugins/bootstrap/bootstrap.min.css"/>
@@ -69,9 +69,9 @@
     <div class="col-xs-12 text-center" style="height: 170px;">
         <div class="col-xs-12">
             <h1 style="color: white; margin-top: 40px;">
-                <strong>Teaching ManageMent System</strong>
+                <strong>${LoginPageTitle}</strong>
             </h1>
-            <h5 style="color: white; margin-top: 25px;">It's a System For Teaching</h5>
+            <h5 style="color: white; margin-top: 25px;">${LoginPageSTitle}</h5>
         </div>
         <div class="col-xs-12" style="text-align: center">
             <div class="preloader" style="display: none;">

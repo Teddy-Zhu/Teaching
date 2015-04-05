@@ -1,5 +1,7 @@
 package com.jcos.teaching.core.dao;
 
+import java.util.List;
+
 import com.jcos.teaching.core.model.Config;
 
 public interface ConfigMapper {
@@ -18,4 +20,6 @@ public interface ConfigMapper {
 	Config queryByName(String name);
 
 	Integer updateSelectiveByName(Config record);
+
+	List<Config> selectByNames(String[] array);
 }

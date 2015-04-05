@@ -4,7 +4,7 @@
 <html lang="zh-CN" style="min-width: 1000px; overflow: hidden;">
 <head>
 <meta charset="utf-8">
-<title>Teaching ManageMent System</title>
+<title>${GlobalTitle}</title>
 <meta name="description" content="description">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
@@ -46,7 +46,7 @@
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
-					<a href="/AdminMenu">JC ManageMent</a>
+					<a href="/AdminMenu">${BackGroundTitle}</a>
 				</div>
 				<div id="top-panel" class="col-xs-12 col-sm-10">
 					<div class="row">

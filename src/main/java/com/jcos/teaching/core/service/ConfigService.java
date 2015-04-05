@@ -12,4 +12,6 @@ public interface ConfigService {
 
 	boolean updateConfigList(List<Config> list);
 
+	List<Config> queryByNames(String[] array);
+
 }

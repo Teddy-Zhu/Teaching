@@ -80,4 +80,13 @@
 		</set>
 		where strName = #{strname,jdbcType=INTEGER}
 	</update>
+
+	<select id="selectByNames" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from config where strName in 
+		<foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</select>
 </mapper>

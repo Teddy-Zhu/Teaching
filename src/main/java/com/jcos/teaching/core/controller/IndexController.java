@@ -47,6 +47,7 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@SetGlobalSettings(value = { "GlobalTitle", "LoginPageTitle", "LoginPageSTitle" })
 	public String admin(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		if (loginSession != null && loginSession.getLoginUser() != null) {
@@ -67,6 +68,7 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/AdminMenu", method = RequestMethod.GET)
 	@SetPerSettings(value = { "openAnimation" })
+	@SetGlobalSettings(value = { "GlobalTitle", "BackGroundTitle", "LoginPageTitle", "LoginPageSTitle" })
 	@SetPower(value = "AdminMenu")
 	public String adminmenu(HttpServletRequest request, Model model) {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
@@ -177,8 +179,9 @@ public class IndexController {
 	public String menu15(HttpServletRequest request, Model model, HttpServletResponse response) {
 		return "/ajax/menu_manage";
 	}
+
 	@RequestMapping(value = "/ajax/system_settings", method = RequestMethod.GET)
-	@SetGlobalSettings(value = { "AllowPlanSubmit" })
+	@SetGlobalSettings(value = { "AllowPlanSubmit", "GlobalTitle", "BackGroundTitle", "LoginPageTitle", "LoginPageSTitle" })
 	@SetPower(value = "system_settings")
 	public String menu12(HttpServletRequest request, Model model, HttpServletResponse response) {
 		return "/ajax/system_settings";

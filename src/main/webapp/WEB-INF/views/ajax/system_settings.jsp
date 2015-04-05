@@ -77,9 +77,26 @@
 				</div>
 				<div class="inlineblock col-xs-12" id="inlineblock">
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
+						<label class="col-xs-5">Global Title:</label><input id="GlobalTitle" class="settingForm form-control" type="text" value="${GlobalTitle}" />
+					</div>
+					<div class="col-xs-3 div-mtop"></div>
+					<div class="col-xs-7 col-xs-offset-1 div-mtop">
+						<label class="col-xs-5">BackGround Title:</label><input id="BackGroundTitle" class="settingForm form-control" type="text" value="${BackGroundTitle}" />
+					</div>
+					<div class="col-xs-3 div-mtop"></div>
+					<div class="col-xs-7 col-xs-offset-1 div-mtop">
+						<label class="col-xs-5">Login Page Title:</label><input id="LoginPageTitle" class="settingForm form-control" type="text" value="${LoginPageTitle}" />
+					</div>
+					<div class="col-xs-3 div-mtop"></div>
+					<div class="col-xs-7 col-xs-offset-1 div-mtop">
+						<label class="col-xs-5">Login Page Second Title:</label><input id="LoginPageSTitle" class="settingForm form-control" type="text" value="${LoginPageSTitle}" />
+					</div>
+					<div class="col-xs-7 col-xs-offset-1 div-mtop">
 						<label class="col-xs-5">Enable Plan Submit:</label><input id="planSubmitToggle" class="settingForm" type="checkbox" data-open="${AllowPlanSubmit}" />
 					</div>
 					<div class="col-xs-3 div-mtop"></div>
+					<div class="col-xs-3 div-mtop"></div>
+
 				</div>
 				<div class="col-xs-7 col-xs-offset-1 div-mtop">
 					<button id="savechange" data-toggle="button" type="button" class="btn btn-primary">Save Settings</button>

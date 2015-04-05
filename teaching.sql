@@ -238,6 +238,10 @@ INSERT INTO `config` VALUES ('54', 'system_settings', 'systemsetting');
 INSERT INTO `config` VALUES ('55', 'AllowPlanSubmit', '1');
 INSERT INTO `config` VALUES ('56', 'menu_manage', 'menumanage');
 INSERT INTO `config` VALUES ('57', 'AdminMenu', 'menumanage');
+INSERT INTO `config` VALUES ('58', 'GlobalTitle', 'Teaching ManageMent System');
+INSERT INTO `config` VALUES ('59', 'BackGroundTitle', 'JC ManageMent');
+INSERT INTO `config` VALUES ('60', 'LoginPageTitle', 'Teaching ManageMent System');
+INSERT INTO `config` VALUES ('61', 'LoginPageSTitle', 'It\'s a System For Teaching');
 
 -- ----------------------------
 -- Table structure for coursetype

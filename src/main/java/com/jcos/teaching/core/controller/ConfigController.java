@@ -70,14 +70,27 @@ public class ConfigController {
 	@AuthPower(value = "systemsetting")
 	public boolean saveglobalchange(HttpServletRequest request, Model model, HttpServletResponse response) {
 		Integer plansubmit = 1;
+		String globalTitle = "", backGroundTitle = "", loginPageTitle = "", loginPageSTitle = "";
 		try {
 			plansubmit = request.getParameter("planSubmitToggle").equals("on") ? 1 : 0;
+			backGroundTitle = request.getParameter("BackGroundTitle").trim();
+			loginPageTitle = request.getParameter("LoginPageTitle").trim();
+			loginPageSTitle = request.getParameter("LoginPageSTitle").trim();
+			globalTitle = request.getParameter("GlobalTitle").trim();
 		} catch (Exception e) {
+			response.setStatus(3386);
+			return false;
+		}
+		if (backGroundTitle.equals("") || loginPageSTitle.equals("") || loginPageTitle.equals("") || globalTitle.equals("")) {
 			response.setStatus(3386);
 			return false;
 		}
 		List<Config> list = new ArrayList<Config>();
 		list.add(new Config(null, "AllowPlanSubmit", plansubmit.toString()));
+		list.add(new Config(null, "BackGroundTitle", backGroundTitle));
+		list.add(new Config(null, "LoginPageTitle", loginPageTitle));
+		list.add(new Config(null, "LoginPageSTitle", loginPageSTitle));
+		list.add(new Config(null, "GlobalTitle", globalTitle));
 		return configDao.updateConfigList(list);
 	}
 }
