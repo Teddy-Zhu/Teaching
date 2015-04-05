@@ -88,16 +88,18 @@
 			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> am-animation-slide-left</c:if>">
 				<ul class="nav main-menu">
 					<li><a href="dashboard" class="ajax-link"> <i class="${menuicons['dashboard']}"></i>${menunames['dashboard']}</a></li>
-					<li class="dropdown"><a href="books" class="dropdown-toggle"> <i class="${menuicons['books']}"></i> <span class="hidden-xs">${menunames['books']}</span>
-					</a>
-						<ul class="dropdown-menu">
-							<c:if test="${managebook eq true}">
-								<li><a class="ajax-link" href="book_manage"><i class="${menuicons['book_manage']}"></i>${menunames['book_manage']}</a></li>
-							</c:if>
-							<c:if test="${managesupplier eq true}">
-								<li><a class="ajax-link" href="supplier_manage"><i class="${menuicons['supplier_manage']}"></i>${menunames['supplier_manage']}</a></li>
-							</c:if>
-						</ul></li>
+					<c:if test="${managebook eq true or managesupplier eq true}">
+						<li class="dropdown"><a href="books" class="dropdown-toggle"> <i class="${menuicons['books']}"></i> <span class="hidden-xs">${menunames['books']}</span>
+						</a>
+							<ul class="dropdown-menu">
+								<c:if test="${managebook eq true}">
+									<li><a class="ajax-link" href="book_manage"><i class="${menuicons['book_manage']}"></i>${menunames['book_manage']}</a></li>
+								</c:if>
+								<c:if test="${managesupplier eq true}">
+									<li><a class="ajax-link" href="supplier_manage"><i class="${menuicons['supplier_manage']}"></i>${menunames['supplier_manage']}</a></li>
+								</c:if>
+							</ul></li>
+					</c:if>
 					<c:if test="${planui eq true}">
 						<li class="dropdown"><a href="plans" class="dropdown-toggle"> <i class="${menuicons['plans']}"></i> <span class="hidden-xs">${menunames['plans']}</span>
 						</a>
