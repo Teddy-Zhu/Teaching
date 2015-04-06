@@ -14,4 +14,6 @@ public interface ConfigService {
 
 	List<Config> queryByNames(String[] array);
 
+	List<String> queryListByName(String name);
+
 }

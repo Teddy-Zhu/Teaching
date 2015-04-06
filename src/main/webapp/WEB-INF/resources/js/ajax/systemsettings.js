@@ -2,14 +2,35 @@
  * Created by teddyzhu on 2015/4/1.
  */
 $(function() {
+	$.ajax({
+		url : 'Config/GetDialogClass',
+		dataType : 'json',
+		type : 'post',
+		async : true
+	}).success(function(data) {
+		$('#DialogClassAnimation').empty();
+		for (var i = 0, len = data.length; i < len; i++) {
+			$('#DialogClassAnimation').append('<option value="' + data[i] + '">' + data[i] + '</option>')
+		}
+		$('#DialogClassAnimation').val($('#DialogClassAnimation').attr('data-value'));
+	});
+
 	$('#planSubmitToggle').bootstrapSwitch('size', 'small');
 
 	$('#planSubmitToggle').bootstrapSwitch('onSwitchChange', function(e, data) {
 		$('#planSubmitToggle').val(data ? 'on' : 'off');
 	});
-	$('#planSubmitToggle').val($(this).attr('data-open') == 1 ? 'on' : 'off');
+	$('#planSubmitToggle').val($('#planSubmitToggle').attr('data-open') == 1 ? 'on' : 'off');
 	$('#planSubmitToggle').bootstrapSwitch('state', parseInt($('#planSubmitToggle').attr('data-open')) == 1 ? true : false);
 
+	$('#diglogClassTest').on('click', function() {
+		$.TeachDialog({
+			animation : $('#DialogClassSpeed').val() + ' ' + $('#DialogClassAnimation').val(),
+			content : 'This a Dialog For Animation',
+			bootstrapModalOption : {}
+		});
+	})
+	$('#DialogClassSpeed').val($('#DialogClassSpeed').attr('data-value'));
 	$('#savechange').click(function() {
 		$('.alert.alert-danger').slideUp();
 		$('.alert.alert-danger').remove();
@@ -38,9 +59,11 @@ $(function() {
 			async : true
 		}).success(function(data) {
 			if (data) {
+				$('#dialoganimation').html($('#DialogClassSpeed').val() + ' ' + $('#DialogClassAnimation').val());
 				$.TeachDialog({
 					content : 'Update Settings Success!'
 				});
+
 			} else {
 				$.TeachDialog({
 					content : 'Update Settings failed!'

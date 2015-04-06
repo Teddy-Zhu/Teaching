@@ -70,18 +70,21 @@ public class ConfigController {
 	@AuthPower(value = "systemsetting")
 	public boolean saveglobalchange(HttpServletRequest request, Model model, HttpServletResponse response) {
 		Integer plansubmit = 1;
-		String globalTitle = "", backGroundTitle = "", loginPageTitle = "", loginPageSTitle = "";
+		String globalTitle = "", backGroundTitle = "", loginPageTitle = "", loginPageSTitle = "", dialogClassSpeed = "", dialogClassAnimation = "";
 		try {
 			plansubmit = request.getParameter("planSubmitToggle").equals("on") ? 1 : 0;
 			backGroundTitle = request.getParameter("BackGroundTitle").trim();
 			loginPageTitle = request.getParameter("LoginPageTitle").trim();
 			loginPageSTitle = request.getParameter("LoginPageSTitle").trim();
+			dialogClassSpeed = request.getParameter("DialogClassSpeed").trim();
+			dialogClassAnimation = request.getParameter("DialogClassAnimation").trim();
 			globalTitle = request.getParameter("GlobalTitle").trim();
+
 		} catch (Exception e) {
 			response.setStatus(3386);
 			return false;
 		}
-		if (backGroundTitle.equals("") || loginPageSTitle.equals("") || loginPageTitle.equals("") || globalTitle.equals("")) {
+		if (dialogClassSpeed.equals("") || dialogClassAnimation.equals("") || backGroundTitle.equals("") || loginPageSTitle.equals("") || loginPageTitle.equals("") || globalTitle.equals("")) {
 			response.setStatus(3386);
 			return false;
 		}
@@ -90,7 +93,17 @@ public class ConfigController {
 		list.add(new Config(null, "BackGroundTitle", backGroundTitle));
 		list.add(new Config(null, "LoginPageTitle", loginPageTitle));
 		list.add(new Config(null, "LoginPageSTitle", loginPageSTitle));
+		list.add(new Config(null, "DialogClassSpeed", dialogClassSpeed));
+		list.add(new Config(null, "DialogClassAnimation", dialogClassAnimation));
 		list.add(new Config(null, "GlobalTitle", globalTitle));
 		return configDao.updateConfigList(list);
 	}
+
+	@RequestMapping(value = "/GetDialogClass", method = RequestMethod.POST)
+	@ResponseBody
+	@AuthPower(value = "systemsetting")
+	public List<String> getDialogClass(HttpServletRequest request, Model model, HttpServletResponse response) {
+		return configDao.queryListByName("DialogClassSelect");
+	}
+
 }

@@ -22,4 +22,6 @@ public interface ConfigMapper {
 	Integer updateSelectiveByName(Config record);
 
 	List<Config> selectByNames(String[] array);
+
+	List<String> selectListByName(String name);
 }

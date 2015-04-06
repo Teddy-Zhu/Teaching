@@ -1,7 +1,8 @@
 (function($) {
 	$.fn.TeachDialog = function(options) {
 		var defaults = {
-			modalId : undefined,
+			modalId : null,
+			animation : null,
 			title : 'Meaasge From System',
 			content : '<p>Content</p>',
 			showCloseButton : true,
@@ -49,12 +50,12 @@
 		return this
 				.each(function() {
 					var obj = $(this);
-					if (options.modalID == undefined) {
+					if (options.modalID == null) {
 						modalID = getModalID();
 					} else {
 						modalID = options.modalID
 					}
-					var tmpHtml = '<div class="modal fade" id="{ID}" role="dialog" tabindex="-1" aria-hidden="true"><div class="modal-dialog {LargeModal}"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button><h1 class="modal-title">{title}</h1></div><div class="modal-body">{body}</div><div class="modal-footer">{button}</div></div></div></div>';
+					var tmpHtml = '<div class="modal" id="{ID}" role="dialog" tabindex="-1" aria-hidden="true"><div class="modal-dialog {LargeModal}"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button><h1 class="modal-title">{title}</h1></div><div class="modal-body">{body}</div><div class="modal-footer">{button}</div></div></div></div>';
 
 					var buttonHtml = '<button class="btn modalclosebtn" data-dismiss="modal" aria-hidden="true">{CloseName}</button>';
 					if (!options.showCloseButton && options.otherButtons.length > 0) {
@@ -99,6 +100,16 @@
 						modalObj.remove();
 					});
 					modalObj.modal(options.bootstrapModalOption);
+					if (options.animation == null) {
+						modalObj.addClass($('#dialoganimation').html()).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+							$(this).removeClass($('#dialoganimation').html());
+						})
+					} else {
+						modalObj.addClass(options.animation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+							$(this).removeClass(options.animation);
+						})
+
+					}
 				});
 
 	};

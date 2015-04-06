@@ -156,7 +156,6 @@ font-size:inherit;
 									<div class="col-xs-12">
 										<div id="notification" class="alert alert-success col-xs-9" role="alert" style="color: black; line-height: 0px; height: 30px; margin-bottom: 0px;">No Selected Plan</div>
 										<button id="Search" class="btn btn-primary btn-xs" style="height: 30px;">Search</button>
-
 									</div>
 								</div>
 								<table id="datatable_perplaninfo" data-size="${plangridsize}" style="width: 100%">

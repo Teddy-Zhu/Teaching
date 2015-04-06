@@ -35,9 +35,14 @@ public class ConfigImpl implements ConfigService {
 		}
 		return true;
 	}
-	
+
 	@Override
-	public List<Config> queryByNames(String[] array){
+	public List<Config> queryByNames(String[] array) {
 		return configDao.selectByNames(array);
+	}
+
+	@Override
+	public List<String> queryListByName(String name) {
+		return configDao.selectListByName(name);
 	}
 }

@@ -84,9 +84,14 @@
 	<select id="selectByNames" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from config where strName in 
+		from config where strName in
 		<foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
 			#{item,jdbcType=VARCHAR}
 		</foreach>
+	</select>
+
+	<select id="selectListByName" resultType="java.lang.String">
+		select strValue
+		from config where strName = #{name,jdbcType=VARCHAR}
 	</select>
 </mapper>

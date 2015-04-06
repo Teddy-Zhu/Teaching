@@ -12,22 +12,18 @@ var hander = {
 	action : {
 		SetFailed : function(domId) {
 			var Opdom = $('#' + domId).parent();
-			Opdom.removeClass('has-success');
-			Opdom.removeClass('has-error');
-			Opdom.addClass('has-error');
-			Opdom.addClass('am-animation-shake');
-			setTimeout(returntimeer(domId), 1000);
+			Opdom.removeClass('has-success').removeClass('has-error').addClass('has-error').addClass("animated-fast shake").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+				$(this).removeClass('animated-fast shake');
+			})
 		},
 		SetSucccess : function(domId) {
 			var Opdom = $('#' + domId).parent();
-			Opdom.removeClass('has-success');
-			Opdom.removeClass('has-error');
-			Opdom.addClass('has-success');
+			Opdom.removeClass('has-success').removeClass('has-error').addClass('has-success');
 		}
 	}
 }
 function delShakeClass(domId) {
-	$('#' + domId).parent().removeClass('am-animation-shake');
+	$('#' + domId).parent().removeClass('animated shake');
 }
 function returntimeer(domId) {
 	return function() {
@@ -51,6 +47,11 @@ function backgroundToggle(flag) {
 	}
 }
 $(function() {
+
+	$('#loginModal').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+		$(this).removeClass('animated fadeInDown');
+	})
+
 	$.getScript("resources/plugins/pnotify/pnotify.custom.min.js", function() {
 		account();
 	});
@@ -258,15 +259,21 @@ $(function() {
 				fillDepartDom($('#registerModal').data('department1'));
 			}
 
-			$('#loginModal').slideToggle();
-			$('#registerModal').slideToggle();
-			$('#registerModal').removeClass("am-animation-slide-top");
-			$('#registerModal').addClass("am-animation-slide-top");
+			$('#loginModal').addClass('animated-fast fadeOutDown').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+				$(this).removeClass('animated-fast fadeOutDown').hide();
+				$('#registerModal').show().addClass("animated-fast fadeInDown").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+					$(this).removeClass('animated-fast fadeInDown');
+				})
+			})
+
 		} else {
-			$('#registerModal').slideToggle();
-			$('#loginModal').slideToggle();
-			$('#loginModal').removeClass("am-animation-slide-top");
-			$('#loginModal').addClass("am-animation-slide-top");
+			$('#registerModal').addClass('animated-fast fadeOutDown').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+				$(this).removeClass('animated-fast fadeOutDown').hide();
+				$('#loginModal').show().addClass("animated-fast fadeInDown").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+					$(this).removeClass('animated-fast fadeInDown');
+				})
+			})
+
 		}
 	});
 

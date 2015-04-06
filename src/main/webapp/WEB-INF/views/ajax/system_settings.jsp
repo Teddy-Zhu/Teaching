@@ -91,10 +91,24 @@
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
 						<label class="col-xs-5">Login Page Second Title:</label><input id="LoginPageSTitle" class="settingForm form-control" type="text" value="${LoginPageSTitle}" />
 					</div>
+					<div class="col-xs-3 div-mtop"></div>
+					<div class="col-xs-7 col-xs-offset-1 div-mtop">
+						<label class="col-xs-5">Dialog Animation Speed:</label> <select id="DialogClassSpeed" class="settingForm form-control" style="width: 40%" data-value="${DialogClassSpeed}"><option value="animated-slow">Slow</option>
+							<option value="animated">Normal</option>
+							<option value="animated-fast">Fast</option></select>
+					</div>
+					<div class="col-xs-3 div-mtop"></div>
+					<div class="col-xs-7 col-xs-offset-1 div-mtop">
+						<label class="col-xs-5">Dialog Show Animation:</label>
+						<div class="input-group col-xs-7">
+							<select id="DialogClassAnimation" class="settingForm form-control" data-value="${DialogClassAnimation}" style="width: 50%"></select>
+							<button id="diglogClassTest" class="btn btn-info form-control" style="width: 18.33333333%" type="button">Test</button>
+						</div>
+					</div>
+					<div class="col-xs-3 div-mtop"></div>
 					<div class="col-xs-7 col-xs-offset-1 div-mtop">
 						<label class="col-xs-5">Enable Plan Submit:</label><input id="planSubmitToggle" class="settingForm" type="checkbox" data-open="${AllowPlanSubmit}" />
 					</div>
-					<div class="col-xs-3 div-mtop"></div>
 					<div class="col-xs-3 div-mtop"></div>
 
 				</div>
@@ -114,7 +128,7 @@
 	$(function() {
 		<c:if test="${systemsetting eq true}">
 		LoadJsFile([ "resources/plugins/bootstrap-switch/bootstrap-switch.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/min/systemsettings.js");
+			$.getScript("resources/js/min/ajax/systemsettings.js");
 		})
 		</c:if>
 	})

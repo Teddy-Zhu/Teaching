@@ -10,7 +10,7 @@
 <link rel="alternate icon" type="image/png" href="resources/img/favicon.png">
 <link href="resources/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="resources/plugins/nprogress/nprogress.min.css" rel="stylesheet">
-<link href="resources/css/self.min.css" rel="stylesheet">
+<link href="resources/css/self.css" rel="stylesheet">
 <link href="resources/plugins/easyui/themes/bootstrap/easyui.min.css" rel="stylesheet">
 <link href="resources/css/style_v2.css" rel="stylesheet">
 <link href="resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div id="animation" data-open="${openAnimation}"></div>
-	<header id="headernavbar" class="navbar<c:if test="${openAnimation eq 1}"> am-animation-slide-top</c:if>">
+	<header id="headernavbar" class="navbar<c:if test="${openAnimation eq 1}"> animated fadeInDown</c:if>">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
 				<div id="logo" class="col-xs-12 col-sm-2">
@@ -85,7 +85,7 @@
 	<!--Start Container-->
 	<div id="main" class="container-fluid">
 		<div class="row">
-			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> am-animation-slide-left</c:if>">
+			<div id="sidebar-left" class="col-xs-2 col-sm-2<c:if test="${openAnimation eq 1}"> animated fadeInLeft</c:if>">
 				<ul class="nav main-menu">
 					<li><a href="dashboard" class="ajax-link"> <i class="${menuicons['dashboard']}"></i>${menunames['dashboard']}</a></li>
 					<c:if test="${managebook eq true or managesupplier eq true}">
@@ -161,9 +161,10 @@
 				<div id="preloader" class="preloader">
 					<img src="resources/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
 				</div>
-				<div id="ajax-content" class="<c:if test="${openAnimation eq 1}">am-animation-slide-right</c:if>"></div>
+				<div id="ajax-content" class="<c:if test="${openAnimation eq 1}"> animated fadeInRight</c:if>"></div>
 			</div>
 			<!--End Content-->
+			<div id="dialoganimation" style="display: none;">${DialogClassSpeed} ${DialogClassAnimation}</div>
 		</div>
 	</div>
 	<!--End Container-->
@@ -172,7 +173,7 @@
 	<script src="resources/plugins/easyui/jquery.easyui.min.js"></script>
 	<script src="resources/plugins/nprogress/nprogress.min.js"></script>
 	<script src="resources/js/min/TeachDialog.js"></script>
-	<script src="resources/js/devoops.js"></script>
+	<script src="resources/js/min/devoops.js"></script>
 	<script src="resources/plugins/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 </body>
 </html>

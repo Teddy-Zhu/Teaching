@@ -172,8 +172,10 @@ function LoadAjaxContent(url) {
 			$('.preloader').hide();
 			$('#ajax-content').html(data);
 			if (parseInt($('#animation').attr('data-open')) == 1) {
-				$('#ajax-content').addClass('am-animation-slide-right');
-				setTimeout('removeAnmaClass()', 1000);
+				$('#ajax-content').addClass('animated fadeInRight');
+				$('#ajax-content').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+					$(this).removeClass('animated fadeInRight');
+				})
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -491,7 +493,7 @@ function ScreenSaver() {
 	setInterval(draw, 30);
 }
 function removeAnmaClass() {
-	if ($('#ajax-content').hasClass('am-animation-slide-right')) {
+	if ($('#ajax-content').hasClass('fadeInRight')) {
 		$('#ajax-content').removeClass('am-animation-slide-right');
 	}
 }
@@ -506,11 +508,15 @@ function removeAnmaClass() {
 // ////////////////////////////////////////////////////
 $(function() {
 	if (parseInt($('#animation').attr('data-open')) == 1) {
-		setTimeout(function() {
-			removeAnmaClass();
-			$('#sidebar-left').removeClass('am-animation-slide-left');
-			$('#headernavbar').removeClass('am-animation-slide-top');
-		}, 1000);
+		$('#ajax-content').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+			$(this).removeClass('animated fadeInRight');
+		})
+		$('#headernavbar').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+			$(this).removeClass('animated fadeInDown');
+		})
+		$('#sidebar-left').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+			$(this).removeClass('animated fadeInRight');
+		})
 	}
 	$('body').on('click', '.show-sidebar', function(e) {
 		e.preventDefault();
@@ -629,12 +635,12 @@ $(function() {
 			item.trigger('click');
 		}
 	});
-	$('#search i').on('click',function(){
+	$('#search i').on('click', function() {
 		var e = $.Event('keydown');
 		e.keyCode = 13
 		$(this).trigger(e);
 	})
-	$(".main-menu .dropdown a[class!='ajax-link']").not("[class~='ajax-link']").not("[href~='javascript:logout();']").on('click',function(e){
+	$(".main-menu .dropdown a[class!='ajax-link']").not("[class~='ajax-link']").not("[href~='javascript:logout();']").on('click', function(e) {
 		e.preventDefault();
 	})
 	$('#content').css('height', $(window).height() - $('#headernavbar').height() + 'px');

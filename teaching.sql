@@ -176,7 +176,7 @@ CREATE TABLE `config` (
   `strName` varchar(255) COLLATE utf8_bin NOT NULL,
   `strValue` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`intConfigId`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of config
@@ -242,6 +242,73 @@ INSERT INTO `config` VALUES ('58', 'GlobalTitle', 'Teaching ManageMent System');
 INSERT INTO `config` VALUES ('59', 'BackGroundTitle', 'JC ManageMent');
 INSERT INTO `config` VALUES ('60', 'LoginPageTitle', 'Teaching ManageMent System');
 INSERT INTO `config` VALUES ('61', 'LoginPageSTitle', 'It\'s a System For Teaching');
+INSERT INTO `config` VALUES ('62', 'DialogClassSpeed', 'animated-fast');
+INSERT INTO `config` VALUES ('63', 'DialogClassAnimation', 'bounceIn');
+INSERT INTO `config` VALUES ('64', 'DialogClassSelect', 'bounce');
+INSERT INTO `config` VALUES ('65', 'DialogClassSelect', 'flash');
+INSERT INTO `config` VALUES ('66', 'DialogClassSelect', 'pulse');
+INSERT INTO `config` VALUES ('67', 'DialogClassSelect', 'rubberBand');
+INSERT INTO `config` VALUES ('68', 'DialogClassSelect', 'shake');
+INSERT INTO `config` VALUES ('69', 'DialogClassSelect', 'swing');
+INSERT INTO `config` VALUES ('70', 'DialogClassSelect', 'tada');
+INSERT INTO `config` VALUES ('71', 'DialogClassSelect', 'wobble');
+INSERT INTO `config` VALUES ('72', 'DialogClassSelect', 'bounceIn');
+INSERT INTO `config` VALUES ('73', 'DialogClassSelect', 'bounceInDown');
+INSERT INTO `config` VALUES ('74', 'DialogClassSelect', 'bounceInLeft');
+INSERT INTO `config` VALUES ('75', 'DialogClassSelect', 'bounceInRight');
+INSERT INTO `config` VALUES ('76', 'DialogClassSelect', 'bounceInUp');
+INSERT INTO `config` VALUES ('77', 'DialogClassSelect', 'bounceOut');
+INSERT INTO `config` VALUES ('78', 'DialogClassSelect', 'bounceOutDown');
+INSERT INTO `config` VALUES ('79', 'DialogClassSelect', 'bounceOutLeft');
+INSERT INTO `config` VALUES ('80', 'DialogClassSelect', 'bounceOutRight');
+INSERT INTO `config` VALUES ('81', 'DialogClassSelect', 'bounceOutUp');
+INSERT INTO `config` VALUES ('82', 'DialogClassSelect', 'fadeIn');
+INSERT INTO `config` VALUES ('83', 'DialogClassSelect', 'fadeInDown');
+INSERT INTO `config` VALUES ('84', 'DialogClassSelect', 'fadeInLeft');
+INSERT INTO `config` VALUES ('85', 'DialogClassSelect', 'fadeInRight');
+INSERT INTO `config` VALUES ('86', 'DialogClassSelect', 'fadeInUp');
+INSERT INTO `config` VALUES ('87', 'DialogClassSelect', 'fadeOut');
+INSERT INTO `config` VALUES ('88', 'DialogClassSelect', 'fadeOutDown');
+INSERT INTO `config` VALUES ('89', 'DialogClassSelect', 'fadeOutLeft');
+INSERT INTO `config` VALUES ('90', 'DialogClassSelect', 'fadeOutRight');
+INSERT INTO `config` VALUES ('91', 'DialogClassSelect', 'fadeOutUp');
+INSERT INTO `config` VALUES ('92', 'DialogClassSelect', 'flipInX');
+INSERT INTO `config` VALUES ('93', 'DialogClassSelect', 'flipInY');
+INSERT INTO `config` VALUES ('94', 'DialogClassSelect', 'flipOutX');
+INSERT INTO `config` VALUES ('95', 'DialogClassSelect', 'flipOutY');
+INSERT INTO `config` VALUES ('96', 'DialogClassSelect', 'lightSpeedIn');
+INSERT INTO `config` VALUES ('97', 'DialogClassSelect', 'lightSpeedOut');
+INSERT INTO `config` VALUES ('98', 'DialogClassSelect', 'rotateIn');
+INSERT INTO `config` VALUES ('99', 'DialogClassSelect', 'rotateInDownLeft');
+INSERT INTO `config` VALUES ('100', 'DialogClassSelect', 'rotateInDownRight');
+INSERT INTO `config` VALUES ('101', 'DialogClassSelect', 'rotateInUpLeft');
+INSERT INTO `config` VALUES ('102', 'DialogClassSelect', 'rotateInUpRight');
+INSERT INTO `config` VALUES ('103', 'DialogClassSelect', 'rotateOut');
+INSERT INTO `config` VALUES ('104', 'DialogClassSelect', 'rotateOutDownLeft');
+INSERT INTO `config` VALUES ('105', 'DialogClassSelect', 'rotateOutDownRight');
+INSERT INTO `config` VALUES ('106', 'DialogClassSelect', 'rotateOutUpLeft');
+INSERT INTO `config` VALUES ('107', 'DialogClassSelect', 'rotateOutUpRight');
+INSERT INTO `config` VALUES ('108', 'DialogClassSelect', 'hinge');
+INSERT INTO `config` VALUES ('109', 'DialogClassSelect', 'rollIn');
+INSERT INTO `config` VALUES ('110', 'DialogClassSelect', 'rollOut');
+INSERT INTO `config` VALUES ('111', 'DialogClassSelect', 'zoomIn');
+INSERT INTO `config` VALUES ('112', 'DialogClassSelect', 'zoomInDown');
+INSERT INTO `config` VALUES ('113', 'DialogClassSelect', 'zoomInLeft');
+INSERT INTO `config` VALUES ('114', 'DialogClassSelect', 'zoomInRight');
+INSERT INTO `config` VALUES ('115', 'DialogClassSelect', 'zoomInUp');
+INSERT INTO `config` VALUES ('116', 'DialogClassSelect', 'zoomOut');
+INSERT INTO `config` VALUES ('117', 'DialogClassSelect', 'zoomOutDown');
+INSERT INTO `config` VALUES ('118', 'DialogClassSelect', 'zoomOutLeft');
+INSERT INTO `config` VALUES ('119', 'DialogClassSelect', 'zoomOutRight');
+INSERT INTO `config` VALUES ('120', 'DialogClassSelect', 'zoomOutUp');
+INSERT INTO `config` VALUES ('121', 'DialogClassSelect', 'slideInDown');
+INSERT INTO `config` VALUES ('123', 'DialogClassSelect', 'slideInLeft');
+INSERT INTO `config` VALUES ('124', 'DialogClassSelect', 'slideInRight');
+INSERT INTO `config` VALUES ('125', 'DialogClassSelect', 'slideInUp');
+INSERT INTO `config` VALUES ('126', 'DialogClassSelect', 'slideOutDown');
+INSERT INTO `config` VALUES ('127', 'DialogClassSelect', 'slideOutLeft');
+INSERT INTO `config` VALUES ('128', 'DialogClassSelect', 'slideOutRight');
+INSERT INTO `config` VALUES ('129', 'DialogClassSelect', 'slideOutUp');
 
 -- ----------------------------
 -- Table structure for coursetype
