@@ -284,7 +284,7 @@ public class PlanController {
 		LoginSession loginSession = (LoginSession) request.getSession().getAttribute("loginSession");
 		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 
-		List<BookPlan> plans = bookPlanService.getPersonalBookPlan(record, page, rows);
+		List<BookPlan> plans = bookPlanService.getPersonalBookPlan(record, page, rows, false);
 
 		if (plans.size() == 0) {
 			response.setStatus(3387);
@@ -325,6 +325,97 @@ public class PlanController {
 		return dlTool.pushOutputStream(response, output, System.currentTimeMillis() + ".xls");
 	}
 
+	@RequestMapping(value = "/ExportAllPlanByClasses", method = RequestMethod.GET)
+	@ResponseBody
+	@AuthPower(value = "queryplan")
+	public Map<String, Object> exportAllClassExcel(HttpServletRequest request, Model model, HttpServletResponse response) {
+		int rows = 10, page = 1;
+		String CourseName = "", ClassId = "", BookName = "";
+		Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1, Term = -1, StuCount = -1, TeaCount = -1, userId = -1;
+		Date date = null;
+		try {
+			rows = Integer.valueOf(request.getParameter("rows"));
+			page = Integer.valueOf(request.getParameter("page"));
+			userId = request.getParameter("UserId").trim().equals("") ? null : Integer.valueOf(request.getParameter("UserId"));
+			CourseName = request.getParameter("CourseName").trim().equals("") ? null : request.getParameter("CourseName");
+			ClassId = request.getParameter("ClassId").trim().equals("") ? null : request.getParameter("ClassId");
+			BookName = request.getParameter("BookName").trim().equals("") ? null : request.getParameter("BookName");
+			StuCount = request.getParameter("StuCount").trim().equals("") ? null : Integer.valueOf(request.getParameter("StuCount"));
+			TeaCount = request.getParameter("TeaCount").trim().equals("") ? null : Integer.valueOf(request.getParameter("TeaCount"));
+			CourseType = Integer.valueOf(request.getParameter("CourseType")) == -1 ? null : Integer.valueOf(request.getParameter("CourseType"));
+			PlanStatus = Integer.valueOf(request.getParameter("PlanStatus")) == -1 ? null : Integer.valueOf(request.getParameter("PlanStatus"));
+			FromYear = request.getParameter("FromYear").trim().equals("") ? null : Integer.valueOf(request.getParameter("FromYear"));
+			ToYear = request.getParameter("ToYear").trim().equals("") ? null : Integer.valueOf(request.getParameter("ToYear"));
+			Term = Integer.valueOf(request.getParameter("Term")) == -1 ? null : Integer.valueOf(request.getParameter("Term"));
+			date = request.getParameter("SearchDate").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("SearchDate"));
+		} catch (Exception e) {
+			logger.debug(e.getMessage());
+			response.setStatus(3386);
+			return null;
+		}
+		if (FromYear != null && ToYear != null && FromYear > ToYear) {
+			response.setStatus(3387);
+			return null;
+		}
+		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, userId, PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
+
+		List<BookPlan> plans = bookPlanService.getAllBookPlan(record, 1, 100, true);
+		ExcelTool excel = null;
+		try {
+			excel = new ExcelTool(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/total.xls");
+		} catch (IOException e1) {
+			logger.debug(e1.getMessage());
+		}
+		excel.cloneSheet(0); // init first sheet
+		if (plans.size() > 0) {
+			String preclassid = plans.get(0).getStrclass(), curClassid = "";
+			// first class
+			excel.setSheetName(plans.get(0).getStrclass());
+			String title = excel.getCellString(0, 0);
+			title = title.replace("{From}", plans.get(0).getIntfromyear().toString()).replace("{To}", plans.get(0).getInttoyear().toString()).replace("{Class}", plans.get(0).getStrclass());
+			excel.setCellText(0, 0, title);
+			excel.setCellAlign(0, 0, HSSFCellStyle.ALIGN_CENTER);
+			excel.setCellText(1, 11, new Date().toString());
+			int curLine = 3;
+			for (int i = 0, len = plans.size(); i < len; i++) {
+				BookPlan curPlan = plans.get(i);
+				curClassid = curPlan.getStrclass();
+				if (!preclassid.equals(curClassid)) {
+					excel.cloneSheet(0);
+					excel.setSheetName(curPlan.getStrclass());
+					title = excel.getCellString(0, 0);
+					title = title.replace("{From}", curPlan.getIntfromyear().toString()).replace("{To}", curPlan.getInttoyear().toString()).replace("{Class}", curPlan.getStrclass());
+					excel.setCellText(0, 0, title);
+					excel.setCellAlign(0, 0, HSSFCellStyle.ALIGN_CENTER);
+					excel.setCellText(1, 12, new Date().toString());
+					// set total line
+
+					// init line
+					curLine = 3;
+				} else {
+					curLine++;
+				}
+				// set excel value
+				Double bookPrice = curPlan.getBook().getStrprice();
+				Double disCount = curPlan.getBook().getIntpricediscount();
+				int students = curPlan.getIntstudcount(), teachers = curPlan.getIntteaccount();
+				excel.setCellText(curLine, 0, curPlan.getBook().getStrbookcoding());
+				excel.setCellText(curLine, 1, curPlan.getBook().getStrbookname());
+				excel.setCellText(curLine, 2, curPlan.getBook().getStrprice().toString());
+				excel.setCellText(curLine, 3, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 4, curPlan.getIntteaccount().toString());
+				excel.setCellText(curLine, 5, disCount.toString());
+				excel.setCellText(curLine, 6, Double.toString((bookPrice * students)));
+				excel.setCellText(curLine, 7, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 8, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 9, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 10, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 11, curPlan.getIntstudcount().toString());
+			}
+		}
+		return null;
+	}
+
 	@RequestMapping(value = "/GetPerPlan", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "queryplan")
@@ -360,7 +451,7 @@ public class PlanController {
 		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, loginSession.getLoginUser().getIntid(), PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotalOrAll(record));
-		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows));
+		ret.put("rows", bookPlanService.getPersonalBookPlan(record, page, rows, false));
 
 		return ret;
 	}
@@ -501,7 +592,7 @@ public class PlanController {
 		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, userId, PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", bookPlanService.getPersonalBookPlanTotalOrAll(record));
-		ret.put("rows", bookPlanService.getAllBookPlan(record, page, rows));
+		ret.put("rows", bookPlanService.getAllBookPlan(record, page, rows, false));
 
 		return ret;
 	}

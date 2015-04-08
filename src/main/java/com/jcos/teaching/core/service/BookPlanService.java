@@ -13,8 +13,6 @@ public interface BookPlanService {
 
 	boolean insertPlan(BookPlan record);
 
-	List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows);
-
 	boolean authPlanByUserIdAndPlanId(Integer planId, Integer userId);
 
 	boolean authPlanStatusForChange(Integer planId);
@@ -23,12 +21,14 @@ public interface BookPlanService {
 
 	boolean authPlanStatusForResubmit(Integer planId);
 
-	List<BookPlan> getAllBookPlan(BookPlan record, Integer page, Integer rows);
-
 	Integer getPersonalBookPlanTotalOrAll(BookPlan record);
 
 	boolean authPlanStatusForPassAndRejectAndRefuse(Integer[] planId);
 
 	boolean updatePlanStatusByIds(Integer[] planId, Integer statusId);
+
+	List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows, boolean isAll);
+
+	List<BookPlan> getAllBookPlan(BookPlan record, Integer page, Integer rows, boolean isAll);
 
 }

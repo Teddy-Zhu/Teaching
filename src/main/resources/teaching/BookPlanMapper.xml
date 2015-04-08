@@ -314,8 +314,10 @@
 			</if>
 		</trim>
 		group by x.intPlanId
-		order by intBookId asc
-		limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+		order by intBookId asc,x.strClass asc
+		<if test="isAll == false">
+			limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
+		</if>
 	</select>
 
 	<select id="authPlanByUserIdAndPlanId" resultType="java.lang.Integer">

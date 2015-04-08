@@ -59,8 +59,8 @@ public class BookPlanImpl implements BookPlanService {
 	}
 
 	@Override
-	public List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows) {
-		List<BookPlan> list = bookPlanDao.selectPersonalOrAll(false, record, rows * (page - 1), rows);
+	public List<BookPlan> getPersonalBookPlan(BookPlan record, Integer page, Integer rows,boolean isAll) {
+		List<BookPlan> list = bookPlanDao.selectPersonalOrAll(isAll,false, record, rows * (page - 1), rows);
 		if (list == null || list.size() == 0) {
 			return new ArrayList<BookPlan>();
 		} else {
@@ -69,8 +69,8 @@ public class BookPlanImpl implements BookPlanService {
 	}
 
 	@Override
-	public List<BookPlan> getAllBookPlan(BookPlan record, Integer page, Integer rows) {
-		List<BookPlan> list = bookPlanDao.selectPersonalOrAll(true, record, rows * (page - 1), rows);
+	public List<BookPlan> getAllBookPlan(BookPlan record, Integer page, Integer rows,boolean isAll) {
+		List<BookPlan> list = bookPlanDao.selectPersonalOrAll(isAll,true, record, rows * (page - 1), rows);
 		if (list == null || list.size() == 0) {
 			return new ArrayList<BookPlan>();
 		} else {

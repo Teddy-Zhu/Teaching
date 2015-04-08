@@ -32,6 +32,15 @@ public class ExcelTool {
 		logger.debug("initial excel tool");
 	}
 
+	public void cloneSheet(int index) {
+		workSheet = workBook.cloneSheet(index);
+	}
+
+	public void setSheetName(String name) {
+		int index = workBook.getSheetIndex(workSheet);
+		workBook.setSheetName(index, name);
+	}
+
 	public void setCellText(int row, int column, String value) {
 		HSSFRow Row = workSheet.getRow(row);
 		if (Row == null) {
@@ -62,7 +71,7 @@ public class ExcelTool {
 		cell.setCellValue(value);
 	}
 
-	public void setCellAlign(int row, int column,short Align) {
+	public void setCellAlign(int row, int column, short Align) {
 		HSSFRow Row = workSheet.getRow(row);
 		if (Row == null) {
 			Row = workSheet.createRow(row);
