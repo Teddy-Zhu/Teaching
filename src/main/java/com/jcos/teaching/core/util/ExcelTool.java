@@ -52,6 +52,34 @@ public class ExcelTool {
 		}
 		cell.setCellValue(value);
 	}
+	
+	public void setCellDouble(int row, int column, Double value) {
+		HSSFRow Row = workSheet.getRow(row);
+		if (Row == null) {
+			Row = workSheet.createRow(row);
+		}
+		HSSFCell cell = Row.getCell(column);
+		if (cell == null) {
+			cell = Row.createCell(column);
+		}
+		cell.setCellValue(value);
+	}
+
+	public void setCellFormula(int row, int column, String value) {
+		HSSFRow Row = workSheet.getRow(row);
+		if (Row == null) {
+			Row = workSheet.createRow(row);
+		}
+		HSSFCell cell = Row.getCell(column);
+		if (cell == null) {
+			cell = Row.createCell(column);
+		}
+		cell.setCellFormula(value);
+	}
+
+	public void deleteSheet(int index) {
+		workBook.removeSheetAt(index);
+	}
 
 	public void setCellBorderStyle(int row, int column, String value, short border) {
 		HSSFRow Row = workSheet.getRow(row);
@@ -124,6 +152,7 @@ public class ExcelTool {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		logger.debug("get excel stream");
 		return output;
 	}
 }

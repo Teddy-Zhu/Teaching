@@ -483,7 +483,7 @@ $(function() {
 			iconCls : 'fa fa-download',
 			handler : function() {
 				$.DownloadFile({
-					url : 'Plan/ImportPerPlan',
+					url : 'Plan/ExportAllPlanByClasses',
 					method : 'post',
 					data : getSearchParams()
 				})

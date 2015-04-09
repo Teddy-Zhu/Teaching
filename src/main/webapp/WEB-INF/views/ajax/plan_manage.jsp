@@ -173,7 +173,7 @@ font-size:inherit;
 	<c:if test="${manageplan eq true}">
 	$(function() {
 		LoadJsFile([ "resources/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", "resources/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js" ]).done(function() {
-			$.getScript("resources/js/ajax/min/plan_manage.js");
+			$.getScript("resources/js/ajax/plan_manage.js");
 		})
 	})
 	</c:if>

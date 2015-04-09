@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -325,17 +328,14 @@ public class PlanController {
 		return dlTool.pushOutputStream(response, output, System.currentTimeMillis() + ".xls");
 	}
 
-	@RequestMapping(value = "/ExportAllPlanByClasses", method = RequestMethod.GET)
+	@RequestMapping(value = "/ExportAllPlanByClasses", method = RequestMethod.POST)
 	@ResponseBody
 	@AuthPower(value = "queryplan")
-	public Map<String, Object> exportAllClassExcel(HttpServletRequest request, Model model, HttpServletResponse response) {
-		int rows = 10, page = 1;
+	public boolean exportAllClassExcel(HttpServletRequest request, Model model, HttpServletResponse response) {
 		String CourseName = "", ClassId = "", BookName = "";
 		Integer CourseType = -1, PlanStatus = -1, FromYear = -1, ToYear = -1, Term = -1, StuCount = -1, TeaCount = -1, userId = -1;
 		Date date = null;
 		try {
-			rows = Integer.valueOf(request.getParameter("rows"));
-			page = Integer.valueOf(request.getParameter("page"));
 			userId = request.getParameter("UserId").trim().equals("") ? null : Integer.valueOf(request.getParameter("UserId"));
 			CourseName = request.getParameter("CourseName").trim().equals("") ? null : request.getParameter("CourseName");
 			ClassId = request.getParameter("ClassId").trim().equals("") ? null : request.getParameter("ClassId");
@@ -351,15 +351,25 @@ public class PlanController {
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			response.setStatus(3386);
-			return null;
+			return false;
 		}
 		if (FromYear != null && ToYear != null && FromYear > ToYear) {
 			response.setStatus(3387);
-			return null;
+			return false;
 		}
 		BookPlan record = new BookPlan(null, CourseName, CourseType, ClassId, StuCount, TeaCount, null, userId, PlanStatus, FromYear, ToYear, Term, date, null, null, null, new Book(BookName));
 
 		List<BookPlan> plans = bookPlanService.getAllBookPlan(record, 1, 100, true);
+		Collections.sort(plans, new Comparator<Object>() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				BookPlan t1 = (BookPlan) o1;
+				BookPlan t2 = (BookPlan) o2;
+				String value1 = t1.getStrclass();
+				String value2 = t2.getStrclass();
+				return value1.compareTo(value2);
+			}
+		});
 		ExcelTool excel = null;
 		try {
 			excel = new ExcelTool(request.getSession().getServletContext().getRealPath("/") + "/WEB-INF/resources/excel/total.xls");
@@ -375,12 +385,19 @@ public class PlanController {
 			title = title.replace("{From}", plans.get(0).getIntfromyear().toString()).replace("{To}", plans.get(0).getInttoyear().toString()).replace("{Class}", plans.get(0).getStrclass());
 			excel.setCellText(0, 0, title);
 			excel.setCellAlign(0, 0, HSSFCellStyle.ALIGN_CENTER);
-			excel.setCellText(1, 11, new Date().toString());
+			excel.setCellText(1, 12, new Date().toString());
 			int curLine = 3;
 			for (int i = 0, len = plans.size(); i < len; i++) {
 				BookPlan curPlan = plans.get(i);
 				curClassid = curPlan.getStrclass();
 				if (!preclassid.equals(curClassid)) {
+					// set total line
+					excel.setCellText(curLine, 0, "Total");
+					for (int j = 7; j < 13; j++) {
+						String eng = String.valueOf((char) (j + 65));
+						excel.setCellFormula(curLine, j, "SUM(" + eng + "4:" + eng + curLine + ")");
+					}
+
 					excel.cloneSheet(0);
 					excel.setSheetName(curPlan.getStrclass());
 					title = excel.getCellString(0, 0);
@@ -388,32 +405,40 @@ public class PlanController {
 					excel.setCellText(0, 0, title);
 					excel.setCellAlign(0, 0, HSSFCellStyle.ALIGN_CENTER);
 					excel.setCellText(1, 12, new Date().toString());
-					// set total line
 
 					// init line
 					curLine = 3;
-				} else {
-					curLine++;
 				}
 				// set excel value
 				Double bookPrice = curPlan.getBook().getStrprice();
 				Double disCount = curPlan.getBook().getIntpricediscount();
 				int students = curPlan.getIntstudcount(), teachers = curPlan.getIntteaccount();
 				excel.setCellText(curLine, 0, curPlan.getBook().getStrbookcoding());
-				excel.setCellText(curLine, 1, curPlan.getBook().getStrbookname());
-				excel.setCellText(curLine, 2, curPlan.getBook().getStrprice().toString());
-				excel.setCellText(curLine, 3, curPlan.getIntstudcount().toString());
-				excel.setCellText(curLine, 4, curPlan.getIntteaccount().toString());
-				excel.setCellText(curLine, 5, disCount.toString());
-				excel.setCellText(curLine, 6, Double.toString((bookPrice * students)));
-				excel.setCellText(curLine, 7, curPlan.getIntstudcount().toString());
-				excel.setCellText(curLine, 8, curPlan.getIntstudcount().toString());
-				excel.setCellText(curLine, 9, curPlan.getIntstudcount().toString());
-				excel.setCellText(curLine, 10, curPlan.getIntstudcount().toString());
-				excel.setCellText(curLine, 11, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 1, curPlan.getStrcoursename());
+				excel.setCellText(curLine, 2, curPlan.getBook().getStrbookname());
+				excel.setCellDouble(curLine, 3, curPlan.getBook().getStrprice());
+				excel.setCellText(curLine, 4, curPlan.getIntstudcount().toString());
+				excel.setCellText(curLine, 5, curPlan.getIntteaccount().toString());
+				excel.setCellDouble(curLine, 6, disCount);
+				excel.setCellDouble(curLine, 7, (bookPrice * students));
+				excel.setCellDouble(curLine, 8, (bookPrice * teachers));
+				excel.setCellDouble(curLine, 9, (bookPrice * students * disCount / 10.0));
+				excel.setCellDouble(curLine, 10, (bookPrice * teachers * disCount / 10.0));
+				excel.setCellFormula(curLine, 11, "SUM(H" + (curLine + 1) + ":I" + (curLine + 1) + ")");
+				excel.setCellFormula(curLine, 12, "SUM(J" + (curLine + 1) + ":K" + (curLine + 1) + ")");
+				curLine++;
 			}
+			// set total line
+			excel.setCellText(curLine, 0, "Total");
+			for (int j = 7; j < 13; j++) {
+				String eng = String.valueOf((char) (j + 65));
+				excel.setCellFormula(curLine, j, "SUM(" + eng + "4:" + eng + curLine + ")");
+			}
+			excel.deleteSheet(0);
+			ByteArrayOutputStream output = excel.getXlsStream();
+			return dlTool.pushOutputStream(response, output, System.currentTimeMillis() + ".xls");
 		}
-		return null;
+		return false;
 	}
 
 	@RequestMapping(value = "/GetPerPlan", method = RequestMethod.POST)

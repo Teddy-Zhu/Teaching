@@ -70,7 +70,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
 			}
 			AuthGlobalConfig authConfig = ((HandlerMethod) handler).getMethodAnnotation(AuthGlobalConfig.class);
 			if (authConfig != null) {
-				String value = auth.value();
+				String value = authConfig.value();
 				if (!pwTool.authGlobalConfig(value)) {
 					response.setStatus(3388);
 					flag = false;

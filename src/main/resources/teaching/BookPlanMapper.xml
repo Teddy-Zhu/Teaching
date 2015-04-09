@@ -314,7 +314,7 @@
 			</if>
 		</trim>
 		group by x.intPlanId
-		order by intBookId asc,x.strClass asc
+		order by intBookId asc
 		<if test="isAll == false">
 			limit #{start,jdbcType=INTEGER} , #{size,jdbcType=INTEGER}
 		</if>
