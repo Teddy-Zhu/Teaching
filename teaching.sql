@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50610
+Source Server         : localhost_3306
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50610
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-04-04 04:52:42
+Date: 2015-04-09 10:47:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,13 +71,14 @@ CREATE TABLE `bookplan` (
   `dateCreateTime` datetime NOT NULL,
   `strMark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`intPlanId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bookplan
 -- ----------------------------
 INSERT INTO `bookplan` VALUES ('1', '计算机网络', '1', '20120221', '35', '1', '3', '1', '5', '2014', '2015', '0', '2015-03-15 13:12:22', '附言测试');
 INSERT INTO `bookplan` VALUES ('2', '计算机网络', '2', '20120211', '32', '1', '2', '1', '4', '2014', '2015', '0', '2015-03-19 16:43:17', 'none');
+INSERT INTO `bookplan` VALUES ('3', '测试课程', '1', '20120211', '20', '1', '10', '1', '1', '2014', '2015', '0', '2015-04-09 10:07:38', 'none');
 
 -- ----------------------------
 -- Table structure for bookplanchange
@@ -129,6 +130,7 @@ INSERT INTO `bookplanlog` VALUES ('7', '2', '6', '1', '2015-03-19 16:51:35');
 INSERT INTO `bookplanlog` VALUES ('8', '2', '6', '1', '2015-03-19 16:51:41');
 INSERT INTO `bookplanlog` VALUES ('9', '2', '7', '1', '2015-03-27 13:03:10');
 INSERT INTO `bookplanlog` VALUES ('10', '1', '8', '1', '2015-03-27 15:32:34');
+INSERT INTO `bookplanlog` VALUES ('11', '3', '3', '1', '2015-04-09 10:07:38');
 
 -- ----------------------------
 -- Table structure for bookplanstatus
@@ -765,7 +767,7 @@ CREATE TABLE `versionlog` (
   `strUpdateComment` varchar(255) NOT NULL,
   `dateUpdateTime` datetime NOT NULL,
   PRIMARY KEY (`intId`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of versionlog
@@ -798,6 +800,7 @@ INSERT INTO `versionlog` VALUES ('35', '0023', '02', '1', '修复个人设置界
 INSERT INTO `versionlog` VALUES ('36', '0024', '00', '1', '新增教师申请导出到excel<br>新增用户查询详细filter<br>新增修改个人设置实时生效<br>继续完善计划管理', '2015-03-29 20:03:36');
 INSERT INTO `versionlog` VALUES ('37', '0025', '02', '1', '新增菜单搜索<br>完善细节功能', '2015-04-03 16:15:08');
 INSERT INTO `versionlog` VALUES ('38', '0026', '00', '1', '新增弹出窗口动画设置<br>优化动画性能.', '2015-04-07 00:34:44');
+INSERT INTO `versionlog` VALUES ('39', '0000', '00', '2', '新增教学计划统计信息按班级导出功能', '2015-04-09 10:47:21');
 
 -- ----------------------------
 -- Procedure structure for AddOrUpdatePersonalConfig
