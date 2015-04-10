@@ -161,7 +161,7 @@ after-span {
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Phone</span></span> <input id="Phone" type="text" class="RegisterForm after-span form-control" placeholder="Your Phone Number">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-phone"> Phone</span></span> <input id="Phone" type="text" class="RegisterForm after-span form-control" placeholder="Your Phone Number">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">

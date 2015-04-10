@@ -57,8 +57,6 @@
 						</div>
 						<div class="col-xs-4 col-sm-8 top-panel-right">
 							<ul class="nav navbar-nav pull-right panel-menu">
-								<li class="hidden-xs"><a class="ajax-link" href="#"> <i class="fa fa-calendar"></i> <span class="badge">7</span>
-								</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle account" data-toggle="dropdown"> <span class="avatar"> <img src="${user.strpic}<c:if test="${empty user}">resources/img/userpic/avatar.jpg</c:if>" class="img-circle" alt="avatar" />
 									</span> <i class="fa fa-angle-down pull-right"></i>
 
