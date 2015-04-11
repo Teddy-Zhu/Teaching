@@ -15,7 +15,7 @@ var usersetting = {
 		}
 	},
 	callback : {
-		onClick : treeOnclick
+		onClick : userTreeonClick
 	}
 };
 var curUserTreeNode = null, userTreeObj;
@@ -28,9 +28,6 @@ function userTreeonClick(event, treeId, treeNode, clickFlag) {
 	} else {
 		$('#regcheck').iCheck('uncheck');
 	}
-
-}
-function treeOnclick() {
 
 }
 
