@@ -301,6 +301,7 @@ function queryPlanHistory() {
 }
 
 $(function() {
+	console.log('aa')
 	// initial date input
 	$('#SearchDate').datepicker({
 		format : "yyyy-mm-dd",
@@ -527,19 +528,9 @@ $(function() {
 					modal.modal('hide');
 				},
 				dialogHide : function() {
-					$('#DialogSearch').off('click');
+					
 				},
 				dialogShown : function() {
-					initUserType('SearchUserType', true);
-					initUserDepartMent('SearchDepartMent', 1, true).done(function() {
-						$('#SearchDepartMent').change(function() {
-							initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
-						})
-						initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
-					})
-					$('#DialogSearch').click(function() {
-						$('#datatable_userinfo').datagrid('reload');
-					})
 					$('#SearchTime').datepicker({
 						format : "yyyy-mm-dd",
 						todayBtn : "linked",
@@ -547,6 +538,15 @@ $(function() {
 						todayHighlight : true,
 						clearBtn : true
 					});
+
+					initUserType('SearchUserType', true);
+					initUserDepartMent('SearchDepartMent', 1, true).done(function() {
+						$('#SearchDepartMent').change(function() {
+							initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+						})
+						initUserDepartMent('SearchMajor', $('#SearchDepartMent').val(), true);
+					})
+
 					var cellwidth = ($(".modal-body").width() - 55) / 11;
 					$('#datatable_userinfo').datagrid({
 						striped : true,
@@ -641,6 +641,10 @@ $(function() {
 							$('#SelectUsersModal').modal('hide');
 						}
 					});
+
+					$('#DialogSearch').click(function() {
+						$('#datatable_userinfo').datagrid('reload');
+					})
 				}
 			});
 		})

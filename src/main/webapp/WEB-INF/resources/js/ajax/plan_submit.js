@@ -83,7 +83,6 @@ $(function() {
 					}
 				},
 				dialogHide : function() {
-					$('#Search').off('click');
 				},
 				dialogShown : function() {
 					$('#SearchDate').datepicker({
