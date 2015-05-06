@@ -32,7 +32,7 @@ function returntimeer(domId) {
 }
 function account() {
 	new PNotify({
-		title : 'Message',
+		title : '消息',
 		text : '测试账号!<br>Admin==>Admin;a<br>BookManager==>Troevil;123456<br>Teacher==>TestUser;TestUser<br>Student==>AAAA;AAAAAAAA.<br>点击版本号查看版本细节!',
 		type : 'success',
 		animation : 'slide'
@@ -78,7 +78,7 @@ $(function() {
 	$('a.version').click(
 			function() {
 				$.TeachDialog({
-					title : 'Versions',
+					title : '版本',
 					content : '<strong>版本号说明:第一位:Web版本号,第二位:功能版本号,第三位:BugFix版本号!</strong><div id="versioninfo" style="margin-top:10px;"></div>',
 				});
 				$.ajax({
@@ -141,8 +141,7 @@ $(function() {
 			success : function(data) {
 				if (data) {
 					$.TeachDialog({
-						title : 'Congratulations',
-						content : 'Login Successfully! Welcome to Use the System!',
+						content : '登陆成功，欢迎使用本系统!',
 						dialogHidden : function() {
 							var ref = "AdminMenu";
 							if (window.location.href.indexOf('ref=') != -1) {
@@ -154,8 +153,7 @@ $(function() {
 					return;
 				} else {
 					$.TeachDialog({
-						title : 'Faild',
-						content : 'Failed to Login!Please ensure your password correct!'
+						content : '登录失败，请检查你的用户名和密码是否匹配!'
 					});
 				}
 			},
@@ -163,8 +161,7 @@ $(function() {
 				console.debug(data.status);
 				if (data.status == 3388) {
 					$.TeachDialog({
-						title : 'Sorry!',
-						content : 'Login failed because the user is blocked.',
+						content : '登录失败，用户被禁用.',
 						bootstrapModalOption : {},
 						dialogHidden : function() {
 							$('.preloader').fadeToggle("slow");
@@ -172,8 +169,7 @@ $(function() {
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Sorry!Service is down!',
-						content : 'Login failed because the service issue.',
+						content : '登录失败，服务端故障.',
 						bootstrapModalOption : {},
 						dialogHidden : function() {
 							$('.preloader').fadeToggle("slow");
@@ -214,8 +210,7 @@ $(function() {
 							fillUserDom(data)
 						} else {
 							$.TeachDialog({
-								title : 'Faild',
-								content : 'Failed to achieve usertype!'
+								content : '获取用户类型失败!'
 							});
 						}
 					},
@@ -245,8 +240,7 @@ $(function() {
 							fillDepartDom(data);
 						} else {
 							$.TeachDialog({
-								title : 'Faild',
-								content : 'Failed to achieve department!'
+								content : '获取系部信息失败!'
 							});
 						}
 					},
@@ -336,24 +330,21 @@ $(function() {
 				if (data != null) {
 					if (data) {
 						$.TeachDialog({
-							title : 'Congratulations',
-							content : 'Register Successfully! Welcome to Use the System!',
+							content : '注册成功!',
 							dialogHidden : function() {
 								window.location.href = '/';
 							}
 						});
 					} else {
 						$.TeachDialog({
-							title : 'Faild',
-							content : 'Failed to register!'
+							content : '注册失败!'
 						});
 						$(this).button('reset');
 						$('.preloader').fadeToggle("slow");
 					}
 				} else {
 					$.TeachDialog({
-						title : 'Faild',
-						content : 'Failed to register!'
+						content : '注册失败!'
 					});
 					$(this).button('reset');
 					$('.preloader').fadeToggle("slow");
@@ -361,8 +352,7 @@ $(function() {
 			},
 			error : function(data) {
 				$.TeachDialog({
-					title : 'Sorry!Service is down!',
-					content : 'Login failed because the service issue.',
+					content : '注册失败，服务端错误.',
 					bootstrapModalOption : {}
 				});
 				console.debug(data.status);
@@ -443,8 +433,7 @@ function selectchange() {
 					}
 				} else {
 					$.TeachDialog({
-						title : 'Faild',
-						content : 'Failed to achieve Majors!'
+						content : '获取专业信息失败!'
 					});
 				}
 

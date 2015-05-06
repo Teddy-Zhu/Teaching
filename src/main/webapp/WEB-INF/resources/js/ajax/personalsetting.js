@@ -26,7 +26,7 @@ $(function () {
         $('.settingForm').each(function () {
             var param = $(this).val();
             if (param == undefined || param.trim() == "") {
-                $(this).parent().parent().next().html(error.replace(/{errormsg}/g, "The Parameter Error!"));
+                $(this).parent().parent().next().html(error.replace(/{errormsg}/g, "变量错误!"));
                 flag = false;
                 return flag;
             } else {
@@ -47,11 +47,11 @@ $(function () {
             if (data) {
                 $('#animation').attr('data-open', $('#AnimationToggle').val() == 'on' ? 1 : 0);
                 $.TeachDialog({
-                    content: 'Update Settings Success!'
+                    content: '更新成功!'
                 });
             } else {
                 $.TeachDialog({
-                    content: 'Update Settings failed!'
+                    content: '更新失败!'
                 });
             }
         });

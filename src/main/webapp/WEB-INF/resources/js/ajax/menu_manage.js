@@ -44,15 +44,13 @@ $(function() {
 	$('#Update').click(function() {
 		if (curTreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a menu to edit!',
+				content : '请至少选择一行!',
 			});
 			return;
 		}
 		if (curTreeNode.intmenuid == 1) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Can not edit the Root Menu!',
+				content : '不能编辑根节点!',
 			});
 			return;
 		}
@@ -92,13 +90,11 @@ $(function() {
 						lookup : menus
 					});
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update Menu successfully!',
+						content : '更新成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update Menu failed!',
+						content : '更新失败!',
 					});
 				}
 			},

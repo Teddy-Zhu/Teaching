@@ -115,11 +115,10 @@ function LoadSpringyScripts(callback) {
 
 function logout() {
 	$.TeachDialog({
-		title : 'Warnning!',
-		content : 'Are you sure submit to Log Out?',
+		content : '你确定要退出吗?',
 		showCloseButton : true,
 		bootstrapModalOption : {},
-		otherButtons : [ 'Yes' ],
+		otherButtons : [ '确定' ],
 		clickButton : function(sender, modal, index) {
 			if (index == 0) {
 				$.ajax({
@@ -136,7 +135,7 @@ function logout() {
 }
 function sessionout() {
 	$.TeachDialog({
-		content : 'Your Login Session is out of date,please login  again!',
+		content : '你的会话过期了，请重新登录!',
 		dialogHidden : function() {
 			window.top.location.href = '/?ref=' + window.top.location.pathname + window.top.location.hash;
 		},
@@ -164,8 +163,7 @@ function LoadFancyboxScript(callback) {
 function LoadAjaxContent(url) {
 	$('.preloader').show();
 	$.ajax({
-		mimeType : 'text/html; charset=utf-8', // ! Need set mimeType only when
-		// run from local file
+		mimeType : 'text/html; charset=utf-8',
 		url : url,
 		type : 'GET',
 		success : function(data) {
@@ -497,15 +495,7 @@ function removeAnmaClass() {
 		$('#ajax-content').removeClass('am-animation-slide-right');
 	}
 }
-// ////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////
-//
-// MAIN DOCUMENT READY SCRIPT OF DEVOOPS THEME
-//
-// In this script main logic of theme
-//
-// ////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////
+
 $(function() {
 	if (parseInt($('#animation').attr('data-open')) == 1) {
 		$('#ajax-content').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -675,72 +665,63 @@ $(function() {
 			}
 			case 500: {
 				$.TeachDialog({
-					title : 'Sorry!',
-					content : 'Service is Down!Please Contact us!',
+					content : '服务端错误!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3388: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'You don\'t have power to operate it!',
+					content : '你没有权限这么做!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3387: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'Unknown Error!',
+					content : '未知错误!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3386: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'Parameters Error!',
+					content : '参数错误!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3385: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'Information validation error!',
+					content : '信息验证错误!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3384: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'the type is in use!',
+					content : '类型被使用!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3383: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'Save Logs ERROR!',
+					content : '保存Log错误!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 3382: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'No Data!',
+					content : '空数据错误!',
 					showCloseButton : true,
 				});
 				break;
 			}
 			case 405: {
 				$.TeachDialog({
-					title : 'Warnning!',
-					content : 'Illegal access!',
+					content : '非法访问!',
 					showCloseButton : true,
 				});
 				break;

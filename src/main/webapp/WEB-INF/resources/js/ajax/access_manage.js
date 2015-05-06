@@ -75,14 +75,12 @@ $(function() {
 				data : postdata,
 			}).success(function() {
 				$.TeachDialog({
-					title : 'Operation Message!',
-					content : 'Update ' + $('#usertype').find("option:selected").text() + ' access control success!',
+					content : '更新 ' + $('#usertype').find("option:selected").text() + ' 权限成功!',
 				});
 			})
 		} else {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Nothing Changed!',
+				content : '无改变!',
 			});
 		}
 

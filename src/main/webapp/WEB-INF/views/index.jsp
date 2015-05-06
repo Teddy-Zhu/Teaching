@@ -13,6 +13,10 @@
 <link href="resources/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
 </head>
 <style>
+.glyphicon {
+	height: 100%;
+}
+
 span.passwordc {
 	width: initial;
 	top: 0px;
@@ -82,26 +86,26 @@ after-span {
 		<div id="loginModal" class="text-center col-xs-12 animated-fast fadeInDown" style="display: block; margin-bottom: 5%;">
 			<div class="col-xs-12 text-center">
 				<div class="panel panel-default center-block" style="width: 50%;">
-					<div class="panel-heading text-center">Login Your Account and Continue!</div>
+					<div class="panel-heading text-center">登录账号后继续操作！</div>
 					<div class="panel-body text-center">
 						<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
 
 						<div class="col-xs-8 col-sm-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user">User</span></span> <input id="loginUserName" type="text" class="form-control" value="Admin" placeholder="Username">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user">用户名</span></span> <input id="loginUserName" type="text" class="form-control" value="Admin" placeholder="Username">
 							</div>
 						</div>
 						<div class="col-xs-8 col-sm-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="loginPassWord" type="password" value="a" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">密码</span></span> <input id="loginPassWord" type="password" value="a" class="form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
 						<div class="col-xs-8 col-sm-offset-2">
-							<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Login</button>
-							<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
+							<button id="loginButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">登录</button>
+							<button id="resetButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">重置</button>
 						</div>
 						<div class="col-xs-12">
-							<div class="alert alert-success" role="alert">Reminder:Lost Password?</div>
+							<div class="alert alert-success" role="alert">提示：忘记密码?</div>
 						</div>
 					</div>
 				</div>
@@ -110,63 +114,63 @@ after-span {
 		<div id="registerModal" class="col-xs-12" style="display: none; margin-bottom: 5%;">
 			<div class="col-xs-12 text-center">
 				<div class="panel panel-default center-block" style="width: 50%;">
-					<div class="panel-heading text-center">Register Your Account and Continue!</div>
+					<div class="panel-heading text-center">注册账户并继续!</div>
 					<div class="panel-body text-center">
 						<a href="javascript:void(0);" class="glyphicon glyphicon-chevron-down" style="color: #000000; text-decoration: none; font-size: 40px; float: right;"></a>
 
 						<div class="col-xs-8 col-sm-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">UserType</span></span><select id="UserType" class="RegisterForm after-span form-control"></select>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-stats">用户组</span></span><select id="UserType" class="RegisterForm after-span form-control"></select>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user"> User</span></span> <input id="UserName" type="text" class="RegisterForm after-span form-control" placeholder="Username">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-user">用户名</span></span> <input id="UserName" type="text" class="RegisterForm after-span form-control" placeholder="Username">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">Password</span></span> <input id="PassWord" type="password" class="RegisterForm form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">密码</span></span> <input id="PassWord" type="password" class="RegisterForm form-control" placeholder="Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock"> Re-Pass</span></span> <input id="RePassWord" type="password" class="RegisterForm form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-lock">重复密码</span></span> <input id="RePassWord" type="password" class="RegisterForm form-control" placeholder="Re-Password"><span class="passwordc input-group-addon glyphicon glyphicon-eye-close"></span>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Depart</span></span> <select id="DepartMent" class="RegisterForm after-span form-control"></select>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">系部</span></span> <select id="DepartMent" class="RegisterForm after-span form-control"></select>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Majors</span></span><select id="Majors" class="RegisterForm after-span form-control"></select>
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">专业</span></span><select id="Majors" class="RegisterForm after-span form-control"></select>
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">RealName</span></span> <input id="RealName" type="text" class="RegisterForm after-span form-control" placeholder="Your Name">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">姓名</span></span> <input id="RealName" type="text" class="RegisterForm after-span form-control" placeholder="Your Name">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">Number</span></span> <input id="StudentId" type="text" class="RegisterForm after-span form-control" placeholder="Your Student Id">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-file">学号</span></span> <input id="StudentId" type="text" class="RegisterForm after-span form-control" placeholder="Your Student Id">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope"> Email</span></span> <input id="Email" type="text" class="RegisterForm after-span form-control" placeholder="Email">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-envelope">邮箱</span></span> <input id="Email" type="text" class="RegisterForm after-span form-control" placeholder="Email">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
 							<div class="input-group">
-								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-phone"> Phone</span></span> <input id="Phone" type="text" class="RegisterForm after-span form-control" placeholder="Your Phone Number">
+								<span class="input-group-addon input-span"><span class="glyphicon glyphicon-phone">手机号</span></span> <input id="Phone" type="text" class="RegisterForm after-span form-control" placeholder="Your Phone Number">
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-offset-2">
-							<button id="registerButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">Register</button>
-							<button id="resetRegButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">Reset</button>
+							<button id="registerButton" data-toggle="button" type="button" class="btn btn-primary" style="float: left">注册</button>
+							<button id="resetRegButton" type="button" data-toggle="button" class="btn btn-default" style="float: right">重置</button>
 						</div>
 					</div>
 				</div>
@@ -176,8 +180,8 @@ after-span {
 	<div id="dialoganimation" style="display: none;">${DialogClassSpeed} ${DialogClassAnimation}</div>
 	<div class="col-xs-12 navbar-fixed-bottom">
 		<h5 class="text-center" style="color: white; background-color: #353535; margin-bottom: 0px;">
-			Designed By ZhuXi Powered By Bootstrap And Others OpenCode. <strong>Copy Right©2014-${year} JinChengOpenSource Inc.Deployed By Jenkins</strong> <a href="#" class="label label-default UserAccount">Avaiable UserAccount For Test</a>-<a href="#" class="label label-default version"
-				style="margin-top: 10px"><strong>Current Version :${version}</strong></a> <span style="text-align: center; display: inline-block;"> <span style="color: white; display: inline-block;">Pic</span> <input id="toggleBackGround" type="checkbox" />
+			Designed By ZhuXi Powered By Bootstrap And Others OpenCode. <strong>Copy Right©2014-${year} JinChengOpenSource Inc。</strong> <a href="#" class="label label-default UserAccount">测试账号</a>-<a href="#" class="label label-default version" style="margin-top: 10px"><strong>当前版本 :${version}</strong></a>
+			<span style="text-align: center; display: inline-block;"> <span style="color: white; display: inline-block;">Pic</span> <input id="toggleBackGround" type="checkbox" />
 			</span>
 		</h5>
 	</div>

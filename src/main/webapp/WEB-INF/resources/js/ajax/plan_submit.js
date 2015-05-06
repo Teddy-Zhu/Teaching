@@ -19,7 +19,7 @@ function initBookType(id, addition) {
 		success : function(data) {
 			$('#' + id).empty();
 			if (addition != undefined) {
-				$('#' + id).append('<option value="-1">All Type</option>');
+				$('#' + id).append('<option value="-1">全部</option>');
 			}
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intbooktypeid + '">' + data[i].strbooktypename + '</option>');
@@ -37,7 +37,7 @@ function initSupplierType(id, addition) {
 		success : function(data) {
 			$('#' + id).empty();
 			if (addition != undefined) {
-				$('#' + id).append('<option value="-1">All Supplier</option>');
+				$('#' + id).append('<option value="-1">全部</option>');
 			}
 			for (var i = 0; len = data.length, i < len; i++) {
 				$('#' + id).append('<option value="' + data[i].intsupplierid + '">' + data[i].strname + '</option>');
@@ -61,17 +61,17 @@ $(function() {
 		LoadModel('selectbookmodel').done(function(responseConent) {
 			$.TeachDialog({
 				modalID : "SelectBooksModal",
-				title : 'Select Books From Table',
+				title : '从表中选择书籍',
 				content : responseConent,
 				largeSize : true,
-				otherButtons : [ 'Select' ],
+				otherButtons : [ '选择' ],
 				otherButtonStyles : [ 'btn btn-primary' ],
 				clickButton : function(sender, modal, index) {
 					if (index == 0) {
 						var rows = $('#datatable_bookinfo').datagrid('getSelections');
 						if (rows.length != 1) {
 							$.TeachDialog({
-								content : 'You should select a row!',
+								content : '你至少选择一行!',
 								bootstrapModalOption : {},
 							});
 							return;
@@ -103,31 +103,31 @@ $(function() {
 						singleSelect : true,
 						fit : false,
 						url : 'Book/GetBooks',
-						loadMsg : 'Please waiting for loading date.....',
+						loadMsg : '请等待数据载入.....',
 						pagination : true,
 						rownumbers : true,
 						fitColumns : true,
 						columns : [ [ {
 							field : 'strbookcoding',
-							title : 'Code',
+							title : '编号',
 							align : 'center',
 							sortable : true,
 							width : cellwidth,
 						}, {
 							field : 'strbookname',
-							title : 'Name',
+							title : '书名',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'strbooksn',
-							title : 'SN',
+							title : 'SN号',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'bookType',
-							title : 'Type',
+							title : '类型',
 							align : 'center',
 							width : cellwidth,
 							sortable : true,
@@ -136,19 +136,19 @@ $(function() {
 							}
 						}, {
 							field : 'strpress',
-							title : 'Press',
+							title : '出版社',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'strauthor',
-							title : 'Author',
+							title : '作者',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'supplier',
-							title : 'Supplier',
+							title : '供应商',
 							align : 'center',
 							width : cellwidth,
 							sortable : true,
@@ -157,19 +157,19 @@ $(function() {
 							}
 						}, {
 							field : 'strprice',
-							title : 'Price',
+							title : '单价',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'intpricediscount',
-							title : 'DisCount',
+							title : '折扣',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'dateaddtime',
-							title : 'Add Time',
+							title : '录入时间',
 							align : 'center',
 							width : cellwidth + 35,
 							sortable : true,
@@ -208,9 +208,9 @@ $(function() {
 			var curval = $(this).val();
 			if (!curval || curval.trim() === '') {
 				if ($(this).prev().html() === undefined) {
-					$(this).parent().parent().next().html(error.replace(/{errormsg}/g, 'The ' + $(this).parent().prev().html().trimEnd(':') + ' can not be empty!'));
+					$(this).parent().parent().next().html(error.replace(/{errormsg}/g, '表单 ' + $(this).parent().prev().html().trimEnd(':') + ' 不能为空!'));
 				} else {
-					$(this).parent().next().html(error.replace(/{errormsg}/g, 'The ' + $(this).prev().html().trimEnd(':') + ' can not be empty!'));
+					$(this).parent().next().html(error.replace(/{errormsg}/g, '表单 ' + $(this).prev().html().trimEnd(':') + ' 不能为空！'));
 				}
 				check = false;
 				return false;
@@ -232,14 +232,12 @@ $(function() {
 		}).success(function(response) {
 			if (response) {
 				$.TeachDialog({
-					title : 'Operation Message!',
-					content : 'Update Successfully!',
+					content : '更新成功!',
 				});
 				LoadAjaxContent("ajax/plan_submit");
 			} else {
 				$.TeachDialog({
-					title : 'Operation Message!',
-					content : 'Update failed!',
+					content : '更新失败!',
 				});
 			}
 

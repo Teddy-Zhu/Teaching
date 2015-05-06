@@ -41,8 +41,8 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">System Settings</a></li>
-			<li><a href="#">Depart Manage</a></li>
+			<li><a href="#">系统设置</a></li>
+			<li><a href="#">系部管理</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -54,7 +54,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>DepartMent ManageMent</span>
+					<i class="fa fa-clipboard"></i> <span>系部管理面板</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -71,7 +71,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-										DepartMent Tree<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
+										系部信息树<i class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
 									</h3>
 
 								</div>
@@ -90,13 +90,13 @@
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs" role="tablist">
 								<c:if test="${edituserdepart eq true}">
-									<li role="presentation" class="active"><a href="#parent_edit" aria-controls="parent_edit" role="tab" data-toggle="tab">Edit</a></li>
+									<li role="presentation" class="active"><a href="#parent_edit" aria-controls="parent_edit" role="tab" data-toggle="tab">编辑</a></li>
 								</c:if>
 								<c:if test="${adduserdepart eq true}">
-									<li role="presentation"><a href="#parent_insert" aria-controls="parent_insert" role="tab" data-toggle="tab">Insert</a></li>
+									<li role="presentation"><a href="#parent_insert" aria-controls="parent_insert" role="tab" data-toggle="tab">新增</a></li>
 								</c:if>
 								<c:if test="${rmuserdepart eq true}">
-									<li role="presentation"><a href="#parent_delete" aria-controls="parent_delete" role="tab" data-toggle="tab">Delete</a></li>
+									<li role="presentation"><a href="#parent_delete" aria-controls="parent_delete" role="tab" data-toggle="tab">删除</a></li>
 								</c:if>
 							</ul>
 
@@ -105,33 +105,33 @@
 								<c:if test="${edituserdepart eq true}">
 									<div role="tabpanel" class="tab-pane active" id="parent_edit">
 										<div class="row">
-											<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_edit_sel"></select>
+											<label class="col-xs-4">上级系部</label><select class="form-control col-xs-8" id="parent_edit_sel"></select>
 										</div>
 										<div class="row">
-											<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_edit_name" type="text" placeholder="Input Name" />
+											<label class="col-xs-4">系部</label><input class="form-control col-xs-8" id="parent_edit_name" type="text" placeholder="Input Name" />
 										</div>
 										<div class="row text-center">
-											<button class="btn btn-primary btn-sm center-block" id="edit">Submit</button>
+											<button class="btn btn-primary btn-sm center-block" id="edit">提交</button>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${adduserdepart eq true}">
 									<div role="tabpanel" class="tab-pane" id="parent_insert">
 										<div class="row">
-											<label class="col-xs-4">Parent DepartMent</label><select class="form-control col-xs-8" id="parent_insert_sel"></select>
+											<label class="col-xs-4">上级系部</label><select class="form-control col-xs-8" id="parent_insert_sel"></select>
 										</div>
 										<div class="row">
-											<label class="col-xs-4">DepartMent or Major Name</label><input class="form-control col-xs-8" id="parent_insert_name" type="text" placeholder="Input Name" />
+											<label class="col-xs-4">系部</label><input class="form-control col-xs-8" id="parent_insert_name" type="text" placeholder="Input Name" />
 										</div>
 										<div class="row text-center">
-											<button class="btn btn-primary btn-sm center-block" id="insert">Submit</button>
+											<button class="btn btn-primary btn-sm center-block" id="insert">提交</button>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${rmuserdepart eq true}">
 									<div role="tabpanel" class="tab-pane" id="parent_delete">
 										<div class="row text-center">
-											<button id="delete" class="btn btn-danger btn-sm center-block">Delete</button>
+											<button id="delete" class="btn btn-danger btn-sm center-block">删除</button>
 										</div>
 									</div>
 								</c:if>

@@ -61,15 +61,15 @@
 									</span> <i class="fa fa-angle-down pull-right"></i>
 
 										<div class="user-mini pull-right">
-											<span class="welcome">Welcome,</span> <span>${user.username}</span>
+											<span class="welcome">欢迎,</span> <span>${user.username}</span>
 										</div>
 								</a>
 									<ul class="dropdown-menu">
-										<li><a class="top-link" href="personinfo_manage"> <i class="fa fa-user"></i> <span>Profile</span>
+										<li><a class="top-link" href="personinfo_manage"> <i class="fa fa-user"></i> <span>个人信息</span>
 										</a></li>
-										<li><a class="top-link" href="personal_setting"> <i class="fa fa-cog"></i> <span>Settings</span>
+										<li><a class="top-link" href="personal_setting"> <i class="fa fa-cog"></i> <span>个人设置</span>
 										</a></li>
-										<li><a href="javascript:logout();"> <i class="fa fa-power-off"></i> <span>Logout</span>
+										<li><a href="javascript:logout();"> <i class="fa fa-power-off"></i> <span>退出</span>
 										</a></li>
 									</ul></li>
 							</ul>

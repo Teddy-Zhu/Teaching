@@ -95,9 +95,8 @@ font-size:inherit;
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Plans</a></li>
-			<li><a href="#">Plan Manage</a></li>
+			<li><a href="#">计划</a></li>
+			<li><a href="#">计划管理</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -109,7 +108,7 @@ font-size:inherit;
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>User Personal Information</span>
+					<i class="fa fa-clipboard"></i> <span>计划管理面板</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -124,38 +123,38 @@ font-size:inherit;
 					<div class="panel panel-default" style="border: 1px solid #CCC;">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForsupplierTable">
-								Plan Info<span class="fa fa-chevron-down" style="float: right"></span>
+								计划信息<span class="fa fa-chevron-down" style="float: right"></span>
 							</h4>
 						</div>
 						<div id="collapseForsupplierTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 							<div class="panel-body" style="overflow-x: hidden; overflow-y: hidden; width: 100%">
 								<div class="searchClass row">
 									<div class="col-xs-12">
-										<label>CourseName</label><input class="SearchForm form-control" type="text" id="CourseName" /> <label>CourseType</label><select class="SearchForm form-control" id="CourseType">
-											<option value="-1">All Type</option>
-										</select> <label>Class</label><input class="SearchForm form-control" type="text" id="ClassId" /> <label>BookName</label><input class="SearchForm form-control" type="text" id="BookName" />
+										<label>课程名</label><input class="SearchForm form-control" type="text" id="CourseName" /> <label>课程类型</label><select class="SearchForm form-control" id="CourseType">
+											<option value="-1">所有类型</option>
+										</select> <label>班级</label><input class="SearchForm form-control" type="text" id="ClassId" /> <label>书名</label><input class="SearchForm form-control" type="text" id="BookName" />
 									</div>
 									<div class="col-xs-12">
-										<label>Plan Status</label><select class="SearchForm form-control" id="PlanStatus">
-											<option value="-1">All Status</option>
-										</select> <label>From</label><input class="SearchForm form-control" type="text" id="FromYear" /> <label>To</label><input class="SearchForm form-control" type="text" id="ToYear" /> <label>Term</label><select class="SearchForm form-control" id="Term">
-											<option value="-1">All Term</option>
+										<label>计划状态</label><select class="SearchForm form-control" id="PlanStatus">
+											<option value="-1">所有状态</option>
+										</select> <label>开始学年</label><input class="SearchForm form-control" type="text" id="FromYear" /> <label>结束学年</label><input class="SearchForm form-control" type="text" id="ToYear" /> <label>学期</label><select class="SearchForm form-control" id="Term">
+											<option value="-1">全部</option>
 											<option value="0">上半学年</option>
 											<option value="1">下半学年</option>
 										</select>
 									</div>
 									<div class="col-xs-12">
-										<label>StudentCount</label><input class="SearchForm form-control" type="text" id="StuCount" /> <label>TeacherCount</label><input class="SearchForm form-control" type="text" id="TeaCount" /> <label>Date</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
-										<label>User</label>
+										<label>学生数</label><input class="SearchForm form-control" type="text" id="StuCount" /> <label>教师数</label><input class="SearchForm form-control" type="text" id="TeaCount" /> <label>申请日期</label><input class="SearchForm form-control" type="text" id="SearchDate" ReadOnly />
+										<label>申请人</label>
 
 										<div class="input-group" style="display: inline-flex; margin-left: -0.3%; width: 15.4%;">
 											<select id="UserId" class="SearchForm form-control" style="width: 56% !important; margin-right: 0px;"></select>
-											<button id="userselect" class="btn btn-info form-control" style="width: 34%" type="button">Select</button>
+											<button id="userselect" class="btn btn-info form-control" style="width: 34%" type="button">选择</button>
 										</div>
 									</div>
 									<div class="col-xs-12">
-										<div id="notification" class="alert alert-success col-xs-9" role="alert" style="color: black; line-height: 0px; height: 30px; margin-bottom: 0px;">No Selected Plan</div>
-										<button id="Search" class="btn btn-primary btn-xs" style="height: 30px;">Search</button>
+										<div id="notification" class="alert alert-success col-xs-9" role="alert" style="color: black; line-height: 0px; height: 30px; margin-bottom: 0px;">未选择计划</div>
+										<button id="Search" class="btn btn-primary btn-xs" style="height: 30px;">搜索</button>
 									</div>
 								</div>
 								<table id="datatable_perplaninfo" data-size="${plangridsize}" style="width: 100%">

@@ -67,9 +67,8 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Plans</a></li>
-			<li><a href="#">Plan Submit</a></li>
+			<li><a href="#">计划</a></li>
+			<li><a href="#">计划提交</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -81,7 +80,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>User Personal Information</span>
+					<i class="fa fa-clipboard"></i> <span>计划提交面板</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -94,7 +93,7 @@
 			<div class="box-content table-responsive" style="padding-top: 15px">
 				<div class="page-header">
 					<h1>
-						Plan Submit Panel <small>please fill the form carefully</small>
+						提交计划 <small>请仔细填写</small>
 					</h1>
 				</div>
 				<c:choose>
@@ -102,68 +101,68 @@
 						<div class="inlineblock">
 
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Course Name:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Course Name" />
+								<label class="col-xs-5">课程名:</label><input id="CourseName" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Course Name" />
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Course Type</label><select id="CourseType" class="planinfo form-control col-xs-7 input-lg-self"></select>
+								<label class="col-xs-5">课程类型</label><select id="CourseType" class="planinfo form-control col-xs-7 input-lg-self"></select>
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Class Id:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Class Id" />
+								<label class="col-xs-5">班级:</label><input id="ClassId" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Class Id" />
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Student Count:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Student Book Count" />
+								<label class="col-xs-5">学生数:</label><input id="StudentCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Student Book Count" />
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Teacher Count:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Teacher Book Count" />
+								<label class="col-xs-5">教师数:</label><input id="TeacherCount" class="planinfo form-control col-xs-7 input-lg-self" type="text" placeholder="Input Teacher Book Count" />
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Book:</label>
+								<label class="col-xs-5">书籍:</label>
 								<div class="input-group col-xs-7">
 									<select id="BookId" class="planinfo form-control" style="width: 71% !important"></select>
-									<button id="bookselect" class="btn btn-info form-control" style="width: 26%" type="button">Select</button>
+									<button id="bookselect" class="btn btn-info form-control" style="width: 26%" type="button">选择</button>
 								</div>
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Plan Time:</label> <label class="col-xs-1" style="margin-left: -3.5%;">From</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="text" placeholder="From Year" /><label class="col-xs-1"
-									style="margin-left: -3.5%;">To</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="text" placeholder="ToYear" />
+								<label class="col-xs-5">计划时间:</label> <label class="col-xs-1" style="margin-left: -3.5%;">开始</label><input id="FromYear" class="planinfo form-control input-lg-self col-xs-1" style="width: 20% !important; margin-left: 6%;" type="text" placeholder="From Year" /><label class="col-xs-1"
+									style="margin-left: -3.5%;">结束</label><input id="ToYear" style="width: 20% !important; margin-left: 1%;" class="planinfo form-control input-lg-self col-xs-1" type="text" placeholder="ToYear" />
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5"> Term:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self"><option value="0">上半学年</option>
+								<label class="col-xs-5"> 学期:</label><select id="Term" class="planinfo form-control col-xs-7 input-lg-self"><option value="0">上半学年</option>
 									<option value="1">下半学年</option></select>
 							</div>
 							<div class="col-xs-6"></div>
 							<div class="col-xs-5 col-xs-offset-1">
-								<label class="col-xs-5">Mark:</label>
+								<label class="col-xs-5">备注:</label>
 								<textarea id="Mark" class="planinfo form-control col-xs-7">none</textarea>
 							</div>
 							<div class="col-xs-6"></div>
 						</div>
 						<div class="col-xs-12" style="height: 30px;"></div>
 						<div class="col-xs-5 col-xs-offset-1">
-							<button id="submitform" data-toggle="button" type="button" class="btn btn-primary">Submit Plan</button>
-							<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">Reset</button>
+							<button id="submitform" data-toggle="button" type="button" class="btn btn-primary">提交计划</button>
+							<button id="reset" data-toggle="button" type="button" class="btn btn-default pull-right">重置</button>
 						</div>
 						<div class="col-xs-6" style="height: 50px;"></div>
 					</c:when>
 					<c:otherwise>
 						<div class="jumbotron">
 							<h1 style="margin-bottom: 1.5%">
-								<span class="label label-info">Opps!</span>
+								<span class="label label-info">警告!</span>
 							</h1>
-							<p>Sorry,the function submit plan is Closed temporarily!</p>
-							<p>Please wait administrator to open it.</p>
+							<p>这个功能被临时关闭了!</p>
+							<p>请联系管理员打开它，或者等待开启</p>
 						</div>
 					</c:otherwise>
 				</c:choose>
 				<div class="panel-footer row" style="margin-top: 10px;">
-					<h5>After you submit the form,admin will aduit it.Any Questions ,please contact administrator.</h5>
+					<h5>在你确认提交后管理员会进行审核，如果有任何问题，请联系管理员.</h5>
 				</div>
 
 			</div>

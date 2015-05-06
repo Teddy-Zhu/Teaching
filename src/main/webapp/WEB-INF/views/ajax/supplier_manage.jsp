@@ -39,9 +39,8 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Books Manage</a></li>
-			<li><a href="#">Supplier Query</a></li>
+			<li><a href="#">书籍</a></li>
+			<li><a href="#">供应商管理</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -53,7 +52,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>Supplier Information</span>
+					<i class="fa fa-clipboard"></i> <span>供应商信息面板</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -68,7 +67,7 @@
 				<div class="panel panel-default" style="border: 1px solid #CCC;">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
-							Function Menu <span class="fa fa-chevron-down" style="float: right"></span>
+							功能菜单 <span class="fa fa-chevron-down" style="float: right"></span>
 						</h4>
 					</div>
 
@@ -78,22 +77,22 @@
 
 								<div id="operationpanel" class="col-xs-12" style="overflow-x: hidden;">
 									<div class="alert alert-danger" role="alert">
-										<strong>Warning,Hold your action!</strong> <br>[1]Before delete or edit, you should select <br>[2]If you want clear selected row quickly,you can refresh the grid.<br>[3]Or you have no power and you can browser suppliers below.
+										<strong>警告!</strong> <br>[1]在编辑或者删除前，你要先选中一行.<br>[2]如果你想批量取消选择，你可以直接刷新整个Table.<br>[3]如果你没有权限，你需要向管理申请.
 									</div>
 									<div class="col-xs-12 btn-menu-top-minus">
 										<c:if test="${addsupplier eq true}">
 											<button class="btn btn-primary btn-sm addsupplier">
-												<i class="fa fa-file-o"></i> Add A New Supplier
+												<i class="fa fa-file-o"></i> 添加供应商
 											</button>
 										</c:if>
 										<c:if test="${editsupplier eq true}">
 											<button class="btn btn-primary btn-sm editsupplier">
-												<i class="fa fa-file-text"></i> Edit A Supplier
+												<i class="fa fa-file-text"></i> 编辑供应商
 											</button>
 										</c:if>
 										<c:if test="${rmsupplier eq true}">
 											<button class="btn btn-danger btn-sm removesupplier">
-												<i class="fa fa-trash-o"></i> Remove A Supplier
+												<i class="fa fa-trash-o"></i> 删除供应商
 											</button>
 										</c:if>
 									</div>
@@ -103,39 +102,39 @@
 										<div id="newformRange">
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-6">Code</label><input class="newform form-control col-xs-6" id="newCode" type="text" placeholder="Input Code" />
+													<label class="col-xs-6">编号</label><input class="newform form-control col-xs-6" id="newCode" type="text" placeholder="Input Code" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-6">Name</label><input class="newform form-control col-xs-6" id="newName" type="text" placeholder="Input Name" />
+													<label class="col-xs-6">名称</label><input class="newform form-control col-xs-6" id="newName" type="text" placeholder="Input Name" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-6">Address</label><input class="newform form-control col-xs-6" id="newAddress" type="text" placeholder="Input Address" />
+													<label class="col-xs-6">地址</label><input class="newform form-control col-xs-6" id="newAddress" type="text" placeholder="Input Address" />
 												</div>
 											</div>
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4 controls">
-													<label class="col-xs-6">Company Phone</label><input class="newform form-control col-xs-6" id="newCompanyPhone" placeholder="Input Company Phone" />
+													<label class="col-xs-6">公司电话</label><input class="newform form-control col-xs-6" id="newCompanyPhone" placeholder="Input Company Phone" />
 												</div>
 												<div class="col-xs-4 controls">
-													<label class="col-xs-6">Handle Person</label><input class="newform form-control col-xs-6" id="newHandlePerson" type="text" placeholder="Input Handle Person" />
+													<label class="col-xs-6">负责人</label><input class="newform form-control col-xs-6" id="newHandlePerson" type="text" placeholder="Input Handle Person" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-6">Handle Phone</label><input class="newform form-control col-xs-6" id="newHandlePhone" type="text" placeholder="Input Handle Phone" />
+													<label class="col-xs-6">负责人电话</label><input class="newform form-control col-xs-6" id="newHandlePhone" type="text" placeholder="Input Handle Phone" />
 												</div>
 											</div>
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-6">Contact Person</label><input class="newform form-control col-xs-6" id="newContactPerson" type="text" placeholder="Input Contact Person" />
+													<label class="col-xs-6">联系人</label><input class="newform form-control col-xs-6" id="newContactPerson" type="text" placeholder="Input Contact Person" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-6">Contact Phone</label><input class="newform form-control col-xs-6" id="newContactPhone" placeholder="Input Contact Phone" />
+													<label class="col-xs-6">联系人电话</label><input class="newform form-control col-xs-6" id="newContactPhone" placeholder="Input Contact Phone" />
 												</div>
 											</div>
 										</div>
 										<div class="col-xs-12 inlineblock">
 											<div class="col-xs-12 btn-menu">
-												<button class="btn btn-primary btn-sm submitAdd" style="width: 100px">Add</button>
-												<button class="btn btn-default btn-sm cancelAdd" style="width: 100px">Cancel</button>
+												<button class="btn btn-primary btn-sm submitAdd" style="width: 100px">添加</button>
+												<button class="btn btn-default btn-sm cancelAdd" style="width: 100px">取消</button>
 												<strong><label style="color: red;" id="adderrormsg"></label></strong>
 											</div>
 										</div>
@@ -149,8 +148,8 @@
 											<div class="tab-content"></div>
 										</div>
 										<div class="col-xs-12 btn-menu-top-plus">
-											<button class="btn btn-primary btn-sm submitEdit">Submit To Modify</button>
-											<button class="btn btn-default btn-sm cancelEdit">Cancel</button>
+											<button class="btn btn-primary btn-sm submitEdit">提交编辑</button>
+											<button class="btn btn-default btn-sm cancelEdit">取消</button>
 											<strong><label style="color: red;" id="editerrormsg"></label></strong>
 										</div>
 									</div>
@@ -164,7 +163,7 @@
 					<div class="panel panel-default" style="border: 1px solid #CCC;">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForsupplierTable">
-								Basic Supplier Info<span class="fa fa-chevron-down" style="float: right"></span>
+								供应商信息<span class="fa fa-chevron-down" style="float: right"></span>
 							</h4>
 						</div>
 						<div id="collapseForsupplierTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">

@@ -23,7 +23,7 @@ $(function() {
 		collapsible : true,
 		fit : false,
 		url : 'Supplier/GetAllSuppliers',
-		loadMsg : 'Please waiting for loading date.....',
+		loadMsg : '请等待数据载入.....',
 		pagination : true,
 		rownumbers : true,
 		fitColumns : true,
@@ -31,49 +31,49 @@ $(function() {
 		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'intcoding',
-			title : 'Code',
+			title : '编号',
 			align : 'center',
 			sortable : true,
 			width : cellwidth,
 		}, {
 			field : 'strname',
-			title : 'Name',
+			title : '名称',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'straddress',
-			title : 'Address',
+			title : '地址',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
 		}, {
 			field : 'strcompanyphone',
-			title : 'Company Phone',
+			title : '公司号码',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
 		}, {
 			field : 'strhandlepersonname',
-			title : 'Handle Person',
+			title : '负责人',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
 		}, {
 			field : 'strhandlephone',
-			title : 'Handle Phone',
+			title : '负责人手机',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'strcontactpersonname',
-			title : 'Contact Person',
+			title : '联系人',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'strcontactpersonphone',
-			title : 'Contact Phone',
+			title : '联系人手机',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -92,7 +92,7 @@ $(function() {
 		var check = true;
 		$('.newform').each(function() {
 			if ($(this).val().trim() == "") {
-				$('#adderrormsg').html("please input " + $(this).prev().html() + "!");
+				$('#adderrormsg').html("请输入 " + $(this).prev().html() + "!");
 				check = false;
 				return false;
 			} else {
@@ -110,10 +110,9 @@ $(function() {
 			success : function(response) {
 				if (response) {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Add a new Supplier successfully and do you want to add more ?',
-						showCloseButtonName : 'No',
-						otherButtons : [ 'Yes', 'Yes & Keep Val' ],
+						content : '添加供应商成功，你需要继续添加吗 ?',
+						showCloseButtonName : '取消',
+						otherButtons : [ '确认', '确认且保存值' ],
 						CloseButtonAddFunc : function() {
 							$('#operationpanel').slideToggle();
 							$('#addnewsupplier').slideToggle();
@@ -131,7 +130,7 @@ $(function() {
 					});
 				} else {
 					$.TeachDialog({
-						content : 'Add Supplier Failed!',
+						content : '添加失败!',
 					});
 				}
 			}
@@ -148,7 +147,7 @@ $(function() {
 				var rows = $('#datatable_supplierinfo').datagrid('getSelections');
 				if (rows.length == 0) {
 					$.TeachDialog({
-						content : 'You should select one row at least !',
+						content : '你至少需要选择一行!',
 						bootstrapModalOption : {},
 					});
 					return;
@@ -180,7 +179,7 @@ $(function() {
 			var check = true;
 			$('.editform').each(function() {
 				if ($(this).val().trim() == "") {
-					$('#editerrormsg').html("please input " + $(this).prev().html() + "!");
+					$('#editerrormsg').html("请输入 " + $(this).prev().html() + "!");
 					check = false;
 					return false;
 				} else {
@@ -199,8 +198,7 @@ $(function() {
 				success : function(data) {
 					if (data) {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Edit Suppliers Info successfully!',
+							content : '编辑供应商成功!',
 							CloseButtonAddFunc : function() {
 								$('#operationpanel').slideDown();
 								$('#editsuppliercontainer').slideUp();
@@ -209,8 +207,7 @@ $(function() {
 						});
 					} else {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Edit Suppliers Info failed!',
+							content : '编辑供应商失败!',
 							CloseButtonAddFunc : function() {
 								$('#operationpanel').slideDown();
 								$('#editsuppliercontainer').slideUp();
@@ -230,7 +227,7 @@ $(function() {
 		var rows = $('#datatable_supplierinfo').datagrid('getSelections');
 		if (rows.length == 0) {
 			$.TeachDialog({
-				content : 'You should select one row at least !',
+				content : '你至少需要选择一行 !',
 				bootstrapModalOption : {},
 			});
 			return;
@@ -244,8 +241,7 @@ $(function() {
 		var sureDialog = function() {
 			var dtd = $.Deferred();
 			$.TeachDialog({
-				title : 'Warnning Message!',
-				content : 'Are you sure remove this suppliers :' + namesArray + ' ?',
+				content : '你确定删除这些供应商 :' + namesArray + ' 吗?',
 				showCloseButtonName : 'No',
 				otherButtons : [ 'Yes' ],
 				CloseButtonAddFunc : function() {
@@ -271,8 +267,7 @@ $(function() {
 				success : function(response) {
 					if (response === true) {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Remove suppliers successfully!',
+							content : '删除供应商成功!',
 						});
 						$('#datatable_supplierinfo').datagrid('reload');
 					} else {
@@ -285,11 +280,11 @@ $(function() {
 								}
 							}
 							$.TeachDialog({
-								content : 'Remove suppliers failed! Supplier:' + suppliername + ' in use.',
+								content : '删除失败! 供应商:' + suppliername + ' 被使用中.',
 							});
 						} else {
 							$.TeachDialog({
-								content : 'Remove suppliers failed!',
+								content : '删除供应商失败!',
 							});
 						}
 					}

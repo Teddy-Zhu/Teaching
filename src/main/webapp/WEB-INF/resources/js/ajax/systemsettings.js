@@ -26,7 +26,7 @@ $(function() {
 	$('#diglogClassTest').on('click', function() {
 		$.TeachDialog({
 			animation : $('#DialogClassSpeed').val() + ' ' + $('#DialogClassAnimation').val(),
-			content : 'This a Dialog For Animation',
+			content : '这是一个动画测试弹出框',
 			bootstrapModalOption : {}
 		});
 	})
@@ -40,7 +40,7 @@ $(function() {
 		$('.settingForm').each(function() {
 			var param = $(this).val();
 			if (param == undefined || param.trim() == "") {
-				$(this).parent().parent().next().html(error.replace(/{errormsg}/g, "The Parameter Error!"));
+				$(this).parent().parent().next().html(error.replace(/{errormsg}/g, "参数错误!"));
 				flag = false;
 				return flag;
 			} else {
@@ -61,12 +61,12 @@ $(function() {
 			if (data) {
 				$('#dialoganimation').html($('#DialogClassSpeed').val() + ' ' + $('#DialogClassAnimation').val());
 				$.TeachDialog({
-					content : 'Update Settings Success!'
+					content : '更新设置成功!'
 				});
 
 			} else {
 				$.TeachDialog({
-					content : 'Update Settings failed!'
+					content : '更新设置失败!'
 				});
 			}
 		});

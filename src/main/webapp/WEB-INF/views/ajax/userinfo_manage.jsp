@@ -51,9 +51,8 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">User Manage</a></li>
-			<li><a href="#">Users Query</a></li>
+			<li><a href="#">用户</a></li>
+			<li><a href="#">用户查询</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -65,7 +64,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>Users Information</span>
+					<i class="fa fa-clipboard"></i> <span>用户信息面板</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -80,7 +79,7 @@
 				<div class="panel panel-default" style="border: 1px solid #CCC;">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
-							Function Menu <span class="fa fa-chevron-down" style="float: right"></span>
+							功能菜单 <span class="fa fa-chevron-down" style="float: right"></span>
 						</h4>
 					</div>
 
@@ -90,22 +89,22 @@
 
 								<div id="operationpanel" class="col-xs-12" style="overflow-x: hidden;">
 									<div class="alert alert-danger" role="alert">
-										<strong>Warning,Hold your action!</strong> <br>[1]Before delete or edit, you should select <br>[2]If you want clear selected row quickly,you can refresh the grid.<br>[3]Or you have no power and you can browser users below.
+										<strong>警告!</strong> <br>[1]在编辑或者删除前，你要先选中一行.<br>[2]如果你想批量取消选择，你可以直接刷新整个Table.<br>[3]如果你没有权限，你需要向管理申请.
 									</div>
 									<div class="col-xs-12 btn-menu-top-minus">
 										<c:if test="${adduser eq true}">
 											<button class="btn btn-primary btn-sm adduser">
-												<i class="fa fa-user-plus"></i> Add A New User
+												<i class="fa fa-user-plus"></i> 添加用戶
 											</button>
 										</c:if>
 										<c:if test="${edituser eq true}">
 											<button class="btn btn-primary btn-sm edituser">
-												<i class="fa fa-user-md"></i> Edit A User
+												<i class="fa fa-user-md"></i> 添加用户
 											</button>
 										</c:if>
 										<c:if test="${rmuser eq true}">
 											<button class="btn btn-danger btn-sm removeuser">
-												<i class="fa fa-user-times"></i> Remove A User
+												<i class="fa fa-user-times"></i> 删除用户
 											</button>
 										</c:if>
 									</div>
@@ -115,42 +114,42 @@
 										<div id="newformRange">
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-4">UserName</label><input class="newform form-control col-xs-8" id="newUserName" type="text" placeholder="Input UserName" />
+													<label class="col-xs-4">用户名</label><input class="newform form-control col-xs-8" id="newUserName" type="text" placeholder="Input UserName" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">Password</label><input class="newform form-control col-xs-8" id="newPassword" type="text" placeholder="Input New Passsword" />
+													<label class="col-xs-4">密码</label><input class="newform form-control col-xs-8" id="newPassword" type="text" placeholder="Input New Passsword" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">RealName</label><input class="newform form-control col-xs-8" id="newRealName" type="text" placeholder="Input Real Name" />
+													<label class="col-xs-4">姓名</label><input class="newform form-control col-xs-8" id="newRealName" type="text" placeholder="Input Real Name" />
 												</div>
 											</div>
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4 controls">
-													<label class="col-xs-4">Type</label><select class="newform form-control" id="newType"></select>
+													<label class="col-xs-4">类型</label><select class="newform form-control" id="newType"></select>
 												</div>
 												<div class="col-xs-4 controls">
-													<label class="col-xs-4">Number</label><input class="newform form-control col-xs-8" id="newNumber" type="text" placeholder="Input Student ID" />
+													<label class="col-xs-4">学号</label><input class="newform form-control col-xs-8" id="newNumber" type="text" placeholder="Input Student ID" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">Email</label><input class="newform form-control col-xs-8" id="newEmail" type="text" placeholder="Input Email" />
+													<label class="col-xs-4">邮箱</label><input class="newform form-control col-xs-8" id="newEmail" type="text" placeholder="Input Email" />
 												</div>
 											</div>
 											<div class="col-xs-12 inlineblock">
 												<div class="col-xs-4">
-													<label class="col-xs-4">Phone</label><input class="newform form-control col-xs-8" id="newPhone" type="text" placeholder="Input Phone" />
+													<label class="col-xs-4">手机</label><input class="newform form-control col-xs-8" id="newPhone" type="text" placeholder="Input Phone" />
 												</div>
 												<div class="col-xs-4">
-													<label class="col-xs-4">DepartMent</label><select class="newform form-control" id="newDepartMent"></select>
+													<label class="col-xs-4">系部</label><select class="newform form-control" id="newDepartMent"></select>
 												</div>
 												<div class="col-xs-4 controls">
-													<label class="col-xs-4">Major</label><select class="newform form-control" id="newMajor"></select>
+													<label class="col-xs-4">专业</label><select class="newform form-control" id="newMajor"></select>
 												</div>
 											</div>
 										</div>
 										<div class="col-xs-12 inlineblock">
 											<div class="col-xs-12 btn-menu">
-												<button class="btn btn-primary btn-sm submitAdd" style="width: 100px">Add</button>
-												<button class="btn btn-default btn-sm cancelAdd" style="width: 100px">Cancel</button>
+												<button class="btn btn-primary btn-sm submitAdd" style="width: 100px">添加</button>
+												<button class="btn btn-default btn-sm cancelAdd" style="width: 100px">取消</button>
 												<strong><label style="color: red;" id="adderrormsg"></label></strong>
 											</div>
 										</div>
@@ -164,8 +163,8 @@
 											<div class="tab-content"></div>
 										</div>
 										<div class="col-xs-12 btn-menu-top-plus">
-											<button class="btn btn-primary btn-sm submitEdit">Submit To Modify</button>
-											<button class="btn btn-default btn-sm cancelEdit">Cancel</button>
+											<button class="btn btn-primary btn-sm submitEdit">提交编辑</button>
+											<button class="btn btn-default btn-sm cancelEdit">取消</button>
 											<strong><label style="color: red;" id="editerrormsg"></label></strong>
 										</div>
 									</div>
@@ -179,23 +178,23 @@
 					<div class="panel panel-default" style="border: 1px solid #CCC;">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title" data-toggle="collapse" data-target="#collapseForUserTable">
-								Basic User Info<span class="fa fa-chevron-down" style="float: right"></span>
+								基础信息<span class="fa fa-chevron-down" style="float: right"></span>
 							</h4>
 						</div>
 						<div id="collapseForUserTable" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 							<div class="panel-body" style="overflow-x: hidden;"></div>
 							<div class="searchClass row">
 								<div class="col-xs-12">
-									<label>Id</label><input class="SearchForm form-control" type="text" id="SearchUserId" /><label>UserName</label><input class="SearchForm form-control" type="text" id="SearchUserName" /> <label>RealName</label><input class="SearchForm form-control" type="text" id="SearchRealName" /> <label>UserType</label><select
-										class="SearchForm form-control" id="SearchUserType"><option value="-1">All UserType</option></select>
+									<label>Id</label><input class="SearchForm form-control" type="text" id="SearchUserId" /><label>用户名</label><input class="SearchForm form-control" type="text" id="SearchUserName" /> <label>姓名</label><input class="SearchForm form-control" type="text" id="SearchRealName" /> <label>用户类型</label><select
+										class="SearchForm form-control" id="SearchUserType"><option value="-1">全部</option></select>
 								</div>
 								<div class="col-xs-12">
-									<label>Id Card</label><input class="SearchForm form-control" id="SearchIdCard" /><label>DepartMent</label><select class="SearchForm form-control" id="SearchDepartMent"><option value="-1">All Department</option></select> <label>Major</label><select class="SearchForm form-control"
-										id="SearchMajor"><option value="-1">All Department</option></select> <label>Phone</label><input class="SearchForm form-control" id="SearchPhone" type="text" />
+									<label>学号</label><input class="SearchForm form-control" id="SearchIdCard" /><label>系部</label><select class="SearchForm form-control" id="SearchDepartMent"><option value="-1">全部</option></select> <label>专业</label><select class="SearchForm form-control"
+										id="SearchMajor"><option value="-1">全部</option></select> <label>手机</label><input class="SearchForm form-control" id="SearchPhone" type="text" />
 								</div>
 								<div class="col-xs-12">
-									<label>CreateTime</label><input class="SearchForm form-control" type="text" id="SearchTime" ReadOnly /><label>Email</label><input class="SearchForm form-control" type="text" id="SearchEmail" />
-									<button id="Search" class="btn btn-primary btn-xs" style="height: 30px">Search</button>
+									<label>创建时间</label><input class="SearchForm form-control" type="text" id="SearchTime" ReadOnly /><label>邮箱</label><input class="SearchForm form-control" type="text" id="SearchEmail" />
+									<button id="Search" class="btn btn-primary btn-xs" style="height: 30px">搜索</button>
 								</div>
 							</div>
 							<table id="datatable_userinfo" data-size="${usergridsize}" style="width: 100%">

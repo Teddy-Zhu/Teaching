@@ -51,15 +51,13 @@ $(function() {
 		var name = $('#book_editname').val().trim();
 		if (curBookTreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a type to edit!',
+				content : '请至少选择一行!',
 			});
 			return;
 		}
 		if (name == "" || name == undefined) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please Input a name!',
+				content : '请输入一个名称!',
 			});
 			return;
 		}
@@ -76,13 +74,11 @@ $(function() {
 					curBookTreeNode.strbooktypename = name;
 					bookTreeObj.updateNode(curBookTreeNode);
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update BookType successfully!',
+						content : '更新书籍类型成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update BookType failed!',
+						content : '更新书籍类型失败!',
 					});
 				}
 			},
@@ -95,8 +91,7 @@ $(function() {
 
 		if (name == "" || name == undefined) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please Input a name!',
+				content : '请输入一个名称!',
 			});
 			return;
 		}
@@ -114,13 +109,11 @@ $(function() {
 						strbooktypename : name
 					});
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Insert BookType successfully!',
+						content : '新增成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Insert BookType failed!',
+						content : '新增失败!',
 					});
 				}
 			},
@@ -131,8 +124,7 @@ $(function() {
 	$('#book_delete').click(function() {
 		if (curBookTreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a type to edit!',
+				content : '请至少选择一行!',
 			});
 			return;
 		}
@@ -147,13 +139,11 @@ $(function() {
 				if (response) {
 					bookTreeObj.removeNode(curBookTreeNode);
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Delete BookType successfully!',
+						content : '删除书籍类型成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Delete BookType failed!',
+						content : '删除书籍类型失败！',
 					});
 				}
 			},

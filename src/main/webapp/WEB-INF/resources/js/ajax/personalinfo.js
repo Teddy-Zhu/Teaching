@@ -30,7 +30,7 @@ function picChange() {
 		if (ext != ".BMP" && ext != ".PNG" && ext != ".JPG" && ext != ".JPEG") {
 			$('#picfile').val('');
 			$.TeachDialog({
-				content : "The Picture Format is not correct !",
+				content : "图片格式不正确 !",
 			})
 		} else {
 			var url = window.URL.createObjectURL($('#picfile').prop('files')[0]);
@@ -70,14 +70,14 @@ $(function() {
 				if (data != "") {
 					$('#UserPic').attr('data-new', data)
 					$.TeachDialog({
-						content : "Upload Avatar Success!",
+						content : "上传成功!",
 					})
 					$('#UserPic').css("border-color", "cadetblue")
 					$('#picUpload').fadeOut().delay(2000).fadeOut();
 					$('#picReset').fadeIn(2000);
 				} else {
 					$.TeachDialog({
-						content : "Upload Avatar Failed!",
+						content : "上传失败!",
 					})
 					$(this).fadeOut().delay(2000).fadeOut();
 				}
@@ -106,7 +106,7 @@ $(function() {
 			var curId = $(this).attr('id');
 			var curval = $(this).val();
 			if (curval == null || curval == undefined) {
-				$(this).parent().next().html(error.replace(/{errormsg}/g, "The Parameter Error!Please don't touch the widget"));
+				$(this).parent().next().html(error.replace(/{errormsg}/g, "变量错误 !"));
 				check = false;
 				return true;
 			} else {
@@ -118,14 +118,14 @@ $(function() {
 			}
 			case "RePassword": {
 				if (postdata[curId] != postdata["Password"]) {
-					$(this).parent().next().html(error.replace(/{errormsg}/g, "New Pasword Should be no differences!"));
+					$(this).parent().next().html(error.replace(/{errormsg}/g, "新密码与其重复值不同!"));
 					check = false;
 				}
 				break;
 			}
 			default: {
 				if (postdata[curId] == "") {
-					$(this).parent().next().html(error.replace(/{errormsg}/g, 'The ' + $(this).prev().html().trimEnd(':') + ' can not be empty!'));
+					$(this).parent().next().html(error.replace(/{errormsg}/g, '表单 ' + $(this).prev().html().trimEnd(':') + ' 不能为空!'));
 					check = false;
 				}
 				break;
@@ -145,14 +145,12 @@ $(function() {
 			success : function(response) {
 				if (response) {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update Successfully!',
+						content : '更新成功!',
 					});
 					LoadAjaxContent("ajax/personinfo_manage");
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update Failed',
+						content : '更新失败',
 					});
 				}
 			}

@@ -3,10 +3,10 @@
 		var defaults = {
 			modalId : null,
 			animation : null,
-			title : 'Meaasge From System',
+			title : '系统信息',
 			content : '<p>Content</p>',
 			showCloseButton : true,
-			showCloseButtonName : 'Close',
+			showCloseButtonName : '关闭',
 			CloseButtonAddFunc : function() {
 			},
 			otherButtons : [],

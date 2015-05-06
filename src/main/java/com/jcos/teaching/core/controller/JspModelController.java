@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jcos.teaching.core.exmodel.LoginSession;
-import com.jcos.teaching.core.util.annotation.SetPower;
-
 @Controller
 @RequestMapping(value = "/Model")
 public class JspModelController {

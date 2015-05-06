@@ -12,8 +12,8 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">首頁</a></li>
+			<li><a href="#">仪表盘</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -24,7 +24,7 @@
 <!--Start Dashboard 1-->
 <div id="dashboard-header" class="row">
 	<div class="col-xs-12 col-sm-4 col-md-5">
-		<h3>Hello, ${user.username}!</h3>
+		<h3>你好, ${user.username}!</h3>
 	</div>
 	<div class="clearfix visible-xs"></div>
 	<div class="col-xs-12 col-sm-8 col-md-7 pull-right"></div>
@@ -34,8 +34,8 @@
 <div class="row-fluid">
 	<div id="dashboard_links" class="col-xs-12 col-sm-2 pull-right">
 		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#" class="tab-link" id="overview">Overview</a></li>
-			<li><a href="#" class="tab-link" id="others">Others</a></li>
+			<li class="active"><a href="#" class="tab-link" id="overview">预览</a></li>
+			<li><a href="#" class="tab-link" id="others">其他</a></li>
 			<!-- 				<li><a href="#" class="tab-link" id="graph">Statistics</a></li>
 			<li><a href="#" class="tab-link" id="servers">Servers</a></li>
 			<li><a href="#" class="tab-link" id="planning">Planning</a></li>
@@ -47,34 +47,34 @@
 		<!--Start Dashboard Tab 1-->
 		<div id="dashboard-overview" class="row" style="visibility: visible; position: relative;">
 			<div id="ow-marketplace" class="col-sm-12 col-md-6">
-				<h4 class="page-header">Psersonal Information</h4>
+				<h4 class="page-header">个人信息</h4>
 			</div>
 			<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Value</th>
+						<th>名称</th>
+						<th>信息</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>UserName</td>
+						<td>用户名</td>
 						<td>${user.username}</td>
 					</tr>
 					<tr class="active">
-						<td>User Group</td>
+						<td>用户系部信息</td>
 						<td>${user.userDepartMent.strname}-->${user.userMajor.strname}</td>
 					</tr>
 					<tr>
-						<td>User Email</td>
+						<td>邮箱信息</td>
 						<td>${user.strmail}</td>
 					</tr>
 					<tr class="active">
-						<td>User Phone</td>
+						<td>手机号</td>
 						<td>${user.strphone}</td>
 					</tr>
 					<tr>
-						<td>User Register Time</td>
+						<td>注册时间</td>
 						<td><fmt:formatDate value="${user.dateregtime}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 					</tr>
 				</tbody>

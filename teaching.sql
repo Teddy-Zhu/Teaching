@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50622
+Source Server         : localhost
+Source Server Version : 50610
 Source Host           : localhost:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50610
 File Encoding         : 65001
 
-Date: 2015-04-09 10:47:34
+Date: 2015-05-06 20:51:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -361,26 +361,26 @@ CREATE TABLE `menus` (
 -- Records of menus
 -- ----------------------------
 INSERT INTO `menus` VALUES ('1', '0', 'menu', 'Menu', 'fa');
-INSERT INTO `menus` VALUES ('2', '1', 'dashboard', 'Dashboard', 'fa fa-dashboard');
-INSERT INTO `menus` VALUES ('3', '1', 'books', 'Books', 'fa fa-book');
-INSERT INTO `menus` VALUES ('4', '1', 'plans', 'Plans', 'fa fa-calculator');
-INSERT INTO `menus` VALUES ('5', '1', 'usermanage', 'User Manage', 'fa fa-suitcase');
-INSERT INTO `menus` VALUES ('6', '1', 'personsetting', 'Person Setting', 'fa fa-user');
-INSERT INTO `menus` VALUES ('7', '1', 'systemsettings', 'System Settings', 'fa fa-cogs');
-INSERT INTO `menus` VALUES ('8', '1', 'javascript:logout();', 'Log Out', 'fa fa-sign-out');
-INSERT INTO `menus` VALUES ('9', '3', 'book_manage', 'Book Manage', 'fa fa-bookmark');
-INSERT INTO `menus` VALUES ('10', '3', 'supplier_manage', 'Supplier Manage', 'fa fa-bus');
-INSERT INTO `menus` VALUES ('11', '4', 'plan_submit', 'Plan Sumbit', 'fa fa-paper-plane-o');
-INSERT INTO `menus` VALUES ('12', '4', 'plan_query', 'Plan Query', 'fa fa-file-archive-o');
-INSERT INTO `menus` VALUES ('13', '4', 'plan_manage', 'Plan Manage', 'fa fa-bar-chart');
-INSERT INTO `menus` VALUES ('14', '5', 'userinfo_manage', 'User Manage', 'fa fa-group');
-INSERT INTO `menus` VALUES ('15', '6', 'personinfo_manage', 'Info Manage', 'fa fa-pencil-square-o');
-INSERT INTO `menus` VALUES ('16', '6', 'personal_setting', 'Setting Manage', 'fa fa-folder');
-INSERT INTO `menus` VALUES ('17', '7', 'department_manage', 'Depart Manage', 'fa fa-clipboard');
-INSERT INTO `menus` VALUES ('18', '7', 'type_manage', 'Type Manage', 'fa fa-street-view');
-INSERT INTO `menus` VALUES ('19', '7', 'access_manage', 'Access Manage', 'fa fa-key');
-INSERT INTO `menus` VALUES ('20', '7', 'system_settings', 'System Setting', 'fa fa-clipboard');
-INSERT INTO `menus` VALUES ('21', '7', 'menu_manage', 'Menu Setting', 'fa fa-server');
+INSERT INTO `menus` VALUES ('2', '1', 'dashboard', '仪表盘', 'fa fa-dashboard');
+INSERT INTO `menus` VALUES ('3', '1', 'books', '书籍', 'fa fa-book');
+INSERT INTO `menus` VALUES ('4', '1', 'plans', '计划', 'fa fa-calculator');
+INSERT INTO `menus` VALUES ('5', '1', 'usermanage', '用户', 'fa fa-suitcase');
+INSERT INTO `menus` VALUES ('6', '1', 'personsetting', '个人', 'fa fa-user');
+INSERT INTO `menus` VALUES ('7', '1', 'systemsettings', '系统设置', 'fa fa-cogs');
+INSERT INTO `menus` VALUES ('8', '1', 'javascript:logout();', '退出', 'fa fa-sign-out');
+INSERT INTO `menus` VALUES ('9', '3', 'book_manage', '书籍管理', 'fa fa-bookmark');
+INSERT INTO `menus` VALUES ('10', '3', 'supplier_manage', '供应商管理', 'fa fa-bus');
+INSERT INTO `menus` VALUES ('11', '4', 'plan_submit', '提交计划', 'fa fa-paper-plane-o');
+INSERT INTO `menus` VALUES ('12', '4', 'plan_query', '计划查询', 'fa fa-file-archive-o');
+INSERT INTO `menus` VALUES ('13', '4', 'plan_manage', '计划管理', 'fa fa-bar-chart');
+INSERT INTO `menus` VALUES ('14', '5', 'userinfo_manage', '用户管理', 'fa fa-group');
+INSERT INTO `menus` VALUES ('15', '6', 'personinfo_manage', '个人信息管理', 'fa fa-pencil-square-o');
+INSERT INTO `menus` VALUES ('16', '6', 'personal_setting', '个人设置', 'fa fa-folder');
+INSERT INTO `menus` VALUES ('17', '7', 'department_manage', '系部管理', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('18', '7', 'type_manage', '类型管理', 'fa fa-street-view');
+INSERT INTO `menus` VALUES ('19', '7', 'access_manage', '权限管理', 'fa fa-key');
+INSERT INTO `menus` VALUES ('20', '7', 'system_settings', '全局设置', 'fa fa-clipboard');
+INSERT INTO `menus` VALUES ('21', '7', 'menu_manage', '菜单管理', 'fa fa-server');
 
 -- ----------------------------
 -- Table structure for operation
@@ -749,11 +749,11 @@ CREATE TABLE `usertype` (
 -- ----------------------------
 -- Records of usertype
 -- ----------------------------
-INSERT INTO `usertype` VALUES ('1', 'Admin', '0');
-INSERT INTO `usertype` VALUES ('2', 'BookManager', '0');
-INSERT INTO `usertype` VALUES ('3', 'Teacher', '1');
-INSERT INTO `usertype` VALUES ('4', 'Student', '1');
-INSERT INTO `usertype` VALUES ('5', 'TestUser', '1');
+INSERT INTO `usertype` VALUES ('1', '管理员', '0');
+INSERT INTO `usertype` VALUES ('2', '图书管理员', '0');
+INSERT INTO `usertype` VALUES ('3', '教师', '1');
+INSERT INTO `usertype` VALUES ('4', '学生', '1');
+INSERT INTO `usertype` VALUES ('5', '测试用户', '1');
 
 -- ----------------------------
 -- Table structure for versionlog

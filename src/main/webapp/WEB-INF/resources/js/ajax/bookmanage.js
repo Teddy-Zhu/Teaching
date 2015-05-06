@@ -20,7 +20,7 @@ function initBookType(id, addition) {
 	var fillDom = function(domData) {
 		$('#' + id).empty();
 		if (addition != undefined) {
-			$('#' + id).append('<option value="-1">All Type</option>');
+			$('#' + id).append('<option value="-1">全部</option>');
 		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intbooktypeid + '">' + domData[i].strbooktypename + '</option>');
@@ -48,7 +48,7 @@ function initSupplierType(id, addition) {
 	var fillDom = function(domData) {
 		$('#' + id).empty();
 		if (addition != undefined) {
-			$('#' + id).append('<option value="-1">All Supplier</option>');
+			$('#' + id).append('<option value="-1">全部</option>');
 		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intsupplierid + '">' + domData[i].strname + '</option>');
@@ -91,7 +91,7 @@ $(function() {
 				var rows = $('#datatable_bookinfo').datagrid('getSelections');
 				if (rows.length == 0) {
 					$.TeachDialog({
-						content : 'You should select a row at least !',
+						content : '你需要选择一行 !',
 						bootstrapModalOption : {},
 					});
 					return;
@@ -119,7 +119,7 @@ $(function() {
 		var check = true;
 		$('.newform').each(function() {
 			if ($(this).val().trim() == "") {
-				$('#adderrormsg').html("please input " + $(this).prev().html() + "!");
+				$('#adderrormsg').html("请输入 " + $(this).prev().html() + "!");
 				check = false;
 				return false;
 			} else {
@@ -137,10 +137,9 @@ $(function() {
 			success : function(response) {
 				if (response) {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Add a new book successfully and do you want to add more ?',
+						content : '添加成功，你要继续添加吗 ?',
 						showCloseButtonName : 'No',
-						otherButtons : [ 'Yes', 'Yes & Keep Val' ],
+						otherButtons : [ '确认', '确认 且保持值' ],
 						bootstrapModalOption : {},
 						CloseButtonAddFunc : function() {
 							$('#operationpanel').slideToggle();
@@ -161,7 +160,7 @@ $(function() {
 					});
 				} else {
 					$.TeachDialog({
-						content : 'Add Book Failed!',
+						content : '添加失败!',
 					});
 				}
 			}
@@ -202,7 +201,7 @@ $(function() {
 			var check = true;
 			$('.editform').each(function() {
 				if ($(this).val().trim() == "") {
-					$('#editerrormsg').html("please input " + $(this).prev().html() + "!");
+					$('#editerrormsg').html("请输入 " + $(this).prev().html() + "!");
 					check = false;
 					return false;
 				} else {
@@ -221,8 +220,7 @@ $(function() {
 				success : function(data) {
 					if (data) {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Edit book successfully!',
+							content : '编辑成功!',
 							CloseButtonAddFunc : function() {
 								$('#operationpanel').slideToggle();
 								$('#editbookcontainer').slideToggle();
@@ -231,8 +229,7 @@ $(function() {
 						});
 					} else {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Edit book failed!',
+							content : '编辑失败!',
 							CloseButtonAddFunc : function() {
 								$('#operationpanel').slideToggle();
 								$('#editbookcontainer').slideToggle();
@@ -249,7 +246,7 @@ $(function() {
 		var rows = $('#datatable_bookinfo').datagrid('getSelections');
 		if (rows.length == 0) {
 			$.TeachDialog({
-				content : 'You should select a row at least !',
+				content : '你至少要选择一行',
 				bootstrapModalOption : {},
 			});
 			return;
@@ -262,10 +259,9 @@ $(function() {
 		var sureDialog = function() {
 			var dtd = $.Deferred();
 			$.TeachDialog({
-				title : 'Warnning Message!',
-				content : 'Are you sure remove this books :' + bookNameArray + ' ?',
-				showCloseButtonName : 'No',
-				otherButtons : [ 'Yes' ],
+				content : '你确定要删除书籍 :' + bookNameArray + ' ?',
+				showCloseButtonName : '取消',
+				otherButtons : [ '确认' ],
 				CloseButtonAddFunc : function() {
 					dtd.reject();
 				},
@@ -289,8 +285,7 @@ $(function() {
 				success : function(response) {
 					if (response === true) {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Remove books successfully!',
+							content : '删除成功!',
 						})
 						$('#datatable_bookinfo').datagrid('reload');
 					} else {
@@ -303,11 +298,11 @@ $(function() {
 								}
 							}
 							$.TeachDialog({
-								content : 'Remove books failed! Book:' + bookname + " exist in use.",
+								content : '删除失败! 书籍:' + bookname + " 被使用中.",
 							})
 						} else {
 							$.TeachDialog({
-								content : 'Remove books failed!',
+								content : '删除失败!',
 							})
 						}
 					}
@@ -337,7 +332,7 @@ $(function() {
 		collapsible : true,
 		fit : false,
 		url : 'Book/GetBooks',
-		loadMsg : 'Please waiting for loading date.....',
+		loadMsg : '请等待数据载入....',
 		pagination : true,
 		rownumbers : true,
 		fitColumns : true,
@@ -345,25 +340,25 @@ $(function() {
 		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'strbookcoding',
-			title : 'Code',
+			title : '编号',
 			align : 'center',
 			sortable : true,
 			width : cellwidth,
 		}, {
 			field : 'strbookname',
-			title : 'Name',
+			title : '书名',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'strbooksn',
-			title : 'SN',
+			title : 'SN号',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'bookType',
-			title : 'Type',
+			title : '类型',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -372,19 +367,19 @@ $(function() {
 			}
 		}, {
 			field : 'strpress',
-			title : 'Press',
+			title : '出版社',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'strauthor',
-			title : 'Author',
+			title : '作者',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'supplier',
-			title : 'Supplier',
+			title : '供应商',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -393,19 +388,19 @@ $(function() {
 			}
 		}, {
 			field : 'strprice',
-			title : 'Price',
+			title : '单价',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'intpricediscount',
-			title : 'DisCount',
+			title : '折扣',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'dateaddtime',
-			title : 'Add Time',
+			title : '录入时间',
 			align : 'center',
 			width : cellwidth + 35,
 			sortable : true,

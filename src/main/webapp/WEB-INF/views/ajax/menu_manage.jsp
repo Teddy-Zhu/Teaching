@@ -41,8 +41,8 @@
 		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">System Settings</a></li>
-			<li><a href="#">Depart Manage</a></li>
+			<li><a href="#">系统设置</a></li>
+			<li><a href="#">菜单管理</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-youtube"></i></a>
@@ -54,7 +54,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-clipboard"></i> <span>DepartMent ManageMent</span>
+					<i class="fa fa-clipboard"></i> <span>菜单管理面板</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
@@ -71,7 +71,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-										Menu Tree<i id="refresh" class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
+										菜单树<i id="refresh" class="fa fa-refresh fa-lg pull-right" style="margin-top: 3px"></i>
 									</h3>
 
 								</div>
@@ -86,7 +86,7 @@
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs" role="tablist">
 									<c:if test="${menumanage eq true}">
-										<li role="presentation" class="active"><a href="#controlpanel" aria-controls="controlpanel" role="tab" data-toggle="tab">Menu Edit Control</a></li>
+										<li role="presentation" class="active"><a href="#controlpanel" aria-controls="controlpanel" role="tab" data-toggle="tab">控制面板</a></li>
 									</c:if>
 								</ul>
 
@@ -95,13 +95,13 @@
 									<c:if test="${menumanage eq true}">
 										<div role="tabpanel" class="tab-pane active" id="controlpanel">
 											<div class="row">
-												<label class="col-xs-4">Menu Name</label><input class="form-control col-xs-8" id="menuname" />
+												<label class="col-xs-4">菜单名称</label><input class="form-control col-xs-8" id="menuname" />
 											</div>
 											<div class="row">
-												<label class="col-xs-4">Menu Icon Css</label><input class="form-control col-xs-8" id="menuicon" />
+												<label class="col-xs-4">菜单图标 Css</label><input class="form-control col-xs-8" id="menuicon" />
 											</div>
 											<div class="row text-center">
-												<button class="btn btn-primary center-block" id="Update">Update</button>
+												<button class="btn btn-primary center-block" id="Update">更新</button>
 											</div>
 										</div>
 									</c:if>

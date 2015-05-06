@@ -16,7 +16,7 @@ function toolBarClick(type) {
 	var rows = $('#datatable_perplaninfo').datagrid('getSelections');
 	if (rows.length != 1) {
 		$.TeachDialog({
-			content : 'You should select one row at most!',
+			content : '你最多可以选择一行!',
 			bootstrapModalOption : {},
 		});
 		return;
@@ -26,16 +26,16 @@ function toolBarClick(type) {
 	case 1: {
 		if (rows[0].bookPlanStatus.intplanstatusid > 2) {
 			$.TeachDialog({
-				content : 'The Plan can not be changed because it\'s status is ' + rows[0].bookPlanStatus.strmark + '!',
+				content : '这个计划的状态不能被改变，因为它的状态是 ' + rows[0].bookPlanStatus.strmark + '!',
 				bootstrapModalOption : {},
 			});
 			return;
 		}
 		LoadModel('changeplandetailmodel').done(function(responseContent) {
 			$.TeachDialog({
-				title : 'Change The Plan',
+				title : '更改计划',
 				content : responseContent,
-				otherButtons : [ 'Submit' ],
+				otherButtons : [ '确认' ],
 				otherButtonStyles : [ 'btn btn-primary' ],
 				dialogShow : function() {
 					$("#StuChange,#TeaChange").TouchSpin({
@@ -48,7 +48,7 @@ function toolBarClick(type) {
 					if (index == 0) {
 						if (($('#StuChange').val() == '0' && $('#TeaChange').val() == '0') || $('#StuChange').val().trim() == "" || $('#TeaChange').val().trim() == "") {
 							$.TeachDialog({
-								content : 'Parameters are not correct!',
+								content : '参数错误!',
 							})
 							return;
 						}
@@ -65,13 +65,13 @@ function toolBarClick(type) {
 						}).success(function(data) {
 							if (data) {
 								$.TeachDialog({
-									content : 'Changes Saved!',
+									content : '更改成功!',
 								})
 								modal.modal('hide');
 								$('#datatable_perplaninfo').datagrid('reload');
 							} else {
 								$.TeachDialog({
-									content : 'Changes failed!',
+									content : '更改失败!',
 								})
 							}
 						})
@@ -84,7 +84,7 @@ function toolBarClick(type) {
 	case 2: {
 		if (rows[0].bookPlanStatus.intplanstatusid > 2) {
 			$.TeachDialog({
-				content : 'The Plan can not be canceled because it\'s status is ' + rows[0].bookPlanStatus.strmark + '!',
+				content : '这个计划不能被取消，因为它的状态是 ' + rows[0].bookPlanStatus.strmark + '!',
 				bootstrapModalOption : {},
 			});
 			return;
@@ -99,7 +99,7 @@ function toolBarClick(type) {
 		}).success(function(data) {
 			if (data) {
 				$.TeachDialog({
-					content : 'The Plan has been canceled!',
+					content : '计划已经取消',
 					bootstrapModalOption : {},
 				});
 				$('#datatable_perplaninfo').datagrid('reload');
@@ -110,7 +110,7 @@ function toolBarClick(type) {
 	case 3: {
 		if (rows[0].bookPlanStatus.intplanstatusid != 2) {
 			$.TeachDialog({
-				content : 'The Plan can not be re-submitted because it\'s status is ' + rows[0].bookPlanStatus.strmark + '!',
+				content : '计划不能被再次提交，因为它的计划状态是 ' + rows[0].bookPlanStatus.strmark + '!',
 				bootstrapModalOption : {},
 			});
 			return;
@@ -135,8 +135,8 @@ function toolBarClick(type) {
 	}
 	case 4: {
 		$.TeachDialog({
-			title : 'The Plan History',
-			content : '<div id="historytable" class="table-responsive"><table class="table"><caption>Plan Histroy Changes</caption></table></div>',
+			title : '计划历史',
+			content : '<div id="historytable" class="table-responsive"><table class="table"><caption>计划历史变化</caption></table></div>',
 			dialogShow : function() {
 				$.ajax({
 					url : 'Plan/GetPerPlanHistory',
@@ -146,17 +146,17 @@ function toolBarClick(type) {
 						PlanId : planId
 					}
 				}).success(function(data) {
-					$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Changes</th><th>Operation Time</th></tr></thead><tbody></tbody>');
+					$('#historytable table').append('<thead><tr><th>Id</th><th>操作</th><th>变更</th><th>操作时间</th></tr></thead><tbody></tbody>');
 					for (var i = 0, len = data.length; i < len; i++) {
 						var changeString = '';
 						if (data[i].bookPlanChange && data[i].bookPlanChange.intbookchangeid != -1) {
 							var stcount = data[i].bookPlanChange.intstudent;
 							var teacount = data[i].bookPlanChange.intteacher;
 							if (stcount != 0) {
-								changeString += (stcount > 0 ? 'Increase' : 'Decrease') + ' Student Number :' + Math.abs(stcount) + '<br>';
+								changeString += (stcount > 0 ? '增加' : '减少') + ' 学生数 :' + Math.abs(stcount) + '<br>';
 							}
 							if (teacount != 0) {
-								changeString += (teacount > 0 ? 'Increase' : 'Decrease') + ' Teacher Number :' + Math.abs(teacount) + '<br>';
+								changeString += (teacount > 0 ? '增加' : '减少') + ' 教师数 :' + Math.abs(teacount) + '<br>';
 							}
 						} else {
 							changeString = 'none';
@@ -213,7 +213,7 @@ $(function() {
 		remoteSort : false,
 		fit : false,
 		url : 'Plan/GetPerPlan',
-		loadMsg : 'Please waiting for loading date.....',
+		loadMsg : '请等待数据载入.....',
 		pagination : true,
 		rownumbers : true,
 		singleSelect : true,
@@ -222,13 +222,13 @@ $(function() {
 		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'strcoursename',
-			title : 'CourseName',
+			title : '课程名',
 			align : 'center',
 			sortable : true,
 			width : cellwidth,
 		}, {
 			field : 'courseType',
-			title : 'CourseType',
+			title : '课程类型',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -237,25 +237,25 @@ $(function() {
 			}
 		}, {
 			field : 'strclass',
-			title : 'ClassId',
+			title : '班级',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
 		}, {
 			field : 'intstudcount',
-			title : 'Student Count',
+			title : '学生数',
 			align : 'center',
 			width : cellwidth * 0.5,
 			sortable : true,
 		}, {
 			field : 'intteaccount',
-			title : 'Teacher Count',
+			title : '教师数',
 			align : 'center',
 			width : cellwidth * 0.5,
 			sortable : true
 		}, {
 			field : 'book',
-			title : 'BookName',
+			title : '书名',
 			align : 'center',
 			width : cellwidth * 2,
 			sortable : true,
@@ -264,7 +264,7 @@ $(function() {
 			}
 		}, {
 			field : 'intfromyear',
-			title : 'Time',
+			title : '学年',
 			align : 'center',
 			width : cellwidth,
 			formatter : function(value, row) {
@@ -272,7 +272,7 @@ $(function() {
 			}
 		}, {
 			field : 'intterm',
-			title : 'Term',
+			title : '学期',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -285,12 +285,12 @@ $(function() {
 			}
 		}, {
 			field : 'strmark',
-			title : 'Mark',
+			title : '备注',
 			align : 'center',
 			width : cellwidth,
 		}, {
 			field : 'datecreatetime',
-			title : 'CreateTime',
+			title : '申请时间',
 			align : 'center',
 			width : cellwidth + 35,
 			sortable : true,
@@ -299,7 +299,7 @@ $(function() {
 			}
 		}, {
 			field : 'bookPlanStatus',
-			title : 'Status',
+			title : '状态',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -311,31 +311,31 @@ $(function() {
 			param = getSearchParams(param);
 		},
 		toolbar : [ {
-			text : "Change",
+			text : "更改计划",
 			iconCls : 'fa fa-pencil',
 			handler : function() {
 				toolBarClick(1);
 			}
 		}, '-', {
-			text : "Cancel",
+			text : "取消计划",
 			iconCls : 'fa fa-remove',
 			handler : function() {
 				toolBarClick(2);
 			}
 		}, '-', {
-			text : "Re-Submit",
+			text : "再次提交",
 			iconCls : 'fa fa-recycle',
 			handler : function() {
 				toolBarClick(3);
 			}
 		}, '-', {
-			text : "Query History Changes",
+			text : "查询历史",
 			iconCls : 'fa fa-search',
 			handler : function() {
 				toolBarClick(4);
 			}
 		}, '-', {
-			text : "Export Below Plan To Excel",
+			text : "导出数据到Excel",
 			iconCls : 'fa fa-download',
 			handler : function() {
 				$.DownloadFile({

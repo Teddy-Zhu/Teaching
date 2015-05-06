@@ -20,7 +20,7 @@ function initUserType(id, addition) {
 	var fillDom = function(domData) {
 		$('#' + id).empty();
 		if (addition != undefined) {
-			$('#' + id).append('<option value="-1">All UserType</option>');
+			$('#' + id).append('<option value="-1">全部</option>');
 		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intidentityid + '">' + domData[i].strname + '</option>');
@@ -49,7 +49,7 @@ function initUserDepartMent(id, type, addition) {
 	var filldom = function(domData) {
 		$('#' + id).empty();
 		if (addition != undefined) {
-			$('#' + id).append('<option value="-1">All DepartMent</option>');
+			$('#' + id).append('<option value="-1">全部</option>');
 		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intid + '">' + domData[i].strname + '</option>');
@@ -121,7 +121,7 @@ function toolBarClick(type, oneneed, pendingneed) {
 
 	if (rows.length < 1) {
 		$.TeachDialog({
-			content : 'You should select one row at least!',
+			content : '请至少选择一行!',
 			bootstrapModalOption : {}
 		});
 		return;
@@ -129,7 +129,7 @@ function toolBarClick(type, oneneed, pendingneed) {
 	if (oneneed) {
 		if (rows.length > 1) {
 			$.TeachDialog({
-				content : 'You should select one row at most!',
+				content : '最多选择一行!',
 				bootstrapModalOption : {}
 			});
 			return;
@@ -141,7 +141,7 @@ function toolBarClick(type, oneneed, pendingneed) {
 		plans.push(rows[i].intplanid);
 		if (pendingneed && rows[i].bookPlanStatus.intplanstatusid != 1) {
 			$.TeachDialog({
-				content : 'The plan status you selected is not pending!',
+				content : '你选择的计划状态不是审核中!',
 				bootstrapModalOption : {}
 			});
 			return;
@@ -174,12 +174,12 @@ function toolBarClick(type, oneneed, pendingneed) {
 		}).success(function(data) {
 			if (data) {
 				$.TeachDialog({
-					content : 'Change Plan Status Successfully!',
+					content : '计划状态变更成功!',
 					bootstrapModalOption : {}
 				});
 			} else {
 				$.TeachDialog({
-					content : 'Change Plan Status failed!',
+					content : '计划状态变更失败!',
 					bootstrapModalOption : {}
 				});
 			}
@@ -190,9 +190,9 @@ function toolBarClick(type, oneneed, pendingneed) {
 		url = 'ChangeStatus';
 		LoadModel('changeplanstatusmodel').done(function(responseContent) {
 			$.TeachDialog({
-				title : 'Change The Plan Status',
+				title : '更改计划状态',
 				content : responseContent,
-				otherButtons : [ 'Change' ],
+				otherButtons : [ '更改' ],
 				otherButtonStyles : [ 'btn btn-primary' ],
 				dialogShow : function() {
 					getPlanStatus('ChangePlanStatus');
@@ -211,12 +211,12 @@ function toolBarClick(type, oneneed, pendingneed) {
 							modal.modal('hide');
 							if (data) {
 								$.TeachDialog({
-									content : 'Change Plans Status Success!'
+									content : '更改成功!'
 								});
 								$('#datatable_perplaninfo').datagrid('reload');
 							} else {
 								$.TeachDialog({
-									content : 'Change Plans Status failed!'
+									content : '更改失败!'
 								});
 							}
 						})
@@ -228,8 +228,8 @@ function toolBarClick(type, oneneed, pendingneed) {
 	}
 	case 5: {
 		$.TeachDialog({
-			title : 'The Plan History',
-			content : '<div id="historytable" class="table-responsive"><table class="table"><caption>Plan Histroy Changes</caption></table></div>',
+			title : '计划历史',
+			content : '<div id="historytable" class="table-responsive"><table class="table"><caption>计划历史记录</caption></table></div>',
 			largeSize : true,
 			dialogShow : function() {
 				$.ajax({
@@ -240,17 +240,17 @@ function toolBarClick(type, oneneed, pendingneed) {
 						PlanId : plans[0]
 					}
 				}).success(function(data) {
-					$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Changes</th><th>Operation Personal</th><th>Operation Time</th></tr></thead><tbody></tbody>');
+					$('#historytable table').append('<thead><tr><th>Id</th><th>操作</th><th>具体信息</th><th>操作人</th><th>操作时间</th></tr></thead><tbody></tbody>');
 					for (var i = 0, len = data.length; i < len; i++) {
 						var changeString = '';
 						if (data[i].bookPlanChange && data[i].bookPlanChange.intbookchangeid != -1) {
 							var stcount = data[i].bookPlanChange.intstudent;
 							var teacount = data[i].bookPlanChange.intteacher;
 							if (stcount != 0) {
-								changeString += (stcount > 0 ? 'Increase' : 'Decrease') + ' Student Number :' + Math.abs(stcount) + '<br>';
+								changeString += (stcount > 0 ? '增加' : '减少') + ' 学生数 :' + Math.abs(stcount) + '<br>';
 							}
 							if (teacount != 0) {
-								changeString += (teacount > 0 ? 'Increase' : 'Decrease') + ' Teacher Number :' + Math.abs(teacount) + '<br>';
+								changeString += (teacount > 0 ? '增加' : '减少') + ' 教师数 :' + Math.abs(teacount) + '<br>';
 							}
 						} else {
 							changeString = 'none';
@@ -267,8 +267,8 @@ function toolBarClick(type, oneneed, pendingneed) {
 
 function queryPlanHistory() {
 	$.TeachDialog({
-		title : 'The Plan History',
-		content : '<div id="historytable" class="table-responsive"><table class="table"><caption>Plan Histroy Changes</caption></table></div>',
+		title : '计划信息',
+		content : '<div id="historytable" class="table-responsive"><table class="table"><caption>计划历史信息</caption></table></div>',
 		dialogShow : function() {
 			$.ajax({
 				url : 'Plan/GetPerPlanHistory',
@@ -278,17 +278,17 @@ function queryPlanHistory() {
 					PlanId : planId
 				}
 			}).success(function(data) {
-				$('#historytable table').append('<thead><tr><th>Id</th><th>Operation Name</th><th>Changes</th><th>Operation Time</th></tr></thead><tbody></tbody>');
+				$('#historytable table').append('<thead><tr><th>Id</th><th>操作</th><th>具体信息</th><th>操作时间</th></tr></thead><tbody></tbody>');
 				for (var i = 0, len = data.length; i < len; i++) {
 					var changeString = '';
 					if (data[i].bookPlanChange && data[i].bookPlanChange.intbookchangeid != -1) {
 						var stcount = data[i].bookPlanChange.intstudent;
 						var teacount = data[i].bookPlanChange.intteacher;
 						if (stcount != 0) {
-							changeString += (stcount > 0 ? 'Increase' : 'Decrease') + ' Student Number :' + Math.abs(stcount) + '<br>';
+							changeString += (stcount > 0 ? '增加' : '减少') + ' 学生数 :' + Math.abs(stcount) + '<br>';
 						}
 						if (teacount != 0) {
-							changeString += (teacount > 0 ? 'Increase' : 'Decrease') + ' Teacher Number :' + Math.abs(teacount) + '<br>';
+							changeString += (teacount > 0 ? '增加' : '减少') + ' 教师数 :' + Math.abs(teacount) + '<br>';
 						}
 					} else {
 						changeString = 'none';
@@ -335,7 +335,7 @@ $(function() {
 		remoteSort : false,
 		fit : false,
 		url : 'Plan/GetAllPlan',
-		loadMsg : 'Please waiting for loading date.....',
+		loadMsg : '请等待数据载入.....',
 		pagination : true,
 		rownumbers : true,
 		fitColumns : true,
@@ -343,13 +343,13 @@ $(function() {
 		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'strcoursename',
-			title : 'CourseName',
+			title : '课程名',
 			align : 'center',
 			sortable : true,
 			width : cellwidth
 		}, {
 			field : 'courseType',
-			title : 'CourseType',
+			title : '课程类型',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -358,25 +358,25 @@ $(function() {
 			}
 		}, {
 			field : 'strclass',
-			title : 'ClassId',
+			title : '班级',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'intstudcount',
-			title : 'Student Count',
+			title : '学生数',
 			align : 'center',
 			width : cellwidth * 0.5,
 			sortable : true
 		}, {
 			field : 'intteaccount',
-			title : 'Teacher Count',
+			title : '教师数',
 			align : 'center',
 			width : cellwidth * 0.5,
 			sortable : true
 		}, {
 			field : 'book',
-			title : 'BookName',
+			title : '书名',
 			align : 'center',
 			width : cellwidth * 2,
 			sortable : true,
@@ -385,7 +385,7 @@ $(function() {
 			}
 		}, {
 			field : 'intfromyear',
-			title : 'Time',
+			title : '时间',
 			align : 'center',
 			width : cellwidth,
 			formatter : function(value, row) {
@@ -393,7 +393,7 @@ $(function() {
 			}
 		}, {
 			field : 'intterm',
-			title : 'Term',
+			title : '学期',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -406,7 +406,7 @@ $(function() {
 			}
 		}, {
 			field : 'user',
-			title : 'Applicant',
+			title : '申请人',
 			align : 'center',
 			width : cellwidth,
 			formatter : function(value) {
@@ -414,12 +414,12 @@ $(function() {
 			}
 		}, {
 			field : 'strmark',
-			title : 'Mark',
+			title : '备注',
 			align : 'center',
 			width : cellwidth
 		}, {
 			field : 'datecreatetime',
-			title : 'CreateTime',
+			title : '申请时间',
 			align : 'center',
 			width : cellwidth + 35,
 			sortable : true,
@@ -428,7 +428,7 @@ $(function() {
 			}
 		}, {
 			field : 'bookPlanStatus',
-			title : 'Status',
+			title : '状态',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -440,37 +440,37 @@ $(function() {
 			param = getSearchParams(param);
 		},
 		toolbar : [ {
-			text : "Pass Plan",
+			text : "通过计划",
 			iconCls : 'fa fa-pencil',
 			handler : function() {
 				toolBarClick(1, false, true);
 			}
 		}, '-', {
-			text : "Reject Plan",
+			text : "驳回计划",
 			iconCls : 'fa fa-remove',
 			handler : function() {
 				toolBarClick(2, false, true);
 			}
 		}, '-', {
-			text : "Refuse Plan",
+			text : "拒绝计划",
 			iconCls : 'fa fa-recycle',
 			handler : function() {
 				toolBarClick(3, false, true);
 			}
 		}, '-', {
-			text : "Change Other Status",
+			text : "更改为其他状态",
 			iconCls : 'fa fa-search',
 			handler : function() {
 				toolBarClick(4, false, false);
 			}
 		}, '-', {
-			text : "Query Plan History",
+			text : "查询历史",
 			iconCls : 'fa fa-search',
 			handler : function() {
 				toolBarClick(5, true, false);
 			}
 		}, '-', {
-			text : "Export Below Plan To Excel",
+			text : "导出下方所有数据到Excel",
 			iconCls : 'fa fa-download',
 			handler : function() {
 				$.DownloadFile({
@@ -480,7 +480,7 @@ $(function() {
 				});
 			}
 		}, '-', {
-			text : "Export Below Plan Statistics To Excel",
+			text : "按班级导出数据统计到Excel",
 			iconCls : 'fa fa-download',
 			handler : function() {
 				$.DownloadFile({
@@ -492,11 +492,11 @@ $(function() {
 		} ],
 		onClickRow : function(rowIndex, rowData) {
 			$('#notification').html(
-					'<strong class="col-xs-3">Unit Price:' + rowData.book.strprice.toFixed(2) + '</strong><strong class="col-xs-3">Discount:' + rowData.book.intpricediscount.toFixed(2) + '</strong><strong class="col-xs-3">Student Total:'
-							+ (rowData.intstudcount * rowData.book.strprice * rowData.book.intpricediscount / 10).toFixed(2) + '</strong><strong class="col-xs-3">Teacher Total:' + (rowData.intteaccount * rowData.book.strprice * rowData.book.intpricediscount / 10).toFixed(2) + '</strong>');
+					'<strong class="col-xs-3">单价:' + rowData.book.strprice.toFixed(2) + '</strong><strong class="col-xs-3">折扣:' + rowData.book.intpricediscount.toFixed(2) + '</strong><strong class="col-xs-3">学生总计:'
+							+ (rowData.intstudcount * rowData.book.strprice * rowData.book.intpricediscount / 10).toFixed(2) + '</strong><strong class="col-xs-3">教师总计:' + (rowData.intteaccount * rowData.book.strprice * rowData.book.intpricediscount / 10).toFixed(2) + '</strong>');
 		},
 		onLoadSuccess : function(data) {
-			$('#notification').html('No Selected Plan');
+			$('#notification').html('未选择计划');
 		}
 	});
 
@@ -504,17 +504,17 @@ $(function() {
 		LoadModel('selectusermodel').done(function(responseContent) {
 			$.TeachDialog({
 				modalID : "SelectUsersModal",
-				title : 'Select Users From Table',
+				title : '从表中选择用户',
 				content : responseContent,
 				largeSize : true,
-				otherButtons : [ 'Clear', 'Select' ],
+				otherButtons : [ '清除', '选择' ],
 				otherButtonStyles : [ 'btn btn-primary' ],
 				clickButton : function(sender, modal, index) {
 					if (index == 1) {
 						var rows = $('#datatable_userinfo').datagrid('getSelections');
 						if (rows.length != 1) {
 							$.TeachDialog({
-								content : 'You should select a row!',
+								content : '请至少选择一行!',
 								bootstrapModalOption : {}
 							});
 							return;
@@ -554,32 +554,32 @@ $(function() {
 						collapsible : true,
 						fit : false,
 						url : 'User/GetAllUser',
-						loadMsg : 'Please waiting for loading date.....',
+						loadMsg : '请等待数据载入.....',
 						pagination : true,
 						rownumbers : true,
 						singleSelect : true,
 						fitColumns : true,
 						columns : [ [ {
 							field : 'intid',
-							title : 'User ID',
+							title : '用户ID',
 							align : 'center',
 							sortable : true,
 							width : cellwidth * 0.5
 						}, {
 							field : 'username',
-							title : 'UserName',
+							title : '用户名',
 							align : 'center',
 							sortable : true,
 							width : cellwidth
 						}, {
 							field : 'strname',
-							title : 'RealName',
+							title : '姓名',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'userType',
-							title : 'UserType',
+							title : '用户组',
 							align : 'center',
 							width : cellwidth,
 							sortable : true,
@@ -588,7 +588,7 @@ $(function() {
 							}
 						}, {
 							field : 'userDepartMent',
-							title : 'DepartMent',
+							title : '系部',
 							align : 'center',
 							width : cellwidth,
 							sortable : true,
@@ -597,7 +597,7 @@ $(function() {
 							}
 						}, {
 							field : 'userMajor',
-							title : 'Major',
+							title : '专业',
 							align : 'center',
 							width : cellwidth * 1.4,
 							sortable : true,
@@ -606,25 +606,25 @@ $(function() {
 							}
 						}, {
 							field : 'strstunum',
-							title : 'Id Card',
+							title : '学号',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'strphone',
-							title : 'Phone',
+							title : '手机',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'strmail',
-							title : 'Email',
+							title : '邮箱',
 							align : 'center',
 							width : cellwidth,
 							sortable : true
 						}, {
 							field : 'dateregtime',
-							title : 'CreateTime',
+							title : '创建时间',
 							align : 'center',
 							width : cellwidth * 1.1 + 10,
 							sortable : true,

@@ -58,7 +58,7 @@ function loadDepartMent() {
 			var treeObj = $.fn.zTree.getZTreeObj("ul_tree");
 			treeObj.expandAll(true);
 			curtreeNode = null;
-			$('#parent_edit_sel').removeData('department1', undefined);
+			$('#parent_edit_sel').removeData('department1');
 		},
 		async : true,
 	});
@@ -74,8 +74,7 @@ $(function() {
 		var name = $('#parent_insert_name').val().trim();
 		if (parentid == undefined || parentid == 0 || parentid == "" || name == undefined || name == "") {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please input correct value!',
+				content : '请输入正确的值!',
 			});
 			return;
 		}
@@ -91,19 +90,18 @@ $(function() {
 		}).success(function() {
 			initial();
 			$.TeachDialog({
-				content : 'Insert successfully!',
+				content : '新增成功!',
 			});
 		}).fail(function() {
 			$.TeachDialog({
-				content : 'Update DepartMent Failed!',
+				content : '更新失败!',
 			});
 		});
 	});
 	$('#edit').click(function() {
 		if (curtreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a node first.',
+				content : '请至少选择一行.',
 			});
 			return;
 		}
@@ -113,8 +111,7 @@ $(function() {
 		var name = $('#parent_edit_name').val().trim();
 		if (parentid == undefined || parentid == 0 || parentid == "" || name == undefined || name == "") {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please input correct value!',
+				content : '请输入正确的值!',
 			});
 			return;
 		}
@@ -133,29 +130,25 @@ $(function() {
 		}).success(function() {
 			initial();
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Update successfully!',
+				content : '更新成功!',
 			});
 		}).fail(function() {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Update DepartMent Failed!',
+				content : '更新失败!',
 			});
 		});
 	});
 	$('#delete').click(function() {
 		if (curtreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a node first.',
+				content : '请至少选择一行.',
 			});
 			return;
 		}
 		$.TeachDialog({
-			title : 'Warnning Message!',
-			content : 'Are you sure delete this node :' + curtreeNode.strname + ' ?',
-			showCloseButtonName : 'No',
-			otherButtons : [ 'Yes' ],
+			content : '你确定删除 :' + curtreeNode.strname + ' ?',
+			showCloseButtonName : '取消',
+			otherButtons : [ '确认' ],
 			clickButton : function(sender, modal, index) {
 				if (index == 0) {
 					$.ajax({
@@ -170,19 +163,16 @@ $(function() {
 						if (response) {
 							initial();
 							$.TeachDialog({
-								title : 'Operation Message!',
-								content : 'Delete successfully!',
+								content : '删除成功!',
 							});
 						} else {
 							$.TeachDialog({
-								title : 'Operation Message!',
-								content : 'Delete DepartMent Failed!',
+								content : '删除失败!',
 							});
 						}
 					}).fail(function() {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Delete DepartMent Failed!',
+							content : '删除失败!',
 						});
 					});
 				}

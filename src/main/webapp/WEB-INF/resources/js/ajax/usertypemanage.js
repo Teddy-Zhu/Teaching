@@ -66,15 +66,13 @@ $(function() {
 
 		if (curUserTreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a type to edit!',
+				content : '请至少选择一行!',
 			});
 			return;
 		}
 		if (name == "" || name == undefined) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please Input a name!',
+				content : '请输入一个名称!',
 			});
 			return;
 		}
@@ -94,13 +92,11 @@ $(function() {
 					curUserTreeNode.intallowreg = allregcheck;
 					userTreeObj.updateNode(curUserTreeNode);
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update UserType successfully!',
+						content : '更新用户类型成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Update UserType failed!',
+						content : '更新用户类型失败!',
 					});
 				}
 			},
@@ -113,8 +109,7 @@ $(function() {
 
 		if (name == "" || name == undefined) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please Input a name!',
+				content : '请输入名称!',
 			});
 			return;
 		}
@@ -133,13 +128,11 @@ $(function() {
 						strname : name
 					});
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Insert UserType successfully!',
+						content : '新增用户类型成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Insert UserType failed!',
+						content : '新增用户类型失败!',
 					});
 				}
 			},
@@ -150,8 +143,7 @@ $(function() {
 	$('#user_delete').click(function() {
 		if (curUserTreeNode == null) {
 			$.TeachDialog({
-				title : 'Operation Message!',
-				content : 'Please select a type to edit!',
+				content : '请至少选择一行!',
 			});
 			return;
 		}
@@ -166,13 +158,11 @@ $(function() {
 				if (response) {
 					treeObj.removeNode(curUserTreeNode);
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Delete UserType successfully!',
+						content : '删除用户类型成功!',
 					});
 				} else {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Delete UserType failed!',
+						content : '删除用户类型失败!',
 					});
 				}
 			},

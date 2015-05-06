@@ -27,7 +27,7 @@ function initUserType(id, addition) {
 	var fillDom = function(domData) {
 		$('#' + id).empty();
 		if (addition != undefined) {
-			$('#' + id).append('<option value="-1">All UserType</option>');
+			$('#' + id).append('<option value="-1">全部</option>');
 		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intidentityid + '">' + domData[i].strname + '</option>');
@@ -69,7 +69,7 @@ function initUserDepartMent(id, type, addition) {
 	var filldom = function(domData) {
 		$('#' + id).empty();
 		if (addition != undefined) {
-			$('#' + id).append('<option value="-1">All DepartMent</option>');
+			$('#' + id).append('<option value="-1">全部</option>');
 		}
 		for (var i = 0; len = domData.length, i < len; i++) {
 			$('#' + id).append('<option value="' + domData[i].intid + '">' + domData[i].strname + '</option>');
@@ -121,7 +121,7 @@ $(function() {
 		collapsible : true,
 		fit : false,
 		url : 'User/GetAllUser',
-		loadMsg : 'Please waiting for loading date.....',
+		loadMsg : '请等待数据载入.....',
 		pagination : true,
 		rownumbers : true,
 		fitColumns : true,
@@ -129,25 +129,25 @@ $(function() {
 		pageList : [ psval, psval * 2, psval * 3, psval * 4, psval * 5 ],
 		columns : [ [ {
 			field : 'intid',
-			title : 'User ID',
+			title : 'ID',
 			align : 'center',
 			sortable : true,
 			width : cellwidth * 0.5,
 		}, {
 			field : 'username',
-			title : 'UserName',
+			title : '用户名',
 			align : 'center',
 			sortable : true,
 			width : cellwidth,
 		}, {
 			field : 'strname',
-			title : 'RealName',
+			title : '姓名',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'userType',
-			title : 'UserType',
+			title : '用户类型',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -156,7 +156,7 @@ $(function() {
 			}
 		}, {
 			field : 'userDepartMent',
-			title : 'DepartMent',
+			title : '系部',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
@@ -165,7 +165,7 @@ $(function() {
 			}
 		}, {
 			field : 'userMajor',
-			title : 'Major',
+			title : '专业',
 			align : 'center',
 			width : cellwidth * 1.4,
 			sortable : true,
@@ -174,25 +174,25 @@ $(function() {
 			}
 		}, {
 			field : 'strstunum',
-			title : 'Id Card',
+			title : '学号',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'strphone',
-			title : 'Phone',
+			title : '手机',
 			align : 'center',
 			width : cellwidth,
 			sortable : true
 		}, {
 			field : 'strmail',
-			title : 'Email',
+			title : '邮箱',
 			align : 'center',
 			width : cellwidth,
 			sortable : true,
 		}, {
 			field : 'dateregtime',
-			title : 'CreateTime',
+			title : '创建时间',
 			align : 'center',
 			width : cellwidth * 1.1 + 10,
 			sortable : true,
@@ -231,7 +231,7 @@ $(function() {
 		var check = true;
 		$('.newform').each(function() {
 			if ($(this).val().trim() == "") {
-				$('#adderrormsg').html("please input " + $(this).prev().html() + "!");
+				$('#adderrormsg').html("请输入 " + $(this).prev().html() + "!");
 				check = false;
 				return false;
 			} else {
@@ -249,10 +249,9 @@ $(function() {
 			success : function(response) {
 				if (response) {
 					$.TeachDialog({
-						title : 'Operation Message!',
-						content : 'Add a new User successfully and do you want to add more ?',
-						showCloseButtonName : 'No',
-						otherButtons : [ 'Yes', 'Yes & Keep Val' ],
+						content : '添加用户成功，你需要继续吗 ?',
+						showCloseButtonName : '取消',
+						otherButtons : [ '确认', '确认且保存值' ],
 						CloseButtonAddFunc : function() {
 							$('#operationpanel').slideToggle();
 							$('#addnewuser').slideToggle();
@@ -273,7 +272,7 @@ $(function() {
 					});
 				} else {
 					$.TeachDialog({
-						content : 'Add User Failed!',
+						content : '添加用户失败!',
 					});
 				}
 			}
@@ -292,7 +291,7 @@ $(function() {
 				var rows = $('#datatable_userinfo').datagrid('getSelections');
 				if (rows.length == 0) {
 					$.TeachDialog({
-						content : 'You should select one row at least !',
+						content : '你至少需要选择一行 !',
 						bootstrapModalOption : {},
 					});
 					return;
@@ -324,7 +323,7 @@ $(function() {
 			var check = true;
 			$('.editform').each(function() {
 				if ($(this).val().trim() == "") {
-					$('#editerrormsg').html("please input " + $(this).prev().html() + "!");
+					$('#editerrormsg').html("请输入 " + $(this).prev().html() + "!");
 					check = false;
 					return false;
 				} else {
@@ -343,8 +342,7 @@ $(function() {
 				success : function(data) {
 					if (data) {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Edit Users Info successfully!',
+							content : '编辑用户成功!',
 							CloseButtonAddFunc : function() {
 								$('#operationpanel').slideDown();
 								$('#editusercontainer').slideUp();
@@ -353,8 +351,7 @@ $(function() {
 						});
 					} else {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Edit Users Info failed!',
+							content : '编辑用户失败!',
 							CloseButtonAddFunc : function() {
 								$('#operationpanel').slideDown();
 								$('#editusercontainer').slideUp();
@@ -376,7 +373,7 @@ $(function() {
 		var rows = $('#datatable_userinfo').datagrid('getSelections');
 		if (rows.length == 0) {
 			$.TeachDialog({
-				content : 'You should select one row at least !',
+				content : '你至少需要选择一行 !',
 				bootstrapModalOption : {},
 			});
 			return;
@@ -391,8 +388,7 @@ $(function() {
 		var sureDialog = function() {
 			var dtd = $.Deferred();
 			$.TeachDialog({
-				title : 'Warnning Message!',
-				content : 'Are you sure remove this users :' + namesArray + ' ?',
+				content : '你确定要删除用户 :' + namesArray + ' ?',
 				showCloseButtonName : 'No',
 				otherButtons : [ 'Yes' ],
 				CloseButtonAddFunc : function() {
@@ -418,8 +414,7 @@ $(function() {
 				success : function(response) {
 					if (response === true) {
 						$.TeachDialog({
-							title : 'Operation Message!',
-							content : 'Remove users successfully!',
+							content : '删除用户成功!',
 						})
 						$('#datatable_userinfo').datagrid('reload');
 					} else {
@@ -432,11 +427,11 @@ $(function() {
 								}
 							}
 							$.TeachDialog({
-								content : 'Remove users failed! User:' + username + ' in use.',
+								content : '删除用户失败! 用户:' + username + ' 被使用中.',
 							})
 						} else {
 							$.TeachDialog({
-								content : 'Remove users failed!',
+								content : '删除用户失败!',
 							})
 						}
 					}
