@@ -194,8 +194,8 @@ function LoadModel(modelName) {
 	if (modelName == undefined || modelName.trim() == "") {
 		dtd.reject();
 	}
-	if ($('.box-content.table-responsive').data('modelName') != undefined) {
-		dtd.resolve($('.box-content.table-responsive').data('modelName'));
+	if ($('.box-content.table-responsive').data(modelName) != undefined) {
+		dtd.resolve($('.box-content.table-responsive').data(modelName));
 	} else {
 		$.ajax({
 			mimeType : 'text/html; charset=utf-8',
@@ -204,7 +204,7 @@ function LoadModel(modelName) {
 			dataType : "html",
 			async : false
 		}).success(function(data) {
-			$('.box-content.table-responsive').data('modelName', data);
+			$('.box-content.table-responsive').data(modelName, data);
 			dtd.resolve(data);
 		}).fail(function() {
 			dtd.reject();
